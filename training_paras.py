@@ -55,7 +55,6 @@ def create_table(comp, dep1_s, dep2_s):
 	lib.init(comp, in_folder, tab_folder)
 	lib.dep1, SIZE1 = lib.parse_dep(dep1_s, lib.apc_bins)
 	lib.dep2, SIZE2 = lib.parse_dep(dep2_s, lib.apc_bins)
-	print "here", SIZE1, SIZE2
 	#id_str = sys.argv[1] +"_" + comp + "_" + images_s + "_" + images_e + "[" + str(dep1) + "," + str(dep2) + "]"
 
 	# get SIZE1_length code based on learning set

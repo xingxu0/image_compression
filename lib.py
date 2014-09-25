@@ -826,10 +826,12 @@ def init(comp, image_folder, tbl_folder):
 		avg_coef = pickle.load(pkl_file)
 		pkl_file.close()
 	else:
+		print "regenerating max_pos_values..."
 		avg_coef = get_max_pos_value(image_folder, comp)
 		pkl_file = open(image_folder + "/max_pos_value_" + comp, 'wb')
 		pickle.dump(avg_coef, pkl_file)
 		pkl_file.close()
+	os.system("cp " + image_folder + "/max_pos_value_" + comp + " " + tbl_folder + "/max_pos_value_" + comp)
 
 	# coef bins
 	if os.path.isfile(image_folder + "/coef_bins_" + comp):
@@ -837,10 +839,46 @@ def init(comp, image_folder, tbl_folder):
 		apc_bins = pickle.load(pkl_file)
 		pkl_file.close()
 	else:
+		print "regenerating coef_bins..."
 		apc_bins = get_avg_coef_bins(image_folder, comp)
 		pkl_file = open(image_folder + "/coef_bins_" + comp, 'wb')
 		pickle.dump(apc_bins, pkl_file)
 		pkl_file.close()
+	os.system("cp " + image_folder + "/coef_bins_" + comp + " " + tbl_folder + "/coef_bins_" + comp)		
+
+	if comp == "0":
+		code = get_luminance_codes()
+		dc_code = bits_dc_luminance
+		avg_actual_coef = avg_actual_coef_600_0
+	else:
+		code = get_chrominance_codes()
+		dc_code = bits_dc_chrominance
+		avg_actual_coef = avg_actual_coef_600_0
+
+def init_testing(comp, tbl_folder):
+	global code, dc_code, avg_coef, apc_bins, avg_actual_coef, aapc_bins
+	if os.path.isfile("bin_separator_600_"+comp):
+		pkl_file = open("bin_separator_600_"+comp, 'rb')
+		aapc_bins = pickle.load(pkl_file)
+		pkl_file.close()
+
+	# max value for each position
+	if os.path.isfile(tbl_folder + "/max_pos_value_" + comp):
+		pkl_file = open(tbl_folder + "/max_pos_value_" + comp)
+		avg_coef = pickle.load(pkl_file)
+		pkl_file.close()
+	else:
+		print "no max_pos_values..."
+		exit()
+
+	# coef bins
+	if os.path.isfile(tbl_folder + "/coef_bins_" + comp):
+		pkl_file = open(tbl_folder + "/coef_bins_" + comp)
+		apc_bins = pickle.load(pkl_file)
+		pkl_file.close()
+	else:
+		print "no coef_bins..."
+		exit()
 
 	if comp == "0":
 		code = get_luminance_codes()
