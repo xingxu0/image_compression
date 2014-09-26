@@ -1,9 +1,9 @@
 # train the images (blocks) in [INPUT FOLDER], output tables to [OUTPUT FOLDER]
 
-import sys, os, heapq, glob, operator, pickle, lib
+import sys, os, heapq, glob, operator, pickle, lib, numpy
 from operator import itemgetter
 from copy import *
-from pylab import *
+from numpy import *
 
 #if len(sys.argv) == 1:
 #	print "usage: python runsize.py size(600, 1200), component_number(0,1,2) start_learn_image(1-100), end_learn_image(1-100), end_test_image(1-100), dep. 1(0:DC, 1:avg_pre_coef, 2:avg_pre_block_coef, 3:pre_block_coef, r:last_block_eob, 5:pre_blocks_sign), dep. 2(0:DC, 1:avg_pre_coef, 2:avg_pre_block_coef, 3:pre_block_coef, 4:last_block_eob, 5:pre_blocks_sign)"
@@ -211,13 +211,13 @@ def calc_gain(comp, dep1_s, dep2_s):
 				gain_dc += oc_dc_t[i][ii]*(lib.bits_dc_chrominance[ii] - co_dc[i][ii])
 				jdc += oc_dc_t[i][ii]*lib.bits_dc_chrominance[ii]
 
-	lib.fprint("\nJPEG baseline run length bits:" + str(sum(j)) + "\tour run length bits:" + str(sum(yy)) + "\tdifference:" + str(sum(diff)))
+	lib.fprint("\nJPEG baseline run length bits:" + str(numpy.sum(j)) + "\tour run length bits:" + str(sum(yy)) + "\tdifference:" + str(sum(diff)))
 	lib.fprint("JPEG baseline DC  symbol bits:" + str(jdc) + "\tour symbol bits:" + str(jdc-gain_dc) + "\tdifference:" +str(gain_dc))
 	
-	lib.fprint("\nJPEG optimize run length bits:" + str(total_opt) + "\tour run length bits:" + str(sum(yy)) + "\tdifference:" + str(total_opt-sum(yy)))
+	lib.fprint("\nJPEG optimize run length bits:" + str(total_opt) + "\tour run length bits:" + str(numpy.sum(yy)) + "\tdifference:" + str(total_opt-sum(yy)))
 	lib.fprint("JPEG optimize DC  symbol bits:" + str(total_opt_dc) + "\tour symbol bits:" + str(jdc-gain_dc) + "\tdifference:" +str(total_opt_dc-jdc+gain_dc))
 
-	if sum(j) != t_run_length_bits:
+	if numpy.sum(j) != t_run_length_bits:
 		print "run_length_bits not equal!!"
 		lib.fprint("ERROR 2 run_length_bits not equal!!")
 	if t_dc_s != jdc:
@@ -229,9 +229,9 @@ def calc_gain(comp, dep1_s, dep2_s):
 	lib.fprint("gaining " + str(total_gain + gain_dc) + " bits (" + str((total_gain+gain_dc)*100.0/t_total_bits)+"%)")
 	
 	lib.fprint("\nCompare to JPEG Optimize:")
-	lib.fprint("RUN LENGTH: gaining bits:" + str(total_gain+total_opt-sum(j)) + "\ttotal bits in file:" + str(t_total_bits_opt))
+	lib.fprint("RUN LENGTH: gaining bits:" + str(total_gain+total_opt-numpy.sum(j)) + "\ttotal bits in file:" + str(t_total_bits_opt))
 	lib.fprint("DC        : gaining bits:" + str(gain_dc+total_opt_dc-jdc) + "\ttotal bits in file:" + str(t_total_bits_opt))
-	lib.fprint("gaining " + str(total_gain+total_opt-sum(j)+gain_dc+total_opt_dc-jdc) + " bits (" + str((total_gain+total_opt-sum(j)+gain_dc+total_opt_dc-jdc)*100.0/t_total_bits_opt)+"%)")
+	lib.fprint("gaining " + str(total_gain+total_opt-numpy.sum(j)+gain_dc+total_opt_dc-jdc) + " bits (" + str((total_gain+total_opt-sum(j)+gain_dc+total_opt_dc-jdc)*100.0/t_total_bits_opt)+"%)")
 	
 	print "\n\tTesting DONE"
 	return total_gain + gain_dc, t_total_bits, t_total_bits_opt
