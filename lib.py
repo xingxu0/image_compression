@@ -584,20 +584,10 @@ def get_dep(blocks, blocks_o, now, s, e, dep):
 #		if not ma:
 #			return 21
 		if not ma:
+			if blocks[now][0] > 11:
+				print "DC out of range", blocks[now]
 			return len(apc_bins[1]) + blocks[now][0] - 5
 		return scale(su*1.0/ma, s)
-		#return te
-		bit = 0
-		if n:
-			bit = lib.get_bits(sign/n)
-		if bit >= 1:
-			if sign > 0:
-				return te + 10
-			else:
-				return te + 20
-		else:
-			return te
-
 	if dep == 6:
 		su = 0
 		ma = 0
@@ -647,6 +637,12 @@ def record_jpeg(b, b_o, now, c, start, end, oc):
 	global dep1, dep2, code
 	d1 = get_dep(b, b_o, now, start, end, dep1)
 	d2 = get_dep(b, b_o, now, start, end, dep2)
+	if d1 == 30 or d2 == 30:
+		print "error here:", d1, d2
+		for i in range(1,64):
+			print len(apc_bins[i])
+		print b
+		print b_o
 	oc[start][d1][d2] += code[abs(c)]	
 
 def parse_dep(s, apc_bins):
