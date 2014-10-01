@@ -31,6 +31,7 @@ def calc_gain(comp, dep1_s, dep2_s):
 	lib.init_testing(comp, tab_folder)
 	lib.dep1, SIZE1 = lib.parse_dep(dep1_s, lib.apc_bins)
 	lib.dep2, SIZE2 = lib.parse_dep(dep2_s, lib.apc_bins)
+	print "bin sizes:", SIZE1, SIZE2
 
 	co = {}   #co for code
 	for i in range(1, 64):
