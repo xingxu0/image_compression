@@ -670,7 +670,7 @@ def parse_dep(s, apc_bins):
 
 def fprint(string):
 	global index_file
-	#print string
+	print string
 	index_file.write(string + "\n")
 	
 def fprint_close():
