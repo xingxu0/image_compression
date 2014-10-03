@@ -628,22 +628,34 @@ def get_dep(blocks, blocks_o, now, s, e, dep):
 		return 0
 
 def record_code(b, b_o, now, c, start, end, oc):
-	global dep1, dep2
+	global dep1, dep2, wrong_keys
 	d1 = get_dep(b, b_o, now, start, end, dep1)
 	d2 = get_dep(b, b_o, now, start, end, dep2)
-	oc[start][d1][d2][c] += 1
+	if d1<len(oc[start]) and d2<len(oc[start][d1]):
+		oc[start][d1][d2][c] += 1
+	else:
+		wrong_keys += 1
 	
 def record_jpeg(b, b_o, now, c, start, end, oc):
-	global dep1, dep2, code
+	global dep1, dep2, code, wrong_keys, wrong_desc, wrong_saw
 	d1 = get_dep(b, b_o, now, start, end, dep1)
 	d2 = get_dep(b, b_o, now, start, end, dep2)
-	if d1 == 30 or d2 == 30:
-		print "error here:", d1, d2
-		for i in range(1,64):
-			print len(apc_bins[i])
-		print b
-		print b_o
-	oc[start][d1][d2] += code[abs(c)]	
+	d2 = 40
+	if d1 >= len(oc[start]) or d2 >= len(oc[start][d1]):
+		if not wrong_saw:
+			wrong_desc = []
+			wrong_desc.append(d1)
+			wrong_desc.append(d2)
+			for i in range(1,64):
+				wrong_desc.append(len(apc_bins[i]))
+			wrong_desc.append(b[now])
+			wrong_desc.append(b_o[now])
+			wrong_saw = True
+	if d1<len(oc[start]) and d2<len(oc[start][d1]):
+		oc[start][d1][d2] += code[abs(c)]
+	else:
+		wrong_keys += 1
+		
 
 def parse_dep(s, apc_bins):
 	if s == "0": 
@@ -810,7 +822,7 @@ def get_avg_coef_bins(folder, comp):
 	return sep
 	
 def init(comp, image_folder, tbl_folder):
-	global code, dc_code, avg_coef, apc_bins, avg_actual_coef, aapc_bins
+	global code, dc_code, avg_coef, apc_bins, avg_actual_coef, aapc_bins, wrong_keys
 	if os.path.isfile("bin_separator_600_"+comp):
 		pkl_file = open("bin_separator_600_"+comp, 'rb')
 		aapc_bins = pickle.load(pkl_file)
@@ -850,6 +862,8 @@ def init(comp, image_folder, tbl_folder):
 		code = get_chrominance_codes()
 		dc_code = bits_dc_chrominance
 		avg_actual_coef = avg_actual_coef_600_0
+	
+	wrong_keys = 0
 
 def init_testing(comp, tbl_folder):
 	global code, dc_code, avg_coef, apc_bins, avg_actual_coef, aapc_bins
@@ -925,3 +939,6 @@ avg_actual_coef = 0
 index_file = 0
 code = 0
 dc_code = 0
+wrong_keys = 0
+wrong_desc = 0
+wrong_saw = False
