@@ -1,4 +1,5 @@
-
+# use tables in the specified table folder, choose the best one for different cases
+# for different cases, the # of the table (best table) it uses should be attached in the file
 
 import sys, os, heapq, glob, operator, pickle, lib
 from operator import itemgetter
@@ -20,9 +21,33 @@ def load_code_table(i, d1, d2, table_folder):
 		ret = {}
 	return ret	
 
-
-def calc_gain(comp, dep1_s, dep2_s):
-	global out_file, tab_folder
+def load_tables(tbl_folder):
+	tbls = {}
+	for comp in range(3):
+		tbls[comp] = []
+		fs = glob.glob(tbl_folder + "/" + str(comp) + "/pool*.table")
+		for f in fs:
+			pkl_file = open(f, 'rb')
+			tbls[comp].append(pickle.load(pkl_file))
+			pkl_file.close()
+		print comp, len(tbls[comp])
+	return deepcopy(tbls)
+	
+def get_best_table(tbls, oc):
+	min_bits = -1
+	min_tbl = []
+	for tbl in tbls:
+		b = 0
+		for x in oc:
+			b += oc[x]*tbl[x]
+		if min_bits == -1 or b < min_bits:
+			min_bits = b
+			min_tbl = deepcopy(tbl)
+	return deepcopy(min_tbl)
+	
+	
+def calc_gain(f, comp, dep1_s, dep2_s):
+	global out_file, tab_folder, tbls
 	lib.fprint("Component " + comp)
 
 	AC_BITS = 10
@@ -85,74 +110,67 @@ def calc_gain(comp, dep1_s, dep2_s):
 		for j in range(12):
 			oc_dc_t[i][j] = 0
 
-	files = glob.glob(test_folder + "/*.block")	
-	ratio = 0	
 	lib.fprint("\tTesting: ")
 	print "\t",
 	
+	oc_dc_opt = {}
+	oc_opt = {}
+	
+	for i in range(12):
+		oc_dc_opt[i] = 0
+	for z in range(16):
+		for b in range(1, AC_BITS + 1):
+			oc_opt[(z<<4) + b] = 0
+	oc_opt[0] = 0	# 0 for EOB
+	oc_opt[0xf0] = 0
+
+	block_t = lib.get_blocks_all_in_bits(f, comp)
+	block_t_o = lib.get_blocks_with_dc_in_diff(f, comp)
+
+	for ii in range(len(block_t)):		
+		x, dc_s_bits, dc_bits, r, coef_bits = lib.get_bits_detail(block_t[ii], lib.code, comp=="0")
+		t_ac_b += coef_bits
+		t_run_length_bits += r
+		t_dc_s += dc_s_bits
+		t_dc_b += dc_bits
+		t_total_bits += x
+
+		b = block_t[ii]
+		b_o = block_t_o[ii]
+		oc_dc_t[lib.get_previous_block(block_t, ii) [0]][b[0]] += 1
+		oc_dc_opt[b[0]] += 1
+		r = 0
+		pos = 1
+		for i in range(1, 64):
+			if b[i] == 0:
+				r += 1
+				continue
+	
+			while (r > 15):
+				lib.record_jpeg(block_t, block_t_o, ii, 0xf0, pos, pos + 15, jpeg_t)
+				lib.record_code(block_t, block_t_o, ii, 0xf0, pos, pos + 15, oc_t)
+				oc_opt[0xf0] += 1
+				pos += 16
+				r -= 16
+
+			lib.record_code(block_t, block_t_o, ii, (r << 4) + b[i], pos, i, oc_t)
+			lib.record_jpeg(block_t, block_t_o, ii, (r << 4) + b[i], pos, i, jpeg_t)
+			oc_opt[(r << 4) + b[i]] += 1
+			pos = i + 1
+			r = 0
+		if r > 0:
+			oc_opt[0] += 1
+			lib.record_jpeg(block_t, block_t_o, ii, 0, pos, 63, jpeg_t)
+			lib.record_code(block_t, block_t_o, ii, 0, pos, 63, oc_t)
+	
+	co_dc_opt = lib.huff_encode(oc_dc_opt, lib.bits_dc_luminance)
+	co_opt = lib.huff_encode(oc_opt, lib.code)
 	total_opt = 0
 	total_opt_dc = 0
-	for f in files:
-		# for optimized
-		oc_dc_opt = {}
-		oc_opt = {}
-	
-		for i in range(12):
-			oc_dc_opt[i] = 0
-		for z in range(16):
-			for b in range(1, AC_BITS + 1):
-				oc_opt[(z<<4) + b] = 0
-		oc_opt[0] = 0	# 0 for EOB
-		oc_opt[0xf0] = 0
-
-		ratio += 1
-		print str(ratio*100/len(files)) + "%",
-		sys.stdout.flush()
-		block_t = lib.get_blocks_all_in_bits(f, comp)
-		block_t_o = lib.get_blocks_with_dc_in_diff(f, comp)
-	
-		for ii in range(len(block_t)):		
-			x, dc_s_bits, dc_bits, r, coef_bits = lib.get_bits_detail(block_t[ii], lib.code, comp=="0")
-			t_ac_b += coef_bits
-			t_run_length_bits += r
-			t_dc_s += dc_s_bits
-			t_dc_b += dc_bits
-			t_total_bits += x
-
-			b = block_t[ii]
-			b_o = block_t_o[ii]
-			oc_dc_t[lib.get_previous_block(block_t, ii) [0]][b[0]] += 1
-			oc_dc_opt[b[0]] += 1
-			r = 0
-			pos = 1
-			for i in range(1, 64):
-				if b[i] == 0:
-					r += 1
-					continue
-		
-				while (r > 15):
-					lib.record_jpeg(block_t, block_t_o, ii, 0xf0, pos, pos + 15, jpeg_t)
-					lib.record_code(block_t, block_t_o, ii, 0xf0, pos, pos + 15, oc_t)
-					oc_opt[0xf0] += 1
-					pos += 16
-					r -= 16
-
-				lib.record_code(block_t, block_t_o, ii, (r << 4) + b[i], pos, i, oc_t)
-				lib.record_jpeg(block_t, block_t_o, ii, (r << 4) + b[i], pos, i, jpeg_t)
-				oc_opt[(r << 4) + b[i]] += 1
-				pos = i + 1
-				r = 0
-			if r > 0:
-				oc_opt[0] += 1
-				lib.record_jpeg(block_t, block_t_o, ii, 0, pos, 63, jpeg_t)
-				lib.record_code(block_t, block_t_o, ii, 0, pos, 63, oc_t)
-		
-		co_dc_opt = lib.huff_encode(oc_dc_opt, lib.bits_dc_luminance)
-		co_opt = lib.huff_encode(oc_opt, lib.code)
-		for x in co_opt:
-			total_opt += co_opt[x]*oc_opt[x]
-		for x in range(12):
-			total_opt_dc += co_dc_opt[x]*oc_dc_opt[x]
+	for x in co_opt:
+		total_opt += co_opt[x]*oc_opt[x]
+	for x in range(12):
+		total_opt_dc += co_dc_opt[x]*oc_dc_opt[x]
 		
 	t_total_bits_opt = total_opt + total_opt_dc + t_dc_b + t_ac_b		
 	if t_dc_s + t_dc_b + t_run_length_bits + t_ac_b != t_total_bits:
@@ -177,11 +195,18 @@ def calc_gain(comp, dep1_s, dep2_s):
 			per[p][i-1] = 0
 			temp_gain = 0
 			for pp in range(SIZE2 + 1):
+				exist = False
+				for x in oc_t[i][p][pp]:
+					if oc_t[i][p][pp][x] > 0:
+						exist = True
+						break
 				g = 0
-				o = 0
-				for x in co[i][p][pp]:
-					g += (lib.code[x] - co[i][p][pp][x])*oc_t[i][p][pp][x]
-					o += (co[i][p][pp][x])*oc_t[i][p][pp][x]				
+				o = 0						
+				if exist == True:
+					tbl = get_best_table(tbls[int(comp)], oc_t[i][p][pp])
+					for x in tbl:
+						g += (lib.code[x] - tbl[x])*oc_t[i][p][pp][x]
+						o += (tbl[x])*oc_t[i][p][pp][x]
 				temp_gain += g
 				total_gain += g
 				j[p][i-1] += jpeg_t[i][p][pp]
@@ -268,21 +293,28 @@ out_file = open(sys.argv[3], "w")
 dep1, dep2 = lib.get_deps_from_file(tab_folder + "/dep.txt")
 print dep1, dep2
 lib.index_file = out_file
-g = 0
-t = 0
-t_opt = 0
-for c in range(3):
-	t_g, t_t, t_o = calc_gain(str(c), dep1, dep2)
-	g += t_g
-	t += t_t
-	t_opt += t_o
-lib.fprint("\nIn summary:")
-lib.fprint("\tCompare to JPEG baseline:")
-lib.fprint("\tin total " + str(t) + " bits")
-lib.fprint("\tgaining " + str(g) + " bits (" + str(g*100.0/t)+"%)")
-lib.fprint("\tCompare to JPEG optimize:")
-lib.fprint("\tin total " + str(t_opt) + " bits")
-lib.fprint("\tgaining " + str(g+t_opt-t) + " bits (" + str((g+t_opt-t)*100.0/t_opt)+"%)")
 
-	
+files = glob.glob(test_folder + "/*.block")
+
+tbls = load_tables(tab_folder)
+
+total_g = 0
+total_t = 0
+total_opt = 0
+for f in files:
+	g = 0
+	t = 0
+	t_opt = 0
+	for c in range(3):
+		t_g, t_t, t_o = calc_gain(f, str(c), dep1, dep2)
+		g += t_g
+		t += t_t
+		t_opt += t_o
+		total_g += t_g
+		total_t += t_t
+		total_opt += t_o
+	lib.fprint(f + ": \n\t"+ "baseline bits: " + str(t) + "   gaining " + str(g) + "   bits (" + str(g*100.0/t)+"%) " + "   optimize bits:" + str(t_opt) + "   gaining " + str(g+t_opt-t) + "   bits (" + str((g+t_opt-t)*100.0/t_opt)+"%)")
+
+lib.fprint("finally: \n\t" + "baseline bits:"+ str(total_t) + "   gaining " + str(total_g) + "   bits (" + str(total_g*100.0/total_t)+"%)" + "   optimize bits:"+ str(total_opt) + "   gaining " + str(total_g+total_opt-total_t) + "   bits (" + str((total_g+total_opt-total_t)*100.0/total_opt)+"%)")
+
 lib.index_file.close()

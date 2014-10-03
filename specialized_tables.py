@@ -11,8 +11,8 @@ def create_final_table(oc, table_folder):
 			o += oc[i][x]
 		if not o:
 			continue
-		c = lib.huff_encode(oc[i], lib.code)			
-		fname = table_folder + "/" + str(i)+".table"		
+		c = lib.huff_encode_plus_extra(oc[i], lib.code)			
+		fname = table_folder + "/pool_" + str(i)+".table"		
 		pkl_file = open(fname, 'wb')
 		pickle.dump(c, pkl_file)
 		pkl_file.close()
@@ -374,7 +374,7 @@ def create_table(comp, dep1_s, dep2_s):
 	pcolor(per)
 	ylabel('impro. ratio')
 	colorbar()
-	savefig("specialized_" + sys.argv[3]+"_"+comp+".png")
+	savefig("specialized_" + sys.argv[3]+"_"+comp+"_"+str(tbl)+".png")
 	close()
 
 
