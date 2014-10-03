@@ -189,14 +189,16 @@ def calc_gain(comp, dep1_s, dep2_s):
 				yy[p][i-1] += o
 				diff[p][i-1] += jpeg_t[i][p][pp] - o
 				if g != jpeg_t[i][p][pp] - o:
-					lib.fprint("ERROR: test gain not equal!" +  str(g) + str(diff[p][i-1]) + str(i) + str(p) + str(pp))
+					#lib.fprint("ERROR: test gain not equal!" +  str(g) + str(diff[p][i-1]) + str(i) + str(p) + str(pp))
+					pass
 				if o+g:
-					lib.fprint(str(i) + " " + str(p) + " " + str(pp) + ": " + str(g) + "/" + str(o+g) + "(" +str(int(g*1.0/(o+g)*10000)/100.0) +"%)")
+					#lib.fprint(str(i) + " " + str(p) + " " + str(pp) + ": " + str(g) + "/" + str(o+g) + "(" +str(int(g*1.0/(o+g)*10000)/100.0) +"%)")
+					pass
 
 			if j[p][i-1]:
 				per[p][i-1] = temp_gain*100.0/j[p][i-1]
 				if per[p][i-1] < 0:
-					lib.fprint("negative:" + str(temp_gain) + " " + str(j[p][i-1]))
+					#lib.fprint("negative:" + str(temp_gain) + " " + str(j[p][i-1]))
 					per[p][i-1] = -10		# for plotting only, it's indeed negative gain
 			else:
 				per[p][i-1] = 0
@@ -234,7 +236,7 @@ def calc_gain(comp, dep1_s, dep2_s):
 	lib.fprint("DC        : gaining bits:" + str(gain_dc+total_opt_dc-jdc) + "\ttotal bits in file:" + str(t_total_bits_opt))
 	lib.fprint("gaining " + str(total_gain+total_opt-numpy.sum(j)+gain_dc+total_opt_dc-jdc) + " bits (" + str((total_gain+total_opt-sum(j)+gain_dc+total_opt_dc-jdc)*100.0/t_total_bits_opt)+"%)")
 	
-	print "\n\tTesting DONE"
+	print "\n\tTesting DONE with " + str(lib.wrong_keys) + " wrong keys ", lib.wrong_desc
 	return total_gain + gain_dc, t_total_bits, t_total_bits_opt
 
 if len(sys.argv) != 4:
