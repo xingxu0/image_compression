@@ -640,8 +640,10 @@ def record_jpeg(b, b_o, now, c, start, end, oc):
 	global dep1, dep2, code, wrong_keys, wrong_desc, wrong_saw
 	d1 = get_dep(b, b_o, now, start, end, dep1)
 	d2 = get_dep(b, b_o, now, start, end, dep2)
-	d2 = 40
-	if d1 >= len(oc[start]) or d2 >= len(oc[start][d1]):
+	if d1<len(oc[start]) and d2<len(oc[start][d1]):
+		oc[start][d1][d2] += code[abs(c)]
+	else:
+		wrong_keys += 1
 		if not wrong_saw:
 			wrong_desc = []
 			wrong_desc.append(d1)
@@ -650,11 +652,7 @@ def record_jpeg(b, b_o, now, c, start, end, oc):
 				wrong_desc.append(len(apc_bins[i]))
 			wrong_desc.append(b[now])
 			wrong_desc.append(b_o[now])
-			wrong_saw = True
-	if d1<len(oc[start]) and d2<len(oc[start][d1]):
-		oc[start][d1][d2] += code[abs(c)]
-	else:
-		wrong_keys += 1
+			wrong_saw = True		
 		
 
 def parse_dep(s, apc_bins):
