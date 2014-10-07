@@ -827,7 +827,11 @@ def init(comp, image_folder, tbl_folder):
 		pkl_file = open(image_folder + "/max_pos_value_" + comp, 'wb')
 		pickle.dump(avg_coef, pkl_file)
 		pkl_file.close()
-	os.system("cp " + image_folder + "/max_pos_value_" + comp + " " + tbl_folder + "/max_pos_value_" + comp)
+		f = open(tbl_folder + "/plain_max_pos_value_" + comp, 'wb')
+		for x in avg_coef:
+			f.write(str(x) + ": " + str(avg_coef[x]) + "\n")
+		f.close()
+	os.system("cp " + image_folder + "/*max_pos_value_" + comp + " " + tbl_folder + "/")
 
 	# coef bins
 	if os.path.isfile(image_folder + "/coef_bins_" + comp):
@@ -840,7 +844,14 @@ def init(comp, image_folder, tbl_folder):
 		pkl_file = open(image_folder + "/coef_bins_" + comp, 'wb')
 		pickle.dump(apc_bins, pkl_file)
 		pkl_file.close()
-	os.system("cp " + image_folder + "/coef_bins_" + comp + " " + tbl_folder + "/coef_bins_" + comp)		
+		f = open(tbl_folder + "/plain_coef_bins_" + comp, 'wb')
+		for x in apc_bins:
+			f.write(str(x) + ": ")
+			for y in range(len(apc_bins[x])):
+				f.write(str(apc_bins[x][y]) + " ")
+			f.write("\n")
+		f.close()
+	os.system("cp " + image_folder + "/*coef_bins_" + comp + " " + tbl_folder + "/")		
 
 	if comp == "0":
 		code = get_luminance_codes()
@@ -863,6 +874,7 @@ def init_testing(comp, tbl_folder):
 		pkl_file = open(tbl_folder + "/max_pos_value_" + comp)
 		avg_coef = pickle.load(pkl_file)
 		pkl_file.close()
+	
 	else:
 		print "no max_pos_values..."
 		exit()
