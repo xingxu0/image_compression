@@ -19,14 +19,11 @@ def save_code_table(c, oc, i, d1, d2, table_folder):
 	lib.index_file.write(str(i) + "\t" + str(d1) + "\t" + str(d2) + ":\t" + str(o) + "\n")
 
         f = open(table_folder + "/plain_" + str(i)+"_"+str(d1)+"_"+str(d2)+".table", "w")
-        cc = sorted(oc.iteritems(), key=operator.itemgetter(1), reverse = True)
+        cc = sorted(c.iteritems(), key=operator.itemgetter(1))
         for x in cc:
-                if x[0] == 0 or x[0] == 0xf0:
-                        neg = 0
-                elif x[0] > 0:
-                        neg = 1
-                else:
-                        neg = -1
+		bits = c[x[0]]
+		f.write(str(bits) + ": " + str(abs(x[0])) + "\n")
+		'''
                 bits = c[x[0]]
                 num = abs(x[0])
                 size = num & 0x0f
@@ -42,6 +39,7 @@ def save_code_table(c, oc, i, d1, d2, table_folder):
                 else:
                         f.write(" ")
                 f.write(str(run) + "/" + str(size) + ": \t" + str(bits) + "\t ( " + str(prob) +"% )\n")
+		'''
         f.close()
 	
 def create_table(comp, dep1_s, dep2_s):
