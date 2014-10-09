@@ -96,6 +96,10 @@ def calc_gain(comp, dep1_s, dep2_s):
 		# for optimized
 		oc_dc_opt = {}
 		oc_opt = {}
+		
+		gp_1=0 #gain part
+		gp_2=0
+		gp_3=0
 	
 		for i in range(12):
 			oc_dc_opt[i] = 0
@@ -111,7 +115,7 @@ def calc_gain(comp, dep1_s, dep2_s):
 		block_t = lib.get_blocks_all_in_bits(f, comp)
 		block_t_o = lib.get_blocks_with_dc_in_diff(f, comp)
 	
-		for ii in range(len(block_t)):		
+		for ii in range(len(block_t)):
 			x, dc_s_bits, dc_bits, r, coef_bits = lib.get_bits_detail(block_t[ii], lib.code, comp=="0")
 			t_ac_b += coef_bits
 			t_run_length_bits += r
@@ -119,12 +123,14 @@ def calc_gain(comp, dep1_s, dep2_s):
 			t_dc_b += dc_bits
 			t_total_bits += x
 
+				
 			b = block_t[ii]
 			b_o = block_t_o[ii]
 			oc_dc_t[lib.get_previous_block(block_t, ii) [0]][b[0]] += 1
 			oc_dc_opt[b[0]] += 1
 			r = 0
 			pos = 1
+
 			for i in range(1, 64):
 				if b[i] == 0:
 					r += 1
@@ -132,12 +138,14 @@ def calc_gain(comp, dep1_s, dep2_s):
 		
 				while (r > 15):
 					lib.record_jpeg(block_t, block_t_o, ii, 0xf0, pos, pos + 15, jpeg_t)
-					lib.record_code(block_t, block_t_o, ii, 0xf0, pos, pos + 15, oc_t)
+					a1,a2,a3,a4=lib.record_code(block_t, block_t_o, ii, 0xf0, pos, pos + 15, oc_t)
 					oc_opt[0xf0] += 1
 					pos += 16
 					r -= 16
+					gp_1 += lib.code[0xf0] - co[a1][a2][a3][0xf0]
 
-				lib.record_code(block_t, block_t_o, ii, (r << 4) + b[i], pos, i, oc_t)
+				a1,a2,a3,a4=lib.record_code(block_t, block_t_o, ii, (r << 4) + b[i], pos, i, oc_t)
+				gp_2 += lib.code[(r<<4)+b[i]] - co[a1][a2][a3][(r<<4)+b[i]]
 				lib.record_jpeg(block_t, block_t_o, ii, (r << 4) + b[i], pos, i, jpeg_t)
 				oc_opt[(r << 4) + b[i]] += 1
 				pos = i + 1
@@ -145,7 +153,8 @@ def calc_gain(comp, dep1_s, dep2_s):
 			if r > 0:
 				oc_opt[0] += 1
 				lib.record_jpeg(block_t, block_t_o, ii, 0, pos, 63, jpeg_t)
-				lib.record_code(block_t, block_t_o, ii, 0, pos, 63, oc_t)
+				a1,a2,a3,a4=lib.record_code(block_t, block_t_o, ii, 0, pos, 63, oc_t)
+				gp_3 += lib.code[0] - co[a1][a2][a3][0]
 		
 		co_dc_opt = lib.huff_encode(oc_dc_opt, lib.bits_dc_luminance)
 		co_opt = lib.huff_encode(oc_opt, lib.code)
@@ -231,7 +240,7 @@ def calc_gain(comp, dep1_s, dep2_s):
 				gain_dc += oc_dc_t[i][ii]*(lib.bits_dc_chrominance[ii] - co_dc[i][ii])
 				jdc += oc_dc_t[i][ii]*lib.bits_dc_chrominance[ii]
 
-	lib.fprint("\nJPEG baseline run length bits:" + str(sum(j)) + "\tour run length bits:" + str(sum(yy)) + "\tdifference:" + str(sum(diff)))
+	lib.fprint("\nJPEG baseline run length bits:" + str(sum(j)) + "\tour run length bits:" + str(sum(yy)) + "\tdifference:" + str(sum(diff)) + " gain part: " + str(gp_1)+","+str(gp_2)+","+str(gp_3))
 	lib.fprint("JPEG baseline DC  symbol bits:" + str(jdc) + "\tour symbol bits:" + str(jdc-gain_dc) + "\tdifference:" +str(gain_dc))
 	
 	lib.fprint("\nJPEG optimize run length bits:" + str(total_opt) + "\tour run length bits:" + str(sum(yy)) + "\tdifference:" + str(total_opt-sum(yy)))
