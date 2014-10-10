@@ -869,7 +869,7 @@ output_coef (j_decompress_ptr srcinfo, j_compress_ptr dstinfo,
 					for (idx = 0; idx < DCTSIZE2; idx++)
 					{
 						fprintf(srcinfo->outputcoef, "%d ", src_ptr[srcinfo->natural_order[idx]]);
-						dst_ptr[idx] = 0;
+						dst_ptr[idx] = src_ptr[idx];
 					}
 					fprintf(srcinfo->outputcoef, "\n");
 					t++;

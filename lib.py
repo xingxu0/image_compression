@@ -635,6 +635,7 @@ def record_code(b, b_o, now, c, start, end, oc):
 		oc[start][d1][d2][c] += 1
 	else:
 		wrong_keys += 1
+	return start, d1, d2, c
 	
 def record_jpeg(b, b_o, now, c, start, end, oc):
 	global dep1, dep2, code, wrong_keys, wrong_desc, wrong_saw
@@ -682,6 +683,11 @@ def fprint(string):
 	global index_file
 	print string
 	index_file.write(string + "\n")
+
+def fprint_(string):
+	global index_file
+	print string
+	index_file.write(string)	
 	
 def fprint_close():
 	global index_file
