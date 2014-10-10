@@ -624,6 +624,34 @@ def get_dep(blocks, blocks_o, now, s, e, dep):
 			t += abs(blocks_o[now][x])
 			ma += avg_actual_coef[x]
 		return int(t*200.0/ma)
+	if dep == 9:
+		su = 0
+		ma = 0
+		sign = 0
+		n = 0
+		pos = -1
+		for x in range(now - 1, max(0, now - 1), -1):
+			if blocks[x+1][0] > 5:
+				break
+			for xx in range(s, min(64, s+5)):
+				ma += avg_coef[xx]
+				if blocks[x][xx]:
+					if pos == -1:
+						pos = xx
+					else:
+						if xx == pos:
+							sign += blocks_o[x][xx]
+							n += 1
+					su += blocks[x][xx]
+					break
+
+#		if not ma:
+#			return 21
+		if not ma:
+			if blocks[now][0] > 11:
+				print "DC out of range", blocks[now]
+			return len(apc_bins[1]) + blocks[now][0] - 5
+		return scale(su*1.0/ma, s)
 	if dep == -1:
 		return 0
 
