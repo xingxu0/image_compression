@@ -145,6 +145,8 @@ def calc_gain(comp, dep1_s, dep2_s):
 					gp_1 += lib.code[0xf0] - co[a1][a2][a3][0xf0]
 
 				a1,a2,a3,a4=lib.record_code(block_t, block_t_o, ii, (r << 4) + b[i], pos, i, oc_t)
+				if not ((r<<4) + b[i] in co[a1][a2][a3]):
+					print (r<<4) + b[i], co[a1][a2][a3]
 				gp_2 += lib.code[(r<<4)+b[i]] - co[a1][a2][a3][(r<<4)+b[i]]
 				lib.record_jpeg(block_t, block_t_o, ii, (r << 4) + b[i], pos, i, jpeg_t)
 				oc_opt[(r << 4) + b[i]] += 1
