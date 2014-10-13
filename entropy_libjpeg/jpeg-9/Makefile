@@ -215,15 +215,26 @@ ETAGS = etags
 CTAGS = ctags
 CSCOPE = cscope
 AM_RECURSIVE_TARGETS = cscope
+<<<<<<< HEAD
 ACLOCAL = ${SHELL} /media/xing/Study/research/image_compression_github/image_compression/entropy_libjpeg/jpeg-9/missing aclocal-1.13
+=======
+ACLOCAL = ${SHELL} /home/xing/research/image_compression_github/image_compression/entropy_libjpeg/jpeg-9/missing aclocal-1.13
+>>>>>>> cd92a3a6f36ac3a34a54851f0fe33d860458fbdb
 AMTAR = $${TAR-tar}
 AM_DEFAULT_VERBOSITY = 0
 AR = ar
 AS = as
+<<<<<<< HEAD
 AUTOCONF = ${SHELL} /media/xing/Study/research/image_compression_github/image_compression/entropy_libjpeg/jpeg-9/missing autoconf
 AUTOHEADER = echo autoheader ignored
 AUTOMAKE = ${SHELL} /media/xing/Study/research/image_compression_github/image_compression/entropy_libjpeg/jpeg-9/missing automake-1.13
 AWK = gawk
+=======
+AUTOCONF = ${SHELL} /home/xing/research/image_compression_github/image_compression/entropy_libjpeg/jpeg-9/missing autoconf
+AUTOHEADER = echo autoheader ignored
+AUTOMAKE = ${SHELL} /home/xing/research/image_compression_github/image_compression/entropy_libjpeg/jpeg-9/missing automake-1.13
+AWK = mawk
+>>>>>>> cd92a3a6f36ac3a34a54851f0fe33d860458fbdb
 CC = gcc -std=gnu99
 CCDEPMODE = depmode=gcc3
 CFLAGS = -g -O2
@@ -257,7 +268,11 @@ LIPO =
 LN_S = ln -s
 LTLIBOBJS = 
 MAINT = #
+<<<<<<< HEAD
 MAKEINFO = ${SHELL} /media/xing/Study/research/image_compression_github/image_compression/entropy_libjpeg/jpeg-9/missing makeinfo
+=======
+MAKEINFO = ${SHELL} /home/xing/research/image_compression_github/image_compression/entropy_libjpeg/jpeg-9/missing makeinfo
+>>>>>>> cd92a3a6f36ac3a34a54851f0fe33d860458fbdb
 MANIFEST_TOOL = :
 MEMORYMGR = jmemnobs
 MKDIR_P = /bin/mkdir -p
@@ -281,10 +296,17 @@ SET_MAKE =
 SHELL = /bin/bash
 STRIP = strip
 VERSION = 9.0.0
+<<<<<<< HEAD
 abs_builddir = /media/xing/Study/research/image_compression_github/image_compression/entropy_libjpeg/jpeg-9
 abs_srcdir = /media/xing/Study/research/image_compression_github/image_compression/entropy_libjpeg/jpeg-9
 abs_top_builddir = /media/xing/Study/research/image_compression_github/image_compression/entropy_libjpeg/jpeg-9
 abs_top_srcdir = /media/xing/Study/research/image_compression_github/image_compression/entropy_libjpeg/jpeg-9
+=======
+abs_builddir = /home/xing/research/image_compression_github/image_compression/entropy_libjpeg/jpeg-9
+abs_srcdir = /home/xing/research/image_compression_github/image_compression/entropy_libjpeg/jpeg-9
+abs_top_builddir = /home/xing/research/image_compression_github/image_compression/entropy_libjpeg/jpeg-9
+abs_top_srcdir = /home/xing/research/image_compression_github/image_compression/entropy_libjpeg/jpeg-9
+>>>>>>> cd92a3a6f36ac3a34a54851f0fe33d860458fbdb
 ac_ct_AR = ar
 ac_ct_CC = gcc
 ac_ct_DUMPBIN = 
@@ -313,7 +335,11 @@ host_vendor = unknown
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
+<<<<<<< HEAD
 install_sh = ${SHELL} /media/xing/Study/research/image_compression_github/image_compression/entropy_libjpeg/jpeg-9/install-sh
+=======
+install_sh = ${SHELL} /home/xing/research/image_compression_github/image_compression/entropy_libjpeg/jpeg-9/install-sh
+>>>>>>> cd92a3a6f36ac3a34a54851f0fe33d860458fbdb
 libdir = ${exec_prefix}/lib
 libexecdir = ${exec_prefix}/libexec
 localedir = ${datarootdir}/locale
