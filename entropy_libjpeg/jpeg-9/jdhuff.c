@@ -21,7 +21,7 @@
 #include "jpeglib.h"
 
 // entropy table initialization - Xing
-int get_first_dimension_index(int ci, int pos, float f, int dc_diff) {
+int get_first_dimension_index(int ci, int pos, int f, int dc_diff) {
 	if (pos == 1)
 		return dc_diff > 10 ? 10 : dc_diff;
 	for (int i = 0; i < first_dimentsion_bins; ++i)
@@ -231,7 +231,7 @@ void initialize_coef_bins(int c)
 		coef_bins[c].bins[a] = malloc((first_dimentsion_bins + 1)*sizeof(float));
 		for (int j=0; j<first_dimentsion_bins; ++j) {
 			non = fscanf(f, "%f ", &b);
-			coef_bins[c].bins[a][j] = b;
+			coef_bins[c].bins[a][j] = (int)(b*1000);
 		}
 	}
 
@@ -1571,7 +1571,7 @@ decode_mcu_entropy (j_decompress_ptr cinfo, JBLOCKROW *MCU_data)
 
       register int s, k, r;
       int coef_limit, ci, dc_bits, index, t = 0, ma = 0;
-      float f = 0.0;
+      int f = 0;
       ci = cinfo->MCU_membership[blkn];
 
       int last_dc_diff_bits = state.last_dc_diff[ci];
@@ -1609,7 +1609,7 @@ decode_mcu_entropy (j_decompress_ptr cinfo, JBLOCKROW *MCU_data)
 				/* Section F.2.2.2: decode the AC coefficients */
 				/* Since zeroes are skipped, output area must be cleared beforehand */
 				for (; k < coef_limit; k++) {
-					f = t == 0 ? 0 : t*1.0/ma;
+					f = t == 0 ? 0 : t*1000/ma;
 					index = get_first_dimension_index(ci, k, f, dc_bits);
 					p_table = &ac_table[ci][k][index];
 					HUFF_DECODE_ENTROPY(s, br_state, p_table, return FALSE, label2);

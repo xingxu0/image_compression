@@ -1207,7 +1207,7 @@ max_pos_value_t * max_pos_value;
 
 typedef struct
 {
-	float * bins[64 + 1];
+	int * bins[64 + 1];
 } coef_bins_t;
 coef_bins_t * coef_bins;
 
@@ -1215,7 +1215,7 @@ int* bits_saving;
 
 void entropy_table_initialization();
 
-int get_first_dimension_index(int ci, int pos, float f, int dc_diff);
+int get_first_dimension_index(int ci, int pos, int f, int dc_diff);
 
 FILE * outputcoef;
 

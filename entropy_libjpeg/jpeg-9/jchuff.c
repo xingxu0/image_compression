@@ -1119,7 +1119,7 @@ encode_one_block_entropy (working_state * state, JCOEFPTR block, int last_dc_val
   r = 0;			/* r = run length of zeros */
 
   int t=0, ma = 0, bin, pos; // Xing, see training_paras.py
-  float f = 0.0;
+  int f = 0;
   int last_non_zero = 0;
   for (k = 1; k <= Se; k++) {
   	//ma += max_pos_value[ci].bits[k];
@@ -1129,7 +1129,7 @@ encode_one_block_entropy (working_state * state, JCOEFPTR block, int last_dc_val
       /* if run length > 15, must emit special run-length-16 codes (0xF0) */
     	pos = last_non_zero + 1;
       while (r > 15) {
-      	f = t == 0 ? 0 : t*1.0/ma;
+      	f = t == 0 ? 0 : t*1000/ma;
       	p_table = &ac_table[ci][pos][get_first_dimension_index(ci, pos, f, *dc_diff_bits)];
 #ifdef DEBUG
       	if (p_table->symbol == NULL || pos <=0 || pos >=64 || get_first_dimension_index(ci, pos, f, *dc_diff_bits) >= first_dimentsion_bins + 1)
@@ -1157,7 +1157,7 @@ encode_one_block_entropy (working_state * state, JCOEFPTR block, int last_dc_val
       	temp2--;
       }
 
-      f = t == 0 ? 0 : t*1.0/ma;
+      f = t == 0 ? 0 : t*1000/ma;
       p_table = &ac_table[ci][last_non_zero + 1][get_first_dimension_index(ci, last_non_zero + 1, f, *dc_diff_bits)];
       /* Find the number of bits needed for the magnitude of the coefficient */
       if (p_table->symbol == NULL || last_non_zero + 1 <=0 || last_non_zero + 1 >=64 || get_first_dimension_index(ci, last_non_zero + 1, f, *dc_diff_bits) >= first_dimentsion_bins + 1) {
@@ -1197,7 +1197,7 @@ encode_one_block_entropy (working_state * state, JCOEFPTR block, int last_dc_val
 
   /* If the last coef(s) were zero, emit an end-of-block code */
   if (r > 0) {
-  	f = t == 0 ? 0 : t*1.0/ma;
+  	f = t == 0 ? 0 : t*1000/ma;
   	p_table = &ac_table[ci][last_non_zero + 1][get_first_dimension_index(ci, last_non_zero + 1, f, *dc_diff_bits)];
 #ifdef DEBUG
     if (p_table->symbol == NULL || last_non_zero + 1<=0 || last_non_zero + 1 >=64 || get_first_dimension_index(ci, last_non_zero + 1, f, *dc_diff_bits) >= first_dimentsion_bins + 1) {

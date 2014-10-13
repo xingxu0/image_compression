@@ -524,7 +524,7 @@ def scale_actual_coef(f, i):
 
 
 def get_dep(blocks, blocks_o, now, s, e, dep):
-	global apc_bins, avg_coef,look_forward_coef, pre_bins
+	global apc_bins, avg_coef,look_forward_coef, look_backward_block
 	if dep == 0:
 		return min(10, blocks[now][0])
 	if dep == 1:
@@ -638,10 +638,10 @@ def get_dep(blocks, blocks_o, now, s, e, dep):
 		sign = 0
 		n = 0
 		pos = -1
-		for x in range(now - 1, max(0, now - pre_bins), -1):
+		for x in range(now - 1, max(0, now - look_backward_block), -1):
 			if blocks[x+1][0] > 5:
 				break
-			for xx in range(s, min(64, s+look_forward_coef)):
+			for xx in range(s, min(63, s+look_forward_coef)):
 				ma += avg_coef[xx]
 				if blocks[x][xx]:
 					if pos == -1:
@@ -651,7 +651,7 @@ def get_dep(blocks, blocks_o, now, s, e, dep):
 							sign += blocks_o[x][xx]
 							n += 1
 					su += blocks[x][xx]
-					break
+					#break
 
 #		if not ma:
 #			return 21
@@ -802,11 +802,11 @@ def record_code_temp(bs, now, c, start, end, oc, oc_2):
 	for x in range(now - 1, max(0, now - pre_bins), -1):
 		if bs[x+1][0] > 5:
 			return
-		for xx in range(start, min(64, start+look_forward_coef)):
+		for xx in range(start, min(63, start+look_forward_coef)):
 			ma += avg_coef[xx]
 			if bs[x][xx]:
 				su += bs[x][xx]
-				break
+				#break
 	if ma ==0:
 		pass
 		#oc_2[start][0] += 1
@@ -886,6 +886,8 @@ def get_avg_coef_bins(folder, comp):
 		tt = []
 		for ii in range(len(s) - 1):
 			tt.append(s[ii][len(s[ii]) - 1]*1.0/SIZE1)
+		if tt==[]:
+			tt.append(0.0)
 		for ii in range(20 - len(tt)):
 			tt.append(tt[len(tt) - 1])
 		sep[i] = tt
@@ -954,10 +956,10 @@ def init(comp, image_folder, tbl_folder):
 		pkl_file = open(image_folder + "/max_pos_value_" + comp, 'wb')
 		pickle.dump(avg_coef, pkl_file)
 		pkl_file.close()
-		f = open(tbl_folder + "/plain_max_pos_value_" + comp, 'wb')
-		for x in avg_coef:
-			f.write(str(x) + ": " + str(avg_coef[x]) + "\n")
-		f.close()
+	f = open(tbl_folder + "/plain_max_pos_value_" + comp, 'wb')
+	for x in avg_coef:
+		f.write(str(x) + ": " + str(avg_coef[x]) + "\n")
+	f.close()
 	avg_coef_max = [0]*64
 	for i in range(1, 64):
 		tt = 0
@@ -981,23 +983,23 @@ def init(comp, image_folder, tbl_folder):
 		pkl_file = open(image_folder + "/coef_bins_" + comp, 'wb')
 		pickle.dump(apc_bins, pkl_file)
 		pkl_file.close()
-		f = open(tbl_folder + "/plain_coef_bins_" + comp, 'wb')
-		for x in apc_bins:
-			f.write(str(x) + ": ")
-			for y in range(len(apc_bins[x])):
-				f.write(str(apc_bins[x][y]) + " ")
-			f.write("\n")
-		f.close()
 		pkl_file = open(image_folder + "/coef_bins_p_" + comp, 'wb')
 		pickle.dump(papc_bins, pkl_file)
 		pkl_file.close()
-		f = open(tbl_folder + "/plain_coef_bins_p_" + comp, 'wb')
-		for x in papc_bins:
-			f.write(str(x) + ": ")
-			for y in range(len(papc_bins[x])):
-				f.write(str(papc_bins[x][y]) + " ")
-			f.write("\n")
-		f.close()
+	f = open(tbl_folder + "/plain_coef_bins_" + comp, 'wb')
+	for x in apc_bins:
+		f.write(str(x) + ": ")
+		for y in range(len(apc_bins[x])):
+			f.write(str(apc_bins[x][y]) + " ")
+		f.write("\n")
+	f.close()		
+	f = open(tbl_folder + "/plain_coef_bins_p_" + comp, 'wb')
+	for x in papc_bins:
+		f.write(str(x) + ": ")
+		for y in range(len(papc_bins[x])):
+			f.write(str(papc_bins[x][y]) + " ")
+		f.write("\n")
+	f.close()
 	os.system("cp " + image_folder + "/*coef_bins_" + comp + " " + tbl_folder + "/")		
 	os.system("cp " + image_folder + "/*coef_bins_p_" + comp + " " + tbl_folder + "/")		
 
@@ -1107,5 +1109,5 @@ wrong_keys = 0
 wrong_desc = 0
 wrong_saw = False
 look_backward_block = 3
-look_forward_coef = 1
+look_forward_coef =5 
 pre_bins = 500
