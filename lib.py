@@ -526,18 +526,18 @@ def scale_actual_coef(f, i):
 def get_dep(blocks, blocks_o, now, s, e, dep):
 	global apc_bins, avg_coef,look_forward_coef, look_backward_block
 	if dep == 0:
-		return min(10, blocks[now][0]),0
+		return min(10, blocks[now][0])
 	if dep == 1:
-		return get_avg_pre_coef(blocks[now], s),0
+		return get_avg_pre_coef(blocks[now], s)
 	if dep == 2:
-		return get_avg_pre_coef(get_previous_block(blocks, now), s),0
+		return get_avg_pre_coef(get_previous_block(blocks, now), s)
 	if dep == 3:
 		t = 0
 		b_pre = get_previous_block(blocks, now)
 		for i in range(s, min(s+6, 63) + 1):
 			if b_pre[i]:
-				return b_pre[i],0
-		return 0,0
+				return b_pre[i]
+		return 0
 		
 		
 		t = 0
@@ -546,15 +546,15 @@ def get_dep(blocks, blocks_o, now, s, e, dep):
 		b_pre = get_previous_block(blocks, now)
 		for i in range(s, min(s+6, 63) + 1):
 			if b_pre[i]:
-				return b_pre[i],0
-		return 0,0
+				return b_pre[i]
+		return 0
 		
 		ss = max(s - 2, 1)
 		ee = min(s + 2, 63)
 		t = 0.0
 		for i in range(ss, ee+1):
 			t += b_pre[i]*1.0/avg_coef[i]
-		return int(t/(ee + 1 - ss)*10),0
+		return int(t/(ee + 1 - ss)*10)
 		#return b_pre[s]
 	if dep == 4:
 		b = blocks[now]
@@ -565,9 +565,9 @@ def get_dep(blocks, blocks_o, now, s, e, dep):
 				break
 			i -= 1
 		if i >= 40:
-			return 10,0
+			return 10
 		else:
-			return i/4,0
+			return i/4
 	if dep == 5:
 		su = 0
 		ma = 0
@@ -594,8 +594,8 @@ def get_dep(blocks, blocks_o, now, s, e, dep):
 		if not ma:
 			if blocks[now][0] > 11:
 				print "DC out of range", blocks[now]
-			return len(apc_bins[1]) + blocks[now][0] - 5,0
-		return scale(su*1.0/ma, s),0
+			return len(apc_bins[1]) + blocks[now][0] - 5
+		return scale(su*1.0/ma, s)
 	if dep == 6:
 		su = 0
 		ma = 0
@@ -617,11 +617,11 @@ def get_dep(blocks, blocks_o, now, s, e, dep):
 					su += blocks[x][xx]
 					break
 		if ma == 0:
-			return get_dep(blocks, blocks_o, now, s, e, 3),0
-		return scale(su*1.0/ma, s) + 12,0
+			return get_dep(blocks, blocks_o, now, s, e, 3)
+		return scale(su*1.0/ma, s) + 12
 	
 	if dep == 7:
-		return get_avg_pre_actual_coef(blocks[now], blocks_o[now], s),0
+		return get_avg_pre_actual_coef(blocks[now], blocks_o[now], s)
 		
 	if dep == 8:
 		if s==1:
@@ -631,18 +631,18 @@ def get_dep(blocks, blocks_o, now, s, e, dep):
 		for x in range(1, s):
 			t += abs(blocks_o[now][x])
 			ma += avg_actual_coef[x]
-		return int(t*200.0/ma),0
+		return int(t*200.0/ma)
 	if dep == 9:
 		seen, ma, su = get_previous_blocks_coef(blocks, now, s, e)
 		if not seen:
 			if blocks[now][0] > 11:
 				print "DC out of range", blocks[now]
 			#print "second dimension2:", s,su, ma,"n/a", len(papc_bins[1]) + blocks[now][0] - 5
-			return len(papc_bins[1]) + blocks[now][0] - 5,0
+			return len(papc_bins[1]) + blocks[now][0] - 5
 		#print "second dimension2:", s,su, ma, su*1.0/ma, scale_block(su*1.0/ma, s)
-		return scale_block(su*1.0/ma, s), su*1.0/ma
+		return scale_block(su*1.0/ma, s)
 	if dep == -1:
-		return 0,0
+		return 0
 		
 
 		
@@ -662,21 +662,20 @@ def get_previous_blocks_coef(blocks, now, s, e):
 		for xx in range(s, min(64, s+look_forward_coef)):
 			ma += avg_coef[xx]
 			su += blocks[x][xx]
-			#if blocks[x][xx] >0:
-			#	break
+			if blocks[x][xx] >0:
+				break
 	return seen, ma, su
 
 def record_code(b, b_o, now, c, start, end, oc):
 	global dep1, dep2, wrong_keys
-	f = 0
-	d1, f = get_dep(b, b_o, now, start, end, dep1)
-	d2, f = get_dep(b, b_o, now, start, end, dep2)
+	d1= get_dep(b, b_o, now, start, end, dep1)
+	d2= get_dep(b, b_o, now, start, end, dep2)
 	if d1<len(oc[start]) and d2<len(oc[start][d1]):
 		oc[start][d1][d2][c] += 1
 	else:
 		print "*", d1, d2
 		wrong_keys += 1
-	return start, d1, d2, c, f
+	return start, d1, d2, c
 	
 def record_jpeg(b, b_o, now, c, start, end, oc):
 	global dep1, dep2, code, wrong_keys, wrong_desc, wrong_saw
