@@ -50,7 +50,7 @@ def create_table(comp, dep1_s, dep2_s):
 	table_folder = tab_folder + "/" + str(comp)	
 	os.system("mkdir " + table_folder)
 	lib.index_file = open(table_folder + "/index.txt", "w")	
-	lib.init(comp, in_folder, tab_folder)
+	lib.init(comp, in_folder, tab_folder, dep1_s, dep2_s)
 	lib.dep1, SIZE1 = lib.parse_dep(dep1_s, lib.apc_bins)
 	lib.dep2, SIZE2 = lib.parse_dep(dep2_s, lib.apc_bins)
 	#id_str = sys.argv[1] +"_" + comp + "_" + images_s + "_" + images_e + "[" + str(dep1) + "," + str(dep2) + "]"

@@ -45,7 +45,7 @@ def get_best_table(tbls, oc):
 	
 	
 def calc_gain(f, comp, dep1_s, dep2_s):
-	global out_file, tab_folder, tbls, tbl_index_max, tbl_index_min, tbl_index_samples
+	global out_file, tab_folder, tbls, tbl_index_max, tbl_index_min, tbl_index_samples, total_cases, optimized_cases
 	lib.fprint("Component " + comp)
 
 	AC_BITS = 10
@@ -66,7 +66,7 @@ def calc_gain(f, comp, dep1_s, dep2_s):
 		co_dc[i] = load_code_table("DC", i, "", table_folder)
 		if len(co_dc[i]) == 0:
 			co_dc[i] = deepcopy(lib.dc_code)
-	'''
+	
 	for i in range(1, 64):
 		#print i
 		for p in range(SIZE1 + 1):
@@ -74,7 +74,7 @@ def calc_gain(f, comp, dep1_s, dep2_s):
 				co[i][p][pp] = load_code_table(i, p, pp, table_folder)
 				if len(co[i][p][pp]) == 0:
 					co[i][p][pp] = deepcopy(lib.code)
-	'''
+	
 	block = 0
 	block_o = 0
 	# get SIZE1_length code occurrence time for testing set
@@ -181,13 +181,19 @@ def calc_gain(f, comp, dep1_s, dep2_s):
 	# y axis: SIZE1
 	j = array([[0]*64]*(SIZE1 + 1))
 	yy = array([[0]*64]*(SIZE1 + 1))
+	diff1 = array([[0]*64]*(SIZE1 + 1))
+	diff2 = array([[0]*64]*(SIZE1 + 1))
 	diff = array([[0]*64]*(SIZE1 + 1))
 	total_gain = 0
+	per1 = array([[0]*64]*(SIZE1 + 1))
+	per2 = array([[0]*64]*(SIZE1 + 1))
 	per = array([[0]*64]*(SIZE1 + 1))
 	
 	tbl_index = array([[[-1]*64]*(SIZE1 + 1)]*(SIZE2 + 1))
 	tbl_index2 = array([[0]*64]*(SIZE1 + 1))
 
+	gaining_cases = 0
+	gaining_bits = 0
 	for i in range(1,64):
 		print i
 		for p in range(SIZE1 + 1):
@@ -203,26 +209,33 @@ def calc_gain(f, comp, dep1_s, dep2_s):
 				for x in oc_t[i][p][pp]:
 					samples += oc_t[i][p][pp][x]
 				g = 0
-				o = 0						
+				o = 0				
+				bits_optimized = 0
+				bits_common = 0
+				bits_jpeg = 0
 				if samples >0 :
-					tbl = get_best_table(tbls[int(comp)], oc_t[i][p][pp])
-					if samples > 100:
-						tbls_ += 1
-						tbl_index_samples[int(comp)][pp][p][i-1] += 1
-						tbl_index[pp][p][i-1] = tbl[1]
-						if tbl[1] > tbl_index_max[int(comp)][pp][p][i-1]:
-							tbl_index_max[int(comp)][pp][p][i-1] = tbl[1]
-						if tbl[1] < tbl_index_min[int(comp)][pp][p][i-1]:
-							tbl_index_min[int(comp)][pp][p][i-1] = tbl[1]
-						tbl_index2[p][i-1] += tbl[1]
-					for x in tbl[0]:
-						g += (lib.code[x] - tbl[0][x])*oc_t[i][p][pp][x]
-						o += (tbl[0][x])*oc_t[i][p][pp][x]
+					total_cases += 1
+					tbl = ([], -1)
+					tbl_optimized = get_best_table(tbls[int(comp)], oc_t[i][p][pp])
+					tbl_common = (co[i][p][pp], -1)
+					for x in tbl_optimized[0]:
+						bits_optimized += tbl_optimized[0][x]*oc_t[i][p][pp][x]
+						bits_common += tbl_common[0][x]*oc_t[i][p][pp][x]
+						bits_jpeg += lib.code[x]*oc_t[i][p][pp][x]
+						g += (lib.code[x] - tbl_common[0][x])*oc_t[i][p][pp][x]
+						o += (tbl_common[0][x])*oc_t[i][p][pp][x]
+				if o - bits_optimized > 8:
+					gaining_cases += 1
+					g += o - bits_optimized - 8
+					gaining_bits += o-bits_optimized-8
+					o = bits_optimized + 8
+				j[p][i-1] += bits_jpeg
+				diff1[p][i-1] += bits_common - bits_optimized
+				diff2[p][i-1] += bits_jpeg - bits_common
 				temp_gain += g
 				total_gain += g
-				j[p][i-1] += jpeg_t[i][p][pp]
 				yy[p][i-1] += o
-				diff[p][i-1] += jpeg_t[i][p][pp] - o
+				diff[p][i-1] += jpeg_t[i][p][pp] - o				
 				if g != jpeg_t[i][p][pp] - o:
 					lib.fprint("ERROR: test gain not equal!" +  str(g) + str(diff[p][i-1]) + str(i) + str(p) + str(pp))
 				if o+g:
@@ -232,35 +245,40 @@ def calc_gain(f, comp, dep1_s, dep2_s):
 			if tbls_ != 0:
 				tbl_index2[p][i-1] = tbl_index2[p][i-1]*1.0/tbls_
 
-			if j[p][i-1]:
-				per[p][i-1] = temp_gain*100.0/j[p][i-1]
+			if j[p][i-1] and j[p][i-1]-diff2[p][i-1] != 0:
+				per1[p][i-1] = diff1[p][i-1]*100.0/(j[p][i-1]-diff2[p][i-1])
+				per2[p][i-1] = diff2[p][i-1]*100.0/j[p][i-1]
 				if per[p][i-1] < 0:
 					lib.fprint("negative:" + str(temp_gain) + " " + str(j[p][i-1]))
 					per[p][i-1] = -10		# for plotting only, it's indeed negative gain
 			else:
-				per[p][i-1] = 0
+				per1[p][i-1] = 0
+				per2[p][i-1] = 0
 				
 	subplot(5, 1, 1)
 	pcolor(j)
 	colorbar()
 	ylabel('JPEG')
 	subplot(5, 1, 2)
-	pcolor(yy)
+	pcolor(diff2)
 	colorbar()
-	ylabel('ours')
+	ylabel('gain of common table')
 	subplot(5, 1, 3)
-	pcolor(diff)
+	pcolor(per2)
 	colorbar()
-	ylabel('diff.')
+	ylabel('impro. ratio of common table')
 	subplot(5, 1, 4)
-	pcolor(per)
-	ylabel('impro. ratio')
+	pcolor(diff1)
 	colorbar()
-	subplot(5,1,5)
-	pcolor(tbl_index2)
+	ylabel('gain of optimized table')
+	subplot(5, 1, 5)
+	pcolor(per1)
 	colorbar()
+	ylabel('impro. ratio of optimized table')
 	savefig(sys.argv[3]+"_"+ f[f.rfind("/")+1:] +"_"+comp+".png")
 	close()
+	
+	print gaining_cases, gaining_bits
 
 
 	gain_dc = 0
@@ -322,12 +340,17 @@ total_opt = 0
 tbl_index_max = array([[[[-1]*64]*(20 + 1)]*(26 + 1)]*3)
 tbl_index_min = array([[[[10000000]*64]*(20 + 1)]*(26 + 1)]*3)
 tbl_index_samples = array([[[[0]*64]*(20 + 1)]*(26 + 1)]*3)
+total_cases = 0
+optimized_cases = 0
 for f in files:
 	g = 0
 	t = 0
 	t_opt = 0
 	for c in range(3):
+		total_cases = 0
+		optimized_cases = 0
 		t_g, t_t, t_o = calc_gain(f, str(c), dep1, dep2)
+		print "cases: ", optimized_cases, total_cases
 		g += t_g
 		t += t_t
 		t_opt += t_o
@@ -359,5 +382,6 @@ for c in range(3):
 		colorbar()
 		savefig(sys.argv[3]+"_range_"+ str(c) + "_" + str(i) +".png")
 		close()
+		
 
 lib.index_file.close()
