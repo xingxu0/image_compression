@@ -106,10 +106,14 @@ LN_S="ln -s"
 
 # What is the maximum length of a command?
 <<<<<<< HEAD
+<<<<<<< HEAD
 max_cmd_len=3458764513820540925
 =======
 max_cmd_len=805306365
 >>>>>>> cd92a3a6f36ac3a34a54851f0fe33d860458fbdb
+=======
+max_cmd_len=1572864
+>>>>>>> c9aced04f34e398d585f8c9c26257e782c16fefb
 
 # Object file suffix (normally "o").
 objext=o

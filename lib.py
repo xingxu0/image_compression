@@ -638,27 +638,22 @@ def get_dep(blocks, blocks_o, now, s, e, dep):
 		sign = 0
 		n = 0
 		pos = -1
-		for x in range(now - 1, max(0, now - look_backward_block), -1):
+		#print "now:", now
+		for x in range(now - 1, max(0, now - look_backward_block) - 1, -1):
 			if blocks[x+1][0] > 5:
 				break
 			for xx in range(s, min(63, s+look_forward_coef)):
 				ma += avg_coef[xx]
-				if blocks[x][xx]:
-					if pos == -1:
-						pos = xx
-					else:
-						if xx == pos:
-							sign += blocks_o[x][xx]
-							n += 1
-					su += blocks[x][xx]
+				su += blocks[x][xx]
 					#break
-
 #		if not ma:
 #			return 21
 		if not ma:
 			if blocks[now][0] > 11:
 				print "DC out of range", blocks[now]
+			#print "second dimension2:", s,su, ma,"n/a", len(papc_bins[1]) + blocks[now][0] - 5
 			return len(papc_bins[1]) + blocks[now][0] - 5
+		#print "second dimension2:", s,su, ma, su*1.0/ma, scale_block(su*1.0/ma, s)
 		return scale_block(su*1.0/ma, s)
 	if dep == -1:
 		return 0
@@ -771,7 +766,7 @@ def get_max_pos_value(folder, comp):
 	blocks = get_blocks_all_in_bits(f[:-1], comp)
 	ret = {}
 	for x in range(0, 64):
-		m = -1
+		m = 1 # at least 1
 		n = 0
 		for ii in range(len(blocks)):
 			i = abs(blocks[ii][x])
@@ -804,8 +799,7 @@ def record_code_temp(bs, now, c, start, end, oc, oc_2):
 			return
 		for xx in range(start, min(63, start+look_forward_coef)):
 			ma += avg_coef[xx]
-			if bs[x][xx]:
-				su += bs[x][xx]
+			su += bs[x][xx]
 				#break
 	if ma ==0:
 		pass
