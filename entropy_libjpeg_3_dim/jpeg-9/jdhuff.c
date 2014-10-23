@@ -21,7 +21,7 @@
 #include "jpeglib.h"
 
 // entropy table initialization - Xing
-int get_first_dimension_index(int ci, int pos, float f, int dc_diff) {
+inline int get_first_dimension_index(int ci, int pos, float f, int dc_diff) {
 	if (pos == 1)
 		return dc_diff > 10 ? 10 : dc_diff;
 	for (int i = 0; i < first_dimension_bins; ++i)
@@ -30,7 +30,7 @@ int get_first_dimension_index(int ci, int pos, float f, int dc_diff) {
 	return first_dimension_bins;
 }
 
-int get_second_dimension_index(int ci, int pos, previous_block_state_t * previous_block_state, int dc_diff_bits) {
+inline int get_second_dimension_index(int ci, int pos, previous_block_state_t * previous_block_state, int dc_diff_bits) {
 	int now_index = previous_block_state->current_index[ci],
 			total = previous_block_state->total_blocks[ci];
 	int i, j, k, l, su = 0, current_dc_diff = dc_diff_bits, times = 0;
@@ -49,7 +49,7 @@ int get_second_dimension_index(int ci, int pos, previous_block_state_t * previou
 			su += previous_block_state->previous_blocks_avgs[ci][now_index][pos];
 		else {
 			k = 0;
-			l = pos + LOOK_FORWARD_COEF > 63 ? 63 : pos + LOOK_FORWARD_COEF;
+			l = pos + LOOK_FORWARD_COEF > 64 ? 64 : pos + LOOK_FORWARD_COEF;
 			for (j=pos; j<l; ++j)
 			{
 				k += previous_block_state->previous_blocks[ci][now_index][j];
@@ -59,7 +59,6 @@ int get_second_dimension_index(int ci, int pos, previous_block_state_t * previou
 		}
 		current_dc_diff = previous_block_state->previous_blocks[ci][now_index][0];
 	}
-
 	if (times == 0)
 		return 15 + dc_diff_bits;
 
@@ -385,7 +384,8 @@ void entropy_table_initialization()
 	for (int c=0; c<3; ++c) {
 		for (int i=0; i<64; ++i) {
 			previous_blocks_max_avgs[c][i] = 0;
-			for (int j=i; j<i+LOOK_FORWARD_COEF; ++j)
+			int e = i+LOOK_FORWARD_COEF > 64 ? 64 : i+LOOK_FORWARD_COEF;
+			for (int j=i; j<e; ++j)
 				previous_blocks_max_avgs[c][i] += max_pos_value[c].bits[j];
 		}
 	}
@@ -1675,16 +1675,17 @@ decode_mcu_entropy (j_decompress_ptr cinfo, JBLOCKROW *MCU_data)
     int dc_bits, now_index;
     for (blkn = 0; blkn < cinfo->blocks_in_MCU; blkn++) {
       JBLOCKROW block = MCU_data[blkn];
-      symbol_table_t * p_table;
+      register symbol_table_t * p_table;
 
       register int s, k, r;
-      int coef_limit, ci, dc_bits, index, index2, t = 0, ma = 0;
+      int coef_limit, ci, dc_bits;
+      register int t = 0, ma = 0;
       float f = 0.0;
       ci = cinfo->MCU_membership[blkn];
 
       int last_dc_diff_bits = state.last_dc_diff[ci];
 
-      JCOEF* previous_blocks = state.previous_block_state.previous_blocks[ci][LOOK_BACKWARD_BLOCK];
+      register JCOEF* previous_blocks = state.previous_block_state.previous_blocks[ci][LOOK_BACKWARD_BLOCK];
       memset(previous_blocks, 0, 64*sizeof(JCOEF));
 
       /* Decode a single block's worth of coefficients */
@@ -1722,13 +1723,15 @@ decode_mcu_entropy (j_decompress_ptr cinfo, JBLOCKROW *MCU_data)
 				/* Since zeroes are skipped, output area must be cleared beforehand */
 				for (; k < coef_limit; k++) {
 					f = t == 0 ? 0 : t*1.0/ma;
-					index = get_first_dimension_index(ci, k, f, dc_bits);
-					index2 = get_second_dimension_index(ci, k, &state.previous_block_state, dc_bits);
-					p_table = &ac_table[ci][k][index][index2];
+					float ff;
+					p_table = &ac_table[ci][k][get_first_dimension_index(ci, k, f, dc_bits)]
+					                          [get_second_dimension_index(ci, k, &state.previous_block_state, dc_bits)];
 					HUFF_DECODE_ENTROPY(s, br_state, p_table, return FALSE, label2);
 
       		//s = jpeg_huff_decode_entropy(&br_state, get_buffer, bits_left, p_table, 1);
+#ifdef DEBUG
 					int temps = s;
+#endif
 					//get_buffer = br_state.get_buffer;
 					//bits_left = br_state.bits_left;
 					//HUFF_DECODE(s, br_state, htbl, return FALSE, label2);
@@ -1736,7 +1739,7 @@ decode_mcu_entropy (j_decompress_ptr cinfo, JBLOCKROW *MCU_data)
 					r = s >> 4;
 					s &= 15;
 #ifdef DEBUG
-						printf(" status pos %d: %d %d %f index1 %d index2 %d (rl:%d %d_%d) symbol %d, bits %d\n", k, t, ma, f, index, index2, temps,r,s, -1, -1);
+						printf(" status pos %d: %d %d %f index1 %d index2 %d (rl:%d %d_%d) symbol %d, bits %d\n", k, t, ma, f, get_first_dimension_index(ci, k, f, dc_bits), get_second_dimension_index(ci, k, &state.previous_block_state, dc_bits), temps,r,s, -1, -1);
 #endif
 					if (s) {
 						for (int temp_i=k; temp_i<=k + r; ++temp_i)
