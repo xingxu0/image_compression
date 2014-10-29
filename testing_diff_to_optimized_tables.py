@@ -196,9 +196,9 @@ def calc_gain(f, comp, dep1_s, dep2_s):
 
 	gaining_cases = 0
 	gaining_bits = 0
-	samples_x = np.arange(1,1000,1)
+	samples_x = np.arange(1,1001,1)
 	samples_y = np.array([0.0]*1000)
-	bits_x = np.arange(1,3000,1)
+	bits_x = np.arange(1,3001,1)
 	bits_y = np.array([0.0]*3000)
 	samples_ = []
 	gain_ = []
