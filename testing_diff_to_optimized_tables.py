@@ -189,7 +189,7 @@ def calc_gain(f, comp, dep1_s, dep2_s):
 	total_gain = 0
 	per1 = array([[0]*64]*(SIZE1 + 1))
 	per2 = array([[0]*64]*(SIZE1 + 1))
-	per = array([[0]*64]*(SIZE1 + 1))
+	per = array([[0]*64]*(SIZE1 + 1))samp
 	
 	tbl_index = array([[[-1]*64]*(SIZE1 + 1)]*(SIZE2 + 1))
 	tbl_index2 = array([[0]*64]*(SIZE1 + 1))
@@ -292,7 +292,7 @@ def calc_gain(f, comp, dep1_s, dep2_s):
 	
 	samples_y /= 	samples_y.sum()
 	bits_y /= bits_y.sum()
-	c_samples_y = np.cumsum(sample_y)
+	c_samples_y = np.cumsum(samples_y)
 	c_bits_y = np.cumsum(bits_y)
 	
 	print gaining_cases, gaining_bits
