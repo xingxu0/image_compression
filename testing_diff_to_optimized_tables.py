@@ -200,6 +200,7 @@ def calc_gain(f, comp, dep1_s, dep2_s):
 	samples_y = np.array([0.0]*1000)
 	bits_x = np.arange(1,3001,1)
 	bits_y = np.array([0.0]*3000)
+	bits_y_optimized = np.array([0.0]*3000)
 	samples_ = []
 	gain_ = []
 	for i in range(1,64):
@@ -236,6 +237,7 @@ def calc_gain(f, comp, dep1_s, dep2_s):
 						o += (tbl_common[0][x])*oc_t[i][p][pp][x]
 					gain_.append(bits_common - bits_optimized)
 					bits_y[bits_common] += 1
+					bits_y_optimized[bits_optimized] += 1
 				if o - bits_optimized > 8:
 					gaining_cases += 1
 					g += o - bits_optimized - 8
@@ -292,15 +294,19 @@ def calc_gain(f, comp, dep1_s, dep2_s):
 	
 	samples_y /= 	samples_y.sum()
 	bits_y /= bits_y.sum()
+	bits_y_optimized /= bits_y_optimized.sum()
 	c_samples_y = np.cumsum(samples_y)
 	c_bits_y = np.cumsum(bits_y)
+	c_bits_y_optimized = np.cumsum(bits_y_optimized)
 	
 	print gaining_cases, gaining_bits
 	subplot(3,1,1)
 	plot(samples_x[1:100], c_samples_y[1:100])
 	ylabel('samples')
 	subplot(3,1,2)
-	plot(bits_x[1:300], c_bits_y[1:300])
+	plot(bits_x[1:300], c_bits_y[1:300], '-b')
+	plot(bits_x[1:300], c_bits_y_optimized[1:300], '--r')
+	legend(['common table', 'optimized table'])
 	ylabel('bits')
 	subplot(3,1,3)
 	scatter(samples_, gain_)
