@@ -390,6 +390,7 @@ for f in files:
 lib.fprint("finally: \n\t" + "baseline bits:"+ str(total_t) + "   gaining " + str(total_g) + "   bits (" + str(total_g*100.0/total_t)+"%)" + "   optimize bits:"+ str(total_opt) + "   gaining " + str(total_g+total_opt-total_t) + "   bits (" + str((total_g+total_opt-total_t)*100.0/total_opt)+"%)")
 
 close()
+'''
 for c in range(3):
 	for i in range(26 + 1):
 		tmp = array([[-1]*64]*(20 + 1))
@@ -410,6 +411,6 @@ for c in range(3):
 		colorbar()
 		savefig(sys.argv[3]+"_range_"+ str(c) + "_" + str(i) +".png")
 		close()
-		
+'''		
 
 lib.index_file.close()
