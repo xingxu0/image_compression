@@ -199,7 +199,7 @@ def calc_gain(f, comp, dep1_s, dep2_s):
 	samples_x = np.arange(1,1000,1)
 	samples_y = np.array([0.0]*1000)
 	bits_x = np.arange(1,3000,1)
-	samples_y = np.array([0.0]*3000)
+	bits_y = np.array([0.0]*3000)
 	samples_ = []
 	gain_ = []
 	for i in range(1,64):
