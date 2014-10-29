@@ -917,10 +917,12 @@ input_coef (j_decompress_ptr srcinfo, j_compress_ptr dstinfo,
 					for (idx = 0; idx < DCTSIZE2; idx++)
 						if (src_ptr[idx] != 0) last = idx;
 
+					int comp_;
+					fscanf(srcinfo->inputcoef, "%d: ", &comp_);
 					for (idx = 0; idx < DCTSIZE2; idx++)
 					{
-						fscanf(srcinfo->inputcoef, "%d ", &dst_ptr[idx]);
-						//printf("%d ", dst_ptr[idx]);
+						fscanf(srcinfo->inputcoef, "%d", &dst_ptr[srcinfo->natural_order[idx]]);
+						//printf("%d ", dst_ptr[srcinfo->natural_order[idx]]);
 					}
 					//printf("\r\n");
 				}
