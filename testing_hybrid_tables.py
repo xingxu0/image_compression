@@ -1,4 +1,5 @@
-
+# use tables in the specified table folder, choose the best one for different cases
+# for different cases, the # of the table (best table) it uses should be attached in the file
 
 import sys, os, heapq, glob, operator, pickle, lib
 from operator import itemgetter
@@ -20,9 +21,31 @@ def load_code_table(i, d1, d2, table_folder):
 		ret = {}
 	return ret	
 
-
-def calc_gain(comp, dep1_s, dep2_s):
-	global out_file, tab_folder
+def load_tables(tbl_folder):
+	tbls = {}
+	for comp in range(3):
+		tbls[comp] = []
+		fs = glob.glob(tbl_folder + "/" + str(comp) + "/pool*.table")
+		for f in fs:
+			pkl_file = open(f, 'rb')
+			tbls[comp].append((pickle.load(pkl_file), int(f[ f.find("pool") + 5 : f.find(".table")])))
+		print comp, len(tbls[comp])
+	return deepcopy(tbls)
+	
+def get_best_table(tbls, oc):
+	min_bits = -1
+	for tbl in tbls:
+		b = 0
+		for x in oc:
+			b += oc[x]*tbl[0][x]
+		if min_bits == -1 or b < min_bits:
+			min_bits = b
+			min_tbl = deepcopy(tbl)
+	return deepcopy(min_tbl)
+	
+	
+def calc_gain(f, comp, dep1_s, dep2_s):
+	global out_file, tab_folder, tbls, tbl_index_max, tbl_index_min, tbl_index_samples, total_cases, optimized_cases
 	lib.fprint("Component " + comp)
 
 	AC_BITS = 10
@@ -43,7 +66,7 @@ def calc_gain(comp, dep1_s, dep2_s):
 		co_dc[i] = load_code_table("DC", i, "", table_folder)
 		if len(co_dc[i]) == 0:
 			co_dc[i] = deepcopy(lib.dc_code)
-
+	
 	for i in range(1, 64):
 		#print i
 		for p in range(SIZE1 + 1):
@@ -51,7 +74,7 @@ def calc_gain(comp, dep1_s, dep2_s):
 				co[i][p][pp] = load_code_table(i, p, pp, table_folder)
 				if len(co[i][p][pp]) == 0:
 					co[i][p][pp] = deepcopy(lib.code)
-
+	
 	block = 0
 	block_o = 0
 	# get SIZE1_length code occurrence time for testing set
@@ -85,85 +108,67 @@ def calc_gain(comp, dep1_s, dep2_s):
 		for j in range(12):
 			oc_dc_t[i][j] = 0
 
-	files = glob.glob(test_folder + "/*.block")	
-	ratio = 0	
 	lib.fprint("\tTesting: ")
 	print "\t",
 	
+	oc_dc_opt = {}
+	oc_opt = {}
+	
+	for i in range(12):
+		oc_dc_opt[i] = 0
+	for z in range(16):
+		for b in range(1, AC_BITS + 1):
+			oc_opt[(z<<4) + b] = 0
+	oc_opt[0] = 0	# 0 for EOB
+	oc_opt[0xf0] = 0
+
+	block_t = lib.get_blocks_all_in_bits(f, comp)
+	block_t_o = lib.get_blocks_with_dc_in_diff(f, comp)
+
+	for ii in range(len(block_t)):		
+		x, dc_s_bits, dc_bits, r, coef_bits = lib.get_bits_detail(block_t[ii], lib.code, comp=="0")
+		t_ac_b += coef_bits
+		t_run_length_bits += r
+		t_dc_s += dc_s_bits
+		t_dc_b += dc_bits
+		t_total_bits += x
+
+		b = block_t[ii]
+		b_o = block_t_o[ii]
+		oc_dc_t[lib.get_previous_block(block_t, ii) [0]][b[0]] += 1
+		oc_dc_opt[b[0]] += 1
+		r = 0
+		pos = 1
+		for i in range(1, 64):
+			if b[i] == 0:
+				r += 1
+				continue
+	
+			while (r > 15):
+				lib.record_jpeg(block_t, block_t_o, ii, 0xf0, pos, pos + 15, jpeg_t)
+				lib.record_code(block_t, block_t_o, ii, 0xf0, pos, pos + 15, oc_t)
+				oc_opt[0xf0] += 1
+				pos += 16
+				r -= 16
+
+			lib.record_code(block_t, block_t_o, ii, (r << 4) + b[i], pos, i, oc_t)
+			lib.record_jpeg(block_t, block_t_o, ii, (r << 4) + b[i], pos, i, jpeg_t)
+			oc_opt[(r << 4) + b[i]] += 1
+			pos = i + 1
+			r = 0
+		if r > 0:
+			oc_opt[0] += 1
+			lib.record_jpeg(block_t, block_t_o, ii, 0, pos, 63, jpeg_t)
+			lib.record_code(block_t, block_t_o, ii, 0, pos, 63, oc_t)
+	
+	co_dc_opt = lib.huff_encode(oc_dc_opt, lib.bits_dc_luminance)
+	co_opt = lib.huff_encode(oc_opt, lib.code)
 	total_opt = 0
 	total_opt_dc = 0
-	for f in files:
-		# for optimized
-		oc_dc_opt = {}
-		oc_opt = {}
-		
-		gp_1=0 #gain part
-		gp_2=0
-		gp_3=0
-	
-		for i in range(12):
-			oc_dc_opt[i] = 0
-		for z in range(16):
-			for b in range(1, AC_BITS + 1):
-				oc_opt[(z<<4) + b] = 0
-		oc_opt[0] = 0	# 0 for EOB
-		oc_opt[0xf0] = 0
-
-		ratio += 1
-		print str(ratio*100/len(files)) + "%",
-		sys.stdout.flush()
-		block_t = lib.get_blocks_all_in_bits(f, comp)
-		block_t_o = lib.get_blocks_with_dc_in_diff(f, comp)
-	
-		for ii in range(len(block_t)):
-			x, dc_s_bits, dc_bits, r, coef_bits = lib.get_bits_detail(block_t[ii], lib.code, comp=="0")
-			t_ac_b += coef_bits
-			t_run_length_bits += r
-			t_dc_s += dc_s_bits
-			t_dc_b += dc_bits
-			t_total_bits += x
-
-				
-			b = block_t[ii]
-			b_o = block_t_o[ii]
-			oc_dc_t[lib.get_previous_block(block_t, ii) [0]][b[0]] += 1
-			oc_dc_opt[b[0]] += 1
-			r = 0
-			pos = 1
-
-			for i in range(1, 64):
-				if b[i] == 0:
-					r += 1
-					continue
-		
-				while (r > 15):
-					lib.record_jpeg(block_t, block_t_o, ii, 0xf0, pos, pos + 15, jpeg_t)
-					a1,a2,a3,a4=lib.record_code(block_t, block_t_o, ii, 0xf0, pos, pos + 15, oc_t)
-					oc_opt[0xf0] += 1
-					pos += 16
-					r -= 16
-					gp_1 += lib.code[0xf0] - co[a1][a2][a3][0xf0]
-
-				a1,a2,a3,a4=lib.record_code(block_t, block_t_o, ii, (r << 4) + b[i], pos, i, oc_t)
-				if not (((r<<4) + b[i]) in co[a1][a2][a3]):
-					print (r<<4) + b[i], co[a1][a2][a3]
-				gp_2 += lib.code[(r<<4)+b[i]] - co[a1][a2][a3][(r<<4)+b[i]]
-				lib.record_jpeg(block_t, block_t_o, ii, (r << 4) + b[i], pos, i, jpeg_t)
-				oc_opt[(r << 4) + b[i]] += 1
-				pos = i + 1
-				r = 0
-			if r > 0:
-				oc_opt[0] += 1
-				lib.record_jpeg(block_t, block_t_o, ii, 0, pos, 63, jpeg_t)
-				a1,a2,a3,a4=lib.record_code(block_t, block_t_o, ii, 0, pos, 63, oc_t)
-				gp_3 += lib.code[0] - co[a1][a2][a3][0]
-		
-		co_dc_opt = lib.huff_encode(oc_dc_opt, lib.bits_dc_luminance)
-		co_opt = lib.huff_encode(oc_opt, lib.code)
-		for x in co_opt:
-			total_opt += co_opt[x]*oc_opt[x]
-		for x in range(12):
-			total_opt_dc += co_dc_opt[x]*oc_dc_opt[x]
+	for x in co_opt:
+		total_opt += co_opt[x]*oc_opt[x]
+	for x in range(12):
+		total_opt_dc += co_dc_opt[x]*oc_dc_opt[x]
 		
 	t_total_bits_opt = total_opt + total_opt_dc + t_dc_b + t_ac_b		
 	if t_dc_s + t_dc_b + t_run_length_bits + t_ac_b != t_total_bits:
@@ -179,20 +184,46 @@ def calc_gain(comp, dep1_s, dep2_s):
 	diff = array([[0]*64]*(SIZE1 + 1))
 	total_gain = 0
 	per = array([[0]*64]*(SIZE1 + 1))
+	
+	tbl_index = array([[[-1]*64]*(SIZE1 + 1)]*(SIZE2 + 1))
+	tbl_index2 = array([[0]*64]*(SIZE1 + 1))
 
 	for i in range(1,64):
+		print i
 		for p in range(SIZE1 + 1):
 			j[p][i-1] = 0
 			yy[p][i-1] = 0
 			diff[p][i-1] = 0
 			per[p][i-1] = 0
 			temp_gain = 0
+			
+			tbls_ = 0
 			for pp in range(SIZE2 + 1):
+				samples = 0
+				for x in oc_t[i][p][pp]:
+					samples += oc_t[i][p][pp][x]
 				g = 0
-				o = 0
-				for x in co[i][p][pp]:
-					g += (lib.code[x] - co[i][p][pp][x])*oc_t[i][p][pp][x]
-					o += (co[i][p][pp][x])*oc_t[i][p][pp][x]				
+				o = 0						
+				if samples >0 :
+					total_cases += 1
+					tbl = ([], -1)
+					if samples >10:
+						optimized_cases += 1
+						print "position", i, p, pp
+						tbl = get_best_table(tbls[int(comp)], oc_t[i][p][pp])
+						tbls_ += 1
+						tbl_index_samples[int(comp)][pp][p][i-1] += 1
+						tbl_index[pp][p][i-1] = tbl[1]
+						if tbl[1] > tbl_index_max[int(comp)][pp][p][i-1]:
+							tbl_index_max[int(comp)][pp][p][i-1] = tbl[1]
+						if tbl[1] < tbl_index_min[int(comp)][pp][p][i-1]:
+							tbl_index_min[int(comp)][pp][p][i-1] = tbl[1]
+						tbl_index2[p][i-1] += tbl[1]
+					else:
+						tbl = (co[i][p][pp], -1)
+					for x in tbl[0]:
+						g += (lib.code[x] - tbl[0][x])*oc_t[i][p][pp][x]
+						o += (tbl[0][x])*oc_t[i][p][pp][x]
 				temp_gain += g
 				total_gain += g
 				j[p][i-1] += jpeg_t[i][p][pp]
@@ -201,7 +232,11 @@ def calc_gain(comp, dep1_s, dep2_s):
 				if g != jpeg_t[i][p][pp] - o:
 					lib.fprint("ERROR: test gain not equal!" +  str(g) + str(diff[p][i-1]) + str(i) + str(p) + str(pp))
 				if o+g:
-					lib.fprint(str(i) + " " + str(p) + " " + str(pp) + ": " + str(g) + "/" + str(o+g) + "(" +str(int(g*1.0/(o+g)*10000)/100.0) +"%)")
+					#lib.fprint(str(i) + " " + str(p) + " " + str(pp) + ": " + str(g) + "/" + str(o+g) + "(" +str(int(g*1.0/(o+g)*10000)/100.0) +"%)")
+					pass
+			
+			if tbls_ != 0:
+				tbl_index2[p][i-1] = tbl_index2[p][i-1]*1.0/tbls_
 
 			if j[p][i-1]:
 				per[p][i-1] = temp_gain*100.0/j[p][i-1]
@@ -211,23 +246,26 @@ def calc_gain(comp, dep1_s, dep2_s):
 			else:
 				per[p][i-1] = 0
 				
-	subplot(4, 1, 1)
+	subplot(5, 1, 1)
 	pcolor(j)
 	colorbar()
 	ylabel('JPEG')
-	subplot(4, 1, 2)
+	subplot(5, 1, 2)
 	pcolor(yy)
 	colorbar()
 	ylabel('ours')
-	subplot(4, 1, 3)
+	subplot(5, 1, 3)
 	pcolor(diff)
 	colorbar()
 	ylabel('diff.')
-	subplot(4, 1, 4)
+	subplot(5, 1, 4)
 	pcolor(per)
 	ylabel('impro. ratio')
 	colorbar()
-	savefig(sys.argv[3]+"_"+comp+".png")
+	subplot(5,1,5)
+	pcolor(tbl_index2)
+	colorbar()
+	savefig(sys.argv[3]+"_"+ f[f.rfind("/")+1:] +"_"+comp+".png")
 	close()
 
 
@@ -242,7 +280,7 @@ def calc_gain(comp, dep1_s, dep2_s):
 				gain_dc += oc_dc_t[i][ii]*(lib.bits_dc_chrominance[ii] - co_dc[i][ii])
 				jdc += oc_dc_t[i][ii]*lib.bits_dc_chrominance[ii]
 
-	lib.fprint("\nJPEG baseline run length bits:" + str(sum(j)) + "\tour run length bits:" + str(sum(yy)) + "\tdifference:" + str(sum(diff)) + " gain part: " + str(gp_1)+","+str(gp_2)+","+str(gp_3))
+	lib.fprint("\nJPEG baseline run length bits:" + str(sum(j)) + "\tour run length bits:" + str(sum(yy)) + "\tdifference:" + str(sum(diff)))
 	lib.fprint("JPEG baseline DC  symbol bits:" + str(jdc) + "\tour symbol bits:" + str(jdc-gain_dc) + "\tdifference:" +str(gain_dc))
 	
 	lib.fprint("\nJPEG optimize run length bits:" + str(total_opt) + "\tour run length bits:" + str(sum(yy)) + "\tdifference:" + str(total_opt-sum(yy)))
@@ -279,21 +317,59 @@ out_file = open(sys.argv[3], "w")
 dep1, dep2 = lib.get_deps_from_file(tab_folder + "/dep.txt")
 print dep1, dep2
 lib.index_file = out_file
-g = 0
-t = 0
-t_opt = 0
-for c in range(3):
-	t_g, t_t, t_o = calc_gain(str(c), dep1, dep2)
-	g += t_g
-	t += t_t
-	t_opt += t_o
-lib.fprint("\nIn summary:")
-lib.fprint("\tCompare to JPEG baseline:")
-lib.fprint("\tin total " + str(t) + " bits")
-lib.fprint("\tgaining " + str(g) + " bits (" + str(g*100.0/t)+"%)")
-lib.fprint("\tCompare to JPEG optimize:")
-lib.fprint("\tin total " + str(t_opt) + " bits")
-lib.fprint("\tgaining " + str(g+t_opt-t) + " bits (" + str((g+t_opt-t)*100.0/t_opt)+"%)")
 
-	
+files = glob.glob(test_folder + "/*.block")
+
+tbls = load_tables(tab_folder)
+
+total_g = 0
+total_t = 0
+total_opt = 0
+tbl_index_max = array([[[[-1]*64]*(20 + 1)]*(26 + 1)]*3)
+tbl_index_min = array([[[[10000000]*64]*(20 + 1)]*(26 + 1)]*3)
+tbl_index_samples = array([[[[0]*64]*(20 + 1)]*(26 + 1)]*3)
+total_cases = 0
+optimized_cases = 0
+for f in files:
+	g = 0
+	t = 0
+	t_opt = 0
+	for c in range(3):
+		total_cases = 0
+		optimized_cases = 0
+		t_g, t_t, t_o = calc_gain(f, str(c), dep1, dep2)
+		print "cases: ", optimized_cases, total_cases
+		g += t_g
+		t += t_t
+		t_opt += t_o
+		total_g += t_g
+		total_t += t_t
+		total_opt += t_o
+	lib.fprint(f + ": \n\t"+ "baseline bits: " + str(t) + "   gaining " + str(g) + "   bits (" + str(g*100.0/t)+"%) " + "   optimize bits:" + str(t_opt) + "   gaining " + str(g+t_opt-t) + "   bits (" + str((g+t_opt-t)*100.0/t_opt)+"%)")
+
+lib.fprint("finally: \n\t" + "baseline bits:"+ str(total_t) + "   gaining " + str(total_g) + "   bits (" + str(total_g*100.0/total_t)+"%)" + "   optimize bits:"+ str(total_opt) + "   gaining " + str(total_g+total_opt-total_t) + "   bits (" + str((total_g+total_opt-total_t)*100.0/total_opt)+"%)")
+
+close()
+for c in range(3):
+	for i in range(26 + 1):
+		tmp = array([[-1]*64]*(20 + 1))
+		tmp_samples = array([[0]*64]*(20 + 1))
+		for j in range(1, 64):
+			for k in range(20 + 1):
+				tmp[k][j] = tbl_index_max[c][i][k][j] - tbl_index_min[c][i][k][j]
+				tmp_samples[k][j] = tbl_index_samples[c][i][k][j]
+				if tmp[k][j] <-10000000:
+					tmp[k][j] = -1
+		subplot(2, 1, 1)
+		pcolor(tmp)
+		ylabel('range')
+		colorbar()
+		subplot(2, 1, 2)
+		pcolor(tmp_samples)
+		ylabel('samples')
+		colorbar()
+		savefig(sys.argv[3]+"_range_"+ str(c) + "_" + str(i) +".png")
+		close()
+		
+
 lib.index_file.close()

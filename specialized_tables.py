@@ -48,12 +48,13 @@ def save_code_table(c, oc, i, d1, d2, table_folder, tbl_value):
 		o += oc[x]
 	if not o:
 		return
-	'''
+	
 	fname = table_folder + "/" + str(i)+"_"+str(d1)+"_"+str(d2)+".table"		
 	pkl_file = open(fname, 'wb')
 	pickle.dump(c, pkl_file)
 	pkl_file.close()
-	'''
+	
+	
 	# also save table as human-readable	
 	lib.index_file.write(str(i) + "\t" + str(d1) + "\t" + str(d2) + ":\t" + str(o) + "\n")
 	
@@ -108,7 +109,7 @@ def create_table(comp, dep1_s, dep2_s):
 	table_folder = tab_folder + "/" + str(comp)	
 	os.system("mkdir " + table_folder)
 	lib.index_file = open(table_folder + "/index.txt", "w")	
-	lib.init(comp, in_folder, tab_folder)
+	lib.init(comp, in_folder, tab_folder, dep1_s, dep2_s)
 	lib.dep1, SIZE1 = lib.parse_dep(dep1_s, lib.apc_bins)
 	lib.dep2, SIZE2 = lib.parse_dep(dep2_s, lib.apc_bins)
 	#id_str = sys.argv[1] +"_" + comp + "_" + images_s + "_" + images_e + "[" + str(dep1) + "," + str(dep2) + "]"
