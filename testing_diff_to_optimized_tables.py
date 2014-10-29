@@ -237,7 +237,7 @@ def calc_gain(f, comp, dep1_s, dep2_s):
 						o += (tbl_common[0][x])*oc_t[i][p][pp][x]
 					gain_.append(bits_common - bits_optimized)
 					bits_y[bits_common] += 1
-					bits_y_optimized[bits_optimized] += 1
+					bits_y_optimized[bits_common - bits_optimized + 100] += 1
 				if o - bits_optimized > 8:
 					gaining_cases += 1
 					g += o - bits_optimized - 8
