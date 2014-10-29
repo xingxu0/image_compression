@@ -297,10 +297,10 @@ def calc_gain(f, comp, dep1_s, dep2_s):
 	
 	print gaining_cases, gaining_bits
 	subplot(3,1,1)
-	plot(samples_x, c_samples_y)
+	plot(samples_x[1:100], c_samples_y[1:100])
 	ylabel('samples')
 	subplot(3,1,2)
-	plot(bits_x, c_bits_y)
+	plot(bits_x[1:300], c_bits_y[1:300])
 	ylabel('bits')
 	subplot(3,1,3)
 	scatter(samples_, gain_)
