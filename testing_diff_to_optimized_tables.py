@@ -189,7 +189,7 @@ def calc_gain(f, comp, dep1_s, dep2_s):
 	total_gain = 0
 	per1 = array([[0]*64]*(SIZE1 + 1))
 	per2 = array([[0]*64]*(SIZE1 + 1))
-	per = array([[0]*64]*(SIZE1 + 1))samp
+	per = array([[0]*64]*(SIZE1 + 1))
 	
 	tbl_index = array([[[-1]*64]*(SIZE1 + 1)]*(SIZE2 + 1))
 	tbl_index2 = array([[0]*64]*(SIZE1 + 1))
