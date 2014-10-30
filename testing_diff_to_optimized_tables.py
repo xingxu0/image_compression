@@ -198,8 +198,9 @@ def calc_gain(f, comp, dep1_s, dep2_s):
 	gaining_bits = 0
 	samples_x = np.arange(1,1001,1)
 	samples_y = np.array([0.0]*1000)
-	bits_x = np.arange(1,3001,1)
-	bits_y = np.array([0.0]*3000)
+	bits_x = np.arange(-100,3001,1)
+	bits_x_n = np.arange(1, 3001, 1)
+	bits_y = np.array([0.0]*3101)
 	bits_y_optimized = np.array([0.0]*3000)
 	samples_ = []
 	gain_ = []
@@ -300,15 +301,16 @@ def calc_gain(f, comp, dep1_s, dep2_s):
 	c_bits_y_optimized = np.cumsum(bits_y_optimized)
 	
 	print gaining_cases, gaining_bits
-	subplot(3,1,1)
+	subplot(2,2,1)
 	plot(samples_x[1:100], c_samples_y[1:100])
 	ylabel('samples')
-	subplot(3,1,2)
-	plot(bits_x[1:300], c_bits_y[1:300], '-b')
-	plot(bits_x[1:300], c_bits_y_optimized[1:300], '--r')
-	legend(['common table', 'optimized table'])
+	subplot(2,2,2)
+	plot(bits_x_n[1:300], c_bits_y[1:300], '-b')
 	ylabel('bits')
-	subplot(3,1,3)
+	subplot(2,2,3)
+	plot(bits_x[90:115], c_bits_y_optimized[90:115], '--r')
+	ylabel('diff bits')
+	subplot(2,2,4)
 	scatter(samples_, gain_)
 	ylabel('sample x gain')	
 	savefig(sys.argv[3]+"_"+ f[f.rfind("/")+1:] +"_"+comp+"_distribution.png")
