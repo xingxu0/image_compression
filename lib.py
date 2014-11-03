@@ -665,7 +665,7 @@ def get_energy_level(blocks, now, s, e):
 					break
 	else:
 		for x in range(1, s):
-			su += b[x]
+			su += blocks[now][x]
 			ma += avg_coef[x]
 	if ma==0:
 		ma = 1
