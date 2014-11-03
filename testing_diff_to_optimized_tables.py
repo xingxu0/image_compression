@@ -230,12 +230,18 @@ def calc_gain(f, comp, dep1_s, dep2_s):
 					tbl = ([], -1)
 					tbl_optimized = get_best_table(tbls[int(comp)], oc_t[i][p][pp])
 					tbl_common = (co[i][p][pp], -1)
+					print i, p, pp, "optimized table number", tbl_optimized[1]
 					for x in tbl_optimized[0]:
+						if oc_t[i][p][pp][x] !=0 :
+							print "\tr", x>>4, "s", x&0x0f, ":", oc_t[i][p][pp][x], "opt:", tbl_optimized[0][x], "common:", tbl_common[0][x]
 						bits_optimized += tbl_optimized[0][x]*oc_t[i][p][pp][x]
 						bits_common += tbl_common[0][x]*oc_t[i][p][pp][x]
 						bits_jpeg += lib.code[x]*oc_t[i][p][pp][x]
 						g += (lib.code[x] - tbl_common[0][x])*oc_t[i][p][pp][x]
 						o += (tbl_common[0][x])*oc_t[i][p][pp][x]
+					print "\tsample #:", samples, "gain bits #:", bits_common - bits_optimized
+					print ""
+					
 					gain_.append(bits_common - bits_optimized)
 					bits_y[bits_common] += 1
 					bits_y_optimized[bits_common - bits_optimized + 100] += 1
