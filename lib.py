@@ -656,7 +656,7 @@ def get_energy_level(blocks, now, s, e):
 	global apc_bins, avg_coef,look_forward_coef, look_backward_block
 	su = 0
 	ma = 0
-	if s <= 5:
+	if s <= 1:
 		for x in range(now - 1, max(0, now - look_backward_block) - 1, -1):
 			for xx in range(s, min(64, s+look_forward_coef)):
 				ma += avg_coef[xx]
