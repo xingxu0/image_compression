@@ -500,12 +500,17 @@ def get_avg_pre_actual_coef(b, b_o, i):
 	return scale_actual_coef(t*1.0/ma, i)
 	
 	
-def scale(f, i):
-	global apc_bins
-	for x in range(len(apc_bins[i])):
-		if f < apc_bins[i][x]:
+def scale(f, i, one_or_two):
+	global apc_bins, papc_bins
+	bins = 0
+	if one_or_two == "1":
+		bins = apc_bins
+	else:
+		bins = papc_bins
+	for x in range(len(bins[i])):
+		if f < bins[i][x]:
 			return x
-	return len(apc_bins[i])
+	return len(bins[i])
 
 def scale_block(f, i):
 	global papc_bins, avg_coef_max
@@ -523,7 +528,7 @@ def scale_actual_coef(f, i):
 	return len(aapc_bins[i])	
 
 
-def get_dep(blocks, blocks_o, now, s, e, dep):
+def get_dep(blocks, blocks_o, now, s, e, dep, one_or_two):
 	global apc_bins, avg_coef,look_forward_coef, look_backward_block
 	if dep == 0:
 		return min(10, blocks[now][0])
@@ -640,10 +645,10 @@ def get_dep(blocks, blocks_o, now, s, e, dep):
 			#print "second dimension2:", s,su, ma,"n/a", len(papc_bins[1]) + blocks[now][0] - 5
 			return len(papc_bins[1]) + blocks[now][0] - 5
 		#print "second dimension2:", s,su, ma, su*1.0/ma, scale_block(su*1.0/ma, s)
-		return scale_block(su*1.0/ma, s)
+		return scale(su*1.0/ma, s, one_or_two)
 	if dep == 10:
 		ma, su = get_energy_level(blocks, now, s, e)
-		return scale(su*1.0/ma, s)
+		return scale(su*1.0/ma, s, one_or_two)
 	if dep == -1:
 		return 0
 		
@@ -688,8 +693,8 @@ def get_previous_blocks_coef(blocks, now, s, e):
 
 def record_code(b, b_o, now, c, start, end, oc):
 	global dep1, dep2, wrong_keys
-	d1= get_dep(b, b_o, now, start, end, dep1)
-	d2= get_dep(b, b_o, now, start, end, dep2)
+	d1= get_dep(b, b_o, now, start, end, dep1, "1")
+	d2= get_dep(b, b_o, now, start, end, dep2, "2")
 	if d1<len(oc[start]) and d2<len(oc[start][d1]):
 		oc[start][d1][d2][c] += 1
 	else:
@@ -699,8 +704,8 @@ def record_code(b, b_o, now, c, start, end, oc):
 	
 def record_jpeg(b, b_o, now, c, start, end, oc):
 	global dep1, dep2, code, wrong_keys, wrong_desc, wrong_saw
-	d1 = get_dep(b, b_o, now, start, end, dep1)
-	d2 = get_dep(b, b_o, now, start, end, dep2)
+	d1 = get_dep(b, b_o, now, start, end, dep1, "1")
+	d2 = get_dep(b, b_o, now, start, end, dep2, "2")
 	if d1<len(oc[start]) and d2<len(oc[start][d1]):
 		oc[start][d1][d2] += code[abs(c)]
 	else:
