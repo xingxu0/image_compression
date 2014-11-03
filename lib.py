@@ -476,7 +476,7 @@ def check_startpoint(b, i):    # determine is there a SIZE1-length code; most of
 		return True
 	return False
 
-def get_avg_pre_coef(b, i):
+def get_avg_pre_coef(b, i, one_or_two):
 	global avg_coef
 	if i==1:
 		return min(10, b[0])
@@ -485,7 +485,7 @@ def get_avg_pre_coef(b, i):
 	for x in range(1, i):
 		t += b[x]
 		ma += avg_coef[x]
-	return scale(t*1.0/ma, i)
+	return scale(t*1.0/ma, i, one_or_two)
 
 def get_avg_pre_actual_coef(b, b_o, i):
 	global avg_coef, avg_actual_coef
@@ -533,7 +533,7 @@ def get_dep(blocks, blocks_o, now, s, e, dep, one_or_two):
 	if dep == 0:
 		return min(10, blocks[now][0])
 	if dep == 1:
-		return get_avg_pre_coef(blocks[now], s)
+		return get_avg_pre_coef(blocks[now], s, one_or_two)
 	if dep == 2:
 		return get_avg_pre_coef(get_previous_block(blocks, now), s)
 	if dep == 3:
