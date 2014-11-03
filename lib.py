@@ -641,10 +641,30 @@ def get_dep(blocks, blocks_o, now, s, e, dep):
 			return len(papc_bins[1]) + blocks[now][0] - 5
 		#print "second dimension2:", s,su, ma, su*1.0/ma, scale_block(su*1.0/ma, s)
 		return scale_block(su*1.0/ma, s)
+	if dep == 10:
+		ma, su = get_energy_level(blocks, now, s, e)
+		return scale(su*1.0/ma, s)
 	if dep == -1:
 		return 0
 		
-
+def get_energy_level(blocks, now, s, e):
+	global apc_bins, avg_coef,look_forward_coef, look_backward_block
+	su = 0
+	ma = 0
+	if s <= 5:
+		for x in range(now - 1, max(0, now - look_backward_block) - 1, -1):
+			for xx in range(s, min(64, s+look_forward_coef)):
+				ma += avg_coef[xx]
+				su += blocks[x][xx]
+				if blocks[x][xx] >0:
+					break
+	else:
+		for x in range(1, s):
+			su += b[x]
+			ma += avg_coef[x]
+	return ma, su		
+		
+		
 		
 def get_previous_blocks_coef(blocks, now, s, e):
 	global apc_bins, avg_coef,look_forward_coef, look_backward_block
@@ -718,6 +738,8 @@ def parse_dep(s, apc_bins):
 		return 8, 200
 	elif s == "9":
 		return 9, len(papc_bins[1]) + 6
+	elif s == "10":
+		return 10, len(apc_bins[1]) + 1
 	else:
 		return -1, 0
 	
@@ -784,18 +806,22 @@ def get_max_pos_value(folder, comp):
 		ret[x] = m
 	return ret
 	
-def record_code_temp(bs, now, c, start, end, oc, oc_2, dep2):
+def record_code_temp(bs, now, c, start, end, oc, oc_2, dep1, dep2):
 	global look_backward_block, look_forward_coef, pre_bins, avg_coef
 	b = bs[now]
-	if start==1:
-		oc[start][int(b[0]/11.0*pre_bins)] += 1
-	else:
-		t = 0
-		ma = 0
-		for x in range(1, start):
-			t += b[x]
-			ma += avg_coef[x]
-		oc[start][int(t*1.0/ma*pre_bins)] += 1
+	if dep1=="1":
+		if start==1:
+			oc[start][int(b[0]/11.0*pre_bins)] += 1
+		else:
+			t = 0
+			ma = 0
+			for x in range(1, start):
+				t += b[x]
+				ma += avg_coef[x]
+			oc[start][int(t*1.0/ma*pre_bins)] += 1
+	elif dep1=="10":
+		ma, su = get_energy_level(bs, now, start, end)
+		oc[start][int(su*1.0/ma*pre_bins)] += 1
 		
 	# for dimension 2
 	if dep2 == "9":
@@ -805,7 +831,7 @@ def record_code_temp(bs, now, c, start, end, oc, oc_2, dep2):
 			#oc_2[start][0] += 1
 		else:
 			oc_2[start][int(su*1.0/ma*pre_bins)] +=1
-	else:
+	elif dep2=="5":
 		su = 0
 		ma = 0
 		n = 0
@@ -827,7 +853,7 @@ def record_code_temp(bs, now, c, start, end, oc, oc_2, dep2):
 			oc_2[start][int(su*1.0/ma*pre_bins)] += 1
 	
 	
-def get_avg_coef_bins(folder, comp, dep2):
+def get_avg_coef_bins(folder, comp, dep1, dep2):
 	global pre_bins
 	SIZE1 = pre_bins
 	fprint("calculating avg_coef_bins...")
@@ -854,14 +880,14 @@ def get_avg_coef_bins(folder, comp, dep2):
 					r += 1
 					continue
 				while (r > 15):
-					record_code_temp(bs, ii, 0xf0, pos, pos + 15, oc, oc_2, dep2)
+					record_code_temp(bs, ii, 0xf0, pos, pos + 15, oc, oc_2, dep1, dep2)
 					pos += 16
 					r -= 16
-				record_code_temp(bs, ii, (r << 4) + b[i], pos, i, oc, oc_2, dep2)
+				record_code_temp(bs, ii, (r << 4) + b[i], pos, i, oc, oc_2, dep1, dep2)
 				pos = i + 1
 				r = 0
 			if r > 0:
-				record_code_temp(bs, ii, 0, pos, 63, oc, oc_2, dep2)
+				record_code_temp(bs, ii, 0, pos, 63, oc, oc_2, dep1, dep2)
 	sep = {}
 	sep_2 = {}
 	for i in range(1, 64):
@@ -992,7 +1018,7 @@ def init(comp, image_folder, tbl_folder, dep1, dep2):
 		pkl_file.close()
 	else:
 		print "regenerating coef_bins..."
-		apc_bins, papc_bins = get_avg_coef_bins(image_folder, comp, dep2)
+		apc_bins, papc_bins = get_avg_coef_bins(image_folder, comp, dep1, dep2)
 		pkl_file = open(image_folder + "/coef_bins_" + str(dep1) + "_" + comp, 'wb')
 		pickle.dump(apc_bins, pkl_file)
 		pkl_file.close()
