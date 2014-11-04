@@ -210,10 +210,10 @@ def calc_gain(f, comp, dep1_s, dep2_s):
 	
 	fig = plt.figure()
 	ax = fig.add_subplot(111, projection='3d')
-	xx = {}
-	yy = {}
-	zz = {}
-	ss = {}
+	xxx = {}
+	yyy = {}
+	zzz = {}
+	sss = {}
 	for i in range(1,64):
 		print i
 		for p in range(SIZE1 + 1):
@@ -234,10 +234,10 @@ def calc_gain(f, comp, dep1_s, dep2_s):
 				bits_common = 0
 				bits_jpeg = 0
 				if samples >0 :
-					xx.append(i)
-					yy.append(p)
-					zz.append(pp)
-					ss.append(samples)
+					xxx.append(i)
+					yyy.append(p)
+					zzz.append(pp)
+					sss.append(samples)
 					samples_.append(samples)
 					samples_y[samples] += 1
 					total_cases += 1
@@ -290,7 +290,7 @@ def calc_gain(f, comp, dep1_s, dep2_s):
 				per1[p][i-1] = 0
 				per2[p][i-1] = 0
 				
-	ax.scatter(xx,yy,zz,s=ss)
+	ax.scatter(xxx,yyy,zzz,s=sss)
 	fig.savefig("3d.png")
 				
 	subplot(5, 1, 1)
