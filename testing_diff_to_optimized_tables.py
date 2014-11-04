@@ -210,10 +210,10 @@ def calc_gain(f, comp, dep1_s, dep2_s):
 	
 	fig = plt.figure()
 	ax = fig.add_subplot(111, projection='3d')
-	xxx = {}
-	yyy = {}
-	zzz = {}
-	sss = {}
+	xxx = []
+	yyy = []
+	zzz = []
+	sss = []
 	for i in range(1,64):
 		print i
 		for p in range(SIZE1 + 1):
