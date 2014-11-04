@@ -7,6 +7,9 @@ from operator import itemgetter
 from copy import *
 from pylab import *
 import numpy as np
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+
 
 #if len(sys.argv) == 1:
 #	print "usage: python runsize.py size(600, 1200), component_number(0,1,2) start_learn_image(1-100), end_learn_image(1-100), end_test_image(1-100), dep. 1(0:DC, 1:avg_pre_coef, 2:avg_pre_block_coef, 3:pre_block_coef, r:last_block_eob, 5:pre_blocks_sign), dep. 2(0:DC, 1:avg_pre_coef, 2:avg_pre_block_coef, 3:pre_block_coef, 4:last_block_eob, 5:pre_blocks_sign)"
@@ -204,6 +207,13 @@ def calc_gain(f, comp, dep1_s, dep2_s):
 	bits_y_optimized = np.array([0.0]*3000)
 	samples_ = []
 	gain_ = []
+	
+	fig = plt.figure()
+	ax = fig.add_subplot(111, projection='3d')
+	xx = {}
+	yy = {}
+	zz = {}
+	ss = {}
 	for i in range(1,64):
 		print i
 		for p in range(SIZE1 + 1):
@@ -224,6 +234,10 @@ def calc_gain(f, comp, dep1_s, dep2_s):
 				bits_common = 0
 				bits_jpeg = 0
 				if samples >0 :
+					xx.append(i)
+					yy.append(p)
+					zz.append(pp)
+					ss.append(samples)
 					samples_.append(samples)
 					samples_y[samples] += 1
 					total_cases += 1
@@ -275,6 +289,9 @@ def calc_gain(f, comp, dep1_s, dep2_s):
 			else:
 				per1[p][i-1] = 0
 				per2[p][i-1] = 0
+				
+	ax.scatter(xx,yy,zz,s=ss)
+	fig.savefig("3d.png")
 				
 	subplot(5, 1, 1)
 	pcolor(j)
