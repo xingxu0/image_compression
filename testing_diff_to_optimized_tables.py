@@ -214,6 +214,8 @@ def calc_gain(f, comp, dep1_s, dep2_s):
 	yyy = []
 	zzz = []
 	sss = []
+	ccc = []
+	samples_gains = {}
 	for i in range(1,64):
 		print i
 		for p in range(SIZE1 + 1):
@@ -234,16 +236,18 @@ def calc_gain(f, comp, dep1_s, dep2_s):
 				bits_common = 0
 				bits_jpeg = 0
 				if samples >0 :
-					xxx.append(i)
-					yyy.append(p)
-					zzz.append(pp)
-					sss.append(samples)
 					samples_.append(samples)
 					samples_y[samples] += 1
 					total_cases += 1
 					tbl = ([], -1)
 					tbl_optimized = get_best_table(tbls[int(comp)], oc_t[i][p][pp])
 					tbl_common = (co[i][p][pp], -1)
+					if pp % 5 ==1:
+						xxx.append(i)
+						yyy.append(p)
+						zzz.append(pp)
+						sss.append(samples)
+						ccc.append(tbl_optimized[1])
 					print i, p, pp, "optimized table number", tbl_optimized[1]
 					for x in tbl_optimized[0]:
 						if oc_t[i][p][pp][x] !=0 :
@@ -255,6 +259,12 @@ def calc_gain(f, comp, dep1_s, dep2_s):
 						o += (tbl_common[0][x])*oc_t[i][p][pp][x]
 					print "\tsample #:", samples, "gain bits #:", bits_common - bits_optimized
 					print ""
+					if not samples in samples_gains:
+						samples_gains[samples] = [bits_common - bits_optimized, 1]
+					else:
+						samples_gains[samples][0] += bits_common - bits_optimized
+						samples_gains[samples][1] += 1
+						
 					
 					gain_.append(bits_common - bits_optimized)
 					bits_y[bits_common] += 1
@@ -290,8 +300,22 @@ def calc_gain(f, comp, dep1_s, dep2_s):
 				per1[p][i-1] = 0
 				per2[p][i-1] = 0
 				
-	ax.scatter(xxx,yyy,zzz,s=sss)
-	fig.savefig("3d.png")
+	ax.scatter(xxx,yyy,zzz,s=sss, c=ccc)
+	fig.savefig(sys.argv[3]+"_"+ f[f.rfind("/")+1:] +"_3d_" + comp + ".png")
+	
+	subplot(1,1,1)
+	xxxx = []
+	yyyy = []
+	ssss = []
+	for x in samples_gains:
+		xxxx.append(x)
+		yyyy.append(samples_gains[x][0]*1.0/samples_gains[x][1])
+		ssss.append(samples_gains[x][1])
+	scatter(xxxx, yyyy, s=ssss)
+	xlabel("# of samples")
+	ylabel("gain bits of optimized (b)")
+	savefig(sys.argv[3]+"_"+ f[f.rfind("/")+1:] +"_"+comp+"_samples_gain.png")
+	close()
 				
 	subplot(5, 1, 1)
 	pcolor(j)
