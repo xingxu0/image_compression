@@ -217,6 +217,7 @@ def calc_gain(f, comp, dep1_s, dep2_s):
 	ccc = []
 	samples_gains = {}
 	total_eob = 0
+	total_ori_eob = 0
 	for i in range(1,64):
 		print i
 		for p in range(SIZE1 + 1):
@@ -253,6 +254,7 @@ def calc_gain(f, comp, dep1_s, dep2_s):
 					for x in tbl_optimized[0]:
 						if x == 0:
 							total_eob += tbl_common[0][0]*oc_t[i][p][pp][0]
+							total_ori_eob += lib.code[0]*oc_t[i][p][pp][0]
 						if oc_t[i][p][pp][x] !=0 :
 							print "\tr", x>>4, "s", x&0x0f, ":", oc_t[i][p][pp][x], "opt:", tbl_optimized[0][x], "common:", tbl_common[0][x]
 						bits_optimized += tbl_optimized[0][x]*oc_t[i][p][pp][x]
@@ -390,7 +392,7 @@ def calc_gain(f, comp, dep1_s, dep2_s):
 	if t_dc_s != jdc:
 		print "dc symbol not equal!!"
 		lib.fprint("ERROR 2 dc symbol not equal!!")
-	lib.fprint("\nEOB bits:" + str(total_eob))
+	lib.fprint("\nEOB bits:" + str(total_eob) + "   ori bits:" + str(total_ori_eob))
 	lib.fprint("\nCompare to JPEG Baseline:")
 	lib.fprint("RUN LENGTH: gaining bits:" + str(total_gain) + "\ttotal bits in file:" + str(t_total_bits))
 	lib.fprint("DC        : gaining bits:" + str(gain_dc) + "\ttotal bits in file:" + str(t_total_bits))
