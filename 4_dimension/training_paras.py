@@ -2,6 +2,7 @@
 
 import sys, copy, os, heapq, glob, operator, pickle, lib
 from operator import itemgetter
+from pylab import *
 
 def save_code_table(c, oc, i, j, d1, d2, table_folder):
 	o = 0
