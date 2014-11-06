@@ -79,8 +79,8 @@ def create_table(comp, dep1_s, dep2_s):
 					oc[i][j][p][pp][0] = 0	# 0 for EOB
 					oc[i][j][p][pp][0xf0] = 0
 	'''
-	oc = array([[[[0]*256]*(SIZE2 + 1)]*(SIZE1+1)]*(64*8))	
-	co = array([[[[0]*256]*(SIZE2 + 1)]*(SIZE1+1)]*(64*8))	
+	oc = array([[[[0]*256]*(SIZE2 + 1)]*(SIZE1+1)]*(64*6))	
+	co = array([[[[0]*256]*(SIZE2 + 1)]*(SIZE1+1)]*(64*6))	
 	for i in range(64*12):
 		for p in range(SIZE1 + 1):
 			for pp in range(SIZE2 + 1):
