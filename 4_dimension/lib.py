@@ -737,7 +737,7 @@ def parse_dep(s, apc_bins):
 	elif s == "8": # for bin separator
 		return 8, 200
 	elif s == "9":
-		return 9, len(papc_bins[1])*11 + 1
+		return 9, len(papc_bins[1]) + 1
 	elif s == "10":
 		return 10, len(apc_bins[1]) + 1
 	else:
