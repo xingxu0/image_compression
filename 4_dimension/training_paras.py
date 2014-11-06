@@ -65,7 +65,7 @@ def create_table(comp, dep1_s, dep2_s):
 	l_dc_s = 0
 	l_dc_b = 0
 	l_ac_b = 0
-
+	'''
 	oc=[[[[{} for k in range(SIZE2 + 1)] for kk in range(SIZE1 + 1)] for kkk in range(12)] for kkkk in range(64)]
 	co=[[[{} for kk in range(SIZE1 + 1)] for kkk in range(12)] for kkkk in range(64)] 
 	for i in range(1, 64):
@@ -76,7 +76,20 @@ def create_table(comp, dep1_s, dep2_s):
 						for b in range(1, AC_BITS + 1):
 							oc[i][j][p][pp][(z<<4) + b] = 0			# for one run-length, positive sign
 					oc[i][j][p][pp][0] = 0	# 0 for EOB
-					oc[i][j][p][pp][0xf0] = 0
+	'''
+	for i in range(64*12):
+		co[i] = {}
+		oc[i] = {}
+		for p in range(SIZE1 + 1):
+			oc[i][p] = {}
+			co[i][p] = {}
+			for pp in range(SIZE2 + 1):
+				oc[i][p][pp] = {}
+				for z in range(16):
+					for b in range(1, AC_BITS + 1):
+						oc[i][p][pp][(z<<4) + b] = 0			# for one run-length, positive sign
+				oc[i][p][pp][0] = 0	# 0 for EOB
+				oc[i][p][pp][0xf0] = 0					oc[i][j][p][pp][0xf0] = 0
 	oc_dc = {}
 	co_dc = {}
 	for i in range(12):
