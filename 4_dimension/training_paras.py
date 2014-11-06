@@ -66,7 +66,7 @@ def create_table(comp, dep1_s, dep2_s):
 	l_dc_s = 0
 	l_dc_b = 0
 	l_ac_b = 0
-	for i in range(64*2):
+	for i in range(100):
 		co[i] = {}
 		oc[i] = {}
 		for p in range(SIZE1 + 1):
