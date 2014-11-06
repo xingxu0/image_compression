@@ -464,16 +464,17 @@ def check_startpoint(b, i):    # determine is there a SIZE1-length code; most of
 		return True
 	return False
 
-def get_avg_pre_coef(b, i, one_or_two):
+def get_avg_pre_coef(b, i):
 	global avg_coef
 	if i==1:
-		return min(10, b[0])
+		return min(10, b[0])*1.0/11
 	t = 0
 	ma = 0
+	#for x in range(1, i):
 	for x in range(1, i):
 		t += b[x]
 		ma += avg_coef[x]
-	return scale(t*1.0/ma, i, one_or_two)
+	return t*1.0/ma
 
 def get_avg_pre_actual_coef(b, b_o, i):
 	global avg_coef, avg_actual_coef
@@ -521,9 +522,11 @@ def get_dep(blocks, blocks_o, now, s, e, dep, one_or_two):
 	if dep == 0:
 		return min(10, blocks[now][0])
 	if dep == 1:
-		return get_avg_pre_coef(blocks[now], s, one_or_two)
+		v = get_avg_pre_coef(blocks[now], s)
+		return scale(v, s, one_or_two)
 	if dep == 2:
-		return get_avg_pre_coef(get_previous_block(blocks, now), s)
+		v = get_avg_pre_coef(get_previous_block(blocks, now), s)
+		return scale(v, s, one_or_two)
 	if dep == 3:
 		t = 0
 		b_pre = get_previous_block(blocks, now)
@@ -807,15 +810,8 @@ def record_code_temp(bs, now, c, start, end, oc, oc_2, dep1, dep2):
 	global look_backward_block, look_forward_coef, pre_bins, avg_coef
 	b = bs[now]
 	if dep1=="1":
-		if start==1:
-			oc[start][int(b[0]/11.0*pre_bins)] += 1
-		else:
-			t = 0
-			ma = 0
-			for x in range(1, start):
-				t += b[x]
-				ma += avg_coef[x]
-			oc[start][int(t*1.0/ma*pre_bins)] += 1
+		v = get_avg_pre_coef(bs[now], start)
+		oc[start][int(v*pre_bins)] += 1
 	elif dep1=="10":
 		ma, su = get_energy_level(bs, now, start, end)
 		oc[start][int(su*1.0/ma*pre_bins)] += 1
@@ -1145,5 +1141,5 @@ wrong_keys = 0
 wrong_desc = 0
 wrong_saw = False
 look_backward_block = 3
-look_forward_coef =5 
+look_forward_coef = 8 
 pre_bins = 500
