@@ -3,6 +3,7 @@
 import sys, copy, os, heapq, glob, operator, pickle, lib
 from operator import itemgetter
 from pylab import *
+import numpy
 
 def save_code_table(c, oc, i, j, d1, d2, table_folder):
 	o = 0
@@ -80,18 +81,19 @@ def create_table(comp, dep1_s, dep2_s):
 						oc[i][p][pp][(z<<4) + b] = 0			# for one run-length, positive sign
 				oc[i][p][pp][0] = 0	# 0 for EOB
 				oc[i][p][pp][0xf0] = 0	
-	
-	oc=[[[[{} for k in range(SIZE2 + 1)] for kk in range(SIZE1 + 1)] for kkk in range(12)] for kkkk in range(64)]
-	co=[[[{} for kk in range(SIZE1 + 1)] for kkk in range(12)] for kkkk in range(64)] 
-	for i in range(1, 64):
-		for j in range(12):
-			for p in range(SIZE1 + 1):
-				for pp in range(SIZE2 + 1):
-					for z in range(16):
-						for b in range(1, AC_BITS + 1):
-							oc[i][j][p][pp][(z<<4) + b] = 0			# for one run-length, positive sign
-					oc[i][j][p][pp][0] = 0	# 0 for EOB
-					oc[i][j][p][pp][0xf0] = 0
+	'''
+	#oc=[[[[{} for k in range(SIZE2 + 1)] for kk in range(SIZE1 + 1)] for kkk in range(12)] for kkkk in range(64)]
+	#co=[[[{} for kk in range(SIZE1 + 1)] for kkk in range(12)] for kkkk in range(64)] 
+	oc = numpy.zeros(64*12, SIZE1+1, SIZE2+1, 255)
+	for i in range(64*12):
+		#for j in range(12):
+		for p in range(SIZE1 + 1):
+			for pp in range(SIZE2 + 1):
+				for z in range(16):
+					for b in range(1, AC_BITS + 1):
+						oc[i][j][p][pp][(z<<4) + b] = 0			# for one run-length, positive sign
+				oc[i][j][p][pp][0] = 0	# 0 for EOB
+				oc[i][j][p][pp][0xf0] = 0
 	
 	'''
 	#oc = array([[[[0]*256]*(SIZE2 + 1)]*(SIZE1+1)]*(64*6))	
@@ -106,7 +108,7 @@ def create_table(comp, dep1_s, dep2_s):
 						oc[i][p][pp][(z<<4) + b] = 0			# for one run-length, positive sign
 				oc[i][p][pp][0] = 0	# 0 for EOB
 				oc[i][p][pp][0xf0] = 0					
-	
+	'''
 	oc_dc = {}
 	co_dc = {}
 	for i in range(12):
