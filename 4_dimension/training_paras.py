@@ -84,7 +84,7 @@ def create_table(comp, dep1_s, dep2_s):
 	'''
 	#oc=[[[[{} for k in range(SIZE2 + 1)] for kk in range(SIZE1 + 1)] for kkk in range(12)] for kkkk in range(64)]
 	#co=[[[{} for kk in range(SIZE1 + 1)] for kkk in range(12)] for kkkk in range(64)] 
-	oc = numpy.zeros(64*12, SIZE1+1, SIZE2+1, 255)
+	oc = numpy.zeros((64*12, SIZE1+1, SIZE2+1, 255))
 	for i in range(64*12):
 		#for j in range(12):
 		for p in range(SIZE1 + 1):
