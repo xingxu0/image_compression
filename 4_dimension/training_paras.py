@@ -104,7 +104,7 @@ def create_table(comp, dep1_s, dep2_s):
 						oc[i][p][pp][(z<<4) + b] = 0			# for one run-length, positive sign
 				oc[i][p][pp][0] = 0	# 0 for EOB
 				oc[i][p][pp][0xf0] = 0					
-	'''
+	
 	oc_dc = {}
 	co_dc = {}
 	for i in range(12):
