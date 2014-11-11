@@ -38,10 +38,14 @@ def load_tables(tbl_folder):
 			pkl_file.close()
 		print comp, len(tbls[comp])
 	
+	return deepcopy(tbls)
+	
+def load_table_number(tbl_folder, comp):
 	pkl_file = open(tbl_folder + "/" + str(comp) + "/table_number.table", 'rb')
 	table_number = pickle.load(pkl_file)
 	pkl_file.close()
-	return deepcopy(tbls), deepcopy(table_number)
+	return deepcopy(table_number)
+
 	
 def get_best_table(tbls, oc):
 	min_bits = -1
@@ -427,7 +431,7 @@ lib.index_file = out_file
 
 files = glob.glob(test_folder + "/*.block")
 
-tbls, table_number = load_tables(tab_folder)
+tbls = load_tables(tab_folder)
 
 total_g = 0
 total_t = 0
@@ -443,7 +447,7 @@ for f in files:
 	t_opt = 0
 	for c in range(3):
 		total_cases = 0
-		tbls, table_number = load_tables(tab_folder)
+		table_number = load_table_number(tab_folder, c)
 		optimized_cases = 0
 		t_g, t_t, t_o = calc_gain(f, str(c), dep1, dep2)
 		print "cases: ", optimized_cases, total_cases
