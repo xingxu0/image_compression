@@ -4,20 +4,21 @@ import sys, os, heapq, glob, operator, pickle, lib
 from operator import itemgetter
 from copy import *
 from pylab import *
+import numpy
 
 #if len(sys.argv) == 1:
 #	print "usage: python runsize.py size(600, 1200), component_number(0,1,2) start_learn_image(1-100), end_learn_image(1-100), end_test_image(1-100), dep. 1(0:DC, 1:avg_pre_coef, 2:avg_pre_block_coef, 3:pre_block_coef, r:last_block_eob, 5:pre_blocks_sign), dep. 2(0:DC, 1:avg_pre_coef, 2:avg_pre_block_coef, 3:pre_block_coef, 4:last_block_eob, 5:pre_blocks_sign)"
 #	exit()
 
-def load_code_table(i, j, d1, d2, table_folder):
-	fname = table_folder + "/" + str(i)+"_"+str(j)+"_"+str(d1)+"_"+str(d2)+".table"
+def load_code_table(i, d1, d2, table_folder):
+	fname = table_folder + "/" + str(i)+"_"+str(d1)+"_"+str(d2)+".table"
 	ret = {}
 	if os.path.isfile(fname):
 		pkl_file = open(fname, 'rb')
 		ret = pickle.load(pkl_file)
 		pkl_file.close()
 	else:
-		ret = {}
+		ret = 0
 	return ret	
 
 
@@ -33,7 +34,7 @@ def calc_gain(comp, dep1_s, dep2_s):
 	lib.dep2, SIZE2 = lib.parse_dep(dep2_s, lib.apc_bins)
 
 	co = {}   #co for code
-	for i in range(1, 64):
+	for i in range(64*8):
 		co[i] = {}
 		for p in range(SIZE1 + 1):
 			co[i][p] = {}
@@ -41,17 +42,13 @@ def calc_gain(comp, dep1_s, dep2_s):
 			
 	for i in range(12):
 		co_dc[i] = load_code_table("DC", i, "", table_folder)
-		if len(co_dc[i]) == 0:
+		if co_dc[i] == 0:
 			co_dc[i] = deepcopy(lib.dc_code)
 
-	for i in range(1, 64):
-		#print i
-		for j in range(12):
-			for p in range(SIZE1 + 1):
-				for pp in range(SIZE2 + 1):
-					co[i][p][pp] = load_code_table(i, p, pp, table_folder)
-					if len(co[i][p][pp]) == 0:
-						co[i][p][pp] = deepcopy(lib.code)
+	for i in range(64*8):
+		for p in range(SIZE1 + 1):
+			for pp in range(SIZE2 + 1):
+				co[i][p][pp] = load_code_table(i, p, pp, table_folder)
 
 	block = 0
 	block_o = 0
@@ -65,24 +62,9 @@ def calc_gain(comp, dep1_s, dep2_s):
 	t_dc_s = 0
 	t_dc_b = 0
 	t_ac_b = 0
-	for i in range(1, 64):
-		oc_t[i] = {}
-		jpeg_t[i] = {}
-		for j in range(12):
-			oc_t[i][j] = {}
-			jpeg_t[i][j] = {}
-			for p in range(SIZE1 + 1):
-				jpeg_t[i][j][p] = {}
-				oc_t[i][j][p] = {}
-				for pp in range(SIZE2 + 1):
-					oc_t[i][j][p][pp] = {}
-					jpeg_t[i][j][p][pp] = 0
-					for z in range(16):
-						for b in range(1, AC_BITS + 1):
-							oc_t[i][j][p][pp][(z<<4) + b] = 0			# for one run-length, positive sign
-					oc_t[i][j][p][pp][0] = 0	# 0 for EOB
-					oc_t[i][j][p][pp][0xf0] = 0	# for 16 consecutive 0, -1
-			
+	
+	oc_t = numpy.zeros((64*8, SIZE1+1, SIZE2+1, 256))
+	jpeg_t = numpy.zeros((64*8, SIZE1+1, SIZE2+1))
 	oc_dc_t = {}
 	for i in range(12):
 		oc_dc_t[i] = {}
@@ -142,16 +124,16 @@ def calc_gain(comp, dep1_s, dep2_s):
 		
 				while (r > 15):
 					lib.record_jpeg(block_t, block_t_o, ii, 0xf0, pos, pos + 15, jpeg_t)
-					a1,aa1,a2,a3,a4=lib.record_code(block_t, block_t_o, ii, 0xf0, pos, pos + 15, oc_t)
+					a1,a2,a3,a4=lib.record_code(block_t, block_t_o, ii, 0xf0, pos, pos + 15, oc_t)
 					oc_opt[0xf0] += 1
 					pos += 16
 					r -= 16
-					gp_1 += lib.code[0xf0] - co[a1][aa1][a2][a3][0xf0]
+					#gp_1 += lib.code[0xf0] - co[a1][a2][a3][0xf0]
 
-				a1,aa1,a2,a3,a4=lib.record_code(block_t, block_t_o, ii, (r << 4) + b[i], pos, i, oc_t)
-				if not (((r<<4) + b[i]) in co[a1][aa1][a2][a3]):
-					print (r<<4) + b[i], co[a1][aa1][a2][a3]
-				gp_2 += lib.code[(r<<4)+b[i]] - co[a1][aa1][a2][a3][(r<<4)+b[i]]
+				a1,a2,a3,a4=lib.record_code(block_t, block_t_o, ii, (r << 4) + b[i], pos, i, oc_t)
+				#if not (((r<<4) + b[i]) in co[a1][a2][a3]):
+				#	print (r<<4) + b[i], co[a1][a2][a3]
+				#gp_2 += lib.code[(r<<4)+b[i]] - co[a1][a2][a3][(r<<4)+b[i]]
 				lib.record_jpeg(block_t, block_t_o, ii, (r << 4) + b[i], pos, i, jpeg_t)
 				oc_opt[(r << 4) + b[i]] += 1
 				pos = i + 1
@@ -159,8 +141,8 @@ def calc_gain(comp, dep1_s, dep2_s):
 			if r > 0:
 				oc_opt[0] += 1
 				lib.record_jpeg(block_t, block_t_o, ii, 0, pos, 63, jpeg_t)
-				a1,aa1,a2,a3,a4=lib.record_code(block_t, block_t_o, ii, 0, pos, 63, oc_t)
-				gp_3 += lib.code[0] - co[a1][aa1][a2][a3][0]
+				a1,a2,a3,a4=lib.record_code(block_t, block_t_o, ii, 0, pos, 63, oc_t)
+				gp_3 += lib.code[0] - co[a1][a2][a3][0]
 		
 		co_dc_opt = lib.huff_encode(oc_dc_opt, lib.bits_dc_luminance)
 		co_opt = lib.huff_encode(oc_opt, lib.code)
@@ -178,43 +160,46 @@ def calc_gain(comp, dep1_s, dep2_s):
 	
 	# x axis: position
 	# y axis: SIZE1
-	j = array([[0]*64]*(SIZE1 + 1))
-	yy = array([[0]*64]*(SIZE1 + 1))
-	diff = array([[0]*64]*(SIZE1 + 1))
+	j = array([[0]*64*8]*(SIZE1 + 1))
+	yy = array([[0]*64*8]*(SIZE1 + 1))
+	diff = array([[0]*64*8]*(SIZE1 + 1))
 	total_gain = 0
-	per = array([[0]*64]*(SIZE1 + 1))
+	per = array([[0]*64*8]*(SIZE1 + 1))
 
-	for i in range(1,64):
-		for j in range(12):
-			for p in range(SIZE1 + 1):
-				j[p][i-1] = 0
-				yy[p][i-1] = 0
-				diff[p][i-1] = 0
-				per[p][i-1] = 0
-				temp_gain = 0
-				for pp in range(SIZE2 + 1):
-					g = 0
-					o = 0
-					for x in co[i][j][p][pp]:
-						g += (lib.code[x] - co[i][j][p][pp][x])*oc_t[i][j][p][pp][x]
-						o += (co[i][j][p][pp][x])*oc_t[i][j][p][pp][x]				
-					temp_gain += g
-					total_gain += g
-					j[p][i-1] += jpeg_t[i][j][p][pp]
-					yy[p][i-1] += o
-					diff[p][i-1] += jpeg_t[i][j][p][pp] - o
-					if g != jpeg_t[i][j][p][pp] - o:
-						lib.fprint("ERROR: test gain not equal!" +  str(g) + str(diff[p][i-1]) + str(i) + str(p) + str(pp))
-					if o+g:
-						lib.fprint(str(i) + " " + str(p) + " " + str(pp) + ": " + str(g) + "/" + str(o+g) + "(" +str(int(g*1.0/(o+g)*10000)/100.0) +"%)")
-
-				if j[p][i-1]:
-					per[p][i-1] = temp_gain*100.0/j[p][i-1]
-					if per[p][i-1] < 0:
-						lib.fprint("negative:" + str(temp_gain) + " " + str(j[p][i-1]))
-						per[p][i-1] = -10		# for plotting only, it's indeed negative gain
+	for i in range(64*8):
+		for p in range(SIZE1 + 1):
+			j[p][i-1] = 0
+			yy[p][i-1] = 0
+			diff[p][i-1] = 0
+			per[p][i-1] = 0
+			temp_gain = 0
+			for pp in range(SIZE2 + 1):
+				g = 0
+				o = 0
+				if co[i][p][pp] == 0:
+					code_table = deepcopy(lib.code)
 				else:
-					per[p][i-1] = 0
+					code_table = deepcopy(co[i][p][pp])
+				for x in code_table:
+					g += (lib.code[x] - code_table[x])*oc_t[i][p][pp][x]
+					o += (code_table[x])*oc_t[i][p][pp][x]				
+				temp_gain += g
+				total_gain += g
+				j[p][i-1] += jpeg_t[i][p][pp]
+				yy[p][i-1] += o
+				diff[p][i-1] += jpeg_t[i][p][pp] - o
+				if g != jpeg_t[i][p][pp] - o:
+					lib.fprint("ERROR: test gain not equal!" +  str(g) + str(diff[p][i-1]) + str(i) + str(p) + str(pp))
+				if o+g:
+					lib.fprint(str(i) + " " + str(p) + " " + str(pp) + ": " + str(g) + "/" + str(o+g) + "(" +str(int(g*1.0/(o+g)*10000)/100.0) +"%)")
+
+			if j[p][i-1]:
+				per[p][i-1] = temp_gain*100.0/j[p][i-1]
+				if per[p][i-1] < 0:
+					lib.fprint("negative:" + str(temp_gain) + " " + str(j[p][i-1]))
+					per[p][i-1] = -10		# for plotting only, it's indeed negative gain
+			else:
+				per[p][i-1] = 0
 				
 	subplot(4, 1, 1)
 	pcolor(j)

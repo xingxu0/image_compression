@@ -5,22 +5,22 @@ from operator import itemgetter
 from pylab import *
 import numpy
 
-def save_code_table(c, oc, i, j, d1, d2, table_folder):
+def save_code_table(c, oc, i, d1, d2, table_folder):
 	o = 0
 	for x in oc:
 		o += oc[x]
 	
 	if not o:
 		return
-	fname = table_folder + "/" + str(i)+"_"+str(j)+"_"+str(d1)+"_"+str(d2)+".table"		
+	fname = table_folder + "/" + str(i)+"_"+str(d1)+"_"+str(d2)+".table"		
 	pkl_file = open(fname, 'wb')
 	pickle.dump(c, pkl_file)
 	pkl_file.close()
 	
 	# also save table as human-readable	
-	lib.index_file.write(str(i) + "\t" + str(j) + "\t" + str(d1) + "\t" + str(d2) + ":\t" + str(o) + "\n")
+	lib.index_file.write(str(i) + "\t" + str(d1) + "\t" + str(d2) + ":\t" + str(o) + "\n")
 
-        f = open(table_folder + "/plain_" + str(i)+"_"+str(j)+"_"+str(d1)+"_"+str(d2)+".table", "w")
+        f = open(table_folder + "/plain_" + str(i)+"_"+str(d1)+"_"+str(d2)+".table", "w")
         cc = sorted(c.iteritems(), key=operator.itemgetter(1))
         for x in cc:
 		bits = c[x[0]]
@@ -67,7 +67,8 @@ def create_table(comp, dep1_s, dep2_s):
 	l_dc_s = 0
 	l_dc_b = 0
 	l_ac_b = 0
-	'''
+	co = {}   #co for code
+	oc = {}   #oc for occur, then becomes difference	
 	for i in range(64*8):
 		co[i] = {}
 		oc[i] = {}
@@ -80,35 +81,8 @@ def create_table(comp, dep1_s, dep2_s):
 					for b in range(1, AC_BITS + 1):
 						oc[i][p][pp][(z<<4) + b] = 0			# for one run-length, positive sign
 				oc[i][p][pp][0] = 0	# 0 for EOB
-				oc[i][p][pp][0xf0] = 0	
-	'''
-	#oc=[[[[{} for k in range(SIZE2 + 1)] for kk in range(SIZE1 + 1)] for kkk in range(12)] for kkkk in range(64)]
-	#co=[[[{} for kk in range(SIZE1 + 1)] for kkk in range(12)] for kkkk in range(64)] 
-	oc = numpy.zeros((64*12, SIZE1+1, SIZE2+1, 255))
-	for i in range(64*12):
-		#for j in range(12):
-		for p in range(SIZE1 + 1):
-			for pp in range(SIZE2 + 1):
-				for z in range(16):
-					for b in range(1, AC_BITS + 1):
-						oc[i][j][p][pp][(z<<4) + b] = 0			# for one run-length, positive sign
-				oc[i][j][p][pp][0] = 0	# 0 for EOB
-				oc[i][j][p][pp][0xf0] = 0
-	
-	'''
-	#oc = array([[[[0]*256]*(SIZE2 + 1)]*(SIZE1+1)]*(64*6))	
-	#co = array([[[[0]*256]*(SIZE2 + 1)]*(SIZE1+1)]*(64*6))	
-	
-	oc = array([0]*256*20*20*64*12)
-	for i in range(64*12):
-		for p in range(SIZE1 + 1):
-			for pp in range(SIZE2 + 1):
-				for z in range(16):
-					for b in range(1, AC_BITS + 1):
-						oc[i][p][pp][(z<<4) + b] = 0			# for one run-length, positive sign
-				oc[i][p][pp][0] = 0	# 0 for EOB
-				oc[i][p][pp][0xf0] = 0					
-	'''
+				oc[i][p][pp][0xf0] = 0
+
 	oc_dc = {}
 	co_dc = {}
 	for i in range(12):
@@ -169,13 +143,13 @@ def create_table(comp, dep1_s, dep2_s):
 			co_dc[i] = lib.huff_encode_plus_extra(oc_dc[i], lib.bits_dc_chrominance)
 		save_code_table(co_dc[i], oc_dc[i], "DC", i, "", table_folder)
 	lib.fprint("generating AC tables...")
-	for i in range(1, 64):
-		#print i
-		for j in range(12):
-			for p in range(SIZE1 + 1):
-				for pp in range(SIZE2 + 1):
-					co[i][j][p][pp] = lib.huff_encode_plus_extra(oc[i][j][p][pp], lib.code)
-					save_code_table(co[i][j][p][pp], oc[i][j][p][pp], i, j, p, pp, table_folder)
+	for i in range(64*8):
+		for p in range(SIZE1 + 1):
+			for pp in range(SIZE2 + 1):
+				co[i][p][pp] = lib.huff_encode_plus_extra(oc[i][p][pp], lib.code)
+				save_code_table(co[i][p][pp], oc[i][p][pp], i, p, pp, table_folder)
+				co[i][p][pp] = 0
+				oc[i][p][pp] = 0
 	lib.index_file.close()
 	print "\n\tTraining DONE"
 	

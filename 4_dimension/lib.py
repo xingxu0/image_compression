@@ -691,18 +691,18 @@ def record_code(b, b_o, now, c, start, end, oc):
 	d1= get_dep(b, b_o, now, start, end, dep1, "1")
 	d2= get_dep(b, b_o, now, start, end, dep2, "2")
 	if d1<len(oc[start]) and d2<len(oc[start][d1]):
-		oc[start][b[now][0]][d1][d2][c] += 1
+		oc[min(7, b[now][0])*64 + start][d1][d2][c] += 1
 	else:
 		print "*", d1, d2
 		wrong_keys += 1
-	return start, b[now][0], d1, d2, c
+	return min(7, b[now][0])*64 + start, d1, d2, c
 	
 def record_jpeg(b, b_o, now, c, start, end, oc):
 	global dep1, dep2, code, wrong_keys, wrong_desc, wrong_saw
 	d1 = get_dep(b, b_o, now, start, end, dep1, "1")
 	d2 = get_dep(b, b_o, now, start, end, dep2, "2")
 	if d1<len(oc[start]) and d2<len(oc[start][d1]):
-		oc[start][b[now][0]][d1][d2] += code[abs(c)]
+		oc[min(7, b[now][0])*64 + start][d1][d2] += code[abs(c)]
 	else:
 		wrong_keys += 1
 		if not wrong_saw:

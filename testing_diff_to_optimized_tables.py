@@ -28,14 +28,20 @@ def load_code_table(i, d1, d2, table_folder):
 
 def load_tables(tbl_folder):
 	tbls = {}
+	table_number = {}
 	for comp in range(3):
 		tbls[comp] = []
 		fs = glob.glob(tbl_folder + "/" + str(comp) + "/pool*.table")
 		for f in fs:
 			pkl_file = open(f, 'rb')
 			tbls[comp].append((pickle.load(pkl_file), int(f[ f.find("pool") + 5 : f.find(".table")])))
+			pkl_file.close()
 		print comp, len(tbls[comp])
-	return deepcopy(tbls)
+	
+	pkl_file = open(tbl_folder + "/" + str(comp) + "/table_number.table", 'rb')
+	table_number = pickle.load(pkl_file)
+	pkl_file.close()
+	return deepcopy(tbls), table_number
 	
 def get_best_table(tbls, oc):
 	min_bits = -1
@@ -50,7 +56,7 @@ def get_best_table(tbls, oc):
 	
 	
 def calc_gain(f, comp, dep1_s, dep2_s):
-	global out_file, tab_folder, tbls, tbl_index_max, tbl_index_min, tbl_index_samples, total_cases, optimized_cases
+	global out_file, tab_folder, tbls, tbl_index_max, tbl_index_min, tbl_index_samples, total_cases, optimized_cases, table_number
 	lib.fprint("Component " + comp)
 
 	AC_BITS = 10
@@ -144,7 +150,7 @@ def calc_gain(f, comp, dep1_s, dep2_s):
 		oc_dc_opt[b[0]] += 1
 		r = 0
 		pos = 1
-		for i in range(1, 64):
+		for i in range(1, 64):	
 			if b[i] == 0:
 				r += 1
 				continue
@@ -225,7 +231,7 @@ def calc_gain(f, comp, dep1_s, dep2_s):
 			yy[p][i-1] = 0
 			diff[p][i-1] = 0
 			per[p][i-1] = 0
-			temp_gain = 0
+			temp_gain = 0	
 			
 			tbls_ = 0
 			for pp in range(SIZE2 + 1):
@@ -250,7 +256,7 @@ def calc_gain(f, comp, dep1_s, dep2_s):
 						zzz.append(pp)
 						sss.append(samples)
 						ccc.append(tbl_optimized[1])
-					print i, p, pp, "optimized table number", tbl_optimized[1]
+					print i, p, pp, "optimized table number", tbl_optimized[1], "(common table number", table_number[i][p][pp],")"
 					for x in tbl_optimized[0]:
 						if x == 0:
 							total_eob += tbl_common[0][0]*oc_t[i][p][pp][0]
@@ -421,7 +427,7 @@ lib.index_file = out_file
 
 files = glob.glob(test_folder + "/*.block")
 
-tbls = load_tables(tab_folder)
+tbls, table_number = load_tables(tab_folder)
 
 total_g = 0
 total_t = 0

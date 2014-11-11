@@ -4,7 +4,7 @@ import sys, copy, os, heapq, glob, operator, pickle, lib
 from operator import itemgetter
 from pylab import *
 
-def create_final_table(oc, table_folder):
+def create_final_table(oc, table_folder, table_number):
 	for i in range(tbl+1):
 		o = 0
 		for x in oc[i]:
@@ -41,6 +41,11 @@ def create_final_table(oc, table_folder):
 		                f.write(" ")
 		        f.write(str(run) + "/" + str(size) + ": \t" + str(bits) + "\t ( " + str(prob) +"% )\n")
 		f.close()
+	fname = table_folder + "/table_number.table"
+	pkl_file = open(fname, 'wb')
+	pickle.dump(table_number, pkl_file)
+	pkl_file.close()
+	
 
 def save_code_table(c, oc, i, d1, d2, table_folder, tbl_value):
 	o = 0
@@ -316,7 +321,7 @@ def create_table(comp, dep1_s, dep2_s):
 		if not o:
 			continue
 		co_final[i] = lib.huff_encode(oc_final_table[i], lib.code)								
-	create_final_table(oc_final_table, table_folder)
+	create_final_table(oc_final_table, table_folder, tbl_number)
 	
 	# testing...
 	j = array([[0]*64]*(SIZE1 + 1))
