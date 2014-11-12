@@ -354,7 +354,7 @@ def calc_gain(f, comp, dep1_s, dep2_s):
 				for pp in range(SIZE2 + 1):
 					if gain_per_case[i][p][pp] != -1:
 						found = True
-						opt = opt_table_number[i][p][pp]
+						opt = opt_tbl_number[i][p][pp]
 						common = table_number[i][p][pp]
 						oc = oc_t[i][p][pp]
 						xx1.append(i)
@@ -370,7 +370,7 @@ def calc_gain(f, comp, dep1_s, dep2_s):
 		for i in range(1,64):
 			for p in range(SIZE1 + 1):
 				for pp in range(SIZE2 + 1):
-					if gain_per_case[i][p][pp] == -1 or abs(opt_table_number[i][p][pp] - opt) > 50:
+					if gain_per_case[i][p][pp] == -1 or abs(opt_tb_number[i][p][pp] - opt) > 50:
 						continue
 					new = 0
 					old = 0
