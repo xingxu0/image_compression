@@ -335,15 +335,17 @@ def calc_gain(f, comp, dep1_s, dep2_s):
 	z1 = []
 	s1 = []
 	c1 = []
-	xx1 = []
-	yy1 = []
-	zz1 = []
-	ss1 = []
 	xxxxx = []
 	yyyyy = []
 	sssss = []
 	c = 0
 	while(True):
+		xx1 = []
+		yy1 = []
+		zz1 = []
+		ss1 = []
+		cc1 = []
+
 		c+=1
 		_gain = 0
 		_samples = 0
@@ -370,7 +372,7 @@ def calc_gain(f, comp, dep1_s, dep2_s):
 		for i in range(1,64):
 			for p in range(SIZE1 + 1):
 				for pp in range(SIZE2 + 1):
-					if gain_per_case[i][p][pp] == -1 or abs(opt_tb_number[i][p][pp] - opt) > 50:
+					if gain_per_case[i][p][pp] == -1 or abs(opt_tbl_number[i][p][pp] - opt) > 50:
 						continue
 					new = 0
 					old = 0
@@ -396,7 +398,9 @@ def calc_gain(f, comp, dep1_s, dep2_s):
 			y1 += yy1
 			z1 += zz1
 			s1 += ss1
-			c1 += cc1		
+			c1 += cc1
+		else:
+			c -= 1
 			
 		xxxxx.append(_samples)
 		yyyyy.append(_gain)
