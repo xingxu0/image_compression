@@ -437,11 +437,7 @@ Copyright (C) 2012 Free Software Foundation, Inc.
 This config.status script is free software; the Free Software Foundation
 gives unlimited permission to copy, distribute and modify it."
 
-<<<<<<< HEAD
-ac_pwd='/media/xing/Study/research/image_compression_github/image_compression/entropy_libjpeg/jpeg-9'
-=======
 ac_pwd='/home/xing/research/image_compression_github/image_compression/entropy_libjpeg/jpeg-9'
->>>>>>> cd92a3a6f36ac3a34a54851f0fe33d860458fbdb
 srcdir='.'
 INSTALL='/usr/bin/install -c'
 MKDIR_P='/bin/mkdir -p'
@@ -579,15 +575,7 @@ FGREP='/bin/grep -F'
 LD='/usr/bin/ld -m elf_x86_64'
 NM='/usr/bin/nm -B'
 LN_S='ln -s'
-<<<<<<< HEAD
-<<<<<<< HEAD
-max_cmd_len='3458764513820540925'
-=======
-max_cmd_len='805306365'
->>>>>>> cd92a3a6f36ac3a34a54851f0fe33d860458fbdb
-=======
 max_cmd_len='1572864'
->>>>>>> c9aced04f34e398d585f8c9c26257e782c16fefb
 ac_objext='o'
 exeext=''
 lt_unset='unset'
@@ -687,8 +675,8 @@ postuninstall_cmds=''
 finish_cmds='PATH="\$PATH:/sbin" ldconfig -n $libdir'
 finish_eval=''
 hardcode_into_libs='yes'
-sys_lib_search_path_spec='/usr/lib/gcc/x86_64-linux-gnu/4.7 /usr/lib/x86_64-linux-gnu /usr/lib /lib/x86_64-linux-gnu /lib '
-sys_lib_dlsearch_path_spec='/lib /usr/lib /usr/lib/i386-linux-gnu/mesa /lib/i386-linux-gnu /usr/lib/i386-linux-gnu /lib/i686-linux-gnu /usr/lib/i686-linux-gnu /usr/local/lib /lib/x86_64-linux-gnu /usr/lib/x86_64-linux-gnu /usr/lib/x86_64-linux-gnu/mesa '
+sys_lib_search_path_spec='/usr/lib/gcc/x86_64-linux-gnu/4.8 /usr/lib/x86_64-linux-gnu /usr/lib /lib/x86_64-linux-gnu /lib '
+sys_lib_dlsearch_path_spec='/lib /usr/lib /usr/lib/x86_64-linux-gnu/libfakeroot /usr/lib/i386-linux-gnu/mesa /lib/i386-linux-gnu /usr/lib/i386-linux-gnu /lib/i686-linux-gnu /usr/lib/i686-linux-gnu /usr/local/lib /lib/x86_64-linux-gnu /usr/lib/x86_64-linux-gnu /usr/lib/x86_64-linux-gnu/mesa-egl /usr/lib/x86_64-linux-gnu/mesa /usr/lib/x86_64-linux-gnu/mir/clientplatform/mesa /lib32 /usr/lib32 /libx32 /usr/libx32 '
 hardcode_action='immediate'
 enable_dlopen='unknown'
 enable_dlopen_self='unknown'
@@ -891,21 +879,12 @@ S["mkdir_p"]="$(MKDIR_P)"
 S["MKDIR_P"]="/bin/mkdir -p"
 S["INSTALL_STRIP_PROGRAM"]="$(install_sh) -c -s"
 S["STRIP"]="strip"
-<<<<<<< HEAD
-S["install_sh"]="${SHELL} /media/xing/Study/research/image_compression_github/image_compression/entropy_libjpeg/jpeg-9/install-sh"
-S["MAKEINFO"]="${SHELL} /media/xing/Study/research/image_compression_github/image_compression/entropy_libjpeg/jpeg-9/missing makeinfo"
-S["AUTOHEADER"]="echo autoheader ignored"
-S["AUTOMAKE"]="${SHELL} /media/xing/Study/research/image_compression_github/image_compression/entropy_libjpeg/jpeg-9/missing automake-1.13"
-S["AUTOCONF"]="${SHELL} /media/xing/Study/research/image_compression_github/image_compression/entropy_libjpeg/jpeg-9/missing autoconf"
-S["ACLOCAL"]="${SHELL} /media/xing/Study/research/image_compression_github/image_compression/entropy_libjpeg/jpeg-9/missing aclocal-1.13"
-=======
 S["install_sh"]="${SHELL} /home/xing/research/image_compression_github/image_compression/entropy_libjpeg/jpeg-9/install-sh"
 S["MAKEINFO"]="${SHELL} /home/xing/research/image_compression_github/image_compression/entropy_libjpeg/jpeg-9/missing makeinfo"
 S["AUTOHEADER"]="echo autoheader ignored"
 S["AUTOMAKE"]="${SHELL} /home/xing/research/image_compression_github/image_compression/entropy_libjpeg/jpeg-9/missing automake-1.13"
 S["AUTOCONF"]="${SHELL} /home/xing/research/image_compression_github/image_compression/entropy_libjpeg/jpeg-9/missing autoconf"
 S["ACLOCAL"]="${SHELL} /home/xing/research/image_compression_github/image_compression/entropy_libjpeg/jpeg-9/missing aclocal-1.13"
->>>>>>> cd92a3a6f36ac3a34a54851f0fe33d860458fbdb
 S["VERSION"]="9.0.0"
 S["PACKAGE"]="libjpeg"
 S["CYGPATH_W"]="echo"

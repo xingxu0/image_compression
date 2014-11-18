@@ -1181,7 +1181,7 @@ struct jpeg_color_quantizer { long dummy; };
 
 // Xing
 int entropy_max_AC_bits;
-int first_dimentsion_bins;
+int first_dimension_bins, second_dimension_bins;
 char * table_folder;
 
 typedef struct
@@ -1196,8 +1196,20 @@ typedef struct
   UINT8 look_sym[1<<HUFF_LOOKAHEAD]; /* symbol, or unused */
 } symbol_table_t;
 //symbol_table_t **** table;
-symbol_table_t *** ac_table; // for 1 dimention case
+symbol_table_t **** ac_table; // for 1 dimention case
 symbol_table_t ** dc_table;
+
+#define LOOK_BACKWARD_BLOCK 3
+#define LOOK_FORWARD_COEF 5
+typedef struct
+{
+	JCOEF previous_blocks[3][LOOK_BACKWARD_BLOCK + 1][64];
+	int previous_blocks_avgs[3][LOOK_BACKWARD_BLOCK + 1][64];
+	int current_index[3];
+	int total_blocks[3];
+} previous_block_state_t;
+
+int previous_blocks_max_avgs[3][64];
 
 typedef struct
 {
@@ -1210,12 +1222,14 @@ typedef struct
 	int * bins[64 + 1];
 } coef_bins_t;
 coef_bins_t * coef_bins;
+coef_bins_t * coef_bins_p;
 
 int* bits_saving;
 
 void entropy_table_initialization();
 
 int get_first_dimension_index(int ci, int pos, int f, int dc_diff);
+int get_second_dimension_index(int ci, int pos, previous_block_state_t* previous_block_state, int dc_diff_bits);
 
 FILE * outputcoef;
 

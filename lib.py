@@ -576,14 +576,8 @@ def get_dep(blocks, blocks_o, now, s, e, dep, one_or_two):
 			for xx in range(s, min(64, s+5)):
 				ma += avg_coef[xx]
 				if blocks[x][xx]:
-					if pos == -1:
-						pos = xx
-					else:
-						if xx == pos:
-							sign += blocks_o[x][xx]
-							n += 1
 					su += blocks[x][xx]
-					break
+					#break
 
 #		if not ma:
 #			return 21
@@ -672,18 +666,18 @@ def get_previous_blocks_coef(blocks, now, s, e):
 	n = 0
 	pos = -1
 	#print "now:", now
-	seen = True
+	seen = False 
 	for x in range(now - 1, max(0, now - look_backward_block) - 1, -1):
-		#if blocks[x+1][0] > 5:
-		#	break
-		#seen = True				
+		if blocks[x+1][0] > 5:
+			break
+		seen = True				
 		for xx in range(s, min(64, s+look_forward_coef)):
 			ma += avg_coef[xx]
 			su += blocks[x][xx]
-			if blocks[x][xx] >0:
-				break
-	if ma ==0:
-		ma = 1
+			#if blocks[x][xx] >0:
+			#	break
+	#if ma ==0:
+	#	ma = 1
 	return seen, ma, su
 
 def record_code(b, b_o, now, c, start, end, oc):
@@ -836,7 +830,7 @@ def record_code_temp(bs, now, c, start, end, oc, oc_2, dep1, dep2):
 				ma += avg_coef[xx]
 				if bs[x][xx]:
 					su += bs[x][xx]
-					break
+					#break
 
 #		if not ma:
 #			return 21
@@ -1141,5 +1135,5 @@ wrong_keys = 0
 wrong_desc = 0
 wrong_saw = False
 look_backward_block = 3
-look_forward_coef = 8 
+look_forward_coef = 5 
 pre_bins = 500

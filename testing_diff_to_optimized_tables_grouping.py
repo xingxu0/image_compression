@@ -280,6 +280,7 @@ def calc_gain(f, comp, dep1_s, dep2_s):
 							total_ori_eob += lib.code[0]*oc_t[i][p][pp][0]
 						if oc_t[i][p][pp][x] !=0 :
 							print "\tr", x>>4, "s", x&0x0f, ":", oc_t[i][p][pp][x], "opt:", tbl_optimized[0][x], "common:", tbl_common[0][x]
+							pass
 						bits_optimized += tbl_optimized[0][x]*oc_t[i][p][pp][x]
 						bits_common += tbl_common[0][x]*oc_t[i][p][pp][x]
 						bits_jpeg += lib.code[x]*oc_t[i][p][pp][x]
@@ -329,6 +330,7 @@ def calc_gain(f, comp, dep1_s, dep2_s):
 				per1[p][i-1] = 0
 				per2[p][i-1] = 0
 				
+	print "total cases:", total_cases
 	# below grouping results
 	x1 = []
 	y1 = []
@@ -338,7 +340,10 @@ def calc_gain(f, comp, dep1_s, dep2_s):
 	xxxxx = []
 	yyyyy = []
 	sssss = []
+	ccccc = []
 	c = 0
+	handled_cases = 0
+	total_grouping_gain = 0
 	while(True):
 		xx1 = []
 		yy1 = []
@@ -351,8 +356,15 @@ def calc_gain(f, comp, dep1_s, dep2_s):
 		_samples = 0
 		_cases = 0
 		found = False
+		_a = 0
+		_b = 0
+		_c = 0
 		for i in range(1,64):
+			if found:
+				break
 			for p in range(SIZE1 + 1):
+				if found:
+					break
 				for pp in range(SIZE2 + 1):
 					if gain_per_case[i][p][pp] != -1:
 						found = True
@@ -365,53 +377,70 @@ def calc_gain(f, comp, dep1_s, dep2_s):
 						ss1.append(1)
 						cc1.append(c)
 						_gain = gain_per_case[i][p][pp]
+						gain_per_case[i][p][pp] = -1
 						_cases += 1
+						_a = i
+						_b = p
+						_c = pp
+						break
 						
 		if found ==False:
 			break
 		for i in range(1,64):
 			for p in range(SIZE1 + 1):
 				for pp in range(SIZE2 + 1):
-					if gain_per_case[i][p][pp] == -1 or abs(opt_tbl_number[i][p][pp] - opt) > 50:
+					if gain_per_case[i][p][pp] == -1 or abs(opt_tbl_number[i][p][pp][1] - opt[1]) > 150 or abs(p-_b) +abs(pp-_c)>10:
 						continue
 					new = 0
 					old = 0
-					oc_new = deepcopy(oc)
+					#oc_new = deepcopy(oc)
 					for x in oc_t[i][p][pp]:
 						new += oc_t[i][p][pp][x]*opt[0][x]
 						old += oc_t[i][p][pp][x]*co[i][p][pp][x]
-						oc_new[x] += oc_t[i][p][pp][x]
+						#oc_new[x] += oc_t[i][p][pp][x]
 					if old > new:
-						oc = deepcopy(oc_new)
+						#oc = deepcopy(oc_new)
 						_gain += old - new
-						_samples += samples[i][p][pp]
+						_samples += samples_per_case[i][p][pp]
 						#opt = get_best_table(tbl[int(comp)], oc)
 						_cases += 1
 						xx1.append(i)
 						yy1.append(p)
 						zz1.append(pp)
-						ss1.append(1)
+						ss1.append(old-new)
 						cc1.append(c)
 						gain_per_case[i][p][pp] = -1
-		if len(xx1) > 5:
-			x1 += xx1
-			y1 += yy1
-			z1 += zz1
-			s1 += ss1
-			c1 += cc1
+		if _samples > 300 and _cases > 1:
+			if c==1:
+				x1 += xx1
+				y1 += yy1
+				z1 += zz1
+				s1 += ss1
+				c1 += cc1
+			total_grouping_gain += _gain
+			print opt[0], opt[1]
+			for z2 in range(len(xx1)):
+				print "(", xx1[z2], yy1[z2], zz1[z2],"): ", opt_tbl_number[xx1[z2]][yy1[z2]][zz1[z2]][1], table_number[xx1[z2]][yy1[z2]][zz1[z2]], ss1[z2],
+			print " ..."
 		else:
 			c -= 1
-			
 		xxxxx.append(_samples)
 		yyyyy.append(_gain)
 		sssss.append(_cases)
+		ccccc.append(opt[1])
+		handled_cases += _cases
+		if _cases != 1:
+			print _cases, "(", handled_cases, ")"
+		if handled_cases % 20 == 0:
+			print handled_cases
 	# above grouping results
 	ax.scatter(x1,y1,z1,s=s1, c=c1)
 	fig.savefig(sys.argv[3]+"_"+ f[f.rfind("/")+1:] +"_group_3d_" + comp + ".png")
 	close()
+	print "total grouping gain", total_grouping_gain
 	
 	subplot(1,1,1)
-	scatter(xxxxx, yyyyy, s=sssss)
+	scatter(xxxxx, yyyyy, s=sssss, c=ccccc)
 	xlabel("# of samples")
 	ylabel("gain bits of optimized (b)")
 	savefig(sys.argv[3]+"_"+ f[f.rfind("/")+1:] +"_"+comp+"_group_samples_gain.png")
