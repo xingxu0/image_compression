@@ -31,10 +31,14 @@ symbols=[]
 symbols_=[]
 base = 0
 for f in folders:
+	print f
 	ss = count_symbols("../../image_compression/images/" + f + "_Q75")
 	x.append(int(f)*int(f))
 	symbols.append(ss)
 
+fig = plt.figure()
+ax = fig.add_subplot(111)
+ax.plot(x, symbols, '-sr')
 ii = -1
 for f in folders:
 	ii += 1
@@ -51,11 +55,10 @@ for f in folders:
 	yy.append(symbols[ii]*1.0/ff/ff*x2)
 	ax.plot(xx, yy, '--k')
 	
-fig = plt.figure()
-ax = fig.add_subplot(111)
 ax.plot(x, symbols, '-sr')
 ax.set_xlabel("Number of Pixels")
 ax.set_ylabel("Number of Symbols")
-ax.legend(['symbols', 'linear bound'], 2)
+ax.legend(['symbols', 'linear bound'], 4)
 ax.set_xlim([0, 2300000])
+ax.set_ylim([0, symbols[len(symbols)-1]*1.2)
 savefig("count_symbols.png")
