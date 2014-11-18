@@ -34,6 +34,22 @@ for f in folders:
 	ss = count_symbols("../../image_compression/images/" + f + "_Q75")
 	x.append(int(f)*int(f))
 	symbols.append(ss)
+
+ii = -1
+for f in folders:
+	ii += 1
+	ff = int(f)
+	xx = []
+	yy = []
+	x1 = ff*ff - 150000
+	x2 = ff*ff + 150000
+	xx.append(x1)
+	xx.append(ff*ff)
+	xx.append(x2)
+	yy.append(symbols[ii]*1.0/ff/ff*x1)
+	yy.append(symbols[ii])
+	yy.append(symbols[ii]*1.0/ff/ff*x2)
+	ax.plot(xx, yy, '--k')
 	
 fig = plt.figure()
 ax = fig.add_subplot(111)
