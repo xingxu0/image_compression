@@ -29,12 +29,14 @@ folders = ['100', '200', '300', '400', '600', '800', '1000', '1200']
 x= []
 symbols=[]
 symbols_=[]
+symbols_per_pixel = []
 base = 0
 for f in folders:
 	print f
 	ss = count_symbols("../../image_compression/images/" + f + "_Q75")
 	x.append(int(f)*int(f))
 	symbols.append(ss)
+	symbols_per_pixel.append(ss*1.0/int(f)/int(f)/100)
 
 fig = plt.figure()
 ax = fig.add_subplot(111)
@@ -61,4 +63,9 @@ ax.set_ylabel("Number of Symbols")
 ax.legend(['symbols', 'linear bound'], 4)
 ax.set_xlim([0, 2300000])
 ax.set_ylim([0, symbols[len(symbols)-1]*1.2])
+ax2 = ax.twinx()
+ax2.plot(x, symbols_per_pixel, '-ob')
+ax2.set_ylabel("Symbols per pixel")
+ax2.set_xlim([0, 2300000])
+ax2.legend(['symbols per pixel'], 1)
 savefig("count_symbols.png")

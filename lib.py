@@ -197,6 +197,28 @@ def get_blocks_with_dc_in_diff(filename, comp):   # the first DC coef will be th
 						ii.append(int(s[j]))
 				blocks.append(ii)
 	return blocks
+
+def get_blocks_with_dc_in_diff_with_threshold(filename, comp):   # the first DC coef will be the difference
+	ff = filename.split("|")
+	blocks = []
+	for f in ff:
+		t_blocks = open(f).readlines()
+		last_dc = 0
+		last_dc_t = 0
+		for i in range(len(t_blocks)):
+			s = t_blocks[i][:-2].split(" ")
+			ii = []
+			if s[0] == comp + ":":
+				for j in range(1, len(s)):
+					if j==1:
+						ii.append(get_bits(abs((int(s[j]) >> 1) - last_dc)))
+						print get_bits(abs((int(s[j]) >> 1) - last_dc)), get_bits(abs(int(s[j]) - last_dc_t))
+						last_dc = (int(s[j]) >> 1)
+						last_dc_t = int(s[j])
+					else:
+						ii.append(int(s[j]))
+				blocks.append(ii)
+	return blocks
 	
 
 def get_bits(i_num):
@@ -656,8 +678,28 @@ def get_energy_level(blocks, now, s, e):
 		ma = 1
 	return ma, su		
 		
+def get_previous_blocks_coef(blocks, now, s, e):
+	global apc_bins, avg_coef,look_forward_coef, look_backward_block
+	su = 0
+	ma = 0
+	sign = 0
+	n = 0
+	pos = -1
+	#print "now:", now
+	seen = True
+	for x in range(now - 1, max(0, now - look_backward_block) - 1, -1):
+		#if blocks[x+1][0] > 5:
+		#	break	
+		for xx in range(s, min(64, s+look_forward_coef)):
+			ma += avg_coef[xx]
+			su += blocks[x][xx]
+			if blocks[x][xx] >0:
+				break
+	if ma ==0:
+		ma = 1
+	return seen, ma, su
 		
-		
+''' the other version		
 def get_previous_blocks_coef(blocks, now, s, e):
 	global apc_bins, avg_coef,look_forward_coef, look_backward_block
 	su = 0
@@ -679,6 +721,7 @@ def get_previous_blocks_coef(blocks, now, s, e):
 	#if ma ==0:
 	#	ma = 1
 	return seen, ma, su
+'''
 
 def record_code(b, b_o, now, c, start, end, oc):
 	global dep1, dep2, wrong_keys
@@ -1135,5 +1178,5 @@ wrong_keys = 0
 wrong_desc = 0
 wrong_saw = False
 look_backward_block = 3
-look_forward_coef = 5 
+look_forward_coef = 8 
 pre_bins = 500
