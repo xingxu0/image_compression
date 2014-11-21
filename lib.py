@@ -1009,68 +1009,69 @@ def get_avg_coef_bins(folder, comp, dep1, dep2):
 	
 def init(comp, image_folder, tbl_folder, dep1, dep2):
 	global code, dc_code, avg_coef, apc_bins, papc_bins, avg_actual_coef, aapc_bins, wrong_keys, avg_coef_max
-	if os.path.isfile("bin_separator_600_"+comp):
-		pkl_file = open("bin_separator_600_"+comp, 'rb')
-		aapc_bins = pickle.load(pkl_file)
-		pkl_file.close()
+	if dep1 != "-1" or dep2 != "-1":
+		if os.path.isfile("bin_separator_600_"+comp):
+			pkl_file = open("bin_separator_600_"+comp, 'rb')
+			aapc_bins = pickle.load(pkl_file)
+			pkl_file.close()
 
-	# max value for each position
-	if os.path.isfile(image_folder + "/max_pos_value_" + comp):
-		pkl_file = open(image_folder + "/max_pos_value_" + comp)
-		avg_coef = pickle.load(pkl_file)
-		pkl_file.close()
-	else:
-		print "regenerating max_pos_values..."
-		avg_coef = get_max_pos_value(image_folder, comp)
-		pkl_file = open(image_folder + "/max_pos_value_" + comp, 'wb')
-		pickle.dump(avg_coef, pkl_file)
-		pkl_file.close()
-	f = open(tbl_folder + "/plain_max_pos_value_" + comp, 'wb')
-	for x in avg_coef:
-		f.write(str(x) + ": " + str(avg_coef[x]) + "\n")
-	f.close()
-	avg_coef_max = [0]*64
-	for i in range(1, 64):
-		tt = 0
-		for j in range(1, i+1):
-			tt += avg_coef[j]
-		avg_coef_max[i] = tt
-	print avg_coef_max
-	os.system("cp " + image_folder + "/*max_pos_value_" + comp + " " + tbl_folder + "/")
+		# max value for each position
+		if os.path.isfile(image_folder + "/max_pos_value_" + comp):
+			pkl_file = open(image_folder + "/max_pos_value_" + comp)
+			avg_coef = pickle.load(pkl_file)
+			pkl_file.close()
+		else:
+			print "regenerating max_pos_values..."
+			avg_coef = get_max_pos_value(image_folder, comp)
+			pkl_file = open(image_folder + "/max_pos_value_" + comp, 'wb')
+			pickle.dump(avg_coef, pkl_file)
+			pkl_file.close()
+		f = open(tbl_folder + "/plain_max_pos_value_" + comp, 'wb')
+		for x in avg_coef:
+			f.write(str(x) + ": " + str(avg_coef[x]) + "\n")
+		f.close()
+		avg_coef_max = [0]*64
+		for i in range(1, 64):
+			tt = 0
+			for j in range(1, i+1):
+				tt += avg_coef[j]
+			avg_coef_max[i] = tt
+		print avg_coef_max
+		os.system("cp " + image_folder + "/*max_pos_value_" + comp + " " + tbl_folder + "/")
 
-	# coef bins
-	if os.path.isfile(image_folder + "/coef_bins_" + str(dep1) + "_" + comp) and os.path.isfile(image_folder + "/coef_bins_" + str(dep2) + "_" + comp):
-		pkl_file = open(image_folder + "/coef_bins_" + str(dep1) + "_" + comp)
-		apc_bins = pickle.load(pkl_file)
-		pkl_file.close()
-		pkl_file = open(image_folder + "/coef_bins_"  + str(dep2) + "_" + comp)
-		papc_bins = pickle.load(pkl_file)
-		pkl_file.close()
-	else:
-		print "regenerating coef_bins..."
-		apc_bins, papc_bins = get_avg_coef_bins(image_folder, comp, dep1, dep2)
-		pkl_file = open(image_folder + "/coef_bins_" + str(dep1) + "_" + comp, 'wb')
-		pickle.dump(apc_bins, pkl_file)
-		pkl_file.close()
-		pkl_file = open(image_folder + "/coef_bins_" + str(dep2) + "_" + comp, 'wb')
-		pickle.dump(papc_bins, pkl_file)
-		pkl_file.close()
-	f = open(tbl_folder + "/plain_coef_bins_" + str(dep1) + "_" + comp, 'wb')
-	for x in apc_bins:
-		f.write(str(x) + ": ")
-		for y in range(len(apc_bins[x])):
-			f.write(str(apc_bins[x][y]) + " ")
-		f.write("\n")
-	f.close()		
-	f = open(tbl_folder + "/plain_coef_bins_"  + str(dep2) + "_" + comp, 'wb')
-	for x in papc_bins:
-		f.write(str(x) + ": ")
-		for y in range(len(papc_bins[x])):
-			f.write(str(papc_bins[x][y]) + " ")
-		f.write("\n")
-	f.close()
-	os.system("cp " + image_folder + "/*coef_bins_" + str(dep1) + "_" + comp + " " + tbl_folder + "/")		
-	os.system("cp " + image_folder + "/*coef_bins_" + str(dep2) + "_" + comp + " " + tbl_folder + "/")		
+		# coef bins
+		if os.path.isfile(image_folder + "/coef_bins_" + str(dep1) + "_" + comp) and os.path.isfile(image_folder + "/coef_bins_" + str(dep2) + "_" + comp):
+			pkl_file = open(image_folder + "/coef_bins_" + str(dep1) + "_" + comp)
+			apc_bins = pickle.load(pkl_file)
+			pkl_file.close()
+			pkl_file = open(image_folder + "/coef_bins_"  + str(dep2) + "_" + comp)
+			papc_bins = pickle.load(pkl_file)
+			pkl_file.close()
+		else:
+			print "regenerating coef_bins..."
+			apc_bins, papc_bins = get_avg_coef_bins(image_folder, comp, dep1, dep2)
+			pkl_file = open(image_folder + "/coef_bins_" + str(dep1) + "_" + comp, 'wb')
+			pickle.dump(apc_bins, pkl_file)
+			pkl_file.close()
+			pkl_file = open(image_folder + "/coef_bins_" + str(dep2) + "_" + comp, 'wb')
+			pickle.dump(papc_bins, pkl_file)
+			pkl_file.close()
+		f = open(tbl_folder + "/plain_coef_bins_" + str(dep1) + "_" + comp, 'wb')
+		for x in apc_bins:
+			f.write(str(x) + ": ")
+			for y in range(len(apc_bins[x])):
+				f.write(str(apc_bins[x][y]) + " ")
+			f.write("\n")
+		f.close()		
+		f = open(tbl_folder + "/plain_coef_bins_"  + str(dep2) + "_" + comp, 'wb')
+		for x in papc_bins:
+			f.write(str(x) + ": ")
+			for y in range(len(papc_bins[x])):
+				f.write(str(papc_bins[x][y]) + " ")
+			f.write("\n")
+		f.close()
+		os.system("cp " + image_folder + "/*coef_bins_" + str(dep1) + "_" + comp + " " + tbl_folder + "/")		
+		os.system("cp " + image_folder + "/*coef_bins_" + str(dep2) + "_" + comp + " " + tbl_folder + "/")		
 
 	if comp == "0":
 		code = get_luminance_codes()
@@ -1085,43 +1086,44 @@ def init(comp, image_folder, tbl_folder, dep1, dep2):
 
 def init_testing(comp, tbl_folder, dep1, dep2):
 	global code, dc_code, avg_coef, apc_bins, papc_bins, avg_actual_coef, aapc_bins, avg_coef_max
-	if os.path.isfile("bin_separator_600_"+comp):
-		pkl_file = open("bin_separator_600_"+comp, 'rb')
-		aapc_bins = pickle.load(pkl_file)
-		pkl_file.close()
+	if dep1 != "-1" or dep2 != "-1":
+		if os.path.isfile("bin_separator_600_"+comp):
+			pkl_file = open("bin_separator_600_"+comp, 'rb')
+			aapc_bins = pickle.load(pkl_file)
+			pkl_file.close()
 
-	# max value for each position
-	if os.path.isfile(tbl_folder + "/max_pos_value_" + comp):
-		pkl_file = open(tbl_folder + "/max_pos_value_" + comp)
-		avg_coef = pickle.load(pkl_file)
-		pkl_file.close()
-	
-	else:
-		print "no max_pos_values..."
-		exit()
-	avg_coef_max = [0]*64
-	for i in range(1, 64):
-		tt = 0
-		for j in range(1, i+1):
-			tt += avg_coef[j]
-		avg_coef_max[i] = tt
-	
-	# coef bins
-	if os.path.isfile(tbl_folder + "/coef_bins_" + str(dep1) + "_" + comp):
-		pkl_file = open(tbl_folder + "/coef_bins_" + str(dep1) + "_" +  comp)
-		apc_bins = pickle.load(pkl_file)
-		pkl_file.close()
-	else:
-		print "no coef_bins..."
-		exit()
+		# max value for each position
+		if os.path.isfile(tbl_folder + "/max_pos_value_" + comp):
+			pkl_file = open(tbl_folder + "/max_pos_value_" + comp)
+			avg_coef = pickle.load(pkl_file)
+			pkl_file.close()
+		
+		else:
+			print "no max_pos_values..."
+			exit()
+		avg_coef_max = [0]*64
+		for i in range(1, 64):
+			tt = 0
+			for j in range(1, i+1):
+				tt += avg_coef[j]
+			avg_coef_max[i] = tt
+		
+		# coef bins
+		if os.path.isfile(tbl_folder + "/coef_bins_" + str(dep1) + "_" + comp):
+			pkl_file = open(tbl_folder + "/coef_bins_" + str(dep1) + "_" +  comp)
+			apc_bins = pickle.load(pkl_file)
+			pkl_file.close()
+		else:
+			print "no coef_bins..."
+			exit()
 
-	if os.path.isfile(tbl_folder + "/coef_bins_" +  str(dep2) + "_" + comp):
-		pkl_file = open(tbl_folder + "/coef_bins_"  + str(dep2) + "_" + comp)
-		papc_bins = pickle.load(pkl_file)
-		pkl_file.close()
-	else:
-		print "no coef_bins_p..."
-		exit()
+		if os.path.isfile(tbl_folder + "/coef_bins_" +  str(dep2) + "_" + comp):
+			pkl_file = open(tbl_folder + "/coef_bins_"  + str(dep2) + "_" + comp)
+			papc_bins = pickle.load(pkl_file)
+			pkl_file.close()
+		else:
+			print "no coef_bins_p..."
+			exit()
 
 	if comp == "0":
 		code = get_luminance_codes()
