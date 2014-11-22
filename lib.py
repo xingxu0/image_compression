@@ -109,10 +109,10 @@ def get_jpeg_bits_detail(coefs, st, en, code, luminance):
 	return dc_bits + dc_s_bits + ret[0], dc_s_bits, dc_bits, ret[0] - ret[1], ret[1]
 
 def get_jpeg_bits_detail_all_positive(coefs, st, en, code, luminance):
-	dc_bits = coefs[0]
+	dc_bits = 0
 	dc_s_bits = 0
-	ret = get_jpeg_bits_all_positive(coefs, st + 1, en, code, False)
-	return dc_bits + dc_s_bits + ret[0], dc_s_bits, dc_bits, ret[0] - ret[1], ret[1], ret[2]
+	ret = get_jpeg_bits(coefs, st + 1, en, code, False)
+	return dc_bits + dc_s_bits + ret[0], dc_s_bits, dc_bits, ret[0] - ret[1], ret[1]
 
 
 def print_prefix(pre_n, pre):
@@ -190,8 +190,8 @@ def get_jpeg_bits_all_positive(coefs, st, en, code, run_length_only):
 	
 		b += code[(r << 4) + coefs[i]]
 		if not run_length_only:
-			b += coefs[i]-1
-			coef_bits += coefs[i]-1
+			b += coefs[i]
+			coef_bits += coefs[i]
 			saving +=1
 		r = 0
 	if (st == 1):
