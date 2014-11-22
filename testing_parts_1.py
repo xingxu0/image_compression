@@ -92,6 +92,7 @@ def calc_gain(comp, dep1_s, dep2_s):
 	
 	total_opt = 0
 	total_opt_dc = 0
+	saving_t = 0
 	for f in files:
 		# for optimized
 		oc_dc_opt = {}
@@ -116,12 +117,13 @@ def calc_gain(comp, dep1_s, dep2_s):
 		block_t_o = lib.get_blocks_with_dc_in_diff(f, comp)
 	
 		for ii in range(len(block_t)):
-			x, dc_s_bits, dc_bits, r, coef_bits = lib.get_bits_detail_all_positive(block_t[ii], lib.code, comp=="0")
+			x, dc_s_bits, dc_bits, r, coef_bits, saving = lib.get_bits_detail_all_positive(block_t[ii], lib.code, comp=="0")
 			t_ac_b += coef_bits
 			t_run_length_bits += r
 			t_dc_s += dc_s_bits
 			t_dc_b += dc_bits
 			t_total_bits += x
+			saving_t += saving
 
 				
 			b = block_t[ii]
@@ -171,6 +173,7 @@ def calc_gain(comp, dep1_s, dep2_s):
 	lib.fprint("\nTEST  SET:")
 	lib.fprint("\nJPEG Baseline: dc symbol length:" + str(t_dc_s) + "\tdc actual bits:" + str(t_dc_b) + "\trun length bits:" + str(t_run_length_bits) + "\tactual AC bits:" + str(t_ac_b) + "\ttotal bits:" + str(t_total_bits))
 	lib.fprint("\nJPEG Optimize: dc symbol length:" + str(total_opt_dc) + "\tdc actual bits:" + str(t_dc_b) + "\trun length bits:" + str(total_opt) + "\tactual AC bits:" + str(t_ac_b) + "\ttotal bits:" + str(t_total_bits_opt))
+	
 	
 	# x axis: position
 	# y axis: SIZE1
@@ -269,6 +272,7 @@ def calc_gain(comp, dep1_s, dep2_s):
 	lib.fprint("gaining " + str(total_gain+total_opt-sum(j)+gain_dc+total_opt_dc-jdc) + " bits (" + str((total_gain+total_opt-sum(j)+gain_dc+total_opt_dc-jdc)*100.0/t_total_bits_opt)+"%)")
 	
 	print "\n\tTesting DONE"
+	print "Saving due to positive:", saving_t
 	return total_gain + gain_dc, t_total_bits, t_total_bits_opt
 
 if len(sys.argv) != 4:

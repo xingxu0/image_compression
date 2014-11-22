@@ -112,7 +112,7 @@ def get_jpeg_bits_detail_all_positive(coefs, st, en, code, luminance):
 	dc_bits = coefs[0]
 	dc_s_bits = 0
 	ret = get_jpeg_bits_all_positive(coefs, st + 1, en, code, False)
-	return dc_bits + dc_s_bits + ret[0], dc_s_bits, dc_bits, ret[0] - ret[1], ret[1]
+	return dc_bits + dc_s_bits + ret[0], dc_s_bits, dc_bits, ret[0] - ret[1], ret[1], ret[2]
 
 
 def print_prefix(pre_n, pre):
@@ -178,6 +178,7 @@ def get_jpeg_bits_all_positive(coefs, st, en, code, run_length_only):
 	b = 0
 	r = 0
 	coef_bits = 0
+	saving = 0
 	for i in range(st, en + 1):
 		if coefs[i] == 0:
 			r += 1
@@ -191,6 +192,7 @@ def get_jpeg_bits_all_positive(coefs, st, en, code, run_length_only):
 		if not run_length_only:
 			b += coefs[i]-1
 			coef_bits += coefs[i]-1
+			saving +=1
 		r = 0
 	if (st == 1):
 		if (en == 63 and r > 0):
@@ -200,7 +202,7 @@ def get_jpeg_bits_all_positive(coefs, st, en, code, run_length_only):
 			b += code[0]
 #	print_prefix(en + 1, coefs)
 #	print b
-	return b, coef_bits
+	return b, coef_bits, saving
 	
 
 def get_blocks(filename, comp):
