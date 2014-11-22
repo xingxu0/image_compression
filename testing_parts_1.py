@@ -161,7 +161,7 @@ def calc_gain(comp, dep1_s, dep2_s):
 		co_dc_opt = lib.huff_encode(oc_dc_opt, lib.bits_dc_luminance)
 		co_opt = lib.huff_encode(oc_opt, lib.code)
 		for x in co_opt:
-			total_opt += (co_opt[x]-1)*oc_opt[x]
+			total_opt += (co_opt[x])*oc_opt[x]
 		for x in range(12):
 			total_opt_dc += co_dc_opt[x]*oc_dc_opt[x]
 		
@@ -193,12 +193,12 @@ def calc_gain(comp, dep1_s, dep2_s):
 				for x in co[i][p][pp]:
 					g += (lib.code[x] - co[i][p][pp][x])*oc_t[i][p][pp][x]
 					if x!=0:
-						o += (co[i][p][pp][x]-1)*oc_t[i][p][pp][x]
+						o += (co[i][p][pp][x])*oc_t[i][p][pp][x]
 					else:
 						o += (co[i][p][pp][x])*oc_t[i][p][pp][x]
 				temp_gain += g
 				total_gain += g
-				jpeg_t[i][p][pp] = g + o
+				#jpeg_t[i][p][pp] = g + o
 				j[p][i-1] += jpeg_t[i][p][pp]
 				yy[p][i-1] += o
 				diff[p][i-1] += jpeg_t[i][p][pp] - o
