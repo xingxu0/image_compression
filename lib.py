@@ -108,6 +108,13 @@ def get_jpeg_bits_detail(coefs, st, en, code, luminance):
 	ret = get_jpeg_bits(coefs, st + 1, en, code, False)
 	return dc_bits + dc_s_bits + ret[0], dc_s_bits, dc_bits, ret[0] - ret[1], ret[1]
 
+def get_jpeg_bits_detail_all_positive(coefs, st, en, code, luminance):
+	dc_bits = coefs[0]
+	dc_s_bits = 0
+	ret = get_jpeg_bits_all_positive(coefs, st + 1, en, code, False)
+	return dc_bits + dc_s_bits + ret[0], dc_s_bits, dc_bits, ret[0] - ret[1], ret[1]
+
+
 def print_prefix(pre_n, pre):
 	for i in range(pre_n):
 		print pre[i],
@@ -126,6 +133,10 @@ def get_total_bits_detail(i, code, last_dc, comp):
 	
 def get_bits_detail(i, code, comp):
 	return get_jpeg_bits_detail(i, 0, len(i)-1, code, comp)
+
+def get_bits_detail_all_positive(i, code, comp):
+	return get_jpeg_bits_detail_all_positive(i, 0, len(i)-1, code, comp)
+
 
 #get run-length bits only for one block (does not include DC bits, and actual coefficient)
 def get_run_length_bits(i, code):
@@ -152,6 +163,34 @@ def get_jpeg_bits(coefs, st, en, code, run_length_only):
 		if not run_length_only:
 			b += coefs[i]
 			coef_bits += coefs[i]
+		r = 0
+	if (st == 1):
+		if (en == 63 and r > 0):
+			b += code[0]
+	else:
+		if (en == 62 and r > 0):
+			b += code[0]
+#	print_prefix(en + 1, coefs)
+#	print b
+	return b, coef_bits
+
+def get_jpeg_bits_all_positive(coefs, st, en, code, run_length_only):
+	b = 0
+	r = 0
+	coef_bits = 0
+	for i in range(st, en + 1):
+		if coefs[i] == 0:
+			r += 1
+			continue
+	
+		while (r > 15):
+			b += code[0xf0]
+			r -= 16
+	
+		b += code[(r << 4) + coefs[i]]
+		if not run_length_only:
+			b += coefs[i]-1
+			coef_bits += coefs[i]-1
 		r = 0
 	if (st == 1):
 		if (en == 63 and r > 0):
