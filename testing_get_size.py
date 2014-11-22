@@ -93,7 +93,8 @@ def calc_gain(comp, with_dc):
 				
 			b = block_t[ii]
 			b_o = block_t_o[ii]
-			oc_dc_opt[b[0]] += 1
+			if with_dc != 0:
+				oc_dc_opt[b[0]] += 1
 			r = 0
 			pos = 1
 
