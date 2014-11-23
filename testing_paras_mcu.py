@@ -120,8 +120,6 @@ def calc_gain(comp, dep1_s, dep2_s):
 		if comp=="0":
 			b_mcu1 = lib.get_blocks_all_in_bits(f, "1")
 			b_mcu2 = lib.get_blocks_all_in_bits(f, "2")
-			lib.max_pos1 = lib.get_max_pos_value_func(in_folder, "1")
-			lib.max_pos2 = lib.get_max_pos_value_func(in_folder, "2")
 		for ii in range(len(block_t)):
 			x, dc_s_bits, dc_bits, r, coef_bits = lib.get_bits_detail(block_t[ii], lib.code, comp=="0")
 			t_ac_b += coef_bits

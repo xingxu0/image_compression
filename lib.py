@@ -1094,7 +1094,7 @@ def get_max_pos_value_func(image_folder, comp):
 
 	
 def init(comp, image_folder, tbl_folder, dep1, dep2):
-	global code, dc_code, avg_coef, apc_bins, papc_bins, avg_actual_coef, aapc_bins, wrong_keys, avg_coef_max
+	global code, dc_code, avg_coef, apc_bins, papc_bins, avg_actual_coef, aapc_bins, wrong_keys, avg_coef_max, max_pos1, max_pos2
 	if dep1 != "-1" or dep2 != "-1":
 		if os.path.isfile("bin_separator_600_"+comp):
 			pkl_file = open("bin_separator_600_"+comp, 'rb')
@@ -1169,9 +1169,11 @@ def init(comp, image_folder, tbl_folder, dep1, dep2):
 		avg_actual_coef = avg_actual_coef_600_0
 	
 	wrong_keys = 0
+	max_pos1 = get_max_pos_value_func(image_folder, "1")
+	max_pos2 = get_max_pos_value_func(image_folder, "2")	
 
 def init_testing(comp, tbl_folder, dep1, dep2):
-	global code, dc_code, avg_coef, apc_bins, papc_bins, avg_actual_coef, aapc_bins, avg_coef_max
+	global code, dc_code, avg_coef, apc_bins, papc_bins, avg_actual_coef, aapc_bins, avg_coef_max, max_pos1, max_pos2
 	if dep1 != "-1" or dep2 != "-1":
 		if os.path.isfile("bin_separator_600_"+comp):
 			pkl_file = open("bin_separator_600_"+comp, 'rb')
@@ -1219,6 +1221,8 @@ def init_testing(comp, tbl_folder, dep1, dep2):
 		code = get_chrominance_codes()
 		dc_code = bits_dc_chrominance
 		avg_actual_coef = avg_actual_coef_600_0
+	max_pos1 = get_max_pos_value_func(tbl_folder, "1")
+	max_pos2 = get_max_pos_value_func(tbl_folder, "2")
 		
 def bin_separator(bins, s, final_bin_number, total_samples):
 	now = 0
