@@ -101,6 +101,8 @@ def create_table(comp, dep1_s, dep2_s):
 			b_mcu2 = lib.get_blocks_all_in_bits(f, "2")
 			lib.max_pos1 = lib.get_max_pos_value_func(in_folder, "1")
 			lib.max_pos2 = lib.get_max_pos_value_func(in_folder, "2")
+		else:
+			return
 		block = lib.get_blocks_all_in_bits(f, comp)
 		block_o = lib.get_blocks_with_dc_in_diff(f, comp)			
 		for ii in range(len(block)):
