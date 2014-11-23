@@ -117,7 +117,8 @@ def calc_gain(comp, dep1_s, dep2_s):
 		block_t_o = lib.get_blocks_with_dc_in_diff(f, comp)
 	
 		for ii in range(len(block_t)):
-			x, dc_s_bits, dc_bits, r, coef_bits = lib.get_bits_detail_all_positive(block_t[ii], lib.code, comp=="0")
+			x, dc_s_bits, dc_bits, r, coef_bits, saving = lib.get_bits_detail_all_positive(block_t[ii], lib.code, comp=="0")
+			saving_t += saving
 			t_ac_b += coef_bits
 			t_run_length_bits += r
 			t_dc_s += dc_s_bits
@@ -272,6 +273,7 @@ def calc_gain(comp, dep1_s, dep2_s):
 	lib.fprint("gaining " + str(total_gain+total_opt-sum(j)+gain_dc+total_opt_dc-jdc) + " bits (" + str((total_gain+total_opt-sum(j)+gain_dc+total_opt_dc-jdc)*100.0/t_total_bits_opt)+"%)")
 	
 	print "\n\tTesting DONE"
+	print "saving due to sign: " + str(saving_t)
 	return total_gain + gain_dc, t_total_bits, t_total_bits_opt
 
 if len(sys.argv) != 4:
