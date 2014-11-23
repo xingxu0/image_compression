@@ -583,7 +583,7 @@ def scale_actual_coef(f, i):
 	return len(aapc_bins[i])	
 
 
-def get_dep(blocks, blocks_o, now, s, e, dep, one_or_two):
+def get_dep(blocks, blocks_o, now, s, e, dep, one_or_two, b_mcu1, b_mcu2):
 	global apc_bins, avg_coef,look_forward_coef, look_backward_block
 	if dep == 0:
 		return min(10, blocks[now][0])
@@ -700,6 +700,9 @@ def get_dep(blocks, blocks_o, now, s, e, dep, one_or_two):
 	if dep == 10:
 		ma, su = get_energy_level(blocks, now, s, e)
 		return scale(su*1.0/ma, s, one_or_two)
+	if dep == 11:
+		ma, su = get_mcu_energy_level(b_mcu1, b_mcu2, now, s, e)
+		return scale(su*1.0/ma, s, one_or_two)
 	if dep == -1:
 		return 0
 		
@@ -720,7 +723,18 @@ def get_energy_level(blocks, now, s, e):
 			ma += avg_coef[x]
 	if ma==0:
 		ma = 1
-	return ma, su		
+	return ma, su	
+
+def get_mcu_energy_level(b1, b2, now, s, e):
+	su = 0
+	ma = 0
+	now_t = now / 4
+	for x in range(1,10):
+		su += b1[now_t][x]
+		su += b2[now_t][x]
+		ma += max_pos1[x]
+		ma += max_pos2[x]
+	return ma, su	
 		
 def get_previous_blocks_coef(blocks, now, s, e):
 	global apc_bins, avg_coef,look_forward_coef, look_backward_block
@@ -767,10 +781,10 @@ def get_previous_blocks_coef(blocks, now, s, e):
 	return seen, ma, su
 '''
 
-def record_code(b, b_o, now, c, start, end, oc):
+def record_code(b, b_o, now, c, start, end, oc, b_mcu1, b_mcu2):
 	global dep1, dep2, wrong_keys
-	d1= get_dep(b, b_o, now, start, end, dep1, "1")
-	d2= get_dep(b, b_o, now, start, end, dep2, "2")
+	d1= get_dep(b, b_o, now, start, end, dep1, "1", b_mcu1, b_mcu2)
+	d2= get_dep(b, b_o, now, start, end, dep2, "2", b_mcu1, b_mcu2)
 	if d1<len(oc[start]) and d2<len(oc[start][d1]):
 		oc[start][d1][d2][c] += 1
 	else:
@@ -778,10 +792,10 @@ def record_code(b, b_o, now, c, start, end, oc):
 		wrong_keys += 1
 	return start, d1, d2, c
 	
-def record_jpeg(b, b_o, now, c, start, end, oc):
+def record_jpeg(b, b_o, now, c, start, end, oc, b_mcu1, b_mcu2):
 	global dep1, dep2, code, wrong_keys, wrong_desc, wrong_saw
-	d1 = get_dep(b, b_o, now, start, end, dep1, "1")
-	d2 = get_dep(b, b_o, now, start, end, dep2, "2")
+	d1 = get_dep(b, b_o, now, start, end, dep1, "1", b_mcu1, b_mcu2)
+	d2 = get_dep(b, b_o, now, start, end, dep2, "2", b_mcu1, b_mcu2)
 	if d1<len(oc[start]) and d2<len(oc[start][d1]):
 		oc[start][d1][d2] += code[abs(c)]
 	else:
@@ -821,6 +835,8 @@ def parse_dep(s, apc_bins):
 		return 9, len(papc_bins[1]) + 6
 	elif s == "10":
 		return 10, len(apc_bins[1]) + 1
+	elif s == "11":
+		return 11, len(papc_bins[1]) + 1
 	else:
 		return -1, 0
 	
@@ -887,7 +903,7 @@ def get_max_pos_value(folder, comp):
 		ret[x] = m
 	return ret
 	
-def record_code_temp(bs, now, c, start, end, oc, oc_2, dep1, dep2):
+def record_code_temp(bs, now, c, start, end, oc, oc_2, dep1, dep2, b_mcu1, b_mcu2):
 	global look_backward_block, look_forward_coef, pre_bins, avg_coef
 	b = bs[now]
 	if dep1=="1":
@@ -905,6 +921,9 @@ def record_code_temp(bs, now, c, start, end, oc, oc_2, dep1, dep2):
 			#oc_2[start][0] += 1
 		else:
 			oc_2[start][int(su*1.0/ma*pre_bins)] +=1
+	elif dep2 == "11":
+		ma, su = get_mcu_energy_level(b_mcu1, b_mcu2, now, start, end)
+		oc_2[start][int(su*1.0/ma*pre_bins)] += 1
 	elif dep2=="5":
 		su = 0
 		ma = 0
@@ -1050,6 +1069,21 @@ def get_avg_coef_bins(folder, comp, dep1, dep2):
 			tt.append(tt[len(tt) - 1])
 		sep_2[i] = tt
 	return sep, sep_2
+
+def get_max_pos_value_func(image_folder, comp):
+	ret = 0
+	if os.path.isfile(image_folder + "/max_pos_value_" + comp):
+		pkl_file = open(image_folder + "/max_pos_value_" + comp)
+		ret = pickle.load(pkl_file)
+		pkl_file.close()
+	else:
+		print "regenerating max_pos_values..."
+		ret = get_max_pos_value(image_folder, comp)
+		pkl_file = open(image_folder + "/max_pos_value_" + comp, 'wb')
+		pickle.dump(ret, pkl_file)
+		pkl_file.close()
+	return ret
+
 	
 def init(comp, image_folder, tbl_folder, dep1, dep2):
 	global code, dc_code, avg_coef, apc_bins, papc_bins, avg_actual_coef, aapc_bins, wrong_keys, avg_coef_max
@@ -1226,3 +1260,5 @@ wrong_saw = False
 look_backward_block = 3
 look_forward_coef = 8 
 pre_bins = 500
+max_pos1 = 0
+max_pos2 = 0
