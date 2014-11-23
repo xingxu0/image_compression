@@ -966,6 +966,8 @@ def get_avg_coef_bins(folder, comp, dep1, dep2):
 		bs = get_blocks_all_in_bits(f, comp)
 		b_mcu1 = get_blocks_all_in_bits(f, "1")
 		b_mcu2 = get_blocks_all_in_bits(f, "2")
+		max_pos1 = get_max_pos_value_func(in_folder, "1")
+		max_pos2 = get_max_pos_value_func(in_folder, "2")		
 		for ii in range(len(bs)):
 			b = bs[ii]
 			r = 0
