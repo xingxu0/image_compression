@@ -137,25 +137,25 @@ def calc_gain(comp, dep1_s, dep2_s):
 					continue
 		
 				while (r > 15):
-					lib.record_jpeg(block_t, block_t_o, ii, 0xf0, pos, pos + 15, jpeg_t)
-					a1,a2,a3,a4=lib.record_code(block_t, block_t_o, ii, 0xf0, pos, pos + 15, oc_t)
+					lib.record_jpeg(block_t, block_t_o, ii, 0xf0, pos, pos + 15, jpeg_t, 0, 0)
+					a1,a2,a3,a4=lib.record_code(block_t, block_t_o, ii, 0xf0, pos, pos + 15, oc_t, 0, 0)
 					oc_opt[0xf0] += 1
 					pos += 16
 					r -= 16
 					gp_1 += lib.code[0xf0] - co[a1][a2][a3][0xf0]
 
-				a1,a2,a3,a4=lib.record_code(block_t, block_t_o, ii, (r << 4) + b[i], pos, i, oc_t)
+				a1,a2,a3,a4=lib.record_code(block_t, block_t_o, ii, (r << 4) + b[i], pos, i, oc_t, 0, 0)
 				if not (((r<<4) + b[i]) in co[a1][a2][a3]):
 					print (r<<4) + b[i], co[a1][a2][a3]
 				gp_2 += lib.code[(r<<4)+b[i]] - co[a1][a2][a3][(r<<4)+b[i]]
-				lib.record_jpeg(block_t, block_t_o, ii, (r << 4) + b[i], pos, i, jpeg_t)
+				lib.record_jpeg(block_t, block_t_o, ii, (r << 4) + b[i], pos, i, jpeg_t, 0, 0)
 				oc_opt[(r << 4) + b[i]] += 1
 				pos = i + 1
 				r = 0
 			if r > 0:
 				oc_opt[0] += 1
-				lib.record_jpeg(block_t, block_t_o, ii, 0, pos, 63, jpeg_t)
-				a1,a2,a3,a4=lib.record_code(block_t, block_t_o, ii, 0, pos, 63, oc_t)
+				lib.record_jpeg(block_t, block_t_o, ii, 0, pos, 63, jpeg_t, 0, 0)
+				a1,a2,a3,a4=lib.record_code(block_t, block_t_o, ii, 0, pos, 63, oc_t, 0, 0)
 				gp_3 += lib.code[0] - co[a1][a2][a3][0]
 		
 		co_dc_opt = lib.huff_encode(oc_dc_opt, lib.bits_dc_luminance)
