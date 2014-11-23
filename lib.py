@@ -746,6 +746,7 @@ def get_previous_blocks_coef(blocks, now, s, e):
 	pos = -1
 	#print "now:", now
 	seen = True
+	#for x in range(now - 1, max(0, now - look_backward_block) - 1, -1):
 	for x in range(now - 1, max(0, now - look_backward_block) - 1, -1):
 		#if blocks[x+1][0] > 5:
 		#	break	
@@ -754,9 +755,14 @@ def get_previous_blocks_coef(blocks, now, s, e):
 			su += blocks[x][xx]
 			if blocks[x][xx] >0:
 				break
+		
+		# for same MCU
+		if (x-1)/4 != now/4:
+			break
 	if ma ==0:
 		ma = 1
 	return seen, ma, su
+	
 		
 ''' the other version		
 def get_previous_blocks_coef(blocks, now, s, e):
