@@ -726,6 +726,7 @@ def get_energy_level(blocks, now, s, e):
 	return ma, su	
 
 def get_mcu_energy_level(b1, b2, now, s, e):
+	global max_pos1, max_pos2
 	su = 0
 	ma = 0
 	now_t = now / 4
@@ -906,6 +907,7 @@ def get_max_pos_value(folder, comp):
 	
 def record_code_temp(bs, now, c, start, end, oc, oc_2, dep1, dep2, b_mcu1, b_mcu2):
 	global look_backward_block, look_forward_coef, pre_bins, avg_coef
+	global max_pos1, max_pos2
 	b = bs[now]
 	if dep1=="1":
 		v = get_avg_pre_coef(bs[now], start)
@@ -949,6 +951,7 @@ def record_code_temp(bs, now, c, start, end, oc, oc_2, dep1, dep2, b_mcu1, b_mcu
 	
 def get_avg_coef_bins(folder, comp, dep1, dep2):
 	global pre_bins
+	global max_pos1, max_pos2
 	SIZE1 = pre_bins
 	fprint("calculating avg_coef_bins...")
 	generate_blocks(folder)
