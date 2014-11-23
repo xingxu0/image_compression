@@ -1,4 +1,4 @@
-import sys, copy, os, heapq, glob, operator, pickle
+import sys, copy, os, heapq, glob, operator, pickle, math
 from operator import itemgetter
  
 in_folder = sys.argv[1]
@@ -39,7 +39,7 @@ for f in files:
 				s1 += " " + str(abs(x)/mo)				
 				if abs(x) >= mo:
 					if mo==4:
-						extra_bits += 3
+						extra_bits += math.log(mo, 2) + 1
 						if x > 0:
 							fe.write("1")
 						else:
@@ -53,7 +53,7 @@ for f in files:
 						else:
 							fe.write("0")
 					else:
-						extra_bits += 2
+						extra_bits += math.log(mo, 2) + 1
 						if x > 0:
 							fe.write("1")
 						else:
