@@ -175,7 +175,7 @@ dep_file = open(tab_folder + "/dep.txt", "w")
 dep_file.write(dep1 + " " + dep2 + " \n")
 dep_file.close()
 
-for c in range(1):
+for c in range(3):
 	create_table(str(c), dep1, dep2)
 	
 #if len(sys.argv) == 1:
