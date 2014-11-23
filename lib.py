@@ -109,8 +109,11 @@ def get_jpeg_bits_detail(coefs, st, en, code, luminance):
 	return dc_bits + dc_s_bits + ret[0], dc_s_bits, dc_bits, ret[0] - ret[1], ret[1]
 
 def get_jpeg_bits_detail_all_positive(coefs, st, en, code, luminance):
-	dc_bits = 0
-	dc_s_bits = 0
+	dc_bits = coefs[0]
+	if luminance:
+		dc_s_bits = bits_dc_luminance[dc_bits]
+	else:
+		dc_s_bits = bits_dc_chrominance[dc_bits]
 	ret = get_jpeg_bits_all_positive(coefs, st + 1, en, code, False)
 	return dc_bits + dc_s_bits + ret[0], dc_s_bits, dc_bits, ret[0] - ret[1], ret[1], ret[2]
 

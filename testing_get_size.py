@@ -21,7 +21,7 @@ def load_code_table(i, d1, d2, table_folder):
 	return ret	
 
 
-def calc_gain(comp, with_dc):
+def calc_gain(comp, with_dc, with_sign):
 	global out_file, tab_folder
 	print "Component " + comp
 
@@ -79,10 +79,14 @@ def calc_gain(comp, with_dc):
 	
 		for ii in range(len(block_t)):
 			saving = 0
-			if with_dc == 0:
+			if with_sign == 0:
 				x, dc_s_bits, dc_bits, r, coef_bits, saving = lib.get_bits_detail_all_positive(block_t[ii], lib.code, comp=="0")
 			else:
 				x, dc_s_bits, dc_bits, r, coef_bits = lib.get_bits_detail(block_t[ii], lib.code, comp=="0")
+			if with_dc == 0:
+				x -= dc_s_bits + dc_bits
+				dc_s_bits = 0
+				dc_bits = 0
 			t_ac_b += coef_bits
 			t_run_length_bits += r
 			t_dc_s += dc_s_bits
@@ -132,18 +136,19 @@ def calc_gain(comp, with_dc):
 	print "Saving due to positive:", saving_t
 	return t_total_bits, t_total_bits_opt
 
-if len(sys.argv) != 3:
-	print "usage: python testing.py [TESTING IMAGES FOLDER] [WITH DC]"
+if len(sys.argv) != 4:
+	print "usage: python testing.py [TESTING IMAGES FOLDER] [WITH DC] [WITH SIGN]"
 	exit()
 
 test_folder = sys.argv[1]
 with_dc = int(sys.argv[2])
+with_sign = int(sys.argv[3])
 
 g = 0
 t = 0
 t_opt = 0
 for c in range(3):
-	t_t, t_o = calc_gain(str(c), with_dc)
+	t_t, t_o = calc_gain(str(c), with_dc, with_sign)
 	t += t_t
 	t_opt += t_o
 print "\nIn summary:"
