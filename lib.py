@@ -964,6 +964,8 @@ def get_avg_coef_bins(folder, comp, dep1, dep2):
 	files = glob.glob(folder + "/*.block")
 	for f in files:
 		bs = get_blocks_all_in_bits(f, comp)
+		b_mcu1 = get_blocks_all_in_bits(f, "1")
+		b_mcu2 = get_blocks_all_in_bits(f, "2")
 		for ii in range(len(bs)):
 			b = bs[ii]
 			r = 0
@@ -973,14 +975,14 @@ def get_avg_coef_bins(folder, comp, dep1, dep2):
 					r += 1
 					continue
 				while (r > 15):
-					record_code_temp(bs, ii, 0xf0, pos, pos + 15, oc, oc_2, dep1, dep2)
+					record_code_temp(bs, ii, 0xf0, pos, pos + 15, oc, oc_2, dep1, dep2, b_mcu1, b_mcu2)
 					pos += 16
 					r -= 16
-				record_code_temp(bs, ii, (r << 4) + b[i], pos, i, oc, oc_2, dep1, dep2)
+				record_code_temp(bs, ii, (r << 4) + b[i], pos, i, oc, oc_2, dep1, dep2, b_mcu1, b_mcu2)
 				pos = i + 1
 				r = 0
 			if r > 0:
-				record_code_temp(bs, ii, 0, pos, 63, oc, oc_2, dep1, dep2)
+				record_code_temp(bs, ii, 0, pos, 63, oc, oc_2, dep1, dep2, b_mcu1, b_mcu2)
 	sep = {}
 	sep_2 = {}
 	for i in range(1, 64):
