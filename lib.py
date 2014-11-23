@@ -733,7 +733,6 @@ def get_mcu_energy_level(b1, b2, now, s, e):
 	for x in range(1,10):
 		su += b1[now_t][x]
 		su += b2[now_t][x]
-		print max_pos1
 		ma += max_pos1[x]
 		ma += max_pos2[x]
 	return ma, su	
@@ -967,7 +966,6 @@ def get_avg_coef_bins(folder, comp, dep1, dep2):
 			oc_2[i][p] = 0
 	files = glob.glob(folder + "/*.block")
 	max_pos1 = get_max_pos_value_func(folder, "1")
-	print max_pos1
 	max_pos2 = get_max_pos_value_func(folder, "2")		
 	for f in files:
 		bs = get_blocks_all_in_bits(f, comp)
