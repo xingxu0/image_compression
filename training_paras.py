@@ -116,15 +116,15 @@ def create_table(comp, dep1_s, dep2_s):
 					continue
 		
 				while (r > 15):
-					lib.record_code(block, block_o, ii, 0xf0, pos, pos + 15, oc)
+					lib.record_code(block, block_o, ii, 0xf0, pos, pos + 15, oc, 0)
 					pos += 16
 					r -= 16
 
-				lib.record_code(block, block_o, ii, (r << 4) + b[i], pos, i, oc)
+				lib.record_code(block, block_o, ii, (r << 4) + b[i], pos, i, oc, 0)
 				pos = i + 1
 				r = 0
 			if r > 0:
-				lib.record_code(block, block_o, ii, 0, pos, 63, oc)
+				lib.record_code(block, block_o, ii, 0, pos, 63, oc, 0)
 
 	if l_dc_s + l_dc_b + l_run_length_bits + l_ac_b != l_total_bits:
 		lib.fprint("train set not equal")
