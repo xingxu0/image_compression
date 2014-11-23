@@ -732,6 +732,7 @@ def get_mcu_energy_level(b1, b2, now, s, e):
 	for x in range(1,10):
 		su += b1[now_t][x]
 		su += b2[now_t][x]
+		print max_pos1
 		ma += max_pos1[x]
 		ma += max_pos2[x]
 	return ma, su	
