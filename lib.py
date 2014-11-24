@@ -746,21 +746,20 @@ def get_previous_blocks_coef(blocks, now, s, e):
 	pos = -1
 	#print "now:", now
 	seen = True
-	#for x in range(now - 1, max(0, now - look_backward_block) - 1, -1):
 	for x in range(now - 1, max(0, now - look_backward_block) - 1, -1):
 		#if blocks[x+1][0] > 5:
 		#	break	
+		if blocks[x+1][0] > 3:
+			continue
 		for xx in range(s, min(64, s+look_forward_coef)):
 			ma += avg_coef[xx]
 			su += blocks[x][xx]
 			if blocks[x][xx] >0:
 				break
 		
-		# for same MCU
-		#if (x-1)/4 != now/4:
-		#	break
 	if ma ==0:
 		ma = 1
+		su = 1 # remove if we change back
 	return seen, ma, su
 	
 		
@@ -1275,7 +1274,7 @@ dc_code = 0
 wrong_keys = 0
 wrong_desc = 0
 wrong_saw = False
-look_backward_block = 3
+look_backward_block = 8 # change back to 3
 look_forward_coef = 8 
 pre_bins = 500
 max_pos1 = 0
