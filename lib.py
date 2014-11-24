@@ -757,8 +757,8 @@ def get_previous_blocks_coef(blocks, now, s, e):
 				break
 		
 		# for same MCU
-		if (x-1)/4 != now/4:
-			break
+		#if (x-1)/4 != now/4:
+		#	break
 	if ma ==0:
 		ma = 1
 	return seen, ma, su
