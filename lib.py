@@ -746,11 +746,13 @@ def get_previous_blocks_coef(blocks, now, s, e):
 	pos = -1
 	#print "now:", now
 	seen = True
-	for x in range(now - 1, max(0, now - look_backward_block) - 1, -1):
+	for x in range(now - 1, now - look_backward_block - 1, -1):
 		#if blocks[x+1][0] > 5:
 		#	break	
 		for xx in range(s, min(64, s+look_forward_coef)):
 			ma += avg_coef[xx]
+			if x < 0:
+				continue
 			su += blocks[x][xx]
 			if blocks[x][xx] >0:
 				break
@@ -758,7 +760,33 @@ def get_previous_blocks_coef(blocks, now, s, e):
 	if ma ==0:
 		ma = 1
 	return seen, ma, su
-	
+
+def get_previous_blocks_coef_for_DC(blocks, now):
+	global apc_bins
+	su = 0
+	ma = 0
+	sign = 0
+	n = 0
+	pos = -1
+	#print "now:", now
+	seen = True
+	for x in range(now - 1, max(0, now - look_backward_block) - 1, -1):
+		#if blocks[x+1][0] > 5:
+		#	break	
+		for xx in range(1, min(64, 1+look_forward_coef)):
+			ma += avg_coef[xx]
+			su += blocks[x][xx]
+			if blocks[x][xx] >0:
+				break
+		
+	if ma ==0:
+		ma = 1
+	f = su*1.0/ma
+	bins = apc_bins
+	for x in range(len(bins[1])):
+		if f < bins[1][x]:
+			return x
+	return len(bins[1])
 		
 ''' the other version		
 def get_previous_blocks_coef(blocks, now, s, e):
@@ -1255,7 +1283,14 @@ def bin_separator(bins, s, final_bin_number, total_samples):
 	for ii in range(final_bin_number - len(tt)):
 		tt.append(tt[len(tt) - 1])
 	t = len(s)
-	return tt		
+	return tt
+
+def all_zero_block(b):
+	for i in range(1, 64):
+		if b[i] != 0:
+			return False
+	return True
+			
 	
 dep1 = 0
 dep2 = 0
@@ -1271,7 +1306,7 @@ dc_code = 0
 wrong_keys = 0
 wrong_desc = 0
 wrong_saw = False
-look_backward_block = 8 # change back to 3
+look_backward_block = 3 # change back to 3
 look_forward_coef = 8 
 pre_bins = 500
 max_pos1 = 0

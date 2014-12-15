@@ -39,7 +39,7 @@ def calc_gain(comp, dep1_s, dep2_s):
 			co[i][p] = {}
 	co_dc = {}	
 			
-	for i in range(12):
+	for i in range(21):
 		co_dc[i] = load_code_table("DC", i, "", table_folder)
 		if len(co_dc[i]) == 0:
 			co_dc[i] = deepcopy(lib.dc_code)
@@ -80,7 +80,7 @@ def calc_gain(comp, dep1_s, dep2_s):
 				oc_t[i][p][pp][0xf0] = 0	# for 16 consecutive 0, -1
 			
 	oc_dc_t = {}
-	for i in range(12):
+	for i in range(21):
 		oc_dc_t[i] = {}
 		for j in range(12):
 			oc_dc_t[i][j] = 0
@@ -126,7 +126,8 @@ def calc_gain(comp, dep1_s, dep2_s):
 				
 			b = block_t[ii]
 			b_o = block_t_o[ii]
-			oc_dc_t[lib.get_previous_block(block_t, ii) [0]][b[0]] += 1
+			#oc_dc_t[lib.get_previous_block(block_t, ii) [0]][b[0]] += 1
+			oc_dc_t[lib.get_previous_blocks_coef_for_DC(block_t, ii)][b[0]] += 1
 			oc_dc_opt[b[0]] += 1
 			r = 0
 			pos = 1
@@ -234,7 +235,7 @@ def calc_gain(comp, dep1_s, dep2_s):
 
 	gain_dc = 0
 	jdc = 0
-	for i in range(12):
+	for i in range(21):
 		for ii in range(12):
 			if comp == "0":
 				gain_dc += oc_dc_t[i][ii]*(lib.bits_dc_luminance[ii] - co_dc[i][ii])
