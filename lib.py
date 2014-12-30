@@ -747,6 +747,7 @@ def get_previous_blocks_coef(blocks, now, s, e):
 	#print "now:", now
 	seen = True
 	for x in range(now - 1, now - look_backward_block - 1, -1):
+	#for x in range(now - 1, max(0, now - look_backward_block) - 1, -1):
 		#if blocks[x+1][0] > 5:
 		#	break	
 		for xx in range(s, min(64, s+look_forward_coef)):
