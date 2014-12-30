@@ -467,6 +467,40 @@ def huff_encode_plus_extra(symb2freq, jpeg_code):
 	for p in temp:
 		ret[p[0]] = len(p[1])
 	return ret
+
+def huff_encode_plus_extra_handle_2_separately(symb2freq, jpeg_code):
+	# give 0 occurence value a reasonable probability, right now proportional to JPEG default table
+	t = 0
+	for x in symb2freq:
+		t += symb2freq[x]
+		
+	# no data to infer huffman table, using default
+	if not t:
+		return deepcopy(jpeg_code)
+	
+	extra_t = t*0.01
+	for x in symb2freq:
+		if not symb2freq[x] and x%16!=15:
+			symb2freq[x] = extra_t * math.sqrt(pow(math.e, - jpeg_code[x]))
+			
+	#Huffman encode the given dict mapping symbols to weights
+	heap = [[wt, [sym, ""]] for sym, wt in symb2freq.items()]
+	heapify(heap)
+	while len(heap) > 1:
+		lo = heappop(heap)
+		hi = heappop(heap)
+		for pair in lo[1:]:
+			pair[1] = '0' + pair[1]
+		for pair in hi[1:]:
+			pair[1] = '1' + pair[1]
+		heappush(heap, [lo[0] + hi[0]] + lo[1:] + hi[1:])
+
+	temp = sorted(heappop(heap)[1:], key=lambda p: (len(p[-1]), p))
+	ret = {}
+	for p in temp:
+		ret[p[0]] = len(p[1])
+	return ret
+
     
 def get_predicted_SIZE1(b, b_pre, start, end):
 	global weight1
