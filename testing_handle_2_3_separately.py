@@ -147,18 +147,18 @@ def calc_gain(comp, dep1_s, dep2_s):
 					gp_1 += lib.code[0xf0] - co[a1][a2][a3][0xf0]
 				if b[i]==2:
 					if abs(b_o[i])==3:
-						a1,a2,a3,a4=lib.record_code(block_t, block_t_o, ii, (r << 4) + 12, pos, i, oc, 0, 0)
+						a1,a2,a3,a4=lib.record_code(block_t, block_t_o, ii, (r << 4) + 12, pos, i, oc_t, 0, 0)
 					else:
-						a1,a2,a3,a4=lib.record_code(block_t, block_t_o, ii, (r << 4) + b[i], pos, i, oc, 0, 0)
+						a1,a2,a3,a4=lib.record_code(block_t, block_t_o, ii, (r << 4) + b[i], pos, i, oc_t, 0, 0)
 				elif b[i]==3:
 					if abs(b_o[i])==5:
-						a1,a2,a3,a4=lib.record_code(block_t, block_t_o, ii, (r << 4) + 13, pos, i, oc, 0, 0)
+						a1,a2,a3,a4=lib.record_code(block_t, block_t_o, ii, (r << 4) + 13, pos, i, oc_t, 0, 0)
 					elif abs(b_o[i])==6:
-						a1,a2,a3,a4=lib.record_code(block_t, block_t_o, ii, (r << 4) + 14, pos, i, oc, 0, 0)
+						a1,a2,a3,a4=lib.record_code(block_t, block_t_o, ii, (r << 4) + 14, pos, i, oc_t, 0, 0)
 					elif abs(b_o[i])==7:
-						a1,a2,a3,a4=lib.record_code(block_t, block_t_o, ii, (r << 4) + 15, pos, i, oc, 0, 0)
+						a1,a2,a3,a4=lib.record_code(block_t, block_t_o, ii, (r << 4) + 15, pos, i, oc_t, 0, 0)
 					else:
-						a1,a2,a3,a4=lib.record_code(block_t, block_t_o, ii, (r << 4) + b[i], pos, i, oc, 0, 0)
+						a1,a2,a3,a4=lib.record_code(block_t, block_t_o, ii, (r << 4) + b[i], pos, i, oc_t, 0, 0)
 				else:
 					a1,a2,a3,a4=lib.record_code(block_t, block_t_o, ii, (r << 4) + b[i], pos, i, oc_t, 0, 0)
 				if not (((r<<4) + b[i]) in co[a1][a2][a3]):
