@@ -77,7 +77,11 @@ def create_table(comp, dep1_s, dep2_s):
 				for z in range(16):
 					for b in range(1, AC_BITS + 1):
 						oc[i][p][pp][(z<<4) + b] = 0			# for one run-length, positive sign
-					oc[i][p][pp][(z<<4)+15] = 0 # for +-2, independantly
+					oc[i][p][pp][(z<<4)+15] = 0 # for +-7, independantly
+					oc[i][p][pp][(z<<4)+14] = 0 # for +-6, independantly
+					oc[i][p][pp][(z<<4)+13] = 0 # for +-5, independantly
+					oc[i][p][pp][(z<<4)+12] = 0 # for +-3, independantly
+					
 				oc[i][p][pp][0] = 0	# 0 for EOB
 				oc[i][p][pp][0xf0] = 0
 	oc_dc = {}
