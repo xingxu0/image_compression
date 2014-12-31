@@ -141,7 +141,7 @@ def create_table(comp, dep1_s, dep2_s):
 			
 		
 	lib.fprint("generating DC tables...")
-	for i in range(25):
+	for i in range(23):
 		if comp == '0':
 			co_dc[i] = lib.huff_encode_plus_extra_better_DC(oc_dc[i], lib.bits_dc_luminance)
 		else:
