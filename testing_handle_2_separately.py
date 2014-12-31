@@ -76,6 +76,7 @@ def calc_gain(comp, dep1_s, dep2_s):
 				for z in range(16):
 					for b in range(1, AC_BITS + 1):
 						oc_t[i][p][pp][(z<<4) + b] = 0			# for one run-length, positive sign
+					oc_t[i][p][pp][(z<<4) + 15] = 0
 				oc_t[i][p][pp][0] = 0	# 0 for EOB
 				oc_t[i][p][pp][0xf0] = 0	# for 16 consecutive 0, -1
 			
@@ -150,7 +151,10 @@ def calc_gain(comp, dep1_s, dep2_s):
 					print (r<<4) + b[i], co[a1][a2][a3]
 				gp_2 += lib.code[(r<<4)+b[i]] - co[a1][a2][a3][(r<<4)+b[i]]
 				lib.record_jpeg(block_t, block_t_o, ii, (r << 4) + b[i], pos, i, jpeg_t, 0, 0)
-				oc_opt[(r << 4) + b[i]] += 1
+				if b[i]==2 and abs(b_o[i])==2:
+					oc_opt[(r << 4) + 15] += 1
+				else:
+					oc_opt[(r << 4) + b[i]] += 1
 				pos = i + 1
 				r = 0
 			if r > 0:
@@ -180,7 +184,8 @@ def calc_gain(comp, dep1_s, dep2_s):
 	diff = array([[0]*64]*(SIZE1 + 1))
 	total_gain = 0
 	per = array([[0]*64]*(SIZE1 + 1))
-
+	
+	offset = 0
 	for i in range(1,64):
 		for p in range(SIZE1 + 1):
 			j[p][i-1] = 0
@@ -192,8 +197,14 @@ def calc_gain(comp, dep1_s, dep2_s):
 				g = 0
 				o = 0
 				for x in co[i][p][pp]:
-					g += (lib.code[x] - co[i][p][pp][x])*oc_t[i][p][pp][x]
-					o += (co[i][p][pp][x])*oc_t[i][p][pp][x]				
+					if x%16==15:
+						x_real = x-13
+						g += (lib.code[x-13]-co[i][p][pp][x])*oc_t[i][p][pp][x]
+					else:
+						g += (lib.code[x] - co[i][p][pp][x])*oc_t[i][p][pp][x]
+						o += (co[i][p][pp][x])*oc_t[i][p][pp][x]
+					if x%16==15 or x%16==2:
+						offset -= oc_t[i][p][pp][x]
 				temp_gain += g
 				total_gain += g
 				j[p][i-1] += jpeg_t[i][p][pp]
@@ -259,12 +270,14 @@ def calc_gain(comp, dep1_s, dep2_s):
 	lib.fprint("\nCompare to JPEG Baseline:")
 	lib.fprint("RUN LENGTH: gaining bits:" + str(total_gain) + "\ttotal bits in file:" + str(t_total_bits))
 	lib.fprint("DC        : gaining bits:" + str(gain_dc) + "\ttotal bits in file:" + str(t_total_bits))
-	lib.fprint("gaining " + str(total_gain + gain_dc) + " bits (" + str((total_gain+gain_dc)*100.0/t_total_bits)+"%)")
+	lib.fprint("OFFSET    : " + str(offset))
+	lib.fprint("gaining " + str(total_gain + gain_dc - offset) + " bits (" + str((total_gain+gain_dc-offset)*100.0/t_total_bits)+"%)")
 	
 	lib.fprint("\nCompare to JPEG Optimize:")
 	lib.fprint("RUN LENGTH: gaining bits:" + str(total_gain+total_opt-sum(j)) + "\ttotal bits in file:" + str(t_total_bits_opt))
 	lib.fprint("DC        : gaining bits:" + str(gain_dc+total_opt_dc-jdc) + "\ttotal bits in file:" + str(t_total_bits_opt))
-	lib.fprint("gaining " + str(total_gain+total_opt-sum(j)+gain_dc+total_opt_dc-jdc) + " bits (" + str((total_gain+total_opt-sum(j)+gain_dc+total_opt_dc-jdc)*100.0/t_total_bits_opt)+"%)")
+	lib.fprint("OFFSET    : " + str(offset))
+	lib.fprint("gaining " + str(total_gain+total_opt-sum(j)+gain_dc+total_opt_dc-jdc-offset) + " bits (" + str((total_gain+total_opt-sum(j)+gain_dc+total_opt_dc-jdc-offset)*100.0/t_total_bits_opt)+"%)")
 	
 	print "\n\tTesting DONE"
 	return total_gain + gain_dc, t_total_bits, t_total_bits_opt
