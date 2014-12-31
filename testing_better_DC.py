@@ -247,6 +247,7 @@ def calc_gain(comp, dep1_s, dep2_s):
 	for i in range(23):
 		for ii in range(23):
 			if comp == "0":
+				print abs(ii-11)
 				gain_dc += oc_dc_t[i][ii]*(lib.bits_dc_luminance[abs(ii-11)] - co_dc[i][ii]+1)
 				jdc += oc_dc_t[i][ii]*lib.bits_dc_luminance[abs(ii-11)]
 			else:
