@@ -480,7 +480,7 @@ def huff_encode_plus_extra_handle_2_separately(symb2freq, jpeg_code):
 	
 	extra_t = t*0.01
 	for x in symb2freq:
-		if not symb2freq[x] and x%16!=15:
+		if not symb2freq[x] and x%16<12:
 			symb2freq[x] = extra_t * math.sqrt(pow(math.e, - jpeg_code[x]))
 			
 	#Huffman encode the given dict mapping symbols to weights
