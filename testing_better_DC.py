@@ -39,7 +39,7 @@ def calc_gain(comp, dep1_s, dep2_s):
 			co[i][p] = {}
 	co_dc = {}	
 			
-	for i in range(25):
+	for i in range(23):
 		co_dc[i] = load_code_table("DC", i, "", table_folder)
 		if len(co_dc[i]) == 0:
 			co_dc[i] = deepcopy(lib.dc_code)
@@ -80,9 +80,9 @@ def calc_gain(comp, dep1_s, dep2_s):
 				oc_t[i][p][pp][0xf0] = 0	# for 16 consecutive 0, -1
 			
 	oc_dc_t = {}
-	for i in range(25):
+	for i in range(23):
 		oc_dc_t[i] = {}
-		for j in range(25):
+		for j in range(23):
 			oc_dc_t[i][j] = 0
 
 	files = glob.glob(test_folder + "/*.block")	
@@ -134,7 +134,7 @@ def calc_gain(comp, dep1_s, dep2_s):
 				last_dc_diff_bits = -last_dc_diff_bits
 			if dc_diff < 0:
 				dc_diff_bits = - dc_diff_bits
-			oc_dc_t[last_dc_diff_bits+12][dc_diff_bits+12] += 1			
+			oc_dc_t[last_dc_diff_bits+11][dc_diff_bits+11] += 1			
 			#oc_dc_t[lib.get_previous_block(block_t_o, ii) [0]+12][b_o[0]] += 1
 			#oc_dc_t[lib.get_previous_blocks_coef_for_DC(block_t, ii)][b[0]] += 1
 			oc_dc_opt[b[0]] += 1
@@ -244,14 +244,14 @@ def calc_gain(comp, dep1_s, dep2_s):
 
 	gain_dc = 0
 	jdc = 0
-	for i in range(25):
-		for ii in range(25):
+	for i in range(23):
+		for ii in range(23):
 			if comp == "0":
-				gain_dc += oc_dc_t[i][ii]*(lib.bits_dc_luminance[abs(ii-12)] - co_dc[i][ii]+1)
-				jdc += oc_dc_t[i][ii]*lib.bits_dc_luminance[abs(ii-12)]
+				gain_dc += oc_dc_t[i][ii]*(lib.bits_dc_luminance[abs(ii-11)] - co_dc[i][ii]+1)
+				jdc += oc_dc_t[i][ii]*lib.bits_dc_luminance[abs(ii-11)]
 			else:
-				gain_dc += oc_dc_t[i][ii]*(lib.bits_dc_chrominance[abs(ii-12)] - co_dc[i][ii]+1)
-				jdc += oc_dc_t[i][ii]*lib.bits_dc_chrominance[abs(ii-12)]
+				gain_dc += oc_dc_t[i][ii]*(lib.bits_dc_chrominance[abs(ii-11)] - co_dc[i][ii]+1)
+				jdc += oc_dc_t[i][ii]*lib.bits_dc_chrominance[abs(ii-11)]
 
 	lib.fprint("\nJPEG baseline run length bits:" + str(sum(j)) + "\tour run length bits:" + str(sum(yy)) + "\tdifference:" + str(sum(diff)) + " gain part: " + str(gp_1)+","+str(gp_2)+","+str(gp_3))
 	lib.fprint("JPEG baseline DC  symbol bits:" + str(jdc) + "\tour symbol bits:" + str(jdc-gain_dc) + "\tdifference:" +str(gain_dc))
