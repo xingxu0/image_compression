@@ -248,11 +248,16 @@ def calc_gain(comp, dep1_s, dep2_s):
 	for i in range(23):
 		for ii in range(23):
 			if comp == "0":
-				print abs(ii-11)
-				gain_dc += oc_dc_t[i][ii]*(lib.bits_dc_luminance[abs(ii-11)] - co_dc[i][ii]+1)
+				if ii!=11:
+					gain_dc += oc_dc_t[i][ii]*(lib.bits_dc_luminance[abs(ii-11)] - co_dc[i][ii]+1)
+				else:
+					gain_dc += oc_dc_t[i][ii]*(lib.bits_dc_luminance[abs(ii-11)] - co_dc[i][ii])
 				jdc += oc_dc_t[i][ii]*lib.bits_dc_luminance[abs(ii-11)]
 			else:
-				gain_dc += oc_dc_t[i][ii]*(lib.bits_dc_chrominance[abs(ii-11)] - co_dc[i][ii]+1)
+				if ii!=11:
+					gain_dc += oc_dc_t[i][ii]*(lib.bits_dc_chrominance[abs(ii-11)] - co_dc[i][ii]+1)
+				else:
+					gain_dc += oc_dc_t[i][ii]*(lib.bits_dc_chrominance[abs(ii-11)] - co_dc[i][ii])
 				jdc += oc_dc_t[i][ii]*lib.bits_dc_chrominance[abs(ii-11)]
 
 	lib.fprint("\nJPEG baseline run length bits:" + str(sum(j)) + "\tour run length bits:" + str(sum(yy)) + "\tdifference:" + str(sum(diff)) + " gain part: " + str(gp_1)+","+str(gp_2)+","+str(gp_3))
