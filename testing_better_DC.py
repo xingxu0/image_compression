@@ -42,7 +42,8 @@ def calc_gain(comp, dep1_s, dep2_s):
 	for i in range(23):
 		co_dc[i] = load_code_table("DC", i, "", table_folder)
 		if len(co_dc[i]) == 0:
-			co_dc[i] = deepcopy(lib.dc_code)
+			for ii in range(23):
+				co_dc[i][ii] = lib.dc_code[abs(ii-11)]
 
 	for i in range(1, 64):
 		#print i
