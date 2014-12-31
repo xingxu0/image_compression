@@ -107,8 +107,8 @@ def create_table(comp, dep1_s, dep2_s):
 			# for dc symbol:
 			b = block[ii]
 			b_o = block_o[ii]
-			#oc_dc[lib.get_previous_block(block, ii) [0]][b[0]] += 1
-			oc_dc[lib.get_previous_blocks_coef_for_DC(block, ii)][b[0]] += 1
+			oc_dc[lib.get_previous_block(block, ii) [0]][b[0]] += 1
+			#oc_dc[lib.get_previous_blocks_coef_for_DC(block, ii)][b[0]] += 1
 			r = 0
 			pos = 1
 			for i in range(1, 64):
