@@ -197,14 +197,17 @@ def calc_gain(comp, dep1_s, dep2_s):
 				g = 0
 				o = 0
 				for x in co[i][p][pp]:
-					if x%16==15:
-						x_real = x-13
-						g += (lib.code[x-13]-co[i][p][pp][x])*oc_t[i][p][pp][x]
+					if x%16==15 or x%16==2:
+						if x%16==15:
+							o += (co[i][p][pp][x]-1)*oc_t[i][p][pp][x]
+							g += (lib.code[x-13]-co[i][p][pp][x]+1)*oc_t[i][p][pp][x]
+						else:
+							o += (co[i][p][pp][x]-1)*oc_t[i][p][pp][x]
+							g += (lib.code[x]-co[i][p][pp][x]+1)*oc_t[i][p][pp][x]
+						offset -= oc_t[i][p][pp][x]
 					else:
 						g += (lib.code[x] - co[i][p][pp][x])*oc_t[i][p][pp][x]
 						o += (co[i][p][pp][x])*oc_t[i][p][pp][x]
-					if x%16==15 or x%16==2:
-						offset -= oc_t[i][p][pp][x]
 				temp_gain += g
 				total_gain += g
 				j[p][i-1] += jpeg_t[i][p][pp]
@@ -270,14 +273,14 @@ def calc_gain(comp, dep1_s, dep2_s):
 	lib.fprint("\nCompare to JPEG Baseline:")
 	lib.fprint("RUN LENGTH: gaining bits:" + str(total_gain) + "\ttotal bits in file:" + str(t_total_bits))
 	lib.fprint("DC        : gaining bits:" + str(gain_dc) + "\ttotal bits in file:" + str(t_total_bits))
-	lib.fprint("OFFSET    : " + str(offset))
-	lib.fprint("gaining " + str(total_gain + gain_dc - offset) + " bits (" + str((total_gain+gain_dc-offset)*100.0/t_total_bits)+"%)")
+	#lib.fprint("OFFSET    : " + str(offset))
+	lib.fprint("gaining " + str(total_gain + gain_dc) + " bits (" + str((total_gain+gain_dc)*100.0/t_total_bits)+"%)")
 	
 	lib.fprint("\nCompare to JPEG Optimize:")
 	lib.fprint("RUN LENGTH: gaining bits:" + str(total_gain+total_opt-sum(j)) + "\ttotal bits in file:" + str(t_total_bits_opt))
 	lib.fprint("DC        : gaining bits:" + str(gain_dc+total_opt_dc-jdc) + "\ttotal bits in file:" + str(t_total_bits_opt))
-	lib.fprint("OFFSET    : " + str(offset))
-	lib.fprint("gaining " + str(total_gain+total_opt-sum(j)+gain_dc+total_opt_dc-jdc-offset) + " bits (" + str((total_gain+total_opt-sum(j)+gain_dc+total_opt_dc-jdc-offset)*100.0/t_total_bits_opt)+"%)")
+	#lib.fprint("OFFSET    : " + str(offset))
+	lib.fprint("gaining " + str(total_gain+total_opt-sum(j)+gain_dc+total_opt_dc-jdc) + " bits (" + str((total_gain+total_opt-sum(j)+gain_dc+total_opt_dc-jdc)*100.0/t_total_bits_opt)+"%)")
 	
 	print "\n\tTesting DONE"
 	return total_gain + gain_dc, t_total_bits, t_total_bits_opt
