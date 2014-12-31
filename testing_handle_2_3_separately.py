@@ -77,6 +77,9 @@ def calc_gain(comp, dep1_s, dep2_s):
 					for b in range(1, AC_BITS + 1):
 						oc_t[i][p][pp][(z<<4) + b] = 0			# for one run-length, positive sign
 					oc_t[i][p][pp][(z<<4) + 15] = 0
+					oc_t[i][p][pp][(z<<4) + 14] = 0
+					oc_t[i][p][pp][(z<<4) + 13] = 0
+					oc_t[i][p][pp][(z<<4) + 12] = 0
 				oc_t[i][p][pp][0] = 0	# 0 for EOB
 				oc_t[i][p][pp][0xf0] = 0	# for 16 consecutive 0, -1
 			
