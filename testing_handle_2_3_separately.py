@@ -222,10 +222,10 @@ def calc_gain(comp, dep1_s, dep2_s):
 						if x%16==13:
 							o += (co[i][p][pp][x]-2)*oc_t[i][p][pp][x]
 							g += (lib.code[x-10]-co[i][p][pp][x]+2)*oc_t[i][p][pp][x]
-						if x%16==14:
+						elif x%16==14:
 							o += (co[i][p][pp][x]-2)*oc_t[i][p][pp][x]
 							g += (lib.code[x-11]-co[i][p][pp][x]+2)*oc_t[i][p][pp][x]
-						if x%16==15:
+						elif x%16==15:
 							o += (co[i][p][pp][x]-2)*oc_t[i][p][pp][x]
 							g += (lib.code[x-12]-co[i][p][pp][x]+2)*oc_t[i][p][pp][x]
 						else:
