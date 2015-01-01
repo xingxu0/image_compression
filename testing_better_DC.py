@@ -39,7 +39,7 @@ def calc_gain(comp, dep1_s, dep2_s):
 			co[i][p] = {}
 	co_dc = {}	
 			
-	for i in range(23):
+	for i in range(36):
 		co_dc[i] = load_code_table("DC", i, "", table_folder)
 		if len(co_dc[i]) == 0:
 			for ii in range(23):
