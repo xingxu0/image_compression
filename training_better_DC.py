@@ -107,15 +107,12 @@ def create_table(comp, dep1_s, dep2_s):
 			# for dc symbol:
 			b = block[ii]
 			b_o = block_o[ii]
-			last_dc_diff = lib.get_previous_block(block_o, ii) [0]
-			last_dc_diff_bits = lib.get_previous_block(block, ii) [0]
+			dc_de = lib.get_dc_dependency(block_o, block, ii)
 			dc_diff = b_o[0]
 			dc_diff_bits = b[0]
-			if last_dc_diff < 0:
-				last_dc_diff_bits = -last_dc_diff_bits
 			if dc_diff < 0:
 				dc_diff_bits = -dc_diff_bits
-			oc_dc[last_dc_diff_bits+11][dc_diff_bits+11] += 1
+			oc_dc[dc_de+11][dc_diff_bits+11] += 1
 			#oc_dc[lib.get_previous_blocks_coef_for_DC(block, ii)][b[0]] += 1
 			r = 0
 			pos = 1

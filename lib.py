@@ -1363,7 +1363,16 @@ def all_zero_block(b):
 		if b[i] != 0:
 			return False
 	return True
-			
+
+def get_dc_dependency(b_o, b, i):
+	x = 3
+	t = 0
+	for ii in range(x):		
+		d = get_previous_block(b, i-1-ii)
+		if get_previous_block(b_o, i-1-ii) < 0:
+			d = -d
+		t += d
+	return t/3
 	
 dep1 = 0
 dep2 = 0
