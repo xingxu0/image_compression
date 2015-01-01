@@ -1368,11 +1368,11 @@ def get_dc_dependency(b_o, b, i):
 	x = 2
 	t = 0
 	for ii in range(x):		
-		d = get_previous_block(b, i-1-ii)[0]
-		if get_previous_block(b_o, i-1-ii)[0] < 0:
+		d = get_previous_block(b, i-ii)[0]
+		if get_previous_block(b_o, i-ii)[0] < 0:
 			d = -d
 		t += d
-	return t/3
+	return t/x
 	
 dep1 = 0
 dep2 = 0
