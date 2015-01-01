@@ -108,7 +108,7 @@ def create_table(comp, dep1_s, dep2_s):
 			b = block[ii]
 			b_o = block_o[ii]
 			last_dc_diff = lib.get_previous_block(block_o, ii) [0]
-			last_dc_diff_bits = lib.get_previous_block(b, ii) [0]
+			last_dc_diff_bits = lib.get_previous_block(block, ii) [0]
 			dc_diff = b_o[0]
 			dc_diff_bits = b[0]
 			if last_dc_diff < 0:
