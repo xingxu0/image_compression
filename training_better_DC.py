@@ -143,7 +143,7 @@ def create_table(comp, dep1_s, dep2_s):
 	lib.fprint("generating DC tables...")
 	for i in range(9,14):
 		print i
-		print co_dc[i]
+		print oc_dc[i]
 		
 	for i in range(23):
 		if comp == '0':
