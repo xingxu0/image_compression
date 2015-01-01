@@ -483,6 +483,7 @@ def huff_encode_plus_extra_better_DC(symb2freq, jpeg_code):
 		if symb2freq[x] == 0:
 			zero += 1
 	extra_t = t*0.01
+	extra_t = 0
 	for x in symb2freq:
 		if not symb2freq[x]:
 			symb2freq[x] = extra_t*1.0/zero
