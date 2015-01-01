@@ -132,7 +132,7 @@ def calc_gain(comp, dep1_s, dep2_s):
 			dc_diff_bits = b[0]
 			if dc_diff < 0:
 				dc_diff_bits = -dc_diff_bits
-			oc_dc_t[dc_de+11][dc_diff_bits+11] += 1			
+			oc_dc_t[dc_de][dc_diff_bits+11] += 1			
 			#oc_dc_t[lib.get_previous_block(block_t_o, ii) [0]+12][b_o[0]] += 1
 			#oc_dc_t[lib.get_previous_blocks_coef_for_DC(block_t, ii)][b[0]] += 1
 			oc_dc_opt[b[0]] += 1
