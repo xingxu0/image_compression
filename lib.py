@@ -960,7 +960,7 @@ def fprint_close():
 	index_file.close()
 	
 def get_previous_block(b, n):
-	if n==0:
+	if n<=0:
 		return [0]*64
 	else:
 		return b[n-1]	
@@ -1365,7 +1365,7 @@ def all_zero_block(b):
 	return True
 
 def get_dc_dependency(b_o, b, i):
-	x = 3
+	x = 2
 	t = 0
 	for ii in range(x):		
 		d = get_previous_block(b, i-1-ii)[0]
