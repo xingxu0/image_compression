@@ -81,7 +81,7 @@ def create_table(comp, dep1_s, dep2_s):
 				oc[i][p][pp][0xf0] = 0
 	oc_dc = {}
 	co_dc = {}
-	for i in range(23):
+	for i in range(36):
 		oc_dc[i] = {}
 		for j in range(23):
 			oc_dc[i][j] = 0
@@ -112,7 +112,7 @@ def create_table(comp, dep1_s, dep2_s):
 			dc_diff_bits = b[0]
 			if dc_diff < 0:
 				dc_diff_bits = -dc_diff_bits
-			oc_dc[dc_de+11][dc_diff_bits+11] += 1
+			oc_dc[dc_de][dc_diff_bits+11] += 1
 			#oc_dc[lib.get_previous_blocks_coef_for_DC(block, ii)][b[0]] += 1
 			r = 0
 			pos = 1
@@ -142,7 +142,7 @@ def create_table(comp, dep1_s, dep2_s):
 		print i
 		print oc_dc[i]
 		
-	for i in range(23):
+	for i in range(36):
 		if comp == '0':
 			co_dc[i] = lib.huff_encode_plus_extra_better_DC(oc_dc[i], lib.bits_dc_luminance)
 		else:

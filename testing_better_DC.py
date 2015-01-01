@@ -81,7 +81,7 @@ def calc_gain(comp, dep1_s, dep2_s):
 				oc_t[i][p][pp][0xf0] = 0	# for 16 consecutive 0, -1
 			
 	oc_dc_t = {}
-	for i in range(23):
+	for i in range(36):
 		oc_dc_t[i] = {}
 		for j in range(23):
 			oc_dc_t[i][j] = 0
@@ -242,7 +242,7 @@ def calc_gain(comp, dep1_s, dep2_s):
 
 	gain_dc = 0
 	jdc = 0
-	for i in range(23):
+	for i in range(36):
 		for ii in range(23):
 			if comp == "0":
 				if ii!=11:
