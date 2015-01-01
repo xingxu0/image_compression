@@ -108,9 +108,9 @@ def create_table(comp, dep1_s, dep2_s):
 			b = block[ii]
 			b_o = block_o[ii]
 			last_dc_diff = lib.get_previous_block(block_o, ii) [0]
-			last_dc_diff_bits = lib.get_bits(last_dc_diff)
+			last_dc_diff_bits = lib.get_previous_block(b, ii) [0]
 			dc_diff = b_o[0]
-			dc_diff_bits = lib.get_bits(dc_diff)
+			dc_diff_bits = b[0]
 			if last_dc_diff < 0:
 				last_dc_diff_bits = -last_dc_diff_bits
 			if dc_diff < 0:
@@ -141,6 +141,10 @@ def create_table(comp, dep1_s, dep2_s):
 			
 		
 	lib.fprint("generating DC tables...")
+	for i in range(9,14):
+		print i
+		print co_dc[i]
+		
 	for i in range(23):
 		if comp == '0':
 			co_dc[i] = lib.huff_encode_plus_extra_better_DC(oc_dc[i], lib.bits_dc_luminance)
