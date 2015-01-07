@@ -137,7 +137,7 @@ def calc_gain(comp, dep1_s, dep2_s):
 
 dc_sign = 0
 ac_sign = 0
-if len(sys.argv) != 4:
+if len(sys.argv) != 2:
 	print "usage: python testing.py [TESTING IMAGES FOLDER] [TABLE FOLDER] [OUTPUT FILE]"
 	exit()
 
