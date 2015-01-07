@@ -29,11 +29,6 @@ def calc_gain(comp, dep1_s, dep2_s):
 	ac_sign = 0
 	AC_BITS = 10
 	
-	table_folder = tab_folder + "/" + str(comp)
-	lib.init_testing(comp, tab_folder, dep1_s, dep2_s)
-	lib.dep1, SIZE1 = lib.parse_dep(dep1_s, lib.apc_bins)
-	lib.dep2, SIZE2 = lib.parse_dep(dep2_s, lib.apc_bins)
-
 	co = {}   #co for code
 	for i in range(1, 64):
 		co[i] = {}
@@ -41,19 +36,6 @@ def calc_gain(comp, dep1_s, dep2_s):
 			co[i][p] = {}
 	co_dc = {}	
 			
-	for i in range(21):
-		co_dc[i] = load_code_table("DC", i, "", table_folder)
-		if len(co_dc[i]) == 0:
-			co_dc[i] = deepcopy(lib.dc_code)
-
-	for i in range(1, 64):
-		#print i
-		for p in range(SIZE1 + 1):
-			for pp in range(SIZE2 + 1):
-				co[i][p][pp] = load_code_table(i, p, pp, table_folder)
-				if len(co[i][p][pp]) == 0:
-					co[i][p][pp] = deepcopy(lib.code)
-
 	block = 0
 	block_o = 0
 	# get SIZE1_length code occurrence time for testing set
