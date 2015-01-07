@@ -141,13 +141,9 @@ if len(sys.argv) != 4:
 	print "usage: python testing.py [TESTING IMAGES FOLDER] [TABLE FOLDER] [OUTPUT FILE]"
 	exit()
 
-tab_folder = sys.argv[2]
 test_folder = sys.argv[1]
-lib.generate_blocks(test_folder)
-out_file = open(sys.argv[3], "w")
+out_file = open(sys.argv[2], "w")
 
-dep1, dep2 = lib.get_deps_from_file(tab_folder + "/dep.txt")
-print dep1, dep2
 lib.index_file = out_file
 g = 0
 t = 0
