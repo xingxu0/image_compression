@@ -506,6 +506,47 @@ def huff_encode_plus_extra_better_DC(symb2freq, jpeg_code):
 		ret[p[0]] = len(p[1])
 	return ret
 
+def huff_encode_plus_extra_ac_sign(symb2freq, jpeg_code):
+	# give 0 occurence value a reasonable probability, right now proportional to JPEG default table
+	t = 0
+	for x in symb2freq:
+		t += symb2freq[x]
+		
+	# no data to infer huffman table, using default
+	if not t:
+		ret = deepcopy(jpeg_code)
+		for x in jpeg_code:
+			ret[(1<<8)+x] = jpeg_code[x]
+		return ret
+	
+	zero = 0
+	for x in symb2freq:
+		if symb2freq[x] == 0:
+			zero += 1
+	extra_t = t*0.01
+	extra_t = 0
+	for x in symb2freq:
+		if not symb2freq[x]:
+			symb2freq[x] = extra_t*1.0/zero
+			
+	#Huffman encode the given dict mapping symbols to weights
+	heap = [[wt, [sym, ""]] for sym, wt in symb2freq.items()]
+	heapify(heap)
+	while len(heap) > 1:
+		lo = heappop(heap)
+		hi = heappop(heap)
+		for pair in lo[1:]:
+			pair[1] = '0' + pair[1]
+		for pair in hi[1:]:
+			pair[1] = '1' + pair[1]
+		heappush(heap, [lo[0] + hi[0]] + lo[1:] + hi[1:])
+
+	temp = sorted(heappop(heap)[1:], key=lambda p: (len(p[-1]), p))
+	ret = {}
+	for p in temp:
+		ret[p[0]] = len(p[1])
+	return ret
+
 def huff_encode_plus_extra_handle_2_separately(symb2freq, jpeg_code):
 	# give 0 occurence value a reasonable probability, right now proportional to JPEG default table
 	t = 0
@@ -762,12 +803,6 @@ def get_dep(blocks, blocks_o, now, s, e, dep, one_or_two, b_mcu1, b_mcu2):
 		return int(t*200.0/ma)
 	if dep == 9:
 		seen, ma, su = get_previous_blocks_coef(blocks, now, s, e)
-		if not seen:
-			if blocks[now][0] > 11:
-				print "DC out of range", blocks[now]
-			#print "second dimension2:", s,su, ma,"n/a", len(papc_bins[1]) + blocks[now][0] - 5
-			return len(papc_bins[1]) + blocks[now][0] - 5
-		#print "second dimension2:", s,su, ma, su*1.0/ma, scale_block(su*1.0/ma, s)
 		return scale(su*1.0/ma, s, one_or_two)
 	if dep == 10:
 		ma, su = get_energy_level(blocks, now, s, e)
@@ -775,6 +810,29 @@ def get_dep(blocks, blocks_o, now, s, e, dep, one_or_two, b_mcu1, b_mcu2):
 	if dep == 11:
 		ma, su = get_mcu_energy_level(b_mcu1, b_mcu2, now, s, e)
 		return scale(su*1.0/ma, s, one_or_two)
+	if dep == 12:
+		seen, ma, su = get_previous_blocks_coef(blocks, now, s, e)
+		t = scale(su*1.0/ma, s, one_or_two)
+		x = 2
+		s = 0
+		l = 0
+		if one_or_two == "1":
+			l = len(apc_bins[1])
+		else:
+			l = len(papc_bins[1])
+		for ii in range(x):
+			if get_previous_block(blocks_o, now-ii)[e] < 0:
+				s -= 1
+			elif get_previous_block(blocks_o, now-ii)[e] > 0:
+				s += 1
+		if s == -2:
+			return t + 2*(l + 1)
+		elif s == +2:
+			return t + (l + 1)
+		else:
+			return t
+			
+		
 	if dep == -1:
 		return 0
 		
@@ -895,7 +953,7 @@ def record_code(b, b_o, now, c, start, end, oc, b_mcu1, b_mcu2):
 		print "*", d1, d2
 		wrong_keys += 1
 	return start, d1, d2, c
-	
+
 def record_jpeg(b, b_o, now, c, start, end, oc, b_mcu1, b_mcu2):
 	global dep1, dep2, code, wrong_keys, wrong_desc, wrong_saw
 	d1 = get_dep(b, b_o, now, start, end, dep1, "1", b_mcu1, b_mcu2)
@@ -941,6 +999,8 @@ def parse_dep(s, apc_bins):
 		return 10, len(apc_bins[1]) + 1
 	elif s == "11":
 		return 11, len(papc_bins[1]) + 1
+	elif s == "12":
+		return 12, (len(papc_bins[1])+1)*3+1
 	else:
 		return -1, 0
 	
@@ -1228,21 +1288,24 @@ def init(comp, image_folder, tbl_folder, dep1, dep2):
 		print avg_coef_max
 		os.system("cp " + image_folder + "/*max_pos_value_" + comp + " " + tbl_folder + "/")
 
+		dep2_ = dep2
+		if dep2 == "12":
+			dep2_ = "9"
 		# coef bins
-		if os.path.isfile(image_folder + "/coef_bins_" + str(dep1) + "_" + comp) and os.path.isfile(image_folder + "/coef_bins_" + str(dep2) + "_" + comp):
+		if os.path.isfile(image_folder + "/coef_bins_" + str(dep1) + "_" + comp) and os.path.isfile(image_folder + "/coef_bins_" + str(dep2_) + "_" + comp):
 			pkl_file = open(image_folder + "/coef_bins_" + str(dep1) + "_" + comp)
 			apc_bins = pickle.load(pkl_file)
 			pkl_file.close()
-			pkl_file = open(image_folder + "/coef_bins_"  + str(dep2) + "_" + comp)
+			pkl_file = open(image_folder + "/coef_bins_"  + str(dep2_) + "_" + comp)
 			papc_bins = pickle.load(pkl_file)
 			pkl_file.close()
 		else:
 			print "regenerating coef_bins..."
-			apc_bins, papc_bins = get_avg_coef_bins(image_folder, comp, dep1, dep2)
+			apc_bins, papc_bins = get_avg_coef_bins(image_folder, comp, dep1, dep2_)
 			pkl_file = open(image_folder + "/coef_bins_" + str(dep1) + "_" + comp, 'wb')
 			pickle.dump(apc_bins, pkl_file)
 			pkl_file.close()
-			pkl_file = open(image_folder + "/coef_bins_" + str(dep2) + "_" + comp, 'wb')
+			pkl_file = open(image_folder + "/coef_bins_" + str(dep2_) + "_" + comp, 'wb')
 			pickle.dump(papc_bins, pkl_file)
 			pkl_file.close()
 		f = open(tbl_folder + "/plain_coef_bins_" + str(dep1) + "_" + comp, 'wb')
@@ -1252,7 +1315,7 @@ def init(comp, image_folder, tbl_folder, dep1, dep2):
 				f.write(str(apc_bins[x][y]) + " ")
 			f.write("\n")
 		f.close()		
-		f = open(tbl_folder + "/plain_coef_bins_"  + str(dep2) + "_" + comp, 'wb')
+		f = open(tbl_folder + "/plain_coef_bins_"  + str(dep2_) + "_" + comp, 'wb')
 		for x in papc_bins:
 			f.write(str(x) + ": ")
 			for y in range(len(papc_bins[x])):
@@ -1260,7 +1323,7 @@ def init(comp, image_folder, tbl_folder, dep1, dep2):
 			f.write("\n")
 		f.close()
 		os.system("cp " + image_folder + "/*coef_bins_" + str(dep1) + "_" + comp + " " + tbl_folder + "/")		
-		os.system("cp " + image_folder + "/*coef_bins_" + str(dep2) + "_" + comp + " " + tbl_folder + "/")		
+		os.system("cp " + image_folder + "/*coef_bins_" + str(dep2_) + "_" + comp + " " + tbl_folder + "/")		
 
 	if comp == "0":
 		code = get_luminance_codes()
@@ -1299,6 +1362,9 @@ def init_testing(comp, tbl_folder, dep1, dep2):
 				tt += avg_coef[j]
 			avg_coef_max[i] = tt
 		
+		dep2_ = dep2
+		if dep2 == "12":
+			dep2_ = "9"
 		# coef bins
 		if os.path.isfile(tbl_folder + "/coef_bins_" + str(dep1) + "_" + comp):
 			pkl_file = open(tbl_folder + "/coef_bins_" + str(dep1) + "_" +  comp)
@@ -1308,8 +1374,8 @@ def init_testing(comp, tbl_folder, dep1, dep2):
 			print "no coef_bins..."
 			exit()
 
-		if os.path.isfile(tbl_folder + "/coef_bins_" +  str(dep2) + "_" + comp):
-			pkl_file = open(tbl_folder + "/coef_bins_"  + str(dep2) + "_" + comp)
+		if os.path.isfile(tbl_folder + "/coef_bins_" +  str(dep2_) + "_" + comp):
+			pkl_file = open(tbl_folder + "/coef_bins_"  + str(dep2_) + "_" + comp)
 			papc_bins = pickle.load(pkl_file)
 			pkl_file.close()
 		else:

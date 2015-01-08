@@ -1,5 +1,3 @@
-
-
 import sys, os, heapq, glob, operator, pickle, lib
 from operator import itemgetter
 from copy import *
@@ -23,7 +21,13 @@ def load_code_table(i, d1, d2, table_folder):
 
 def calc_gain(comp, dep1_s, dep2_s):
 	global out_file, tab_folder
+	SIZE1 = 5
+	SIZE2 = 5
 	lib.fprint("Component " + comp)
+	if comp == "0":
+		lib.code = lib.get_luminance_codes()
+	else:
+		lib.code = lib.get_chrominance_codes()
 
 	dc_sign = 0
 	ac_sign = 0
@@ -137,7 +141,9 @@ def calc_gain(comp, dep1_s, dep2_s):
 
 dc_sign = 0
 ac_sign = 0
-if len(sys.argv) != 2:
+dep1 = 0
+dep2 = 0
+if len(sys.argv) != 3:
 	print "usage: python testing.py [TESTING IMAGES FOLDER] [TABLE FOLDER] [OUTPUT FILE]"
 	exit()
 

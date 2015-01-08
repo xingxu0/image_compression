@@ -138,7 +138,7 @@ def create_table(comp, dep1_s, dep2_s):
 			
 		
 	lib.fprint("generating DC tables...")
-	for i in range(9,14):
+	for i in range(36):
 		print i
 		print oc_dc[i]
 		
