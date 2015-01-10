@@ -77,11 +77,19 @@ def calc_gain(comp, dep1_s, dep2_s):
 				for z in range(16):
 					for b in range(1, AC_BITS + 1):
 						oc_t[i][p][pp][(z<<4) + b] = 0			# for one run-length, positive sign
+					oc_t[i][p][pp][(z<<4) + 15] = 0
+					oc_t[i][p][pp][(z<<4) + 14] = 0
+					oc_t[i][p][pp][(z<<4) + 13] = 0
+					oc_t[i][p][pp][(z<<4) + 12] = 0						
 				oc_t[i][p][pp][0] = 0	# 0 for EOB
 				oc_t[i][p][pp][0xf0] = 0	# for 16 consecutive 0, -1
 				for z in range(16):
 					for b in range(1, AC_BITS + 1):
 						oc_t[i][p][pp][(1<<8)+(z<<4) + b] = 0			# for one run-length, positive sign
+					oc_t[i][p][pp][(1<<8)+(z<<4) + 15] = 0
+					oc_t[i][p][pp][(1<<8)+(z<<4) + 14] = 0
+					oc_t[i][p][pp][(1<<8)+(z<<4) + 13] = 0
+					oc_t[i][p][pp][(1<<8)+(z<<4) + 12] = 0												
 				oc_t[i][p][pp][(1<<8)+0] = 0	# 0 for EOB
 				oc_t[i][p][pp][(1<<8)+0xf0] = 0	# for 16 consecutive 0, -1
 			
@@ -157,10 +165,25 @@ def calc_gain(comp, dep1_s, dep2_s):
 					r -= 16
 					gp_1 += lib.code[0xf0] - co[a1][a2][a3][0xf0]
 
+				offset = 0
 				if b_o[i] < 0:
-					a1,a2,a3,a4=lib.record_code(block_t, block_t_o, ii, (1<<8)+(r << 4) + b[i], pos, i, oc_t, 0, 0)
+					offset = (1<<8)
+				if b[i]==2:
+					if abs(b_o[i])==3:
+						a1,a2,a3,a4=lib.record_code(block_t, block_t_o, ii, offset+(r << 4) + 12, pos, i, oc_t, 0, 0)
+					else:
+						a1,a2,a3,a4=lib.record_code(block_t, block_t_o, ii, offset+(r << 4) + b[i], pos, i, oc_t, 0, 0)
+				elif b[i]==3:
+					if abs(b_o[i])==5:
+						a1,a2,a3,a4=lib.record_code(block_t, block_t_o, ii, offset+(r << 4) + 13, pos, i, oc_t, 0, 0)
+					elif abs(b_o[i])==6:
+						a1,a2,a3,a4=lib.record_code(block_t, block_t_o, ii, offset+(r << 4) + 14, pos, i, oc_t, 0, 0)
+					elif abs(b_o[i])==7:
+						a1,a2,a3,a4=lib.record_code(block_t, block_t_o, ii, offset+(r << 4) + 15, pos, i, oc_t, 0, 0)
+					else:
+						a1,a2,a3,a4=lib.record_code(block_t, block_t_o, ii, offset+(r << 4) + b[i], pos, i, oc_t, 0, 0)
 				else:
-					a1,a2,a3,a4=lib.record_code(block_t, block_t_o, ii, (r << 4) + b[i], pos, i, oc_t, 0, 0)
+					a1,a2,a3,a4=lib.record_code(block_t, block_t_o, ii, offset+(r << 4) + b[i], pos, i, oc_t, 0, 0)				
 				if not (((r<<4) + b[i]) in co[a1][a2][a3]):
 					print (r<<4) + b[i], co[a1][a2][a3]
 				gp_2 += lib.code[(r<<4)+b[i]] - co[a1][a2][a3][(r<<4)+b[i]]
@@ -208,7 +231,30 @@ def calc_gain(comp, dep1_s, dep2_s):
 				o = 0
 				for x in co[i][p][pp]:
 					x_ = x%(1<<8)
-					if x%16 != 0:
+					if x_%16 != 0:
+						if x_%16==12 or x_%16==2:
+							if x_%16==12:
+								o += (co[i][p][pp][x]-2)*oc_t[i][p][pp][x]
+								g += (lib.code[x_-10]-co[i][p][pp][x]+2)*oc_t[i][p][pp][x]
+							else:
+								o += (co[i][p][pp][x]-2)*oc_t[i][p][pp][x]
+								g += (lib.code[x_]-co[i][p][pp][x]+2)*oc_t[i][p][pp][x]
+						elif x%16==3 or x%16==13 or x%16==14 or x%16==15:
+							if x%16==13:
+								o += (co[i][p][pp][x]-3)*oc_t[i][p][pp][x]
+								g += (lib.code[x_-10]-co[i][p][pp][x]+3)*oc_t[i][p][pp][x]
+							elif x%16==14:
+								o += (co[i][p][pp][x]-3)*oc_t[i][p][pp][x]
+								g += (lib.code[x_-11]-co[i][p][pp][x]+3)*oc_t[i][p][pp][x]
+							elif x%16==15:
+								o += (co[i][p][pp][x]-3)*oc_t[i][p][pp][x]
+								g += (lib.code[x_-12]-co[i][p][pp][x]+3)*oc_t[i][p][pp][x]
+							else:
+								o += (co[i][p][pp][x]-3)*oc_t[i][p][pp][x]
+								g += (lib.code[x_]-co[i][p][pp][x]+3)*oc_t[i][p][pp][x]
+						else:
+							g += (lib.code[x_] - co[i][p][pp][x]+1)*oc_t[i][p][pp][x]
+							o += (co[i][p][pp][x]-1)*oc_t[i][p][pp][x]						
 						o += (co[i][p][pp][x]-1)*oc_t[i][p][pp][x]
 						g += (lib.code[x_] - co[i][p][pp][x]+1)*oc_t[i][p][pp][x]
 					else:

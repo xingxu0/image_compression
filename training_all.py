@@ -79,12 +79,20 @@ def create_table(comp, dep1_s, dep2_s):
 				for z in range(16):
 					for b in range(1, AC_BITS + 1):
 						oc[i][p][pp][(z<<4) + b] = 0	
+					oc[i][p][pp][(z<<4)+15] = 0 # for +-7, independantly
+					oc[i][p][pp][(z<<4)+14] = 0 # for +-6, independantly
+					oc[i][p][pp][(z<<4)+13] = 0 # for +-5, independantly
+					oc[i][p][pp][(z<<4)+12] = 0 # for +-3, independantly
 				oc[i][p][pp][0] = 0	# 0 for EOB
 				oc[i][p][pp][0xf0] = 0
 				# negative sign
 				for z in range(16):
 					for b in range(1, AC_BITS + 1):
-						oc[i][p][pp][(1<<8)+(z<<4) + b] = 0	
+						oc[i][p][pp][(1<<8)+(z<<4) + b] = 0
+					oc[i][p][pp][(1<<8)+(z<<4)+15] = 0 # for +-7, independantly
+					oc[i][p][pp][(1<<8)+(z<<4)+14] = 0 # for +-6, independantly
+					oc[i][p][pp][(1<<8)+(z<<4)+13] = 0 # for +-5, independantly
+					oc[i][p][pp][(1<<8)+(z<<4)+12] = 0 # for +-3, independantly						
 				oc[i][p][pp][(1<<8)+0] = 0	# 0 for EOB
 				oc[i][p][pp][(1<<8)+0xf0] = 0
 	oc_dc = {}
@@ -134,11 +142,26 @@ def create_table(comp, dep1_s, dep2_s):
 					lib.record_code(block, block_o, ii, 0xf0, pos, pos + 15, oc, 0, 0)
 					pos += 16
 					r -= 16
-
+				
+				offset = 0
 				if b_o[i] < 0:
-					lib.record_code(block, block_o, ii, (1<<8) + (r << 4) + b[i], pos, i, oc, 0, 0)
+					offset = (1<<8)
+				if b[i]==2:
+					if abs(b_o[i])==3:
+						lib.record_code(block, block_o, ii, offset+(r << 4) + 12, pos, i, oc, 0, 0)
+					else:
+						lib.record_code(block, block_o, ii, offset+(r << 4) + b[i], pos, i, oc, 0, 0)
+				elif b[i]==3:
+					if abs(b_o[i])==5:
+						lib.record_code(block, block_o, ii, offset+(r << 4) + 13, pos, i, oc, 0, 0)
+					elif abs(b_o[i])==6:
+						lib.record_code(block, block_o, ii, offset+(r << 4) + 14, pos, i, oc, 0, 0)
+					elif abs(b_o[i])==7:
+						lib.record_code(block, block_o, ii, offset+(r << 4) + 15, pos, i, oc, 0, 0)
+					else:
+						lib.record_code(block, block_o, ii, offset+(r << 4) + b[i], pos, i, oc, 0, 0)
 				else:
-					lib.record_code(block, block_o, ii, (r << 4) + b[i], pos, i, oc, 0, 0)
+					lib.record_code(block, block_o, ii, offset+(r << 4) + b[i], pos, i, oc, 0, 0)	
 				pos = i + 1
 				r = 0
 			if r > 0:
@@ -161,7 +184,7 @@ def create_table(comp, dep1_s, dep2_s):
 		#print i
 		for p in range(SIZE1 + 1):
 			for pp in range(SIZE2 + 1):
-				co[i][p][pp] = lib.huff_encode_plus_extra_ac_sign(oc[i][p][pp], lib.code)
+				co[i][p][pp] = lib.huff_encode_plus_extra_all(oc[i][p][pp], lib.code)
 				save_code_table(co[i][p][pp], oc[i][p][pp], i, p, pp, table_folder)
 	lib.index_file.close()
 	print "\n\tTraining DONE"
