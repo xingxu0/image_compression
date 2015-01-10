@@ -255,8 +255,6 @@ def calc_gain(comp, dep1_s, dep2_s):
 						else:
 							g += (lib.code[x_] - co[i][p][pp][x]+1)*oc_t[i][p][pp][x]
 							o += (co[i][p][pp][x]-1)*oc_t[i][p][pp][x]						
-						o += (co[i][p][pp][x]-1)*oc_t[i][p][pp][x]
-						g += (lib.code[x_] - co[i][p][pp][x]+1)*oc_t[i][p][pp][x]
 					else:
 						o += (co[i][p][pp][x])*oc_t[i][p][pp][x]
 						g += (lib.code[x_] - co[i][p][pp][x])*oc_t[i][p][pp][x]
