@@ -18,9 +18,9 @@ base_decode = 0
 base_x = 0
 fig = plt.figure()
 ax = fig.add_subplot(111)
+total_arith = 0
+total_actual = 0
 for f in folders:
-	total_arith = 0
-	total_actual = 0
 	total_encoding_time = 0
 	total_decoding_time = 0
 	for i in range(1, 101):#101):
@@ -32,6 +32,6 @@ for f in folders:
 		actual_bits = int(m.group(3))
 		jpg_opt_size = int(m.group(2))
 		print arith_bits, actual_bits
-	total_arith += arith_bits
-	total_actual += actual_bits
-print total_arith, total_actual, (total_actual - total_arith)*1.0/total_actual
+		total_arith += arith_bits
+		total_actual += actual_bits
+print total_arith, total_actual, (total_actual - total_arith)*100.0/total_actual
