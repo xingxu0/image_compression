@@ -600,9 +600,14 @@ def huff_encode_plus_extra_handle_2_separately(symb2freq, jpeg_code):
 		return deepcopy(jpeg_code)
 	
 	extra_t = t*0.01
+	zero = 0
 	for x in symb2freq:
-		if not symb2freq[x] and x%16<12:
-			symb2freq[x] = extra_t * math.sqrt(pow(math.e, - jpeg_code[x]))
+		if symb2freq[x] == 0:
+			zero += 1
+
+	for x in symb2freq:
+		if not symb2freq[x]:
+			symb2freq[x] = extra_t *1.0/zero
 			
 	#Huffman encode the given dict mapping symbols to weights
 	heap = [[wt, [sym, ""]] for sym, wt in symb2freq.items()]
