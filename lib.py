@@ -861,20 +861,20 @@ def get_dep(blocks, blocks_o, now, s, e, dep, one_or_two, b_mcu1, b_mcu2):
 		seen, ma, su = get_previous_blocks_coef(blocks, now, s, e)
 		t = scale(su*1.0/ma, s, one_or_two)
 		x = 2
-		s = 0
+		ss = 0
 		l = 0
 		if one_or_two == "1":
 			l = len(apc_bins[1])
 		else:
 			l = len(papc_bins[1])
 		for ii in range(x):
-			if get_previous_block(blocks_o, now-ii)[e] < 0:
-				s -= 1
-			elif get_previous_block(blocks_o, now-ii)[e] > 0:
-				s += 1
-		if s == -2:
+			if get_previous_block(blocks_o, now-ii)[s] < 0:
+				ss -= 1
+			elif get_previous_block(blocks_o, now-ii)[s] > 0:
+				ss += 1
+		if ss == -2:
 			return t + 2*(l + 1)
-		elif s == +2:
+		elif ss == +2:
 			return t + (l + 1)
 		else:
 			return t
