@@ -870,7 +870,7 @@ def get_dep(blocks, blocks_o, now, s, e, dep, one_or_two, b_mcu1, b_mcu2):
 		first_jj = 0
 		for ii in range(x):
 			temp_b = get_previous_block(blocks_o, now-ii)
-			for jj in range(s, min(64,s+5)+1):
+			for jj in range(s, min(63,s+5)+1):
 				if temp_b[jj] < 0:
 					first_jj = jj
 					ss -= 1
