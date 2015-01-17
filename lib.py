@@ -868,10 +868,14 @@ def get_dep(blocks, blocks_o, now, s, e, dep, one_or_two, b_mcu1, b_mcu2):
 		else:
 			l = len(papc_bins[1])
 		for ii in range(x):
-			if get_previous_block(blocks_o, now-ii)[s] < 0:
-				ss -= 1
-			elif get_previous_block(blocks_o, now-ii)[s] > 0:
-				ss += 1
+			temp_b = get_previous_block(blocks_o, now-ii)
+			for jj in range(s, e+1):
+				if temp_b[jj] < 0:
+					ss -= 1
+					break
+				if temp_b[jj] > 0:
+					ss += 1
+					break
 		if ss == -2:
 			return t + 2*(l + 1)
 		elif ss == +2:
