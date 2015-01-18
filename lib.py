@@ -1495,9 +1495,9 @@ def get_dc_dependency(b_o, b, i):
 		elif get_previous_block(b_o, i-ii)[0] > 0:
 			t+=1
 	s = s/x
-	if t<0:
+	if t<=-1:
 		s += 12
-	elif t>0:
+	elif t>=1:
 		s += 24
 	return s
 	
