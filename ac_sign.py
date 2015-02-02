@@ -8,7 +8,7 @@ def analyze(oc,i,p,pp):
 	l = lib.papc_bins[1]
 	ss = ""
 	if pp < (l+1):
-		continue
+		return
 	if pp < 2*(l+1):
 		ss ="+"
 	else:
