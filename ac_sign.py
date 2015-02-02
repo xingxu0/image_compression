@@ -15,14 +15,15 @@ def analyze(oc,i,p,pp):
 			t_pos_ = oc[(z<<4) + b]
 			t_neg_ = oc[(1<<8)+(z<<4) + b]
 			if t_neg_:
-				f.write("run %d size %d pos: %d, neg %d, diff %f\n"%(z, b, t_pos_, t_neg_, t_pos_*1.0/t_neg_))
+				f.write("run %d size %d pos: %d, neg %d, diff %f\n"%(z, b, t_pos_, t_neg_, abs(t_pos_-t_neg_)*1.0/(t_pos_+t_neg_)))
 			else:
 				f.write("run %d size %d pos: %d, neg %d, diff %f\n"%(z, b, t_pos_, t_neg_, -1))
 			t_pos += t_pos_
 			t_neg += t_neg_
 			#print "run %d size %d pos: %d, neg %d, diff %f"%(z, b, t_pos_, t_neg_, t_pos_*1.0/t_neg_)
 	t = t_pos + t_neg
-	print i,p,pp, t_pos*1.0/t, t_neg*1.0/t, abs(t_pos-t_neg)*1.0/t
+	if t:
+		print i,p,pp, t_pos*1.0/t, t_neg*1.0/t, abs(t_pos-t_neg)*1.0/t
 
 def save_code_table(c, oc, i, d1, d2, table_folder):
 	o = 0
