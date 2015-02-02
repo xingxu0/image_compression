@@ -20,20 +20,26 @@ def analyze(oc,i,p,pp):
 	f = open(fname, "w")
 	t_pos = 0
 	t_neg = 0
+	saving_bit = 0
 	for z in range(16):
 		for b in range(1, AC_BITS + 1):
 			t_pos_ = oc[(z<<4) + b]
 			t_neg_ = oc[(1<<8)+(z<<4) + b]
+			t_ = t_pos_ + t_neg_
+			t_pos_pro = t_pos_*1.0/t_
+			t_neg_pro = t_neg_*1.0/t_
+			saving_bits = t_ - t_*(-math.log(t_pos_pro, 2)*t_pos_pro -math.log(t_neg_pro, 2)*t_neg_pro) 
 			if t_neg_:
-				f.write("%s run %d size %d pos: %d, neg %d, diff %f\n"%(ss,z, b, t_pos_, t_neg_, abs(t_pos_-t_neg_)*1.0/(t_pos_+t_neg_)))
+				f.write("%s run %d size %d pos: %d, neg %d, diff %f, saving bits: %f\n"%(ss,z, b, t_pos_, t_neg_, abs(t_pos_-t_neg_)*1.0/(t_pos_+t_neg_)), saving_bits)
 			else:
 				f.write("%s run %d size %d pos: %d, neg %d, diff %f\n"%(ss,z, b, t_pos_, t_neg_, -1))
 			t_pos += t_pos_
 			t_neg += t_neg_
+			saving_bit += saving_bits
 			#print "run %d size %d pos: %d, neg %d, diff %f"%(z, b, t_pos_, t_neg_, t_pos_*1.0/t_neg_)
 	t = t_pos + t_neg
 	if t:
-		print ss,i,p,pp, t, t_pos*1.0/t, t_neg*1.0/t, abs(t_pos-t_neg)*1.0/t
+		print ss,i,p,pp, t, t_pos*1.0/t, t_neg*1.0/t, abs(t_pos-t_neg)*1.0/t, "saving: ", saving_bit
 
 def save_code_table(c, oc, i, d1, d2, table_folder):
 	o = 0
