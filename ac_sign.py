@@ -32,7 +32,7 @@ def analyze(oc,i,p,pp):
 				if t_pos_ and t_neg_:
 					saving_bits = t_ - int(t_*(-math.log(t_pos_pro, 2)*t_pos_pro -math.log(t_neg_pro, 2)*t_neg_pro))
 				else:
-					saving_bits = 0
+					saving_bits = t_
 			else:
 				saving_bits = 0
 			if t_:
