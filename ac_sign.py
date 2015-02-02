@@ -4,12 +4,19 @@ import sys, copy, os, heapq, glob, operator, pickle, lib_ac_sign as lib
 from operator import itemgetter
 
 def analyze(oc,i,p,pp):
+	global tab_folder
+	fname = table_folder + "/" + str(i)+"_"+str(d1)+"_"+str(d2)+".table"
+	f = open(fname, "w")
 	t_pos = 0
 	t_neg = 0
 	for z in range(16):
 		for b in range(1, AC_BITS + 1):
-			t_pos += oc[(z<<4) + b]
-			t_neg += oc[(1<<8)+(z<<4) + b]
+			t_pos_ = oc[(z<<4) + b]
+			t_neg_ = oc[(1<<8)+(z<<4) + b]
+			f.write("run %d size %d pos: %d, neg %d, diff %f\n"%(z, b, t_pos_, t_neg_, t_pos_*1.0/t_neg_))
+			t_pos += t_pos_
+			t_neg += t_neg_
+			#print "run %d size %d pos: %d, neg %d, diff %f"%(z, b, t_pos_, t_neg_, t_pos_*1.0/t_neg_)
 	t = t_pos + t_neg
 	print i,p,pp, t_pos*1.0/t, t_neg*1.0/t, abs(t_pos-t_neg)*1.0/t
 
@@ -172,7 +179,7 @@ def create_table(comp, dep1_s, dep2_s):
 	print "\n\tTraining DONE"
 	
 if len(sys.argv) < 5:
-	print "usage: python training.py [TRAINING IMAGE FOLDER] [TABLE FOLDER] [DEPENDANT 1] [DEPENDANT 2]"
+	print "usage: python training.py [TRAINING IMAGE FOLDER] [DEPENDANT 1] [DEPENDANT 2]"
 	print "\t0:DC, 1:avg_pre_coef, 2:avg_pre_block_coef, 3:pre_block_coef, r:last_block_eob, 5:pre_blocks_sign"
 	exit()
 	
