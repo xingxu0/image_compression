@@ -14,7 +14,10 @@ def analyze(oc,i,p,pp):
 		for b in range(1, AC_BITS + 1):
 			t_pos_ = oc[(z<<4) + b]
 			t_neg_ = oc[(1<<8)+(z<<4) + b]
-			f.write("run %d size %d pos: %d, neg %d, diff %f\n"%(z, b, t_pos_, t_neg_, t_pos_*1.0/t_neg_))
+			if t_neg_:
+				f.write("run %d size %d pos: %d, neg %d, diff %f\n"%(z, b, t_pos_, t_neg_, t_pos_*1.0/t_neg_))
+			else:
+				f.write("run %d size %d pos: %d, neg %d, diff %f\n"%(z, b, t_pos_, t_neg_, -1))
 			t_pos += t_pos_
 			t_neg += t_neg_
 			#print "run %d size %d pos: %d, neg %d, diff %f"%(z, b, t_pos_, t_neg_, t_pos_*1.0/t_neg_)
