@@ -11,8 +11,10 @@ def analyze(oc,i,p,pp):
 		return
 	if pp < 2*(l+1):
 		ss ="+"
+		pp -= (l+1)
 	else:
 		ss = "-"
+		pp -= 2*(l+1)
 	AC_BITS = 10
 	fname = tab_folder + "/" + str(i)+"_"+str(p)+"_"+str(pp)+".table"
 	f = open(fname, "w")
