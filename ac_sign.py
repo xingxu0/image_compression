@@ -29,11 +29,11 @@ def analyze(oc,i,p,pp):
 			if t_:
 				t_pos_pro = t_pos_*1.0/t_
 				t_neg_pro = t_neg_*1.0/t_
-				saving_bits = t_ - t_*(-math.log(t_pos_pro, 2)*t_pos_pro -math.log(t_neg_pro, 2)*t_neg_pro) 
+				saving_bits = t_ - int(t_*(-math.log(t_pos_pro, 2)*t_pos_pro) -int(math.log(t_neg_pro, 2)*t_neg_pro))
 			else:
 				saving_bits = 0
 			if t_:
-				f.write("%s run %d size %d pos: %d, neg %d, diff %f, saving bits: %f\n"%(ss,z, b, t_pos_, t_neg_, abs(t_pos_-t_neg_)*1.0/(t_pos_+t_neg_)), saving_bits)
+				f.write("%s run %d size %d pos: %d, neg %d, diff %f, saving bits: %d\n"%(ss,z, b, t_pos_, t_neg_, abs(t_pos_-t_neg_)*1.0/(t_pos_+t_neg_), saving_bits)
 			else:
 				f.write("%s run %d size %d pos: %d, neg %d, diff %f\n"%(ss,z, b, t_pos_, t_neg_, -1))
 			t_pos += t_pos_
