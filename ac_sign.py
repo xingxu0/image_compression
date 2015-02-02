@@ -5,7 +5,7 @@ from operator import itemgetter
 
 def analyze(oc,i,p,pp):
 	global tab_folder
-	l = lib.papc_bins[1]
+	l = len(lib.papc_bins[1])
 	ss = ""
 	if pp < (l+1):
 		return
