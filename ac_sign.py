@@ -5,7 +5,7 @@ from operator import itemgetter
 
 def analyze(oc,i,p,pp):
 	global tab_folder
-	fname = table_folder + "/" + str(i)+"_"+str(d1)+"_"+str(d2)+".table"
+	fname = tab_folder + "/" + str(i)+"_"+str(d1)+"_"+str(d2)+".table"
 	f = open(fname, "w")
 	t_pos = 0
 	t_neg = 0
