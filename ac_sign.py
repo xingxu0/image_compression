@@ -4,7 +4,7 @@ import math,sys, copy, os, heapq, glob, operator, pickle, lib_ac_sign as lib
 from operator import itemgetter
 
 def analyze(oc,i,p,pp):
-	global tab_folder
+	global tab_folder, t_saving
 	l = len(lib.papc_bins[1])
 	ss = ""
 	if pp < (l+1):
@@ -46,6 +46,7 @@ def analyze(oc,i,p,pp):
 	t = t_pos + t_neg
 	if t:
 		print ss,i,p,pp, t, t_pos*1.0/t, t_neg*1.0/t, abs(t_pos-t_neg)*1.0/t, "saving: ", saving_bit
+		t_saving += saving_bit
 
 def save_code_table(c, oc, i, d1, d2, table_folder):
 	o = 0
@@ -209,7 +210,8 @@ if len(sys.argv) < 5:
 	print "usage: python training.py [TRAINING IMAGE FOLDER] [DEPENDANT 1] [DEPENDANT 2]"
 	print "\t0:DC, 1:avg_pre_coef, 2:avg_pre_block_coef, 3:pre_block_coef, r:last_block_eob, 5:pre_blocks_sign"
 	exit()
-	
+
+t_saving = 0
 in_folder = sys.argv[1]
 lib.generate_blocks(in_folder)
 tab_folder = sys.argv[2]
@@ -225,6 +227,8 @@ dep_file.close()
 
 for c in range(3):
 	create_table(str(c), dep1, dep2)
+
+print "total saving bits:", t_saving
 	
 #if len(sys.argv) == 1:
 #	print "usage: python runsize.py size(600, 1200), component_number(0,1,2) start_learn_image(1-100), end_learn_image(1-100), end_test_image(1-100), dep. 1(0:DC, 1:avg_pre_coef, 2:avg_pre_block_coef, 3:pre_block_coef, r:last_block_eob, 5:pre_blocks_sign), dep. 2(0:DC, 1:avg_pre_coef, 2:avg_pre_block_coef, 3:pre_block_coef, 4:last_block_eob, 5:pre_blocks_sign)"
