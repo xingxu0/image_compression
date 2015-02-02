@@ -33,7 +33,7 @@ def analyze(oc,i,p,pp):
 			else:
 				saving_bits = 0
 			if t_:
-				f.write("%s run %d size %d pos: %d, neg %d, diff %f, saving bits: %d\n"%(ss,z, b, t_pos_, t_neg_, abs(t_pos_-t_neg_)*1.0/(t_pos_+t_neg_), saving_bits)
+				f.write("%s run %d size %d pos: %d, neg %d, diff %f, saving bits: %d\n"%(ss,z, b, t_pos_, t_neg_, abs(t_pos_-t_neg_)*1.0/(t_pos_+t_neg_), saving_bits))
 			else:
 				f.write("%s run %d size %d pos: %d, neg %d, diff %f\n"%(ss,z, b, t_pos_, t_neg_, -1))
 			t_pos += t_pos_
