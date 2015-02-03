@@ -566,7 +566,6 @@ def huff_encode_plus_extra_all(symb2freq, jpeg_code):
 		if symb2freq[x] == 0:
 			zero += 1
 	extra_t = t*0.01
-	extra_t = 0
 	for x in symb2freq:
 		if not symb2freq[x]:
 			symb2freq[x] = extra_t*1.0/zero
@@ -587,6 +586,8 @@ def huff_encode_plus_extra_all(symb2freq, jpeg_code):
 	ret = {}
 	for p in temp:
 		ret[p[0]] = len(p[1])
+		if (ret[p[0]] > 32):
+			print "!", ret[p[0]]
 	return ret
 
 
