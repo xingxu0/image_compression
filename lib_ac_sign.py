@@ -866,26 +866,33 @@ def get_dep(blocks, blocks_o, now, s, e, dep, one_or_two, b_mcu1, b_mcu2):
 			l = len(apc_bins[1])
 		else:
 			l = len(papc_bins[1])
-		first_jj = 0
+		first_jj = [0]*x
 		for ii in range(x):
 			temp_b = get_previous_block(blocks_o, now-ii)
 			for jj in range(s, min(63,s+5)+1):
 				if temp_b[jj] < 0:
-					first_jj = jj
+					first_jj[ii] = jj
 					ss -= 1
 					break
 				if temp_b[jj] > 0:
 					ss += 1
-					first_jj = jj
+					first_jj[ii] = jj
 					break
-		if ss == -2:
-			return t + 2*(l + 1)
-		elif ss == +2:
-			return t + (l + 1)
-		else:
-			return t
-			
 		
+		#if (first_jj[0] != first_jj[1]):
+		#	return t
+		si = 0
+		if ss<=-1:
+			si = 2*(l+1)
+		elif ss>=1:
+			si = l+1
+		elif first_jj[1] >0:
+			si = l+1
+		elif first_jj[1] <0:
+			si = 2*(l+1)
+		else:
+			si = 0
+		return t + si
 	if dep == -1:
 		return 0
 		

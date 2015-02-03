@@ -200,7 +200,7 @@ def calc_gain(comp, dep1_s, dep2_s):
 				yy[p][i-1] += o
 				diff[p][i-1] += jpeg_t[i][p][pp] - o
 				if g != jpeg_t[i][p][pp] - o:
-					lib.fprint("ERROR: test gain not equal!" +  str(g) +" "+ str(diff[p][i-1])+ " "+ str(i)+" " + str(p) + " "+str(pp))
+					lib.fprint("ERROR: test gain not equal!" +  str(g) +" "+ str(diff[p][i-1])+ " "+ str(i)+" " + str(p) + " "+str(pp) + " " + str(o) + " " + str(jpeg_t[i][p][pp]))
 				if o+g:
 					#lib.fprint(str(i) + " " + str(p) + " " + str(pp) + ": " + str(g) + "/" + str(o+g) + "(" +str(int(g*1.0/(o+g)*10000)/100.0) +"%)")
 					pass
