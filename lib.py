@@ -503,6 +503,8 @@ def huff_encode_plus_extra_better_DC(symb2freq, jpeg_code):
 	ret = {}
 	for p in temp:
 		ret[p[0]] = len(p[1])
+		if (ret[p[0]] > 32):
+			print "!"
 	return ret
 
 def huff_encode_plus_extra_ac_sign(symb2freq, jpeg_code):
