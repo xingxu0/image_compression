@@ -3,10 +3,12 @@
 import math,sys, copy, os, heapq, glob, operator, pickle, lib_ac_sign as lib
 from operator import itemgetter
 
-def analyze(oc,i,p,pp):
-	global tab_folder, t_saving
+def analyze(oc,i,p,pp, t_folder):
+	global t_saving
 	l = len(lib.papc_bins[1])
 	ss = ""
+	fname = t_folder + "/" + str(i)+"_"+str(p)+"_"+str(pp)+".table"
+	p_o = pp
 	if pp < (l+1):
 		return
 	if pp < 2*(l+1):
@@ -16,7 +18,6 @@ def analyze(oc,i,p,pp):
 		ss = "-"
 		pp -= 2*(l+1)
 	AC_BITS = 10
-	fname = tab_folder + "/" + str(i)+"_"+str(p)+"_"+str(pp)+".table"
 	f = open(fname, "w")
 	t_pos = 0
 	t_neg = 0
@@ -38,14 +39,15 @@ def analyze(oc,i,p,pp):
 			if t_:
 				f.write("%s run %d size %d pos: %d, neg %d, diff %f, saving bits: %d\n"%(ss,z, b, t_pos_, t_neg_, abs(t_pos_-t_neg_)*1.0/(t_pos_+t_neg_), saving_bits))
 			else:
-				f.write("%s run %d size %d pos: %d, neg %d, diff %f\n"%(ss,z, b, t_pos_, t_neg_, -1))
+				pass
+				#f.write("%s run %d size %d pos: %d, neg %d, diff %f\n"%(ss,z, b, t_pos_, t_neg_, -1))
 			t_pos += t_pos_
 			t_neg += t_neg_
 			saving_bit += saving_bits
 			#print "run %d size %d pos: %d, neg %d, diff %f"%(z, b, t_pos_, t_neg_, t_pos_*1.0/t_neg_)
 	t = t_pos + t_neg
 	if t:
-		print ss,i,p,pp, t, t_pos*1.0/t, t_neg*1.0/t, abs(t_pos-t_neg)*1.0/t, "saving: ", saving_bit
+		print ss,i,p,pp, "(",p_o,")", t, t_pos*1.0/t, t_neg*1.0/t, abs(t_pos-t_neg)*1.0/t, "saving: ", saving_bit
 		t_saving += saving_bit
 
 def save_code_table(c, oc, i, d1, d2, table_folder):
@@ -201,7 +203,7 @@ def create_table(comp, dep1_s, dep2_s):
 		for p in range(SIZE1 + 1):
 			for pp in range(SIZE2 + 1):
 				#co[i][p][pp] = lib.huff_encode_plus_extra_ac_sign(oc[i][p][pp], lib.code)
-				analyze(oc[i][p][pp],i,p,pp)
+				analyze(oc[i][p][pp],i,p,pp,table_folder)
 				#save_code_table(co[i][p][pp], oc[i][p][pp], i, p, pp, table_folder)
 	lib.index_file.close()
 	print "\n\tTraining DONE"
