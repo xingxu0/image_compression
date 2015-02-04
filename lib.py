@@ -586,7 +586,7 @@ def huff_encode_plus_extra_all(symb2freq, jpeg_code):
 	ret = {}
 	for p in temp:
 		ret[p[0]] = len(p[1])
-		if (ret[p[0]] > 32):
+		if (ret[p[0]] > 10):
 			print "!", ret[p[0]]
 	return ret
 
