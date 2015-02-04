@@ -584,11 +584,14 @@ def huff_encode_plus_extra_all(symb2freq, jpeg_code):
 
 	temp = sorted(heappop(heap)[1:], key=lambda p: (len(p[-1]), p))
 	ret = {}
+	max_len = -1
 	for p in temp:
 		ret[p[0]] = len(p[1])
-		if (ret[p[0]] > 10):
+		if (ret[p[0]] > 32):
 			print "!", ret[p[0]]
-	return ret
+		if ret[p[0]]>max_len:
+			max_len = ret[p[0]]
+	return ret, max_len
 
 
 def huff_encode_plus_extra_handle_2_separately(symb2freq, jpeg_code):

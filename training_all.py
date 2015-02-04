@@ -180,12 +180,16 @@ def create_table(comp, dep1_s, dep2_s):
 			co_dc[i] = lib.huff_encode_plus_extra_better_DC(oc_dc[i], lib.bits_dc_chrominance)
 		save_code_table(co_dc[i], oc_dc[i], "DC", i, "", table_folder)
 	lib.fprint("generating AC tables...")
+	max_len = -1
 	for i in range(1, 64):
 		#print i
 		for p in range(SIZE1 + 1):
 			for pp in range(SIZE2 + 1):
-				co[i][p][pp] = lib.huff_encode_plus_extra_all(oc[i][p][pp], lib.code)
+				co[i][p][pp], max_len_ = lib.huff_encode_plus_extra_all(oc[i][p][pp], lib.code)
 				save_code_table(co[i][p][pp], oc[i][p][pp], i, p, pp, table_folder)
+				if max_len_ > max_len:
+					max_len = max_len_
+	lib.fprint("max length symbols: %d"%(max_len))
 	lib.index_file.close()
 	print "\n\tTraining DONE"
 	
