@@ -559,7 +559,7 @@ def huff_encode_plus_extra_all(symb2freq, jpeg_code):
 		ret = deepcopy(jpeg_code)
 		for x in jpeg_code:
 			ret[(1<<8)+x] = jpeg_code[x]
-		return ret
+		return ret, 0
 	
 	zero = 0
 	for x in symb2freq:
