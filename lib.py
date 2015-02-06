@@ -700,7 +700,7 @@ def get_avg_pre_coef(b, i):
 	if i==1:
 		return min(10, b[0])*1.0/11
 	t = 0
-	ma = 0
+	ma = 0 
 	#for x in range(1, i):
 	for x in range(1, i):
 		t += b[x]
