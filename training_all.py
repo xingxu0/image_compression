@@ -58,6 +58,8 @@ def create_table(comp, dep1_s, dep2_s):
 	# get SIZE1_length code based on learning set
 	co = {}   #co for code
 	oc = {}   #oc for occur, then becomes difference
+	oc_default = {}
+	co_default = {}
 	pos = 1
 
 	l_total_bits = 0
@@ -95,12 +97,37 @@ def create_table(comp, dep1_s, dep2_s):
 					oc[i][p][pp][(1<<8)+(z<<4)+12] = 0 # for +-3, independantly						
 				oc[i][p][pp][(1<<8)+0] = 0	# 0 for EOB
 				oc[i][p][pp][(1<<8)+0xf0] = 0
+				
+	for z in range(16):
+		for b in range(1, AC_BITS + 1):
+			oc_default[(z<<4) + b] = 0	
+		oc_default[(z<<4)+15] = 0 # for +-7, independantly
+		oc_default[(z<<4)+14] = 0 # for +-6, independantly
+		oc_default[(z<<4)+13] = 0 # for +-5, independantly
+		oc_default[(z<<4)+12] = 0 # for +-3, independantly
+	oc_default[0] = 0	# 0 for EOB
+	oc_default[0xf0] = 0
+	# negative sign
+	for z in range(16):
+		for b in range(1, AC_BITS + 1):
+			oc_default[(1<<8)+(z<<4) + b] = 0
+		oc_default[(1<<8)+(z<<4)+15] = 0 # for +-7, independantly
+		oc_default[(1<<8)+(z<<4)+14] = 0 # for +-6, independantly
+		oc_default[(1<<8)+(z<<4)+13] = 0 # for +-5, independantly
+		oc_default[(1<<8)+(z<<4)+12] = 0 # for +-3, independantly						
+	oc_default[(1<<8)+0] = 0	# 0 for EOB
+	oc_default[(1<<8)+0xf0] = 0				
+
 	oc_dc = {}
 	co_dc = {}
+	oc_default_dc = {}
+	co_default_dc = {}
 	for i in range(36):
 		oc_dc[i] = {}
 		for j in range(23):
 			oc_dc[i][j] = 0
+	for j in range(23):
+		oc_default_dc[j] = 0
 	
 	files = glob.glob(in_folder + "/*.block")
 	ratio = 0
@@ -179,6 +206,12 @@ def create_table(comp, dep1_s, dep2_s):
 		else:
 			co_dc[i] = lib.huff_encode_plus_extra_better_DC(oc_dc[i], lib.bits_dc_chrominance)
 		save_code_table(co_dc[i], oc_dc[i], "DC", i, "", table_folder)
+		for x in oc_dc[i]:
+			oc_default_dc[x] += oc_dc[i][x]
+	co_default_dc = lib.huff_encode_plus_extra_better_DC(oc_default_dc, lib.bits_dc_luminance)
+	save_code_table(co_default_dc, oc_default_dc, "DC", 100, "", table_folder)
+	
+	
 	lib.fprint("generating AC tables...")
 	max_len = -1
 	for i in range(1, 64):
@@ -189,6 +222,11 @@ def create_table(comp, dep1_s, dep2_s):
 				save_code_table(co[i][p][pp], oc[i][p][pp], i, p, pp, table_folder)
 				if max_len_ > max_len:
 					max_len = max_len_
+				for x in oc[i][p][pp]:
+					oc_default[x] += oc[i][p][pp][x]
+	co_default, max_len_ = lib.huff_encode_plus_extra_all(oc_default, lib.code)
+	lib.fprint("default table max:", max_len_)
+	save_code_table(co_default, oc_default, 100,100,100,table_folder)
 	lib.fprint("max length symbols: %d"%(max_len))
 	lib.index_file.close()
 	print "\n\tTraining DONE"
