@@ -929,7 +929,7 @@ def get_mcu_energy_level(b1, b2, now, s, e):
 def get_previous_blocks_coef(blocks, now, s, e):
 	global apc_bins, avg_coef,look_forward_coef, look_backward_block
 	su = 0
-	ma = 0
+	ma = look_backward_block
 	sign = 0
 	n = 0
 	pos = -1
