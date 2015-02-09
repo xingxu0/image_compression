@@ -225,7 +225,7 @@ def create_table(comp, dep1_s, dep2_s):
 				for x in oc[i][p][pp]:
 					oc_default[x] += oc[i][p][pp][x]
 	co_default, max_len_ = lib.huff_encode_plus_extra_all(oc_default, lib.code)
-	lib.fprint("default table max:", max_len_)
+	lib.fprint("default table max: " +str(max_len_))
 	save_code_table(co_default, oc_default, 100,100,100,table_folder)
 	lib.fprint("max length symbols: %d"%(max_len))
 	lib.index_file.close()
