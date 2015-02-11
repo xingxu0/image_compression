@@ -1,4 +1,4 @@
-/*
+/* xing
  * jchuff.c
  *
  * This file was part of the Independent JPEG Group's software:
@@ -67,7 +67,7 @@ typedef struct {
   size_t put_buffer;            /* current bit-accumulation buffer */
   int put_bits;                 /* # of bits now in it */
   int last_dc_val[MAX_COMPS_IN_SCAN]; /* last DC coef for each component */
-  int last_dc_diff[MAX_COMPS_IN_SCAN]; /* last DC coef diff for each component  - Xing*/
+  //int last_dc_diff[MAX_COMPS_IN_SCAN]; /* last DC coef diff for each component  - Xing*/
   previous_block_state_t previous_block_state;
 } savable_state;
 
@@ -87,13 +87,16 @@ typedef struct {
          (dest).last_dc_val[1] = (src).last_dc_val[1], \
          (dest).last_dc_val[2] = (src).last_dc_val[2], \
          (dest).last_dc_val[3] = (src).last_dc_val[3], \
-         (dest).last_dc_diff[0] = (src).last_dc_diff[0], \
-         (dest).last_dc_diff[1] = (src).last_dc_diff[1], \
-         (dest).last_dc_diff[2] = (src).last_dc_diff[2], \
-         (dest).last_dc_diff[3] = (src).last_dc_diff[3], \
          memcpy(&(dest), &(src), sizeof(previous_block_state_t)))
 #endif
 #endif
+
+/*
+ * (dest).last_dc_diff[0] = (src).last_dc_diff[0], \
+         (dest).last_dc_diff[1] = (src).last_dc_diff[1], \
+         (dest).last_dc_diff[2] = (src).last_dc_diff[2], \
+         (dest).last_dc_diff[3] = (src).last_dc_diff[3], \
+ */
 
 
 typedef struct {
@@ -172,6 +175,7 @@ start_pass_huff (j_compress_ptr cinfo, boolean gather_statistics)
       for (temp=0; temp<64; ++temp) {
         //entropy->saved.previous_block_state.previous_blocks[ci][temp1][temp] = -1;
         entropy->saved.previous_block_state.previous_blocks_avgs[ci][temp1][temp] = 0;
+        entropy->saved.previous_block_state.previous_blocks[ci][temp1][temp] = 0;
       }
   }
 
@@ -210,7 +214,7 @@ start_pass_huff (j_compress_ptr cinfo, boolean gather_statistics)
     }
     /* Initialize DC predictions to 0 */
     entropy->saved.last_dc_val[ci] = 0;
-    entropy->saved.last_dc_diff[ci] = 0; // -Xing
+    //entropy->saved.last_dc_diff[ci] = 0; // -Xing
   }
 
   /* Initialize bit buffer to empty */
@@ -405,11 +409,10 @@ dump_buffer (working_state * state)
 #define EMIT_CODE_ENTROPY(code, size) { \
   CHECKBUF31() \
   PUT_BITS(code, size) \
-  if (nbits<=3) \
-    PUT_BITS(sign, 1) \
-  else { \
-  temp2 &= (((INT32) 1)<<nbits) - 1; \
-  PUT_BITS(temp2, nbits) \
+  if (nbits>3) { \
+	  temp3 = nbits - 1; \
+  temp &= (((INT32) 1)<<temp3) - 1; \
+  PUT_BITS(temp, temp3) \
   } \
  }
 
@@ -439,11 +442,10 @@ dump_buffer (working_state * state)
 #define EMIT_CODE_ENTROPY(code, size) { \
   PUT_BITS(code, size) \
   CHECKBUF15() \
-  if (nbits<=3) \
-    PUT_BITS(sign, 1) \
-  else { \
-  temp2 &= (((INT32) 1)<<nbits) - 1; \
-  PUT_BITS(temp2, nbits) \
+  if (nbits>3) { \
+	  temp3 = nbits - 1; \
+  	  temp &= (((INT32) 1)<<temp3) - 1; \
+  	  PUT_BITS(temp, temp3) \
   } \
   CHECKBUF15() \
  }
@@ -510,7 +512,7 @@ flush_bits (working_state * state)
 
 LOCAL(boolean)
 encode_one_block_entropy (working_state * state, JCOEFPTR block, int last_dc_val,
-      int ci, int last_dc_diff_bits, int * dc_diff_bits, previous_block_state_t * previous_block_state)
+      int ci, previous_block_state_t * previous_block_state)
 {
   //register int temp, temp2;
   //register int nbits;
@@ -518,13 +520,19 @@ encode_one_block_entropy (working_state * state, JCOEFPTR block, int last_dc_val
   //int Se = state->cinfo->lim_Se;
   //const int * natural_order = state->cinfo->natural_order;
 
-  int temp, temp2, temp3, sign = 0, better_dc_nbits;
-  int nbits, nbits_;
+  int temp, temp2, temp3;
+  int nbits;
   int r, code, size;
   JOCTET _buffer[BUFSIZE], *buffer;
   size_t put_buffer;  int put_bits;
   //int code_0xf0 = actbl->ehufco[0xf0], size_0xf0 = actbl->ehufsi[0xf0];
   size_t bytes, bytestocopy;  int localbuf = 0;
+  int dc_diff_bits;
+  int index1, index2, index3;
+  index3 = previous_block_state->current_index[ci];
+  index1 = index3 == 0 ? LOOK_BACKWARD_BLOCK - 1 : index3 - 1;
+  index2 = index1 == 0 ? LOOK_BACKWARD_BLOCK - 1 : index1 - 1;
+  UINT8* max_table = max_pos_value_range[ci][1];
 
   put_buffer = state->cur.put_buffer;
   put_bits = state->cur.put_bits;
@@ -535,8 +543,8 @@ encode_one_block_entropy (working_state * state, JCOEFPTR block, int last_dc_val
   UINT8 * previous_blocks_avgs_ma = previous_block_state->previous_blocks_avgs_ma[ci][LOOK_BACKWARD_BLOCK];
 
   // logging entire block
-  JCOEF* previous_blocks = previous_block_state->previous_blocks[ci][LOOK_BACKWARD_BLOCK];
-  //memset(previous_blocks, 0, 64*sizeof(JCOEF));
+  char* previous_blocks = previous_block_state->previous_blocks[ci][LOOK_BACKWARD_BLOCK];
+  memset(previous_blocks, 0, 64*sizeof(char));
 
   symbol_table_t * p_table; // - Xing
 
@@ -559,22 +567,22 @@ encode_one_block_entropy (working_state * state, JCOEFPTR block, int last_dc_val
 
   /* Find the number of bits needed for the magnitude of the coefficient */
    nbits = JPEG_NBITS(temp);
-   *dc_diff_bits = nbits;
+   dc_diff_bits = nbits;
 
    // for better dc
    if (temp2 >= 0)
      previous_blocks[0] = nbits;
    else
      previous_blocks[0] = -nbits;
-   better_dc_nbits = previous_blocks[0] + 11;
+   temp3 = previous_blocks[0] + 11;
    // for better dc
 
 
   /* Emit the Huffman-coded symbol for the number of bits */
-  p_table = (symbol_table_t *)&dc_table[ci][get_dc_index(ci, previous_block_state)];
+  p_table = (symbol_table_t *)&dc_table[ci][get_dc_index(ci, previous_block_state, index1, index2)];
 
-  code = p_table->symbol[better_dc_nbits];
-  size = p_table->bits[better_dc_nbits];
+  code = p_table->symbol[temp3];
+  size = p_table->bits[temp3];
   PUT_BITS(code, size)
   CHECKBUF15()
 
@@ -594,10 +602,12 @@ encode_one_block_entropy (working_state * state, JCOEFPTR block, int last_dc_val
   /* Encode the AC coefficients per section F.1.2.2 */
 
   r = 0;      /* r = run length of zeros */
-  int t = 0, ma = 0, last_non_zero = 1; // Xing, see training_paras.py
+  int t = 0, last_non_zero = 1; // Xing, see training_paras.py
   // last_nont_zero actually stores the position of last_non_zero + 1
-  int f = 0;
+  int sign2;
   int real_last_non_zero = 1;
+
+//  int debug1,debug2,debug3;
 
   /* Manually unroll the k loop to eliminate the counter variable.  This
    * improves performance greatly on systems with a limited number of
@@ -607,56 +617,53 @@ encode_one_block_entropy (working_state * state, JCOEFPTR block, int last_dc_val
     if ((temp = block[jpeg_natural_order_of_k]) == 0) { \
       r++; \
     } else { \
-      temp2 = temp; \
+      if (temp > 0) {sign2 = 1; temp2 = 0;} \
+      else {sign2 = -1; temp2 = 256;} \
+      /*previous_blocks[k] = temp; */ \
       /* Branch-less absolute value, bitwise complement, etc., same as above */ \
       temp3 = temp >> (CHAR_BIT * sizeof(int) - 1); \
       temp ^= temp3; \
       temp -= temp3; \
       /* training_2_3_separate*/ \
       nbits = JPEG_NBITS_NONZERO(temp); \
-      if (temp<=7) { \
-    	  sign = temp2 > 0 ? (INT32)1 : (INT32)0; \
-    	  nbits_ = coef_to_entry_table[temp]; \
-      } \
-      else { \
-    	  nbits_ = nbits; \
-      }\
-      temp2 += temp3; \
+      temp2 += temp<=7 ? coef_to_entry_table[temp] : nbits; \
       /* if run length > 15, must emit special run-length-16 codes (0xF0) */ \
       while (r > 15) { \
-        f = t == 0 ? 0 : t*1000/ma; \
-        p_table = (symbol_table_t *)&ac_table[ci][last_non_zero][get_first_dimension_index(ci, last_non_zero, f, *dc_diff_bits)][get_second_dimension_index(ci, last_non_zero, previous_block_state)]; \
+        p_table = (symbol_table_t *)&ac_table[ci][last_non_zero][get_first_dimension_index_general(ci, last_non_zero, t*1000/(max_table[last_non_zero-1]), dc_diff_bits)][get_second_dimension_index(ci, last_non_zero, previous_block_state, index1, index2, index3)]; \
         code = p_table->symbol[0xf0]; \
         size = p_table->bits[0xf0]; \
         EMIT_BITS(code, size) \
         r -= 16; \
-        ma += max_pos_value_range[ci][last_non_zero][last_non_zero + 15]; \
+        /* ma += max_pos_value_range[ci][last_non_zero][last_non_zero + 15]; */ \
         /* for (temp3=last_non_zero; temp3<last_non_zero+16; ++temp3) */ \
         /*  ma += max_pos_value[ci].bits[temp3]; */ \
         last_non_zero += 16; \
       } \
       /* Emit Huffman symbol for run length / number of bits */ \
-      temp3 = (r << 4) + nbits_; \
-      f = t == 0 ? 0 : t*1000/ma; \
-      p_table = (symbol_table_t *)&ac_table[ci][last_non_zero][get_first_dimension_index(ci, last_non_zero, f, *dc_diff_bits)][get_second_dimension_index(ci, last_non_zero, previous_block_state)]; \
-      code = p_table->symbol[temp3]; \
-      size = p_table->bits[temp3]; \
+      temp2 += (r << 4); \
+      p_table = (symbol_table_t *)&ac_table[ci][last_non_zero][get_first_dimension_index_general(ci, last_non_zero, t*1000/(max_table[last_non_zero-1]), dc_diff_bits)][get_second_dimension_index(ci, last_non_zero, previous_block_state, index1, index2, index3)]; \
+      /*debug1=last_non_zero;*/ \
+      /*debug2=get_first_dimension_index(ci, last_non_zero, f, *dc_diff_bits);*/ \
+      /*debug3= get_second_dimension_index(ci, last_non_zero, previous_block_state);*/ \
+      code = p_table->symbol[temp2]; \
+      size = p_table->bits[temp2]; \
+      t += nbits; \
+      /*printf("%d,%d,%d:%d (%d, %d)", debug1, debug2, debug3, temp3, code, size);*/ \
       EMIT_CODE_ENTROPY(code, size) \
       /* see training_handle_2_3_separate.py for modification */ \
-      t += nbits; \
-      ma += max_pos_value_range[ci][last_non_zero][k]; \
+      /*ma += max_pos_value_range[ci][last_non_zero][k]; */\
       r = k - LOOK_FORWARD_COEF + 1; \
       if (r < real_last_non_zero) \
         r = real_last_non_zero; \
       memset(&previous_blocks_avgs[r], nbits, k-r+1); \
+      memset(&previous_blocks[r], sign2, k-r+1); \
       memcpy(&previous_blocks_avgs_ma[r], &max_pos_value_range_r[ci][k][r], k-r+1); \
       /* fast record status for dimension-2 value */ \
       last_non_zero = k + 1; \
-      real_last_non_zero = k + 1; \
+      real_last_non_zero = last_non_zero; \
       r = 0; \
     } \
   }
-
     /*
     for (temp3=r; temp3<=k; ++temp3) { \
             previous_blocks_avgs[temp3] = nbits; \
@@ -678,13 +685,14 @@ encode_one_block_entropy (working_state * state, JCOEFPTR block, int last_dc_val
 
   /* If the last coef(s) were zero, emit an end-of-block code */
   if (r > 0) {
-    f = t == 0 ? 0 : t*1000/ma;
-    p_table = (symbol_table_t *)&ac_table[ci][last_non_zero][get_first_dimension_index(ci, last_non_zero, f, *dc_diff_bits)]
-                                              [get_second_dimension_index(ci, last_non_zero, previous_block_state)];
+    p_table = (symbol_table_t *)&ac_table[ci][last_non_zero][get_first_dimension_index_general(ci, last_non_zero, t*1000/(max_table[last_non_zero-1]), dc_diff_bits)]
+                                              [get_second_dimension_index(ci, last_non_zero, previous_block_state, index1, index2, index3)];
     code = p_table->symbol[0];
     size = p_table->bits[0];
     EMIT_BITS(code, size)
   }
+
+  //printf("\n");
 
   state->cur.put_buffer = put_buffer;
   state->cur.put_bits = put_bits;
@@ -823,7 +831,7 @@ emit_restart (working_state * state, int restart_num)
   for (ci = 0; ci < state->cinfo->comps_in_scan; ci++) {
   state->cur.previous_block_state.current_index[ci] = 0; // Xing
     state->cur.last_dc_val[ci] = 0;
-    state->cur.last_dc_diff[ci] = 0; // Xing, to use DC table
+    //state->cur.last_dc_diff[ci] = 0; // Xing, to use DC table
     for (temp1=0; temp1<LOOK_BACKWARD_BLOCK; ++temp1)
   	for (temp=0; temp<64; ++temp) {
   		//entropy->saved.previous_block_state.previous_blocks[ci][temp1][temp] = -1;
@@ -862,14 +870,14 @@ encode_mcu_huff (j_compress_ptr cinfo, JBLOCKROW *MCU_data)
         return FALSE;
   }
 
-  int dc_diff_bits = 0;
+  //int dc_diff_bits = 0;
   /* Encode the MCU data blocks */
   for (blkn = 0; blkn < cinfo->blocks_in_MCU; blkn++) {
     ci = cinfo->MCU_membership[blkn];
     compptr = cinfo->cur_comp_info[ci];
     if (cinfo->private_option == 1) { // Xing: for our special encoding
       if (! encode_one_block_entropy(&state,
-         MCU_data[blkn][0], state.cur.last_dc_val[ci], ci, state.cur.last_dc_diff[ci], &dc_diff_bits, &state.cur.previous_block_state))
+         MCU_data[blkn][0], state.cur.last_dc_val[ci], ci, &state.cur.previous_block_state))
         return FALSE;
     } else {
       if (! encode_one_block(&state,
@@ -880,11 +888,11 @@ encode_mcu_huff (j_compress_ptr cinfo, JBLOCKROW *MCU_data)
     }
     /* Update last_dc_val */
     state.cur.last_dc_val[ci] = MCU_data[blkn][0][0];
-    state.cur.last_dc_diff[ci] = dc_diff_bits;
+    //state.cur.last_dc_diff[ci] = dc_diff_bits;
     int now_index = state.cur.previous_block_state.current_index[ci];
     memcpy(state.cur.previous_block_state.previous_blocks[ci][now_index],
            state.cur.previous_block_state.previous_blocks[ci][LOOK_BACKWARD_BLOCK],
-           64*sizeof(JCOEF));
+           64*sizeof(char));
     memcpy(state.cur.previous_block_state.previous_blocks_avgs[ci][now_index],
                state.cur.previous_block_state.previous_blocks_avgs[ci][LOOK_BACKWARD_BLOCK],
                64*sizeof(UINT8));

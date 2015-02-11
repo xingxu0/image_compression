@@ -15,7 +15,8 @@
 
 /* Derived data constructed for each Huffman table */
 
-#define HUFF_LOOKAHEAD  8       /* # of bits of lookahead */
+#define HUFF_LOOKAHEAD  8      /* # of bits of lookahead */
+#define HUFF_LOOKAHEAD_TWO_MORE 9
 
 typedef struct {
   /* Basic tables: (element [0] of each array is unused) */
@@ -211,9 +212,9 @@ slowlabel: \
     } \
   } \
   look = PEEK_BITS(HUFF_LOOKAHEAD); \
-  if ((nb = (htbl->lookup[look] >> HUFF_LOOKAHEAD)) <= HUFF_LOOKAHEAD) { \
+  if ((nb = (htbl->lookup[look] >> HUFF_LOOKAHEAD_TWO_MORE)) <= HUFF_LOOKAHEAD) { \
     DROP_BITS(nb); \
-    result = htbl->lookup[look] & ((1 << HUFF_LOOKAHEAD) - 1); \
+    result = htbl->lookup[look] & ((1 << HUFF_LOOKAHEAD_TWO_MORE) - 1); \
   } else { \
 slowlabel: \
     if ((result=jpeg_huff_decode_entropy(&state,get_buffer,bits_left,htbl,nb)) < 0) \
@@ -247,10 +248,10 @@ slowlabel: \
   FILL_BIT_BUFFER_FAST; \
   s = PEEK_BITS(HUFF_LOOKAHEAD); \
   s = htbl->lookup[s]; \
-  nb = s >> HUFF_LOOKAHEAD; \
+  nb = s >> HUFF_LOOKAHEAD_TWO_MORE; \
   /* Pre-execute the common case of nb <= HUFF_LOOKAHEAD */ \
   DROP_BITS(nb); \
-  s = s & ((1 << HUFF_LOOKAHEAD) - 1); \
+  s = s & ((1 << HUFF_LOOKAHEAD_TWO_MORE) - 1); \
   if (nb > HUFF_LOOKAHEAD) { \
     /* Equivalent of jpeg_huff_decode() */ \
     /* Don't use GET_BITS() here because we don't want to modify bits_left */ \
@@ -260,7 +261,7 @@ slowlabel: \
       s |= GET_BITS(1); \
       nb++; \
     } \
-    s = htbl->run_length[ (int) (s + htbl->valoffset[nb]) & 0xFF ]; \
+    s = htbl->run_length[ (int) (s + htbl->valoffset[nb])]; \
   }
 
 /* Out-of-line case for Huffman code fetching */
