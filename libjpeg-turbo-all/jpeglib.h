@@ -1164,5 +1164,6 @@ int get_dc_index(int ci, previous_block_state_t * previous_block_state, int inde
 FILE * outputcoef;
 
 int encode_bits, decode_bits;
+int max_bits;
 
 #endif /* JPEGLIB_H */

@@ -356,6 +356,10 @@ void get_derived_huff_table(symbol_table_t* tbl)
   free(bits_aggre);
 }
 
+boolean default_table[3];
+int default_i[3];
+int default_j[3];
+int default_k[3];
 boolean initialize_AC_table(int c, int i, int j, int k)
 {
 	int table_size = 512, ii, jj, kk, min, min_i, min_j, min_k;
@@ -363,6 +367,7 @@ boolean initialize_AC_table(int c, int i, int j, int k)
 	sprintf(filename, "%s/%d/plain_%d_%d_%d.table", table_folder, c, i, j, k);
 	FILE * f = fopen(filename, "r");
 	if (f == NULL) {
+		/* find closest case... too slow
 		min = 1000;
 		min_i=min_j=min_k=0;
 		for (ii=1; ii<64; ++ii) {
@@ -380,15 +385,25 @@ boolean initialize_AC_table(int c, int i, int j, int k)
 					}
 				}
 			}
-		}
+		} */
 
-		sprintf(filename, "%s/%d/plain_%d_%d_%d.table", table_folder, c, min_i,min_j, min_k);
+		if (default_table[c]) {
+			memcpy(&ac_table[c][i][j][k], &ac_table[c][default_i[c]][default_j[c]][default_k[c]], sizeof(symbol_table_t));
+			return TRUE;
+		}
+		// using default table
+		sprintf(filename, "%s/%d/plain_%d_%d_%d.table", table_folder, c, 100,100,100);
 		f = fopen(filename, "r");
+		default_table[c] = TRUE;
+		default_i[c] = i;
+		default_j[c] = j;
+		default_k[c] = k;
 
 		if (f==NULL) {
+			printf("%d %d %d %d ", c,i,j,k);
 			printf("ac still null\n");
+			return FALSE;
 		}
-		return FALSE;
 	}
 	/*
 	ac_table[c][i][j][k].symbol = malloc(table_size*sizeof(int));
@@ -442,6 +457,7 @@ void initialize_DC_table(int c, int i)
 	sprintf(filename, "%s/%d/plain_DC_%d_.table", table_folder, c, i);
 	FILE * f = fopen(filename, "r");
 	if (f == NULL) {
+		/* find closest case
 		min = 10000;
 		min_i = 0;
 		for (ii=0; ii<36; ++ii) {
@@ -455,8 +471,9 @@ void initialize_DC_table(int c, int i)
 			}
 
 		}
+		*/
 
-		sprintf(filename, "%s/%d/plain_DC_%d_.table", table_folder, c, min_i);
+		sprintf(filename, "%s/%d/plain_DC_%d_.table", table_folder, c, 100);
 		f = fopen(filename, "r");
 
 		if (f==NULL) {
@@ -621,7 +638,7 @@ void entropy_table_initialization()
 			for (j=0; j<(first_dimension_bins + 1); ++j) {
 				ac_table[c][i][j] = malloc(((second_dimension_bins + 1)*3+1)*sizeof(symbol_table_t));
 				for (k=0; k<(second_dimension_bins + 1)*3+1; ++k)
-					if (!initialize_AC_table(c, i, j, k)) break;
+					initialize_AC_table(c, i, j, k);
 			}
 		}
 	}
@@ -1153,11 +1170,6 @@ jpeg_huff_decode_entropy (bitread_working_state * state,
   state->bits_left = bits_left;
 
   /* With garbage input we may reach the sentinel value l = 17. */
-
-  if (l > 16) {
-    WARNMS(state->cinfo, JWRN_HUFF_BAD_CODE);
-    return 0;                   /* fake a zero as the safest result */
-  }
 
   return htbl->run_length[ (int) (code + htbl->valoffset[l]) ];
 }
