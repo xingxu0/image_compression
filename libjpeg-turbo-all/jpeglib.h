@@ -1137,7 +1137,7 @@ symbol_table_t ** dc_table;
 #define LOOK_FORWARD_COEF 5
 typedef struct
 {
-	JCOEF previous_blocks[3][LOOK_BACKWARD_BLOCK + 1][64];
+	char previous_blocks[3][LOOK_BACKWARD_BLOCK + 1][64];
 	UINT8 previous_blocks_avgs[3][LOOK_BACKWARD_BLOCK + 1][64];
 	UINT8 previous_blocks_avgs_ma[3][LOOK_BACKWARD_BLOCK + 1][64];
 	UINT8 current_index[3];
@@ -1154,12 +1154,16 @@ int* bits_saving;
 
 void entropy_table_initialization();
 
-int get_first_dimension_index(int ci, int pos, int f, int dc_diff);
-int get_second_dimension_index(int ci, int pos, previous_block_state_t* previous_block_state);
-int get_dc_index(int ci, previous_block_state_t * previous_block_state);
+int get_first_dimension_index_general(int ci, int pos, int f, int dc_diff);
+int get_first_dimension_index_pos1(int ci, int dc_diff);
+int get_first_dimension_index_pos2(int ci, int pos, int f);
+
+int get_second_dimension_index(int ci, int pos, previous_block_state_t* previous_block_state, int index1, int index2, int index3);
+int get_dc_index(int ci, previous_block_state_t * previous_block_state, int index1, int index2);
 
 FILE * outputcoef;
 
 int encode_bits, decode_bits;
+int max_bits;
 
 #endif /* JPEGLIB_H */
