@@ -84,27 +84,27 @@ gcc: fatal error: no input files
 compilation terminated.
 configure:3865: $? = 4
 configure:3885: checking whether the C compiler works
-configure:3907: gcc -g   conftest.c  >&5
+configure:3907: gcc    conftest.c  >&5
 configure:3911: $? = 0
 configure:3959: result: yes
 configure:3962: checking for C compiler default output file name
 configure:3964: result: a.out
 configure:3970: checking for suffix of executables
-configure:3977: gcc -o conftest -g   conftest.c  >&5
+configure:3977: gcc -o conftest    conftest.c  >&5
 configure:3981: $? = 0
 configure:4003: result: 
 configure:4025: checking whether we are cross compiling
-configure:4033: gcc -o conftest -g   conftest.c  >&5
+configure:4033: gcc -o conftest    conftest.c  >&5
 configure:4037: $? = 0
 configure:4044: ./conftest
 configure:4048: $? = 0
 configure:4063: result: no
 configure:4068: checking for suffix of object files
-configure:4090: gcc -c -g  conftest.c >&5
+configure:4090: gcc -c   conftest.c >&5
 configure:4094: $? = 0
 configure:4115: result: o
 configure:4119: checking whether we are using the GNU C compiler
-configure:4138: gcc -c -g  conftest.c >&5
+configure:4138: gcc -c   conftest.c >&5
 configure:4138: $? = 0
 configure:4147: result: yes
 configure:4156: checking whether gcc accepts -g
@@ -112,7 +112,7 @@ configure:4176: gcc -c -g  conftest.c >&5
 configure:4176: $? = 0
 configure:4217: result: yes
 configure:4234: checking for gcc option to accept ISO C89
-configure:4297: gcc  -c -g  conftest.c >&5
+configure:4297: gcc  -c -g -O2  conftest.c >&5
 configure:4297: $? = 0
 configure:4310: result: none needed
 configure:4332: checking dependency style of gcc
@@ -230,54 +230,54 @@ configure:5854: checking whether ln -s works
 configure:5858: result: yes
 configure:5865: checking how to recognise dependent libraries
 configure:6048: result: pass_all
-configure:6133: gcc -c -g  conftest.c >&5
+configure:6133: gcc -c -g -O2  conftest.c >&5
 configure:6136: $? = 0
 configure:6230: checking for ANSI C header files
-configure:6250: gcc -c -g  conftest.c >&5
+configure:6250: gcc -c -g -O2  conftest.c >&5
 configure:6250: $? = 0
-configure:6323: gcc -o conftest -g   conftest.c  >&5
+configure:6323: gcc -o conftest -g -O2   conftest.c  >&5
 configure:6323: $? = 0
 configure:6323: ./conftest
 configure:6323: $? = 0
 configure:6334: result: yes
 configure:6347: checking for sys/types.h
-configure:6347: gcc -c -g  conftest.c >&5
+configure:6347: gcc -c -g -O2  conftest.c >&5
 configure:6347: $? = 0
 configure:6347: result: yes
 configure:6347: checking for sys/stat.h
-configure:6347: gcc -c -g  conftest.c >&5
+configure:6347: gcc -c -g -O2  conftest.c >&5
 configure:6347: $? = 0
 configure:6347: result: yes
 configure:6347: checking for stdlib.h
-configure:6347: gcc -c -g  conftest.c >&5
+configure:6347: gcc -c -g -O2  conftest.c >&5
 configure:6347: $? = 0
 configure:6347: result: yes
 configure:6347: checking for string.h
-configure:6347: gcc -c -g  conftest.c >&5
+configure:6347: gcc -c -g -O2  conftest.c >&5
 configure:6347: $? = 0
 configure:6347: result: yes
 configure:6347: checking for memory.h
-configure:6347: gcc -c -g  conftest.c >&5
+configure:6347: gcc -c -g -O2  conftest.c >&5
 configure:6347: $? = 0
 configure:6347: result: yes
 configure:6347: checking for strings.h
-configure:6347: gcc -c -g  conftest.c >&5
+configure:6347: gcc -c -g -O2  conftest.c >&5
 configure:6347: $? = 0
 configure:6347: result: yes
 configure:6347: checking for inttypes.h
-configure:6347: gcc -c -g  conftest.c >&5
+configure:6347: gcc -c -g -O2  conftest.c >&5
 configure:6347: $? = 0
 configure:6347: result: yes
 configure:6347: checking for stdint.h
-configure:6347: gcc -c -g  conftest.c >&5
+configure:6347: gcc -c -g -O2  conftest.c >&5
 configure:6347: $? = 0
 configure:6347: result: yes
 configure:6347: checking for unistd.h
-configure:6347: gcc -c -g  conftest.c >&5
+configure:6347: gcc -c -g -O2  conftest.c >&5
 configure:6347: $? = 0
 configure:6347: result: yes
 configure:6361: checking dlfcn.h usability
-configure:6361: gcc -c -g  conftest.c >&5
+configure:6361: gcc -c -g -O2  conftest.c >&5
 configure:6361: $? = 0
 configure:6361: result: yes
 configure:6361: checking dlfcn.h presence
@@ -481,11 +481,11 @@ configure:7053: result: no
 configure:7087: checking the maximum length of command line arguments
 configure:7152: result: 32768
 configure:7163: checking command to parse /usr/bin/nm -B output from gcc object
-configure:7252: gcc -c -g  conftest.c >&5
+configure:7252: gcc -c -g -O2  conftest.c >&5
 configure:7255: $? = 0
 configure:7259: /usr/bin/nm -B conftest.o \| sed -n -e 's/^.*[ 	]\([ABCDGIRSTW][ABCDGIRSTW]*\)[ 	][ 	]*\(\)\([_A-Za-z][_A-Za-z0-9]*\)$/\1 \2\3 \3/p' \> conftest.nm
 configure:7262: $? = 0
-configure:7314: gcc -o conftest -g   conftest.c conftstm.o >&5
+configure:7314: gcc -o conftest -g -O2   conftest.c conftstm.o >&5
 configure:7317: $? = 0
 configure:7355: result: ok
 configure:7359: checking for objdir
@@ -502,30 +502,30 @@ configure:7677: result: strip
 configure:7949: checking if gcc static flag  works
 configure:7972: result: yes
 configure:7990: checking if gcc supports -fno-rtti -fno-exceptions
-configure:8008: gcc -c -g  -fno-rtti -fno-exceptions conftest.c >&5
+configure:8008: gcc -c -g -O2  -fno-rtti -fno-exceptions conftest.c >&5
 cc1: warning: command line option '-fno-rtti' is valid for C++/ObjC++ but not for C [enabled by default]
 configure:8012: $? = 0
 configure:8023: result: no
 configure:8038: checking for gcc option to produce PIC
 configure:8215: result: -fPIC
 configure:8223: checking if gcc PIC flag -fPIC works
-configure:8241: gcc -c -g  -fPIC -DPIC conftest.c >&5
+configure:8241: gcc -c -g -O2  -fPIC -DPIC conftest.c >&5
 configure:8245: $? = 0
 configure:8256: result: yes
 configure:8280: checking if gcc supports -c -o file.o
-configure:8301: gcc -c -g  -o out/conftest2.o conftest.c >&5
+configure:8301: gcc -c -g -O2  -o out/conftest2.o conftest.c >&5
 configure:8305: $? = 0
 configure:8325: result: yes
 configure:8351: checking whether the gcc linker (/usr/bin/ld -m elf_x86_64) supports shared libraries
 configure:9141: result: yes
 configure:9167: checking whether -lc should be explicitly linked in
-configure:9172: gcc -c -g  conftest.c >&5
+configure:9172: gcc -c -g -O2  conftest.c >&5
 configure:9175: $? = 0
 configure:9189: gcc -shared conftest.o  -v -Wl,-soname -Wl,conftest -o conftest 2\>\&1 \| grep  -lc  \>/dev/null 2\>\&1
 configure:9192: $? = 0
 configure:9204: result: no
 configure:9212: checking dynamic linker characteristics
-configure:9578: gcc -c -g  conftest.c >&5
+configure:9578: gcc -c -g -O2  conftest.c >&5
 configure:9581: $? = 0
 configure:9773: result: GNU/Linux ld.so
 configure:9777: checking how to hardcode library paths into programs
@@ -570,17 +570,17 @@ configure:13158: result: yes
 configure:19685: checking whether ln -s works
 configure:19689: result: yes
 configure:19732: checking size of long
-configure:19737: gcc -o conftest -g   conftest.c  >&5
+configure:19737: gcc -o conftest -g -O2   conftest.c  >&5
 configure:19737: $? = 0
 configure:19737: ./conftest
 configure:19737: $? = 0
 configure:19751: result: 8
 configure:19774: checking whether compiler supports pointers to undefined structures
-configure:19787: gcc -c -g  conftest.c >&5
+configure:19787: gcc -c -g -O2  conftest.c >&5
 configure:19787: $? = 0
 configure:19788: result: yes
 configure:19808: checking whether __SUNPRO_C is declared
-configure:19808: gcc -c -g -Wall conftest.c >&5
+configure:19808: gcc -c -O3 -Wall conftest.c >&5
 conftest.c: In function 'main':
 conftest.c:63:10: error: '__SUNPRO_C' undeclared (first use in this function)
    (void) __SUNPRO_C;
@@ -661,7 +661,7 @@ configure:19808: result: no
 configure:19824: checking for ANSI C header files
 configure:19928: result: yes
 configure:19939: checking stddef.h usability
-configure:19939: gcc -c -g -Wall conftest.c >&5
+configure:19939: gcc -c -O3 -Wall conftest.c >&5
 configure:19939: $? = 0
 configure:19939: result: yes
 configure:19939: checking stddef.h presence
@@ -673,7 +673,7 @@ configure:19939: result: yes
 configure:19939: checking for stdlib.h
 configure:19939: result: yes
 configure:19939: checking locale.h usability
-configure:19939: gcc -c -g -Wall conftest.c >&5
+configure:19939: gcc -c -O3 -Wall conftest.c >&5
 configure:19939: $? = 0
 configure:19939: result: yes
 configure:19939: checking locale.h presence
@@ -687,21 +687,21 @@ configure:19939: result: yes
 configure:19949: checking for sys/types.h
 configure:19949: result: yes
 configure:19959: checking for an ANSI C-conforming const
-configure:20025: gcc -c -g -Wall conftest.c >&5
+configure:20025: gcc -c -O3 -Wall conftest.c >&5
 configure:20025: $? = 0
 configure:20032: result: yes
 configure:20040: checking whether char is unsigned
-configure:20059: gcc -c -g -Wall conftest.c >&5
+configure:20059: gcc -c -O3 -Wall conftest.c >&5
 configure:20059: $? = 0
 configure:20066: result: no
 configure:20073: checking for inline
-configure:20089: gcc -c -g -Wall conftest.c >&5
+configure:20089: gcc -c -O3 -Wall conftest.c >&5
 configure:20089: $? = 0
 configure:20097: result: inline
 configure:20115: checking for size_t
-configure:20115: gcc -c -g -Wall conftest.c >&5
+configure:20115: gcc -c -O3 -Wall conftest.c >&5
 configure:20115: $? = 0
-configure:20115: gcc -c -g -Wall conftest.c >&5
+configure:20115: gcc -c -O3 -Wall conftest.c >&5
 conftest.c: In function 'main':
 conftest.c:65:21: error: expected expression before ')' token
  if (sizeof ((size_t)))
@@ -779,9 +779,9 @@ configure: failed program was:
 | }
 configure:20115: result: yes
 configure:20126: checking for unsigned char
-configure:20126: gcc -c -g -Wall conftest.c >&5
+configure:20126: gcc -c -O3 -Wall conftest.c >&5
 configure:20126: $? = 0
-configure:20126: gcc -c -g -Wall conftest.c >&5
+configure:20126: gcc -c -O3 -Wall conftest.c >&5
 conftest.c: In function 'main':
 conftest.c:65:28: error: expected expression before ')' token
  if (sizeof ((unsigned char)))
@@ -859,9 +859,9 @@ configure: failed program was:
 | }
 configure:20126: result: yes
 configure:20135: checking for unsigned short
-configure:20135: gcc -c -g -Wall conftest.c >&5
+configure:20135: gcc -c -O3 -Wall conftest.c >&5
 configure:20135: $? = 0
-configure:20135: gcc -c -g -Wall conftest.c >&5
+configure:20135: gcc -c -O3 -Wall conftest.c >&5
 conftest.c: In function 'main':
 conftest.c:66:29: error: expected expression before ')' token
  if (sizeof ((unsigned short)))
@@ -940,7 +940,7 @@ configure: failed program was:
 | }
 configure:20135: result: yes
 configure:20146: checking if right shift is signed
-configure:20175: gcc -o conftest -g -Wall  conftest.c  >&5
+configure:20175: gcc -o conftest -O3 -Wall  conftest.c  >&5
 conftest.c: In function 'main':
 conftest.c:49:6: warning: implicit declaration of function 'exit' [-Wimplicit-function-declaration]
       exit(is_shifting_signed(-0x7F7E80B1L));
@@ -1003,14 +1003,14 @@ configure: failed program was:
 |    }
 configure:20182: result: yes
 configure:20194: checking for memset
-configure:20194: gcc -o conftest -g -Wall  conftest.c  >&5
+configure:20194: gcc -o conftest -O3 -Wall  conftest.c  >&5
 conftest.c:54:6: warning: conflicting types for built-in function 'memset' [enabled by default]
  char memset ();
       ^
 configure:20194: $? = 0
 configure:20194: result: yes
 configure:20194: checking for memcpy
-configure:20194: gcc -o conftest -g -Wall  conftest.c  >&5
+configure:20194: gcc -o conftest -O3 -Wall  conftest.c  >&5
 conftest.c:55:6: warning: conflicting types for built-in function 'memcpy' [enabled by default]
  char memcpy ();
       ^
@@ -1023,13 +1023,13 @@ configure:20274: result: yes
 configure:20288: checking libjpeg shared library version
 configure:20290: result: 62.1.0
 configure:20312: checking whether the linker supports version scripts
-configure:20332: gcc -o conftest -g -Wall  -Wl,--version-script,conftest.map conftest.c  >&5
+configure:20332: gcc -o conftest -O3 -Wall  -Wl,--version-script,conftest.map conftest.c  >&5
 configure:20332: $? = 0
 configure:20334: result: yes (GNU style)
 configure:20367: checking whether to use version script when building libjpeg-turbo
 configure:20369: result: yes
 configure:20385: checking for inline
-configure:20400: gcc -c -g -Wall conftest.c >&5
+configure:20400: gcc -c -O3 -Wall conftest.c >&5
 conftest.c: In function 'main':
 conftest.c:40:1: warning: control reaches end of non-void function [-Wreturn-type]
  } inline __attribute__((always_inline)) int foo() { return 0; }
@@ -1097,6 +1097,7 @@ config.status:954: creating md5/Makefile
 config.status:1057: WARNING:  'md5/Makefile.in' seems to ignore the --datarootdir setting
 config.status:954: creating config.h
 config.status:954: creating jconfig.h
+config.status:1129: jconfig.h is unchanged
 config.status:954: creating jconfigint.h
 config.status:1176: executing depfiles commands
 
@@ -1118,8 +1119,8 @@ ac_cv_env_CCC_set=
 ac_cv_env_CCC_value=
 ac_cv_env_CC_set=
 ac_cv_env_CC_value=
-ac_cv_env_CFLAGS_set=set
-ac_cv_env_CFLAGS_value=-g
+ac_cv_env_CFLAGS_set=
+ac_cv_env_CFLAGS_value=
 ac_cv_env_CPPFLAGS_set=
 ac_cv_env_CPPFLAGS_value=
 ac_cv_env_CPP_set=
@@ -1234,22 +1235,22 @@ lt_lt_cv_sys_global_symbol_to_cdecl='"sed -n -e '\''s/^. .* \\(.*\\)\$/extern in
 ## Output variables. ##
 ## ----------------- ##
 
-ACLOCAL='${SHELL} /home/xing/research/image_compression/libjpeg-turbo-all/missing --run aclocal-1.9'
+ACLOCAL='${SHELL} /home/xing/research/image_compression_github/image_compression/libjpeg-turbo-all/missing --run aclocal-1.9'
 AMDEPBACKSLASH='\'
 AMDEP_FALSE='#'
 AMDEP_TRUE=''
-AMTAR='${SHELL} /home/xing/research/image_compression/libjpeg-turbo-all/missing --run tar'
+AMTAR='${SHELL} /home/xing/research/image_compression_github/image_compression/libjpeg-turbo-all/missing --run tar'
 AR='ar'
-AUTOCONF='${SHELL} /home/xing/research/image_compression/libjpeg-turbo-all/missing --run autoconf'
-AUTOHEADER='${SHELL} /home/xing/research/image_compression/libjpeg-turbo-all/missing --run autoheader'
-AUTOMAKE='${SHELL} /home/xing/research/image_compression/libjpeg-turbo-all/missing --run automake-1.9'
+AUTOCONF='${SHELL} /home/xing/research/image_compression_github/image_compression/libjpeg-turbo-all/missing --run autoconf'
+AUTOHEADER='${SHELL} /home/xing/research/image_compression_github/image_compression/libjpeg-turbo-all/missing --run autoheader'
+AUTOMAKE='${SHELL} /home/xing/research/image_compression_github/image_compression/libjpeg-turbo-all/missing --run automake-1.9'
 AWK='gawk'
-BUILD='20150208'
+BUILD='20150212'
 CC='gcc'
 CCAS='gcc'
-CCASFLAGS='-g'
+CCASFLAGS='-g -O2'
 CCDEPMODE='depmode=gcc3'
-CFLAGS='-g'
+CFLAGS='-O3'
 CPP='gcc -E'
 CPPFLAGS='-Wall'
 CXX='g++'
@@ -1289,7 +1290,7 @@ LIBTOOL='$(SHELL) $(top_builddir)/libtool'
 LIBTOOL_CURRENT='63'
 LN_S='ln -s'
 LTLIBOBJS=''
-MAKEINFO='${SHELL} /home/xing/research/image_compression/libjpeg-turbo-all/missing --run makeinfo'
+MAKEINFO='${SHELL} /home/xing/research/image_compression_github/image_compression/libjpeg-turbo-all/missing --run makeinfo'
 MEM_SRCDST_FUNCTIONS='global:  jpeg_mem_dest;  jpeg_mem_src;'
 NAFLAGS='-felf64 -DELF -D__x86_64__'
 NASM='nasm'
@@ -1376,7 +1377,7 @@ host_vendor='unknown'
 htmldir='${docdir}'
 includedir='${prefix}/include'
 infodir='${datarootdir}/info'
-install_sh='/home/xing/research/image_compression/libjpeg-turbo-all/install-sh'
+install_sh='/home/xing/research/image_compression_github/image_compression/libjpeg-turbo-all/install-sh'
 libdir='${exec_prefix}/lib64'
 libexecdir='${exec_prefix}/libexec'
 localedir='${datarootdir}/locale'
@@ -1435,7 +1436,7 @@ target_alias=''
 #define C_ARITH_CODING_SUPPORTED 1
 #define D_ARITH_CODING_SUPPORTED 1
 #define WITH_SIMD 1
-#define BUILD "20150208"
+#define BUILD "20150212"
 
 configure: exit 0
 
@@ -1456,40 +1457,3 @@ on xing-Studio-XPS-7100
 
 config.status:954: creating config.h
 config.status:1129: config.h is unchanged
-
-## ---------------------- ##
-## Running config.status. ##
-## ---------------------- ##
-
-This file was extended by libjpeg-turbo config.status 1.3.90, which was
-generated by GNU Autoconf 2.69.  Invocation command line was
-
-  CONFIG_FILES    = 
-  CONFIG_HEADERS  = 
-  CONFIG_LINKS    = 
-  CONFIG_COMMANDS = 
-  $ ./config.status 
-
-on xing-ThinkPad-T430s
-
-config.status:954: creating pkgscripts/libjpeg-turbo.spec.tmpl
-config.status:954: creating pkgscripts/makecygwinpkg.tmpl
-config.status:954: creating pkgscripts/makedpkg.tmpl
-config.status:954: creating pkgscripts/makemacpkg.tmpl
-config.status:954: creating pkgscripts/uninstall.tmpl
-config.status:954: creating tjbenchtest
-config.status:954: creating libjpeg.map
-config.status:954: creating Makefile
-config.status:1057: WARNING:  'Makefile.in' seems to ignore the --datarootdir setting
-config.status:954: creating simd/Makefile
-config.status:1057: WARNING:  'simd/Makefile.in' seems to ignore the --datarootdir setting
-config.status:954: creating java/Makefile
-config.status:1057: WARNING:  'java/Makefile.in' seems to ignore the --datarootdir setting
-config.status:954: creating md5/Makefile
-config.status:1057: WARNING:  'md5/Makefile.in' seems to ignore the --datarootdir setting
-config.status:954: creating config.h
-config.status:1129: config.h is unchanged
-config.status:954: creating jconfig.h
-config.status:954: creating jconfigint.h
-config.status:1129: jconfigint.h is unchanged
-config.status:1176: executing depfiles commands
