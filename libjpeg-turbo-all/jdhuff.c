@@ -478,8 +478,8 @@ void initialize_DC_table(int c, int i)
 
 		if (f==NULL) {
 			printf("dc still null\n");
+			return;
 		}
-		return;
 	}
 
 	dc_table[c][i].length = table_size;
@@ -631,6 +631,8 @@ void entropy_table_initialization()
 	second_dimension_bins = 20;
 	ac_table = malloc(3*sizeof(symbol_table_t ***));
 	int c, i, j, k;
+	for (c=0; c<3; ++c)
+		default_table[c] = FALSE;
 	for (c=0; c<3; ++c) {
 		ac_table[c] = malloc(64*sizeof(symbol_table_t **));
 		for (i=1; i<64; ++i) {
@@ -766,12 +768,10 @@ start_pass_huff_decoder (j_decompress_ptr cinfo)
     entropy->saved.last_dc_val[ci] = 0;
     //entropy->saved.last_dc_diff[ci] = 0; // Xing
 	entropy->saved.previous_block_state.current_index[ci] = 0;
-	for (temp1=0; temp1<LOOK_BACKWARD_BLOCK; ++temp1)
-		for (temp=0; temp<64; ++temp) {
-			//entropy->saved.previous_block_state.previous_blocks[ci][temp1][temp] = -1;
-			entropy->saved.previous_block_state.previous_blocks_avgs[ci][temp1][temp] = 0;
-			entropy->saved.previous_block_state.previous_blocks[ci][temp1][temp] = 0;
-		}
+	for (temp1=0; temp1<LOOK_BACKWARD_BLOCK; ++temp1) {
+    	memset(entropy->saved.previous_block_state.previous_blocks_avgs[ci][temp1], 0, 64*sizeof(UINT8));
+    	memset(entropy->saved.previous_block_state.previous_blocks[ci][temp1], 0, 64*sizeof(char));
+	}
   }
 
   /* Precalculate decoding info for each block in an MCU of this scan */
@@ -1230,13 +1230,10 @@ process_restart (j_decompress_ptr cinfo)
   	entropy->saved.previous_block_state.current_index[ci] = 0;
   	//memset(&entropy->saved.previous_block_state.previous_blocks_avgs[0][0][0], 0, ci*LOOK_BACKWARD_BLOCK*64);
 
-  	for (temp1=0; temp1<LOOK_BACKWARD_BLOCK; ++temp1)
-  		for (temp=0; temp<64; ++temp) {
-  			//entropy->saved.previous_block_state.previous_blocks[ci][temp1][temp] = -1;
-  			entropy->saved.previous_block_state.previous_blocks_avgs[ci][temp1][temp] = 0;
-  			entropy->saved.previous_block_state.previous_blocks[ci][temp1][temp] = 0;
-  		}
-
+  	for (temp1=0; temp1<LOOK_BACKWARD_BLOCK; ++temp1) {
+    	memset(entropy->saved.previous_block_state.previous_blocks_avgs[ci][temp1], 0, 64*sizeof(UINT8));
+    	memset(entropy->saved.previous_block_state.previous_blocks[ci][temp1], 0, 64*sizeof(char));
+  	}
   }
 
   /* Reset restart counter */
@@ -1371,19 +1368,24 @@ decode_mcu_slow_entropy (j_decompress_ptr cinfo, JBLOCKROW *MCU_data)
   previous_block_state_t * pre_state = &state.previous_block_state;
   UINT8 *previous_blocks_avgs, *previous_blocks_avgs_ma;
   char * previous_blocks;
-  int index1, index2, index3;
+  int index0, index1, index2, index3;
   for (blkn = 0; blkn < cinfo->blocks_in_MCU; blkn++) {
     block = MCU_data[blkn];
     t = 0;
     ci = cinfo->MCU_membership[blkn];
-    index3 = pre_state->current_index[ci];
-    index1 = index3 == 0 ? LOOK_BACKWARD_BLOCK - 1 : index3 - 1;
-    index2 = index1 == 0 ? LOOK_BACKWARD_BLOCK - 1 : index1 - 1;
+    index0 = pre_state->current_index[ci];
+    //printf("%d,", index3);
+    index1 = index0 == 0 ? LOOK_BACKWARD_BLOCK : index0 - 1;
+    index2 = index1 == 0 ? LOOK_BACKWARD_BLOCK : index1 - 1;
+    index3 = index2 == 0 ? LOOK_BACKWARD_BLOCK : index2 - 1;
 
-    previous_blocks_avgs = pre_state->previous_blocks_avgs[ci][LOOK_BACKWARD_BLOCK];
-    previous_blocks_avgs_ma = pre_state->previous_blocks_avgs_ma[ci][LOOK_BACKWARD_BLOCK];
-    previous_blocks = pre_state->previous_blocks[ci][LOOK_BACKWARD_BLOCK];
+    previous_blocks_avgs = pre_state->previous_blocks_avgs[ci][index0];
+    previous_blocks_avgs_ma = pre_state->previous_blocks_avgs_ma[ci][index0];
+    previous_blocks = pre_state->previous_blocks[ci][index0];
     memset(previous_blocks, 0, 64*sizeof(char));
+    memset(previous_blocks_avgs, 0, 64*sizeof(UINT8));
+
+    //printf("%d,%d ", index1,index2);
     p_table = (symbol_table_t *)&dc_table[ci][get_dc_index(ci, pre_state, index1, index2)];
 
     /* Decode a single block's worth of coefficients */
@@ -1515,16 +1517,6 @@ decode_mcu_slow_entropy (j_decompress_ptr cinfo, JBLOCKROW *MCU_data)
      // printf("\n");
 
     //now_index = pre_state->current_index[ci];
-    memcpy(pre_state->previous_blocks[ci][index3],
-            pre_state->previous_blocks[ci][LOOK_BACKWARD_BLOCK],
-               64*sizeof(char));
-    memcpy(pre_state->previous_blocks_avgs[ci][index3],
-    		pre_state->previous_blocks_avgs[ci][LOOK_BACKWARD_BLOCK],
-        		   64*sizeof(UINT8));
-    memcpy(pre_state->previous_blocks_avgs_ma[ci][index3],
-    		pre_state->previous_blocks_avgs_ma[ci][LOOK_BACKWARD_BLOCK],
-        		   64*sizeof(UINT8));
-    memset(pre_state->previous_blocks_avgs[ci][LOOK_BACKWARD_BLOCK], 0, 64*sizeof(UINT8));   // not sure if this is 100% correct, check later, basically mark every INT to -1
     /*
     for (tmp=0; tmp<64; ++tmp) {
     	printf("%d ", (*block)[tmp]);
@@ -1534,7 +1526,7 @@ decode_mcu_slow_entropy (j_decompress_ptr cinfo, JBLOCKROW *MCU_data)
     	printf("%d ", previous_blocks[tmp]);
     }
     printf("\n\n"); */
-    pre_state->current_index[ci] = index3 == LOOK_BACKWARD_BLOCK - 1 ? 0 : index3 + 1;
+    pre_state->current_index[ci] = index3;
   }
 
   /* Completed MCU, so update state */
@@ -1773,7 +1765,7 @@ decode_mcu_fast_entropy (j_decompress_ptr cinfo, JBLOCKROW *MCU_data)
       }
     }
 
-    index3 = pre_state->current_index[ci];
+    //index3 = pre_state->current_index[ci];
     memcpy(pre_state->previous_blocks[ci][index3],
     		pre_state->previous_blocks[ci][LOOK_BACKWARD_BLOCK],
            64*sizeof(char));
@@ -1823,7 +1815,7 @@ decode_mcu (j_decompress_ptr cinfo, JBLOCKROW *MCU_data)
 {
   huff_entropy_ptr entropy = (huff_entropy_ptr) cinfo->entropy;
   int usefast = 1;
-  //usefast = 0;
+  usefast = 0;
 
   /* Process restart marker if needed; may have to suspend */
   if (cinfo->restart_interval) {

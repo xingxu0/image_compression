@@ -402,7 +402,7 @@ dump_buffer (working_state * state)
 #if __WORDSIZE==64 || defined(_WIN64)
 
 #define EMIT_BITS(code, size) { \
-  CHECKBUF47() \
+  CHECKBUF31() \
   PUT_BITS(code, size) \
 }
 
@@ -417,9 +417,9 @@ dump_buffer (working_state * state)
  }
 
 #define EMIT_CODE(code, size) { \
+  temp2 &= (((INT32) 1)<<nbits) - 1; \
   CHECKBUF31() \
   PUT_BITS(code, size) \
-  temp2 &= (((INT32) 1)<<nbits) - 1; \
   PUT_BITS(temp2, nbits) \
  }
 
@@ -432,9 +432,9 @@ dump_buffer (working_state * state)
 }
 
 #define EMIT_CODE(code, size) { \
+  temp2 &= (((INT32) 1)<<nbits) - 1; \
   PUT_BITS(code, size) \
   CHECKBUF15() \
-  temp2 &= (((INT32) 1)<<nbits) - 1; \
   PUT_BITS(temp2, nbits) \
   CHECKBUF15() \
  }
@@ -446,8 +446,8 @@ dump_buffer (working_state * state)
 	  temp3 = nbits - 1; \
   	  temp &= (((INT32) 1)<<temp3) - 1; \
   	  PUT_BITS(temp, temp3) \
+  	  CHECKBUF15() \
   } \
-  CHECKBUF15() \
  }
 
 #endif
@@ -528,10 +528,11 @@ encode_one_block_entropy (working_state * state, JCOEFPTR block, int last_dc_val
   //int code_0xf0 = actbl->ehufco[0xf0], size_0xf0 = actbl->ehufsi[0xf0];
   size_t bytes, bytestocopy;  int localbuf = 0;
   int dc_diff_bits;
-  int index1, index2, index3;
-  index3 = previous_block_state->current_index[ci];
-  index1 = index3 == 0 ? LOOK_BACKWARD_BLOCK - 1 : index3 - 1;
-  index2 = index1 == 0 ? LOOK_BACKWARD_BLOCK - 1 : index1 - 1;
+  int index0, index1, index2, index3;
+  index0 = previous_block_state->current_index[ci];
+  index1 = index0 == 0 ? LOOK_BACKWARD_BLOCK : index0 - 1;
+  index2 = index1 == 0 ? LOOK_BACKWARD_BLOCK : index1 - 1;
+  index3 = index2 == 0 ? LOOK_BACKWARD_BLOCK : index2 - 1;
   UINT8* max_table = max_pos_value_range[ci][1];
 
   put_buffer = state->cur.put_buffer;
@@ -539,11 +540,11 @@ encode_one_block_entropy (working_state * state, JCOEFPTR block, int last_dc_val
   LOAD_BUFFER()
 
   // Xing - update previous_block_state while encoding
-  UINT8 * previous_blocks_avgs = previous_block_state->previous_blocks_avgs[ci][LOOK_BACKWARD_BLOCK];
-  UINT8 * previous_blocks_avgs_ma = previous_block_state->previous_blocks_avgs_ma[ci][LOOK_BACKWARD_BLOCK];
-
+  UINT8 * previous_blocks_avgs = previous_block_state->previous_blocks_avgs[ci][index0];
+  UINT8 * previous_blocks_avgs_ma = previous_block_state->previous_blocks_avgs_ma[ci][index0];
+  memset(previous_blocks_avgs, 0, 64*sizeof(UINT8));
   // logging entire block
-  char* previous_blocks = previous_block_state->previous_blocks[ci][LOOK_BACKWARD_BLOCK];
+  char* previous_blocks = previous_block_state->previous_blocks[ci][index0];
   memset(previous_blocks, 0, 64*sizeof(char));
 
   symbol_table_t * p_table; // - Xing
@@ -583,11 +584,12 @@ encode_one_block_entropy (working_state * state, JCOEFPTR block, int last_dc_val
 
   code = p_table->symbol[temp3];
   size = p_table->bits[temp3];
-  PUT_BITS(code, size)
+  EMIT_BITS(code, size)
+  //PUT_BITS(code, size)
   CHECKBUF15()
 
   // for better dc
-  if (nbits >= 1) {
+  if (nbits > 1) {
     /* Mask off any extra bits in code */
     nbits -= 1;
     temp &= (((INT32) 1)<<nbits) - 1; // for better dc
@@ -696,6 +698,7 @@ encode_one_block_entropy (working_state * state, JCOEFPTR block, int last_dc_val
 
   state->cur.put_buffer = put_buffer;
   state->cur.put_bits = put_bits;
+  previous_block_state->current_index[ci] = index3;
   STORE_BUFFER()
   return TRUE;
 }
@@ -832,12 +835,10 @@ emit_restart (working_state * state, int restart_num)
   state->cur.previous_block_state.current_index[ci] = 0; // Xing
     state->cur.last_dc_val[ci] = 0;
     //state->cur.last_dc_diff[ci] = 0; // Xing, to use DC table
-    for (temp1=0; temp1<LOOK_BACKWARD_BLOCK; ++temp1)
-  	for (temp=0; temp<64; ++temp) {
-  		//entropy->saved.previous_block_state.previous_blocks[ci][temp1][temp] = -1;
-  		state->cur.previous_block_state.previous_blocks_avgs[ci][temp1][temp] = 0;
-  		state->cur.previous_block_state.previous_blocks[ci][temp1][temp] = 0;
-  	}
+    for (temp1=0; temp1<LOOK_BACKWARD_BLOCK; ++temp1) {
+    	memset(state->cur.previous_block_state.previous_blocks_avgs[ci][temp1], 0, 64*sizeof(UINT8));
+    	memset(state->cur.previous_block_state.previous_blocks[ci][temp1], 0, 64*sizeof(char));
+    }
   }
   /* The restart counter is not updated until we successfully write the MCU. */
 
@@ -889,7 +890,8 @@ encode_mcu_huff (j_compress_ptr cinfo, JBLOCKROW *MCU_data)
     /* Update last_dc_val */
     state.cur.last_dc_val[ci] = MCU_data[blkn][0][0];
     //state.cur.last_dc_diff[ci] = dc_diff_bits;
-    int now_index = state.cur.previous_block_state.current_index[ci];
+    //int now_index = state.cur.previous_block_state.current_index[ci];
+    /*
     memcpy(state.cur.previous_block_state.previous_blocks[ci][now_index],
            state.cur.previous_block_state.previous_blocks[ci][LOOK_BACKWARD_BLOCK],
            64*sizeof(char));
@@ -901,11 +903,12 @@ encode_mcu_huff (j_compress_ptr cinfo, JBLOCKROW *MCU_data)
                64*sizeof(UINT8));
 
     memset(state.cur.previous_block_state.previous_blocks_avgs[ci][LOOK_BACKWARD_BLOCK], 0, 64*sizeof(UINT8));   // not sure if this is 100% correct, check later, basically mark every INT to -1
+    */
     //memset(state.cur.previous_block_state.previous_blocks_avgs_ma[ci][LOOK_BACKWARD_BLOCK], 0, 64*sizeof(int));
     //for (int temp=1; temp<64; ++temp) {
     //  state.cur.previous_block_state.previous_blocks_avgs[ci][now_index][temp] = -1;
     //}
-    state.cur.previous_block_state.current_index[ci] = now_index == LOOK_BACKWARD_BLOCK - 1 ? 0 : now_index + 1;
+    //state.cur.previous_block_state.current_index[ci] = now_index == LOOK_BACKWARD_BLOCK ? 0 : now_index + 1;
   }
 
   /* Completed MCU, so update state */
