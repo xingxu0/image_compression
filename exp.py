@@ -19,7 +19,7 @@ def copy_other_images(folder, f, s, e):
 		if i < s or i > e:
 			os.system("cp images/%s_Q75/%s.jpg %s/"%(f, str(i), folder))
 
-f_out = open("exp.out", "w")
+f_out = open("exp.out", "w", 0)
 
 for f in folders:
 	print f
