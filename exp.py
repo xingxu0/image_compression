@@ -31,7 +31,7 @@ for f in folders:
 		copy_other_images("%s/%s"%(exp_folder, "img_train"), f, i*10+1, i*10+10)
 		os.system("mkdir %s/%s"%(exp_folder, "img_test"))
 		copy_images("%s/%s"%(exp_folder, "img_test"), f, i*10+1, i*10+10)
-		os.system("python training_all.py %s/img_train %s/tbl_train 1 12 > temp_out"%(exp_folder, exp_folder))
+		os.system("python training_all.py %s/img_train %s/tbl_train 1 12"%(exp_folder, exp_folder))
 		total_optimized_size = 0
 		total_encoded_size = 0
 		for j in range(i*10+1, i*10+10+1):
