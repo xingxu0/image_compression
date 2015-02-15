@@ -3,11 +3,12 @@ import matplotlib.pyplot as plt
 from pylab import *
 
 folders = ['100', '200', '300', '400', '600', '800', '1000', '1200']
-folders = ['600']
+folders = ['1200']
 #folders = ['1200']
 
 def printf(f, s):
 	f.write(s + "\n")
+	print s
 
 def copy_images(folder, f, s, e):
 	for i in range(s, e+1):

@@ -52,6 +52,7 @@ def calc_gain(comp, dep1_s, dep2_s):
 				co[i][p][pp] = load_code_table(i, p, pp, table_folder)
 				if len(co[i][p][pp]) == 0:
 					co[i][p][pp] = deepcopy(lib.code)
+					print len(co[i][p][pp]),
 
 	block = 0
 	block_o = 0
