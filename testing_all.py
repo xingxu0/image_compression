@@ -51,8 +51,7 @@ def calc_gain(comp, dep1_s, dep2_s):
 			for pp in range(SIZE2 + 1):
 				co[i][p][pp] = load_code_table(i, p, pp, table_folder)
 				if len(co[i][p][pp]) == 0:
-					co[i][p][pp] = deepcopy(lib.code)
-					print len(co[i][p][pp]),
+					co[i][p][pp] = load_code_table(100, 100, 100, table_folder)
 
 	block = 0
 	block_o = 0
@@ -259,7 +258,8 @@ def calc_gain(comp, dep1_s, dep2_s):
 					else:
 						o += (co[i][p][pp][x])*oc_t[i][p][pp][x]
 						g += (lib.code[x_] - co[i][p][pp][x])*oc_t[i][p][pp][x]
-				print i,p,pp, len(co[i][p][pp]),g
+				if jpeg_t[i][p][pp]:
+					print i,p,pp, len(co[i][p][pp]),g, "(", jpeg_t[i][p][pp], ")"
 				temp_gain += g
 				total_gain += g
 				j[p][i-1] += jpeg_t[i][p][pp]
