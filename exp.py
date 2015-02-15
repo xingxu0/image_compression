@@ -44,5 +44,5 @@ for f in folders:
 			#encoding_time = int(m.group(5))
 			total_optimized_size += jpg_opt_size
 			total_encoded_size += out_size
-		printf(f_out, "\t\t" + str(total_optimized_size) + " " + str(total_encoded_size) + " " + str(total_optimized_size-total_encoded_size)*1.0/total_optimized_size))
+		printf(f_out, "\t\t" + str(total_optimized_size) + " " + str(total_encoded_size) + " " + str((total_optimized_size-total_encoded_size)*1.0/total_optimized_size))
 f_out.close()
