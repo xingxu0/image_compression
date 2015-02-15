@@ -258,6 +258,7 @@ def calc_gain(comp, dep1_s, dep2_s):
 					else:
 						o += (co[i][p][pp][x])*oc_t[i][p][pp][x]
 						g += (lib.code[x_] - co[i][p][pp][x])*oc_t[i][p][pp][x]
+				print i,p,pp, len(co[i][p][pp]),g
 				temp_gain += g
 				total_gain += g
 				j[p][i-1] += jpeg_t[i][p][pp]
@@ -272,7 +273,7 @@ def calc_gain(comp, dep1_s, dep2_s):
 			if j[p][i-1]:
 				per[p][i-1] = temp_gain*100.0/j[p][i-1]
 				if per[p][i-1] < 0:
-					lib.fprint("negative:" + str(temp_gain) + " " + str(j[p][i-1]))
+					#lib.fprint("negative:" + str(temp_gain) + " " + str(j[p][i-1]))
 					per[p][i-1] = -10		# for plotting only, it's indeed negative gain
 			else:
 				per[p][i-1] = 0
