@@ -37,7 +37,7 @@ for f in folders:
 		total_encoded_size = 0
 		for j in range(i*10+1, i*10+10+1):
 			c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran -encode %s/tbl_train %s/img_test/%s.jpg temp.jpg"%(exp_folder, exp_folder, str(j)))
-			printf(f_out, c)
+			printf(f_out, c[1])
 			m = re.match("Total saving: (.*) bits\nOriginal filesize: (.*), encoded filesize: (.*), saving: (.*)\nTotal time elapsed : (.*) us", c[1])
 			jpg_opt_size = int(m.group(2))
 			out_size = int(m.group(3))
