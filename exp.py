@@ -23,6 +23,8 @@ f_out = open("exp.out", "w")
 
 for f in folders:
 	print f
+	overall_optimized_size = 0
+	overall_encoded_size = 0
 	for i in range(10):
 		printf(f_out, "\t" + str(i))
 		exp_folder = "exp_" + f + "_" + str(i)
@@ -46,4 +48,7 @@ for f in folders:
 			total_optimized_size += jpg_opt_size
 			total_encoded_size += out_size
 		printf(f_out, "\t\t" + str(total_optimized_size) + " " + str(total_encoded_size) + " " + str((total_optimized_size-total_encoded_size)*1.0/total_optimized_size))
+		overall_optimized_size += total_optimized_size
+		overall_encoded_size += total_encoded_size
+	printf(f_out, "\t" + str(overall_optimized_size) + " " + str(overall_encoded_size) + " " + str((overall_optimized_size-overall_encoded_size)*1.0/overall_optimized_size))
 f_out.close()
