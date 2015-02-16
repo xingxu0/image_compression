@@ -187,8 +187,6 @@ def create_table(comp, dep1_s, dep2_s):
 	save_code_table(co_default_dc, oc_default_dc, "DC", 100, "", table_folder)
 
 	lib.fprint("generating AC tables...")
-	co_default_dc = lib.huff_encode_plus_extra_better_DC(oc_default_dc, lib.bits_dc_luminance)
-	save_code_table(co_default_dc, oc_default_dc, "DC", 100, "", table_folder)
 	max_len = -1
 	for i in range(1, 64):
 		#print i
