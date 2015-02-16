@@ -355,18 +355,11 @@ boolean initialize_AC_table(int c, int i, int j, int k)
 	//for printing...
 
 	
-	if (c==0 && i==1 && j==1 && k==10) {
-		printf("symbol table...\r\n");
-		for (ii = 0; ii < table_size; ++ii)
-		{
-			printf("%d(%d):%d %d\r\n", ac_table[c][i][j][k].symbol[ii], ac_table[c][i][j][k].bits[ii], ac_table[c][i][j][k].run_length[ii], ii);
-		}
 /*
 		printf("Look ahead table:\n");
 		for (int ii=0; ii<(1<<HUFF_LOOKAHEAD); ++ii) {
 			printf("\t%d: %d, %d\n", ii, ac_table[c][i][j][k].look_nbits[ii], ac_table[c][i][j][k].look_sym[ii]);
 		}*/
-	}
 
 	return TRUE;
 }
