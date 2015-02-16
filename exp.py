@@ -19,7 +19,7 @@ def copy_other_images(folder, f, s, e):
 		if i < s or i > e:
 			os.system("cp images/%s_Q75/%s.jpg %s/"%(f, str(i), folder))
 
-f_out = open("exp.out", "w")
+f_out = open("exp.out", "w", 0)
 
 for f in folders:
 	print f
@@ -28,6 +28,7 @@ for f in folders:
 	for i in range(10):
 		printf(f_out, "\t" + str(i))
 		exp_folder = "exp_" + f + "_" + str(i)
+		f_out_self = open(exp_folder+"/exp.out", "w", 0)
 		os.system("rm %s -rf"%(exp_folder))
 		os.system("mkdir %s"%(exp_folder))
 		os.system("mkdir %s/%s"%(exp_folder, "img_train"))
@@ -40,6 +41,7 @@ for f in folders:
 		for j in range(i*10+1, i*10+10+1):
 			c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran -encode %s/tbl_train %s/img_test/%s.jpg temp.jpg"%(exp_folder, exp_folder, str(j)))
 			printf(f_out, c[1])
+			printf(f_out_self, c[1])
 			m = re.match("Total saving: (.*) bits\nOriginal filesize: (.*), encoded filesize: (.*), saving: (.*)\nTotal time elapsed : (.*) us", c[1])
 			jpg_opt_size = int(m.group(2))
 			out_size = int(m.group(3))
@@ -48,6 +50,8 @@ for f in folders:
 			total_optimized_size += jpg_opt_size
 			total_encoded_size += out_size
 		printf(f_out, "\t\t" + str(total_optimized_size) + " " + str(total_encoded_size) + " " + str((total_optimized_size-total_encoded_size)*1.0/total_optimized_size))
+		printf(f_out_self, "\t\t" + str(total_optimized_size) + " " + str(total_encoded_size) + " " + str((total_optimized_size-total_encoded_size)*1.0/total_optimized_size))
+		f_out_self.close()
 		overall_optimized_size += total_optimized_size
 		overall_encoded_size += total_encoded_size
 	printf(f_out, "\t" + str(overall_optimized_size) + " " + str(overall_encoded_size) + " " + str((overall_optimized_size-overall_encoded_size)*1.0/overall_optimized_size))
