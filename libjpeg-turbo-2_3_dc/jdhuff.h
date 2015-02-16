@@ -211,9 +211,9 @@ slowlabel: \
     } \
   } \
   look = PEEK_BITS(HUFF_LOOKAHEAD); \
-  if ((nb = (htbl->lookup[look] >> HUFF_LOOKAHEAD_TWO_MORE)) <= HUFF_LOOKAHEAD) { \
+  if ((nb = (htbl->lookup[look] >> HUFF_LOOKAHEAD)) <= HUFF_LOOKAHEAD) { \
     DROP_BITS(nb); \
-    result = htbl->lookup[look] & ((1 << HUFF_LOOKAHEAD_TWO_MORE) - 1); \
+    result = htbl->lookup[look] & ((1 << HUFF_LOOKAHEAD) - 1); \
   } else { \
 slowlabel: \
     if ((result=jpeg_huff_decode_entropy(&state,get_buffer,bits_left,htbl,nb)) < 0) \
