@@ -1,10 +1,10 @@
-import os, commands, re, sys
+import os, commands, re, sys, time
 import matplotlib.pyplot as plt
 from pylab import *
 
 folders = ['100', '200', '300', '400', '600', '800', '1000', '1200']
-folders = ['1200']
-#folders = ['1200']
+folders = ['300']
+
 
 def printf(f, s):
 	f.write(s + "\n")
@@ -19,7 +19,10 @@ def copy_other_images(folder, f, s, e):
 		if i < s or i > e:
 			os.system("cp images/%s_Q75/%s.jpg %s/"%(f, str(i), folder))
 
-f_out = open("exp.out", "w", 0)
+root = "exp_" + str(int(time.time()))
+os.system("mkdir %s"%(root))
+f_out = open(root+"/exp.out", "w", 0)
+
 
 for f in folders:
 	print f
@@ -27,7 +30,7 @@ for f in folders:
 	overall_encoded_size = 0
 	for i in range(10):
 		printf(f_out, "\t" + str(i))
-		exp_folder = "exp_" + f + "_" + str(i)
+		exp_folder = root+"/exp_" + f + "_" + str(i)
 		os.system("rm %s -rf"%(exp_folder))
 		os.system("mkdir %s"%(exp_folder))
 		f_out_self = open(exp_folder+"/exp.out", "w", 0)
@@ -35,6 +38,9 @@ for f in folders:
 		copy_other_images("%s/%s"%(exp_folder, "img_train"), f, i*10+1, i*10+10)
 		os.system("mkdir %s/%s"%(exp_folder, "img_test"))
 		copy_images("%s/%s"%(exp_folder, "img_test"), f, i*10+1, i*10+10)
+		if i > 0:
+			os.system("cp %s/img_train/max* %s/img_train/"%(root+"/exp_" + f + "_0", exp_folder))
+			os.system("cp %s/img_train/coef* %s/img_train/"%(root+"/exp_" + f + "_0", exp_folder))
 		os.system("python training_all.py %s/img_train %s/tbl_train 1 12"%(exp_folder, exp_folder))
 		total_optimized_size = 0
 		total_encoded_size = 0
