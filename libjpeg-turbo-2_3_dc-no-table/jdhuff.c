@@ -297,6 +297,10 @@ void get_derived_huff_table(symbol_table_t* tbl)
   free(bits_aggre);
 }
 
+boolean default_table[3];
+int default_i[3];
+int default_j[3];
+int default_k[3];
 boolean initialize_AC_table(int c, int i, int j, int k)
 {
 	int table_size = 256;
@@ -304,7 +308,24 @@ boolean initialize_AC_table(int c, int i, int j, int k)
 	sprintf(filename, "%s/%d/plain_%d_%d_%d.table", table_folder, c, i, j, k);
 	FILE * f = fopen(filename, "r");
 	if (f == NULL) {
-		return TRUE;
+
+		if (default_table[c]) {
+			memcpy(&ac_table[c][i][j][k], &ac_table[c][default_i[c]][default_j[c]][default_k[c]], sizeof(symbol_table_t));
+			return TRUE;
+		}
+
+		sprintf(filename, "%s/%d/plain_%d_%d_%d.table", table_folder, c, 100,100,100);
+				f = fopen(filename, "r");
+				default_table[c] = TRUE;
+				default_i[c] = i;
+				default_j[c] = j;
+				default_k[c] = k;
+
+				if (f==NULL) {
+					printf("%d %d %d %d ", c,i,j,k);
+					printf("ac still null\n");
+					return FALSE;
+				}
 	}
 	/*
 	ac_table[c][i][j][k].symbol = malloc(table_size*sizeof(int));
@@ -349,7 +370,15 @@ void initialize_DC_table(int c, int i)
 	int table_size = 25;
 	sprintf(filename, "%s/%d/plain_DC_%d_.table", table_folder, c, i);
 	FILE * f = fopen(filename, "r");
-	if (f == NULL) return;
+	if (f == NULL) {
+		sprintf(filename, "%s/%d/plain_DC_%d_.table", table_folder, c, 100);
+		f = fopen(filename, "r");
+
+		if (f==NULL) {
+			printf("dc still null\n");
+			return;
+		}
+	}
 
 	dc_table[c][i].length = table_size;
 	dc_table[c][i].symbol = malloc(table_size*sizeof(int));
@@ -501,6 +530,8 @@ void entropy_table_initialization()
 	second_dimension_bins = 20;
 	ac_table = malloc(3*sizeof(symbol_table_t ***));
 	int c, i, j, k;
+	for (c=0; c<3; ++c)
+		default_table[c] = FALSE;
 	for (c=0; c<3; ++c) {
 		ac_table[c] = malloc(64*sizeof(symbol_table_t **));
 		for (i=1; i<64; ++i) {
