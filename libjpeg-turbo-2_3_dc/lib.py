@@ -503,6 +503,8 @@ def huff_encode_plus_extra_better_DC(symb2freq, jpeg_code):
 	ret = {}
 	for p in temp:
 		ret[p[0]] = len(p[1])
+		if (ret[p[0]] > 32):
+			print "!"
 	return ret
 
 def huff_encode_plus_extra_ac_sign(symb2freq, jpeg_code):
@@ -557,14 +559,13 @@ def huff_encode_plus_extra_all(symb2freq, jpeg_code):
 		ret = deepcopy(jpeg_code)
 		for x in jpeg_code:
 			ret[(1<<8)+x] = jpeg_code[x]
-		return ret
+		return ret, 0
 	
 	zero = 0
 	for x in symb2freq:
 		if symb2freq[x] == 0:
 			zero += 1
 	extra_t = t*0.01
-	extra_t = 0
 	for x in symb2freq:
 		if not symb2freq[x]:
 			symb2freq[x] = extra_t*1.0/zero
@@ -583,9 +584,14 @@ def huff_encode_plus_extra_all(symb2freq, jpeg_code):
 
 	temp = sorted(heappop(heap)[1:], key=lambda p: (len(p[-1]), p))
 	ret = {}
+	max_len = -1
 	for p in temp:
 		ret[p[0]] = len(p[1])
-	return ret
+		if (ret[p[0]] > 32):
+			print "!", ret[p[0]]
+		if ret[p[0]]>max_len:
+			max_len = ret[p[0]]
+	return ret, max_len
 
 
 def huff_encode_plus_extra_handle_2_separately(symb2freq, jpeg_code):
@@ -694,7 +700,7 @@ def get_avg_pre_coef(b, i):
 	if i==1:
 		return min(10, b[0])*1.0/11
 	t = 0
-	ma = 0
+	ma = 1 
 	#for x in range(1, i):
 	for x in range(1, i):
 		t += b[x]
@@ -869,7 +875,7 @@ def get_dep(blocks, blocks_o, now, s, e, dep, one_or_two, b_mcu1, b_mcu2):
 		first_jj = 0
 		for ii in range(x):
 			temp_b = get_previous_block(blocks_o, now-ii)
-			for jj in range(s, min(63,s+5)+1):
+			for jj in range(s, min(64,s+look_forward_coef)):
 				if temp_b[jj] < 0:
 					first_jj = jj
 					ss -= 1
@@ -923,7 +929,7 @@ def get_mcu_energy_level(b1, b2, now, s, e):
 def get_previous_blocks_coef(blocks, now, s, e):
 	global apc_bins, avg_coef,look_forward_coef, look_backward_block
 	su = 0
-	ma = 0
+	ma = look_backward_block
 	sign = 0
 	n = 0
 	pos = -1

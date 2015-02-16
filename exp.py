@@ -28,9 +28,9 @@ for f in folders:
 	for i in range(10):
 		printf(f_out, "\t" + str(i))
 		exp_folder = "exp_" + f + "_" + str(i)
-		f_out_self = open(exp_folder+"/exp.out", "w", 0)
 		os.system("rm %s -rf"%(exp_folder))
 		os.system("mkdir %s"%(exp_folder))
+		f_out_self = open(exp_folder+"/exp.out", "w", 0)
 		os.system("mkdir %s/%s"%(exp_folder, "img_train"))
 		copy_other_images("%s/%s"%(exp_folder, "img_train"), f, i*10+1, i*10+10)
 		os.system("mkdir %s/%s"%(exp_folder, "img_test"))
