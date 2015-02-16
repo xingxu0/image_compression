@@ -339,7 +339,6 @@ boolean initialize_AC_table(int c, int i, int j, int k)
 		for (int ii=0; ii<(1<<HUFF_LOOKAHEAD); ++ii) {
 			printf("\t%d: %d, %d\n", ii, ac_table[c][i][j][k].look_nbits[ii], ac_table[c][i][j][k].look_sym[ii]);
 		}*/
-	}
 
 	return TRUE;
 }
