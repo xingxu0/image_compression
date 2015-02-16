@@ -69,4 +69,7 @@
 
 /* Define to `unsigned int' if <sys/types.h> does not define. */
 /* #undef size_t */
+<<<<<<< HEAD
 #define TWO_FILE_COMMANDLINE
+=======
+>>>>>>> 6ef82521dac93ada6e98c57cb709fd4b7d826762
