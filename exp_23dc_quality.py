@@ -4,6 +4,8 @@ from pylab import *
 
 folders = ['30', '40', '50', '60', '70', '80', '90', '100']
 
+folders = ['80', '90', '100']
+
 
 def printf(f, s):
 	f.write(s + "\n")
@@ -37,7 +39,7 @@ for f in folders:
 		copy_other_images("%s/%s"%(exp_folder, "img_train"), f, i*10+1, i*10+10)
 		os.system("mkdir %s/%s"%(exp_folder, "img_test"))
 		copy_images("%s/%s"%(exp_folder, "img_test"), f, i*10+1, i*10+10)
-		if i > 0:
+		if i > 1000:
 			os.system("cp %s/img_train/max* %s/img_train/"%(root+"/exp_" + f + "_0", exp_folder))
 			os.system("cp %s/img_train/coef* %s/img_train/"%(root+"/exp_" + f + "_0", exp_folder))
 		os.system("python training_2_3_dc.py %s/img_train %s/tbl_train 1 12"%(exp_folder, exp_folder))

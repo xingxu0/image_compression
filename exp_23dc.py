@@ -17,7 +17,7 @@ def copy_other_images(folder, f, s, e):
 		if i < s or i > e:
 			os.system("cp %s/%s.jpg %s/"%(f, str(i), folder))
 			
-def get_candicates_size(img_folder):
+def get_candidates_size(img_folder):
 	total_std_size = 0
 	total_opt_size = 0
 	total_ari_size = 0
@@ -43,7 +43,7 @@ def get_candicates_size(img_folder):
 
 print "usage: python exp.py; python exp.py 0 if we don't want to calculate our size"
 
-root = "exp_" + str(int(time.time()))
+root = "exp_filesize_" + str(int(time.time()))
 os.system("mkdir %s"%(root))
 f_out = open(root+"/exp.out", "w", 0)
 
@@ -54,7 +54,7 @@ for f in folders:
 	std,opt,ari,pro,moz = get_candidates_size(img_folder)
 	overall_optimized_size = 0
 	overall_encoded_size = 0
-	if not (len(sys.argv[1]) > 1 and sys.argv[1]=="0"):
+	if not (len(sys.argv[1]) >= 1 and sys.argv[1]=="0"):
 		for i in range(10):
 			printf(f_out, "\t" + str(i))
 			exp_folder = root+"/exp_" + f + "_" + str(i)
@@ -68,7 +68,7 @@ for f in folders:
 			if i > 0:
 				os.system("cp %s/img_train/max* %s/img_train/"%(root+"/exp_" + f + "_0", exp_folder))
 				os.system("cp %s/img_train/coef* %s/img_train/"%(root+"/exp_" + f + "_0", exp_folder))
-			os.system("python training_2_3_dc.py %s/img_train %s/tbl_train 1 12"%(exp_folder, exp_folder))
+			os.system("python training_2_3_dc.py %s/img_train %s/tbl_train 1 9"%(exp_folder, exp_folder))
 			total_optimized_size = 0
 			total_encoded_size = 0
 			for j in range(i*10+1, i*10+10+1):
