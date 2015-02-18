@@ -9,13 +9,10 @@ jcstest.o: jcstest.c /usr/include/stdc-predef.h /usr/include/stdio.h \
  /usr/include/_G_config.h /usr/include/wchar.h \
  /usr/lib/gcc/x86_64-linux-gnu/4.8/include/stdarg.h \
  /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
- /usr/include/x86_64-linux-gnu/bits/sys_errlist.h \
- /usr/include/x86_64-linux-gnu/bits/stdio.h \
- /usr/include/x86_64-linux-gnu/bits/stdio2.h jpeglib.h jconfig.h \
+ /usr/include/x86_64-linux-gnu/bits/sys_errlist.h jpeglib.h jconfig.h \
  jmorecfg.h jerror.h /usr/include/setjmp.h \
  /usr/include/x86_64-linux-gnu/bits/setjmp.h \
- /usr/include/x86_64-linux-gnu/bits/sigset.h \
- /usr/include/x86_64-linux-gnu/bits/setjmp2.h
+ /usr/include/x86_64-linux-gnu/bits/sigset.h
 
 /usr/include/stdc-predef.h:
 
@@ -49,10 +46,6 @@ jcstest.o: jcstest.c /usr/include/stdc-predef.h /usr/include/stdio.h \
 
 /usr/include/x86_64-linux-gnu/bits/sys_errlist.h:
 
-/usr/include/x86_64-linux-gnu/bits/stdio.h:
-
-/usr/include/x86_64-linux-gnu/bits/stdio2.h:
-
 jpeglib.h:
 
 jconfig.h:
@@ -66,5 +59,3 @@ jerror.h:
 /usr/include/x86_64-linux-gnu/bits/setjmp.h:
 
 /usr/include/x86_64-linux-gnu/bits/sigset.h:
-
-/usr/include/x86_64-linux-gnu/bits/setjmp2.h:
