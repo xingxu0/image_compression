@@ -54,7 +54,7 @@ for f in folders:
 	std,opt,ari,pro,moz = get_candidates_size(img_folder)
 	overall_optimized_size = 0
 	overall_encoded_size = 0
-	if not (len(sys.argv[1]) >= 1 and sys.argv[1]=="0"):
+	if not (len(sys.argv) >= 2 and sys.argv[1]=="0"):
 		for i in range(10):
 			printf(f_out, "\t" + str(i))
 			exp_folder = root+"/exp_" + f + "_" + str(i)
