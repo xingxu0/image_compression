@@ -1095,7 +1095,7 @@ def generate_blocks(folder):
 	for f in f_jpgs:
 		name = f[f.rfind("/") + 1 : ]
 		sys.stdout.flush()
-		cmd = "/opt/libjpeg-turbo/bin/jpegtran -outputcoef " + folder + "/" + name + ".block " + f + " temp.out"
+		cmd = "jpegtran -outputcoef " + folder + "/" + name + ".block " + f + " temp.out"
 		os.system(cmd)
 	os.system("rm temp.out")
 

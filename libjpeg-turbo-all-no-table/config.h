@@ -5,7 +5,7 @@
 /* #undef BITS_IN_JSAMPLE */
 
 /* libjpeg-turbo build number */
-#define BUILD "20150217"
+#define BUILD "20150220"
 
 /* Support arithmetic encoding */
 #define C_ARITH_CODING_SUPPORTED 1

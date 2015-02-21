@@ -26,7 +26,7 @@ def get_candidates_size(img_folder, q):
 	total_moz_size = 0
 
 	for i in range(1, 101):
-		os.system("jpegtran -outputcoef t " + img_folder + "/" + str(i) + ".jpg temp.jpg")
+		c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran -outputcoef t " + img_folder + "/" + str(i) + ".jpg temp.jpg")
 		total_std_size += os.path.getsize("temp.jpg")
 
 		c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran -optimize " + img_folder + "/" + str(i) + ".jpg temp.jpg")

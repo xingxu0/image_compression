@@ -59,12 +59,12 @@ AUTOCONF = ${SHELL} /home/xing/research/image_compression_github/image_compressi
 AUTOHEADER = ${SHELL} /home/xing/research/image_compression_github/image_compression/libjpeg-turbo-all-no-table/missing --run autoheader
 AUTOMAKE = ${SHELL} /home/xing/research/image_compression_github/image_compression/libjpeg-turbo-all-no-table/missing --run automake-1.9
 AWK = gawk
-BUILD = 20150217
+BUILD = 20150220
 CC = gcc
 CCAS = gcc
-CCASFLAGS = -g
+CCASFLAGS = -g -O2
 CCDEPMODE = depmode=gcc3
-CFLAGS = -g
+CFLAGS = -O3
 CPP = gcc -E
 CPPFLAGS = -Wall
 CXX = g++
