@@ -6,7 +6,7 @@ from pylab import *
 def get_ratio(a, b):
 	return (b-a)*1.0/b*100
 
-folders = ['100', '200', '300', '400', '600', '800', '1000', '1200']
+folders = ['30','40','50','60','70','80','90']
 
 our = []
 std = []
@@ -38,7 +38,7 @@ while i < len(ls) and now_f < len(folders):
 		opt.append(get_ratio(int(m.group(3)), baseline))
 		ari.append(get_ratio(int(m.group(4)), baseline))
 		pro.append(get_ratio(int(m.group(5)), baseline))
-		moz.append(get_ratio(int(m.group(6)), baseline))
+		#moz.append(get_ratio(int(m.group(6)), baseline))
 		now_f += 1
 		break
 
@@ -51,7 +51,7 @@ ax.plot(our, "-o")
 ax.plot(opt, "-+")
 ax.plot(ari, "-|")
 ax.plot(pro, "-x")
-#ax.plot(moz, "-*")
+ax.plot(moz, "-*")
 ax.set_ylim([0, 25])
 ax.legend(["our", "opt", "ari", "pro", "moz"])
 ax.set_xlabel("image size")#, fontsize=32)
@@ -61,4 +61,4 @@ plt.xticks(range(len(folders)), folders)
 #plt.tick_params(axis='both', which='minor', labelsize=30)
 plt.tight_layout()
 #fig.savefig("filesize.eps", bbox_inches='tight')
-fig.savefig("filesize.png", bbox_inches='tight')
+fig.savefig("quality.png", bbox_inches='tight')
