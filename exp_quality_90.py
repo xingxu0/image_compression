@@ -68,7 +68,7 @@ for f in folders:
 			if i > 0:
 				os.system("cp %s/img_train/max* %s/img_train/"%(root+"/exp_" + f + "_0", exp_folder))
 				os.system("cp %s/img_train/coef* %s/img_train/"%(root+"/exp_" + f + "_0", exp_folder))
-			os.system("python training_all.py %s/img_train %s/tbl_train 1 9"%(exp_folder, exp_folder))
+			os.system("python training_all.py %s/img_train %s/tbl_train 1 12"%(exp_folder, exp_folder))
 			total_optimized_size = 0
 			total_encoded_size = 0
 			for j in range(i*10+1, i*10+10+1):
