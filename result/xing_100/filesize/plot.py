@@ -32,13 +32,12 @@ while i < len(ls) and now_f < len(folders):
 		# our 297330, std 346633, opt 314927, ari 287861, pro 329301, moz 314797
 		m = re.match("\t our (.*), std (.*), opt (.*), ari (.*), pro (.*), moz (.*)", l)
 		
-		baseline = int(m.group(2))
-		our.append(get_ratio(int(m.group(1)), baseline))
-		#std.append(get_ratio(int(m.group(1)), baseline))
-		opt.append(get_ratio(int(m.group(3)), baseline))
-		ari.append(get_ratio(int(m.group(4)), baseline))
-		pro.append(get_ratio(int(m.group(5)), baseline))
-		moz.append(get_ratio(int(m.group(6)), baseline))
+		#our.append(get_ratio(int(m.group(1)), baseline))
+		std.append(get_ratio(int(m.group(1)), int(m.group(2))))
+		opt.append(get_ratio(int(m.group(1)), int(m.group(3))))
+		ari.append(get_ratio(int(m.group(1)), int(m.group(4))))
+		pro.append(get_ratio(int(m.group(1)), int(m.group(5))))
+		#moz.append(get_ratio(int(m.group(6)), baseline))
 		now_f += 1
 		break
 
@@ -46,14 +45,14 @@ print ari
 fig = plt.figure()
 grid()
 ax = fig.add_subplot(111)    # The big subplot
-ax.plot(our, "-o")
-#ax.plot(std, "-x")
+#ax.plot(our, "-o")
+ax.plot(std, "-o")
 ax.plot(opt, "-+")
 ax.plot(ari, "-|")
 ax.plot(pro, "-x")
-#ax.plot(moz, "-*")
+ax.plot(moz, "-*")
 ax.set_ylim([0, 25])
-ax.legend(["our", "opt", "ari", "pro", "moz"])
+ax.legend(["vs. std", "vs. opt", "vs. ari", "vs. pro", "vs. moz"])
 ax.set_xlabel("image size")#, fontsize=32)
 ax.set_ylabel("compression ratio (100%)")#, fontsize=32)
 plt.xticks(range(len(folders)), folders)

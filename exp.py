@@ -12,12 +12,36 @@ def printf(f, s):
 
 def copy_images(folder, f, s, e):
 	for i in range(s, e+1):
-		os.system("cp images/%s_Q75/%s.jpg %s/"%(f, str(i), folder))
+		os.system("cp %s/%s.jpg %s/"%(f, str(i), folder))
 
 def copy_other_images(folder, f, s, e):
 	for i in range(1, 101):
 		if i < s or i > e:
-			os.system("cp images/%s_Q75/%s.jpg %s/"%(f, str(i), folder))
+			os.system("cp %s/%s.jpg %s/"%(f, str(i), folder))
+
+def get_candidates_size(img_folder, q):
+	total_std_size = 0
+	total_opt_size = 0
+	total_ari_size = 0
+	total_pro_size = 0
+	total_moz_size = 0
+
+	for i in range(1, 101):
+		c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran -outputcoef t " + img_folder + "/" + str(i) + ".jpg temp.jpg")
+		total_std_size += os.path.getsize("temp.jpg")
+
+		c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran -optimize " + img_folder + "/" + str(i) + ".jpg temp.jpg")
+		total_opt_size += os.path.getsize("temp.jpg")
+
+		c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran -arithmetic " + img_folder + "/" + str(i) + ".jpg temp.jpg")
+		total_ari_size += os.path.getsize("temp.jpg")
+
+		c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran -progressive " + img_folder + "/" + str(i) + ".jpg temp.jpg")
+		total_pro_size += os.path.getsize("temp.jpg")
+
+		c = commands.getstatusoutput("time -p /opt/mozjpeg/bin/cjpeg -quality " + q + " -notrellis -notrellis-dc " + img_folder + "/" + str(i) + ".jpg > temp.jpg")
+		total_moz_size += os.path.getsize("temp.jpg")
+	return total_std_size, total_opt_size, total_ari_size, total_pro_size, total_moz_size
 
 root = "exp_" + str(int(time.time()))
 os.system("mkdir %s"%(root))
@@ -25,7 +49,9 @@ f_out = open(root+"/exp.out", "w", 0)
 
 
 for f in folders:
-	print f
+	printf(f_out, f)
+	img_folder = "images/%s_Q75"%(f)
+	std,opt,ari,pro,moz = get_candidates_size(img_folder, f)
 	overall_optimized_size = 0
 	overall_encoded_size = 0
 	for i in range(10):
@@ -35,9 +61,9 @@ for f in folders:
 		os.system("mkdir %s"%(exp_folder))
 		f_out_self = open(exp_folder+"/exp.out", "w", 0)
 		os.system("mkdir %s/%s"%(exp_folder, "img_train"))
-		copy_other_images("%s/%s"%(exp_folder, "img_train"), f, i*10+1, i*10+10)
+		copy_other_images("%s/%s"%(exp_folder, "img_train"), img_folder, i*10+1, i*10+10)
 		os.system("mkdir %s/%s"%(exp_folder, "img_test"))
-		copy_images("%s/%s"%(exp_folder, "img_test"), f, i*10+1, i*10+10)
+		copy_images("%s/%s"%(exp_folder, "img_test"), img_folder, i*10+1, i*10+10)
 		if i > 0:
 			os.system("cp %s/img_train/max* %s/img_train/"%(root+"/exp_" + f + "_0", exp_folder))
 			os.system("cp %s/img_train/coef* %s/img_train/"%(root+"/exp_" + f + "_0", exp_folder))
@@ -60,5 +86,6 @@ for f in folders:
 		f_out_self.close()
 		overall_optimized_size += total_optimized_size
 		overall_encoded_size += total_encoded_size
-	printf(f_out, "\t" + str(overall_optimized_size) + " " + str(overall_encoded_size) + " " + str((overall_optimized_size-overall_encoded_size)*1.0/overall_optimized_size))
+		printf(f_out, "\t" + str(overall_optimized_size) + " " + str(overall_encoded_size) + " " + str((overall_optimized_size-overall_encoded_size)*1.0/overall_optimized_size))
+	printf(f_out, "\t our %d, std %d, opt %d, ari %d, pro %d, moz %d"%(overall_encoded_size, std, opt, ari, pro, moz))
 f_out.close()
