@@ -27,7 +27,7 @@ def get_candidates_size(img_folder, q):
 	total_moz_size = 0
 
 	for i in range(1, 101):
-		c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran -outputcoef t " + img_folder + "/" + str(i) + ".jpg temp.jpg")
+		c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran -outputcoef t_ori " + img_folder + "/" + str(i) + ".jpg temp.jpg")
 		total_std_size += os.path.getsize("temp.jpg")
 
 		c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran -optimize " + img_folder + "/" + str(i) + ".jpg temp.jpg")
@@ -41,6 +41,9 @@ def get_candidates_size(img_folder, q):
 
 		c = commands.getstatusoutput("time -p /opt/mozjpeg/bin/cjpeg -quality " + q + " -notrellis -notrellis-dc " + img_folder + "/" + str(i) + ".jpg > temp.jpg")
 		total_moz_size += os.path.getsize("temp.jpg")
+		
+		c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran -outputcoef t_moz temp.jpg temp2.jpg")
+		os.system("diff t_ori t_moz")
 	return total_std_size, total_opt_size, total_ari_size, total_pro_size, total_moz_size
 
 root = "exp_fz" + str(int(time.time()))
