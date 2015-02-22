@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from pylab import *
 
 folders = ['100', '200', '300', '400', '600', '800', '1000', '1200']
-folders = ['300']
+#folders = ['300']
 
 
 def printf(f, s):
