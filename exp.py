@@ -43,7 +43,7 @@ def get_candidates_size(img_folder, q):
 		total_moz_size += os.path.getsize("temp.jpg")
 	return total_std_size, total_opt_size, total_ari_size, total_pro_size, total_moz_size
 
-root = "exp_" + str(int(time.time()))
+root = "exp_fz" + str(int(time.time()))
 os.system("mkdir %s"%(root))
 f_out = open(root+"/exp.out", "w", 0)
 
