@@ -51,7 +51,7 @@ f_out = open(root+"/exp.out", "w", 0)
 for f in folders:
 	printf(f_out, f)
 	img_folder = "images/%s_Q75"%(f)
-	std,opt,ari,pro,moz = get_candidates_size(img_folder, f)
+	std,opt,ari,pro,moz = get_candidates_size(img_folder, "75")
 	overall_optimized_size = 0
 	overall_encoded_size = 0
 	if not (len(sys.argv) >= 2 and sys.argv[1]=="0"):
