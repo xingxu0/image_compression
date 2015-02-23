@@ -67,7 +67,6 @@ typedef struct {
   size_t put_buffer;            /* current bit-accumulation buffer */
   int put_bits;                 /* # of bits now in it */
   int last_dc_val[MAX_COMPS_IN_SCAN]; /* last DC coef for each component */
-  int last_dc_diff[MAX_COMPS_IN_SCAN]; /* last DC coef diff for each component  - Xing*/
   previous_block_state_t previous_block_state;
 } savable_state;
 
@@ -510,7 +509,7 @@ flush_bits (working_state * state)
 
 LOCAL(boolean)
 encode_one_block_entropy (working_state * state, JCOEFPTR block, int last_dc_val,
-      int ci, int last_dc_diff_bits, int * dc_diff_bits, previous_block_state_t * previous_block_state)
+      int ci, int last_dc_diff_bits, previous_block_state_t * previous_block_state)
 {
   //register int temp, temp2;
   //register int nbits;
@@ -525,17 +524,23 @@ encode_one_block_entropy (working_state * state, JCOEFPTR block, int last_dc_val
   size_t put_buffer;  int put_bits;
   //int code_0xf0 = actbl->ehufco[0xf0], size_0xf0 = actbl->ehufsi[0xf0];
   size_t bytes, bytestocopy;  int localbuf = 0;
+  int dc_diff_bits;
+  int index0, index1, index2, index3;
+  index0 = previous_block_state->current_index[ci];
+  index1 = index0 == 0 ? LOOK_BACKWARD_BLOCK : index0 - 1;
+  index2 = index1 == 0 ? LOOK_BACKWARD_BLOCK : index1 - 1;
+  index3 = index2 == 0 ? LOOK_BACKWARD_BLOCK : index2 - 1;
 
   put_buffer = state->cur.put_buffer;
   put_bits = state->cur.put_bits;
   LOAD_BUFFER()
 
   // Xing - update previous_block_state while encoding
-  UINT8 * previous_blocks_avgs = previous_block_state->previous_blocks_avgs[ci][LOOK_BACKWARD_BLOCK];
-  UINT8 * previous_blocks_avgs_ma = previous_block_state->previous_blocks_avgs_ma[ci][LOOK_BACKWARD_BLOCK];
+  UINT8 * previous_blocks_avgs = previous_block_state->previous_blocks_avgs[ci][index0];
+  UINT8 * previous_blocks_avgs_ma = previous_block_state->previous_blocks_avgs_ma[ci][index0];
 
   // logging entire block
-  JCOEF* previous_blocks = previous_block_state->previous_blocks[ci][LOOK_BACKWARD_BLOCK];
+  JCOEF* previous_blocks = previous_block_state->previous_blocks[ci][index0];
   UINT8* max_table = max_pos_value_range[ci][1];
 
   //memset(previous_blocks, 0, 64*sizeof(JCOEF));
@@ -561,22 +566,22 @@ encode_one_block_entropy (working_state * state, JCOEFPTR block, int last_dc_val
 
   /* Find the number of bits needed for the magnitude of the coefficient */
    nbits = JPEG_NBITS(temp);
-   *dc_diff_bits = nbits;
+   dc_diff_bits = nbits;
 
    // for better dc
    if (temp2 >= 0)
      previous_blocks[0] = nbits;
    else
      previous_blocks[0] = -nbits;
-   better_dc_nbits = previous_blocks[0] + 11;
+   temp3 = previous_blocks[0] + 11;
    // for better dc
 
 
   /* Emit the Huffman-coded symbol for the number of bits */
-  p_table = (symbol_table_t *)&dc_table[ci][get_dc_index(ci, previous_block_state)];
+  p_table = (symbol_table_t *)&dc_table[ci][get_dc_index(ci, previous_block_state, index1, index2)];
 
-  code = p_table->symbol[better_dc_nbits];
-  size = p_table->bits[better_dc_nbits];
+  code = p_table->symbol[temp3];
+  size = p_table->bits[temp3];
   EMIT_BITS(code, size)
   //PUT_BITS(code, size)
   CHECKBUF15()
@@ -597,9 +602,8 @@ encode_one_block_entropy (working_state * state, JCOEFPTR block, int last_dc_val
   /* Encode the AC coefficients per section F.1.2.2 */
 
   r = 0;      /* r = run length of zeros */
-  int t = 0, ma = 0, last_non_zero = 1; // Xing, see training_paras.py
+  int t = 0, last_non_zero = 1; // Xing, see training_paras.py
   // last_nont_zero actually stores the position of last_non_zero + 1
-  int f = 0;
   int real_last_non_zero = 1;
 
   /* Manually unroll the k loop to eliminate the counter variable.  This
@@ -617,33 +621,25 @@ encode_one_block_entropy (working_state * state, JCOEFPTR block, int last_dc_val
       temp -= temp3; \
       /* training_2_3_separate*/ \
       nbits = JPEG_NBITS_NONZERO(temp); \
-      if (temp<=7) { \
-    	  sign = temp2 > 0 ? (INT32)1 : (INT32)0; \
-    	  nbits_ = coef_to_entry_table[temp]; \
-      } \
-      else { \
-    	  nbits_ = nbits; \
-      }\
-      temp2 += temp3; \
+      temp2 = temp<=7 ? coef_to_entry_table[temp] : nbits; \
       /* if run length > 15, must emit special run-length-16 codes (0xF0) */ \
       while (r > 15) { \
         f = t*1000/(max_table[last_non_zero-1]); \
-        p_table = (symbol_table_t *)&ac_table[ci][last_non_zero][get_first_dimension_index(ci, last_non_zero, f, *dc_diff_bits)][get_second_dimension_index(ci, last_non_zero, previous_block_state)]; \
+        p_table = (symbol_table_t *)&ac_table[ci][last_non_zero][get_first_dimension_index(ci, last_non_zero, f, dc_diff_bits)][get_second_dimension_index(ci, last_non_zero, previous_block_state,index1,index2,index3)]; \
         code = p_table->symbol[0xf0]; \
         size = p_table->bits[0xf0]; \
         EMIT_BITS(code, size) \
         r -= 16; \
-        ma += max_pos_value_range[ci][last_non_zero][last_non_zero + 15]; \
+        /* ma += max_pos_value_range[ci][last_non_zero][last_non_zero + 15];*/ \
         /* for (temp3=last_non_zero; temp3<last_non_zero+16; ++temp3) */ \
         /*  ma += max_pos_value[ci].bits[temp3]; */ \
         last_non_zero += 16; \
       } \
       /* Emit Huffman symbol for run length / number of bits */ \
-      temp3 = (r << 4) + nbits_; \
-      f = t*1000/(max_table[last_non_zero-1]); \
-      p_table = (symbol_table_t *)&ac_table[ci][last_non_zero][get_first_dimension_index(ci, last_non_zero, f, *dc_diff_bits)][get_second_dimension_index(ci, last_non_zero, previous_block_state)]; \
-      code = p_table->symbol[temp3]; \
-      size = p_table->bits[temp3]; \
+      temp2 += (r<<4); \
+      p_table = (symbol_table_t *)&ac_table[ci][last_non_zero][get_first_dimension_index(ci, last_non_zero, t*1000/(max_table[last_non_zero-1]), dc_diff_bits)][get_second_dimension_index(ci, last_non_zero, previous_block_state,index1,index2,index3)]; \
+      code = p_table->symbol[temp2]; \
+      size = p_table->bits[temp2]; \
       EMIT_CODE_ENTROPY(code, size) \
       /* see training_handle_2_3_separate.py for modification */ \
       t += nbits; \
@@ -681,9 +677,8 @@ encode_one_block_entropy (working_state * state, JCOEFPTR block, int last_dc_val
 
   /* If the last coef(s) were zero, emit an end-of-block code */
   if (r > 0) {
-    f = t*1000/(max_table[last_non_zero-1]);
-    p_table = (symbol_table_t *)&ac_table[ci][last_non_zero][get_first_dimension_index(ci, last_non_zero, f, *dc_diff_bits)]
-                                              [get_second_dimension_index(ci, last_non_zero, previous_block_state)];
+    p_table = (symbol_table_t *)&ac_table[ci][last_non_zero][get_first_dimension_index(ci, last_non_zero, t*1000/(max_table[last_non_zero-1]), dc_diff_bits)]
+                                              [get_second_dimension_index(ci, last_non_zero, previous_block_state,index1,index2,index3)];
     code = p_table->symbol[0];
     size = p_table->bits[0];
     EMIT_BITS(code, size)
@@ -691,6 +686,7 @@ encode_one_block_entropy (working_state * state, JCOEFPTR block, int last_dc_val
 
   state->cur.put_buffer = put_buffer;
   state->cur.put_bits = put_bits;
+  previous_block_state->current_index[ci] = index3;
   STORE_BUFFER()
   return TRUE;
 }
@@ -865,14 +861,14 @@ encode_mcu_huff (j_compress_ptr cinfo, JBLOCKROW *MCU_data)
         return FALSE;
   }
 
-  int dc_diff_bits = 0;
+  //int dc_diff_bits = 0;
   /* Encode the MCU data blocks */
   for (blkn = 0; blkn < cinfo->blocks_in_MCU; blkn++) {
     ci = cinfo->MCU_membership[blkn];
     compptr = cinfo->cur_comp_info[ci];
     if (cinfo->private_option == 1) { // Xing: for our special encoding
       if (! encode_one_block_entropy(&state,
-         MCU_data[blkn][0], state.cur.last_dc_val[ci], ci, state.cur.last_dc_diff[ci], &dc_diff_bits, &state.cur.previous_block_state))
+         MCU_data[blkn][0], state.cur.last_dc_val[ci], ci, state.cur.last_dc_diff[ci], &state.cur.previous_block_state))
         return FALSE;
     } else {
       if (! encode_one_block(&state,
@@ -883,7 +879,8 @@ encode_mcu_huff (j_compress_ptr cinfo, JBLOCKROW *MCU_data)
     }
     /* Update last_dc_val */
     state.cur.last_dc_val[ci] = MCU_data[blkn][0][0];
-    state.cur.last_dc_diff[ci] = dc_diff_bits;
+    //state.cur.last_dc_diff[ci] = dc_diff_bits;
+    /*
     int now_index = state.cur.previous_block_state.current_index[ci];
     memcpy(state.cur.previous_block_state.previous_blocks[ci][now_index],
            state.cur.previous_block_state.previous_blocks[ci][LOOK_BACKWARD_BLOCK],
@@ -896,11 +893,12 @@ encode_mcu_huff (j_compress_ptr cinfo, JBLOCKROW *MCU_data)
                64*sizeof(UINT8));
 
     memset(state.cur.previous_block_state.previous_blocks_avgs[ci][LOOK_BACKWARD_BLOCK], 0, 64*sizeof(UINT8));   // not sure if this is 100% correct, check later, basically mark every INT to -1
+    */
     //memset(state.cur.previous_block_state.previous_blocks_avgs_ma[ci][LOOK_BACKWARD_BLOCK], 0, 64*sizeof(int));
     //for (int temp=1; temp<64; ++temp) {
     //  state.cur.previous_block_state.previous_blocks_avgs[ci][now_index][temp] = -1;
     //}
-    state.cur.previous_block_state.current_index[ci] = now_index == LOOK_BACKWARD_BLOCK - 1 ? 0 : now_index + 1;
+    //state.cur.previous_block_state.current_index[ci] = now_index == LOOK_BACKWARD_BLOCK - 1 ? 0 : now_index + 1;
   }
 
   /* Completed MCU, so update state */

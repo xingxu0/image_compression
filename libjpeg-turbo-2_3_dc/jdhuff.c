@@ -47,49 +47,62 @@ inline int get_bin(int * bin, int bins, int f) {
 }
 
 inline int get_bin_naive(int *bin, int f) {
-  if (f < bin[0]) return 0;
-  if (f < bin[1]) return 1;
-  if (f < bin[2]) return 2;
-  if (f < bin[3]) return 3;
-  if (f < bin[3]) return 3;
-  if (f < bin[4]) return 4;
-  if (f < bin[5]) return 5;
-  if (f < bin[6]) return 6;
-  if (f < bin[7]) return 7;
-  if (f < bin[8]) return 8;
-  if (f < bin[9]) return 9;
-  if (f < bin[10]) return 10;
-  if (f < bin[11]) return 11;
-  if (f < bin[12]) return 12;
-  if (f < bin[13]) return 13;
-  if (f < bin[13]) return 13;
-  if (f < bin[14]) return 14;
-  if (f < bin[15]) return 15;
-  if (f < bin[16]) return 16;
-  if (f < bin[17]) return 17;
-  if (f < bin[18]) return 18;
-  if (f < bin[19]) return 19;
-  if (f < bin[20]) return 20;
-  return 20;
+  if (f < bin[10]) {
+	  if (f < bin[4]) {
+		  if (f < bin[0]) return 0;
+		  if (f < bin[1]) return 1;
+		  if (f < bin[2]) return 2;
+		  if (f < bin[3]) return 3;
+		  return 4;
+	  } else {
+		  if (f < bin[5]) return 5;
+		  if (f < bin[6]) return 6;
+		  if (f < bin[7]) return 7;
+		  if (f < bin[8]) return 8;
+		  if (f < bin[9]) return 9;
+		  return 10;
+	  }
+  }
+  else {
+	  if (f < bin[15]) {
+		  if (f < bin[11]) return 11;
+		  if (f < bin[12]) return 12;
+		  if (f < bin[13]) return 13;
+		  if (f < bin[14]) return 14;
+		  return 15;
+	  } else {
+		  if (f < bin[16]) return 16;
+		  if (f < bin[17]) return 17;
+		  if (f < bin[18]) return 18;
+		  if (f < bin[19]) return 19;
+		  if (f < bin[20]) return 20;
+		  return 20;
+	  }
+  }
 }
 
-inline int get_dc_index(int ci, previous_block_state_t * previous_block_state) {
-	int s=0, t=0, tmp;
-	int now_index = previous_block_state->current_index[ci];
-	JCOEF (*b)[64] = previous_block_state->previous_blocks[ci];
+inline int get_dc_index(int ci, previous_block_state_t * previous_block_state, int index1, int index2) {
+	int s=0, t=0, temp, temp3;
+	//int now_index = previous_block_state->current_index[ci];
+	char (*b)[64] = previous_block_state->previous_blocks[ci];
 	//for (i=0; i<2; ++i) {
-  now_index = now_index == 0 ? LOOK_BACKWARD_BLOCK - 1 : now_index - 1;
-  tmp = b[now_index][0];
-  s += abs(tmp);
-  if (tmp < 0) t-=1;
-  else if (tmp) t+=1;
+  //now_index = now_index == 0 ? LOOK_BACKWARD_BLOCK - 1 : now_index - 1;
+  temp = b[index1][0];
+  if (temp < 0) t-=1;
+  else if (temp) t+=1;
+  temp3 = temp >> (CHAR_BIT * sizeof(int) - 1); \
+  temp ^= temp3; \
+  temp -= temp3; \
+  s += temp;
 
-  now_index = now_index == 0 ? LOOK_BACKWARD_BLOCK - 1 : now_index - 1;
-  tmp = b[now_index][0];
-  s += abs(tmp);
-  if (tmp < 0) t-=1;
-  else if (tmp) t+=1;
-	//}
+  //now_index = now_index == 0 ? LOOK_BACKWARD_BLOCK - 1 : now_index - 1;
+  temp = b[index2][0];
+  if (temp < 0) t-=1;
+  else if (temp) t+=1;
+  temp3 = temp >> (CHAR_BIT * sizeof(int) - 1); \
+  temp ^= temp3; \
+  temp -= temp3; \
+  s += temp;
 
 	s>>=1;
 	if (t<0) s+=12;
@@ -111,8 +124,7 @@ inline int get_first_dimension_index(int ci, int pos, int f, int dc_diff) {
 	*/
 }
 
-inline int get_second_dimension_index(int ci, int pos, previous_block_state_t * previous_block_state) {
-	int now_index = previous_block_state->current_index[ci];
+inline int get_second_dimension_index(int ci, int pos, previous_block_state_t * previous_block_state, int index1, int index2, int index3) {
 	//int i;
 	int l;
 	register int k, su = 0, ma = 0;
@@ -123,30 +135,27 @@ inline int get_second_dimension_index(int ci, int pos, previous_block_state_t * 
 	//for (i=0; i<LOOK_BACKWARD_BLOCK; ++i) {
 
 	// for 3 times
-		now_index = now_index == 0 ? LOOK_BACKWARD_BLOCK - 1 : now_index - 1;
 		//if (previous_block_state->previous_blocks_avgs[ci][now_index][pos] != -1) {
-			k = avgs_[now_index][pos];
+			k = avgs_[index1][pos];
 			su += k;
 			if (k != 0)
-			  ma += ma_[now_index][pos];
+			  ma += ma_[index1][pos];
 			else
 		      ma += max_table[l - 1];
 
-			now_index = now_index == 0 ? LOOK_BACKWARD_BLOCK - 1 : now_index - 1;
 			    //if (previous_block_state->previous_blocks_avgs[ci][now_index][pos] != -1) {
-			      k = avgs_[now_index][pos];
+			      k = avgs_[index2][pos];
 			      su += k;
 			      if (k != 0)
-			        ma += ma_[now_index][pos];
+			        ma += ma_[index2][pos];
 			      else
 			          ma += max_table[l - 1];
 
-			      now_index = now_index == 0 ? LOOK_BACKWARD_BLOCK - 1 : now_index - 1;
 			          //if (previous_block_state->previous_blocks_avgs[ci][now_index][pos] != -1) {
-			            k = avgs_[now_index][pos];
+			            k = avgs_[index3][pos];
 			            su += k;
 			            if (k != 0)
-			              ma += ma_[now_index][pos];
+			              ma += ma_[index3][pos];
 			            else
 			                ma += max_table[l - 1];
 		/*
@@ -169,9 +178,8 @@ inline int get_second_dimension_index(int ci, int pos, previous_block_state_t * 
 	*/
 	//}
 
-	int f = su ? su*1000/ma : 0;
 	//return get_bin(coef_bins_p[ci][pos], second_dimension_bins, f);
-	return get_bin_naive(coef_bins_p[ci][pos], f);
+	return get_bin_naive(coef_bins_p[ci][pos], su*1000/ma);
 }
 
 /*
