@@ -1280,7 +1280,7 @@ decode_mcu_slow_entropy (j_decompress_ptr cinfo, JBLOCKROW *MCU_data)
   ASSIGN_STATE(state, entropy->saved);
 
   int ci, tmp, tmp2;
-  register int s, k, r, t, abs_real_dc_bits, real_dc_bits, get_bits;
+  register int s, k, r, t;
   register symbol_table_t* p_table;
   JBLOCKROW block;
   previous_block_state_t * pre_state = &state.previous_block_state;
@@ -1514,16 +1514,22 @@ decode_mcu_fast_entropy (j_decompress_ptr cinfo, JBLOCKROW *MCU_data)
   previous_block_state_t * pre_state = &state.previous_block_state;
   UINT8 *previous_blocks_avgs, *previous_blocks_avgs_ma;
   JCOEF *previous_blocks;
+
+  int index0, index1, index2, index3;
   for (blkn = 0; blkn < cinfo->blocks_in_MCU; blkn++) {
     block = MCU_data[blkn];
     t = 0;
     f = 0;
     ci = cinfo->MCU_membership[blkn];
+    index0 = pre_state->current_index[ci];
+      index1 = index0 == 0 ? LOOK_BACKWARD_BLOCK : index0 - 1;
+      index2 = index1 == 0 ? LOOK_BACKWARD_BLOCK : index1 - 1;
+      index3 = index2 == 0 ? LOOK_BACKWARD_BLOCK : index2 - 1;
 
-    previous_blocks_avgs = pre_state->previous_blocks_avgs[ci][LOOK_BACKWARD_BLOCK];
-    previous_blocks_avgs_ma = pre_state->previous_blocks_avgs_ma[ci][LOOK_BACKWARD_BLOCK];
-    previous_blocks = pre_state->previous_blocks[ci][LOOK_BACKWARD_BLOCK];
-    p_table = (symbol_table_t *)&dc_table[ci][get_dc_index(ci, pre_state)];
+    previous_blocks_avgs = pre_state->previous_blocks_avgs[ci][index0];
+    previous_blocks_avgs_ma = pre_state->previous_blocks_avgs_ma[ci][index0];
+    previous_blocks = &pre_state->previous_blocks[ci][index0];
+    p_table = (symbol_table_t *)&dc_table[ci][get_dc_index(ci, pre_state, index1, index2)];
 
     HUFF_DECODE_FAST_ENTROPY(s, l, p_table);
 
@@ -1559,7 +1565,7 @@ decode_mcu_fast_entropy (j_decompress_ptr cinfo, JBLOCKROW *MCU_data)
     int real_last_non_zero = 1;
       for (k = 1; k < DCTSIZE2; k++) {
     	f = t == 0 ? 0 : t*1000/max_pos_value_range[ci][1][k-1];
-        p_table = (symbol_table_t *)&ac_table[ci][k][get_first_dimension_index(ci, k, f, tmp)][get_second_dimension_index(ci, k, &state.previous_block_state)];
+        p_table = (symbol_table_t *)&ac_table[ci][k][get_first_dimension_index(ci, k, f, tmp)][get_second_dimension_index(ci, k, &state.previous_block_state, index1, index2, index3)];
         HUFF_DECODE_FAST_ENTROPY(s, l, p_table);
         r = s >> 4;
         s &= 15;
@@ -1592,18 +1598,7 @@ decode_mcu_fast_entropy (j_decompress_ptr cinfo, JBLOCKROW *MCU_data)
         }
       }
 
-    now_index = pre_state->current_index[ci];
-    memcpy(pre_state->previous_blocks[ci][now_index],
-    		pre_state->previous_blocks[ci][LOOK_BACKWARD_BLOCK],
-           64*sizeof(JCOEF));
-    memcpy(pre_state->previous_blocks_avgs[ci][now_index],
-    		pre_state->previous_blocks_avgs[ci][LOOK_BACKWARD_BLOCK],
-             		   64*sizeof(UINT8));
-    memcpy(pre_state->previous_blocks_avgs_ma[ci][now_index],
-    		pre_state->previous_blocks_avgs_ma[ci][LOOK_BACKWARD_BLOCK],
-             		   64*sizeof(UINT8));
-    memset(pre_state->previous_blocks_avgs[ci][LOOK_BACKWARD_BLOCK], 0, 64*sizeof(UINT8));   // not sure if this is 100% correct, check later, basically mark every INT to -1
-    pre_state->current_index[ci] = now_index == LOOK_BACKWARD_BLOCK - 1 ? 0 : now_index + 1;
+    pre_state->current_index[ci] = index3;
   }
 
   if (cinfo->unread_marker != 0) {
