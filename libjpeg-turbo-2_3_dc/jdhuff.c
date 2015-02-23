@@ -141,7 +141,7 @@ inline int get_second_dimension_index(int ci, int pos, previous_block_state_t * 
 			if (k != 0)
 			  ma += ma_[index1][pos];
 			else
-		      ma += max_table[l - 1];
+		      ma += max_table[l];
 
 			    //if (previous_block_state->previous_blocks_avgs[ci][now_index][pos] != -1) {
 			      k = avgs_[index2][pos];
@@ -149,7 +149,7 @@ inline int get_second_dimension_index(int ci, int pos, previous_block_state_t * 
 			      if (k != 0)
 			        ma += ma_[index2][pos];
 			      else
-			          ma += max_table[l - 1];
+			          ma += max_table[l];
 
 			          //if (previous_block_state->previous_blocks_avgs[ci][now_index][pos] != -1) {
 			            k = avgs_[index3][pos];
@@ -157,7 +157,7 @@ inline int get_second_dimension_index(int ci, int pos, previous_block_state_t * 
 			            if (k != 0)
 			              ma += ma_[index3][pos];
 			            else
-			                ma += max_table[l - 1];
+			                ma += max_table[l];
 		/*
 		}
 		else {
@@ -433,7 +433,7 @@ void initialize_max_pos_value(int c)
 
 	int t = 0;
 	for (i=0; i<64; ++i)
-			for (j=0; j<64; ++j)
+			for (j=0; j<65; ++j)
 				max_pos_value_range[c][i][j] = 1;
 
 	for (i=0; i<64; ++i) {
@@ -441,7 +441,7 @@ void initialize_max_pos_value(int c)
 			t = 1;
 			for (k=i; k<=j; ++k)
 				t += max_pos_value[c][k];
-			max_pos_value_range[c][i][j] = t;
+			max_pos_value_range[c][i][j+1] = t;
 			max_pos_value_range_r[c][j][i] = t;
 		}
 	}
@@ -1343,7 +1343,7 @@ decode_mcu_slow_entropy (j_decompress_ptr cinfo, JBLOCKROW *MCU_data)
 
 
       for (k = 1; k < DCTSIZE2; k++) {
-    	  p_table = (symbol_table_t *)&ac_table[ci][k][get_first_dimension_index(ci, k, t*1000/max_pos_value_range[ci][1][k-1], tmp)][get_second_dimension_index(ci, k, &state.previous_block_state, index1, index2, index3)];
+    	  p_table = (symbol_table_t *)&ac_table[ci][k][get_first_dimension_index(ci, k, t*1000/max_pos_value_range[ci][1][k], tmp)][get_second_dimension_index(ci, k, &state.previous_block_state, index1, index2, index3)];
     	  HUFF_DECODE_ENTROPY(s, br_state, p_table, return FALSE, label2);
 
         r = s >> 4;
@@ -1563,7 +1563,7 @@ decode_mcu_fast_entropy (j_decompress_ptr cinfo, JBLOCKROW *MCU_data)
 
     int real_last_non_zero = 1;
       for (k = 1; k < DCTSIZE2; k++) {
-        p_table = (symbol_table_t *)&ac_table[ci][k][get_first_dimension_index(ci, k, t*1000/max_pos_value_range[ci][1][k-1], tmp)][get_second_dimension_index(ci, k, &state.previous_block_state, index1, index2, index3)];
+        p_table = (symbol_table_t *)&ac_table[ci][k][get_first_dimension_index(ci, k, t*1000/max_pos_value_range[ci][1][k], tmp)][get_second_dimension_index(ci, k, &state.previous_block_state, index1, index2, index3)];
         HUFF_DECODE_FAST_ENTROPY(s, l, p_table);
         r = s >> 4;
         s &= 15;
