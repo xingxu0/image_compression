@@ -294,7 +294,8 @@ void get_derived_huff_table_d(symbol_table_d* output_tbl)
 	int lastp, p, l, code, si, i, entries = tbl->length, lookbits, ctr;
 	int * bits_aggre = malloc((entropy_max_AC_bits + 1)*sizeof(int));
 	char huffsize[entries + 1];
-	unsigned int huffcode[entries + 1];
+	//unsigned int huffcode[entries + 1];
+	UINT16 huffcode[entries + 1];
 
 	p = 0;
 	i = 0;
@@ -425,7 +426,7 @@ boolean initialize_AC_table(int c, int i, int j, int k, int private_option)
 	} else {
 		ac_table_d[c][i][j][k].max_bits = malloc((entropy_max_AC_bits + 2)*sizeof(int));
 		ac_table_d[c][i][j][k].valoffset = malloc((entropy_max_AC_bits + 2)*sizeof(int));
-		ac_table_d[c][i][j][k].run_length = malloc(table_size*sizeof(int));
+		ac_table_d[c][i][j][k].run_length = malloc(table_size*sizeof(UINT8));
 		for (ii = 0; ii < table_size; ++ii)
 		{
 			int ret = fscanf(f, "%d: %d", &(table_tmp.bits[ii]), &(table_tmp.run_length[ii]));
@@ -484,7 +485,7 @@ void initialize_DC_table(int c, int i, int private_option)
 	} else {
 		dc_table_d[c][i].max_bits = malloc((entropy_max_AC_bits + 2)*sizeof(int));
 		dc_table_d[c][i].valoffset = malloc((entropy_max_AC_bits + 2)*sizeof(int));
-		dc_table_d[c][i].run_length = malloc(table_size*sizeof(int));
+		dc_table_d[c][i].run_length = malloc(table_size*sizeof(UINT8));
 		for (ii = 0; ii < table_size; ++ii)
 		{
 			int ret = fscanf(f, "%d: %d", &(table_tmp.bits[ii]), &(table_tmp.run_length[ii]));
