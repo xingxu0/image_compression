@@ -537,10 +537,11 @@ encode_one_block_entropy (working_state * state, JCOEFPTR block, int last_dc_val
 
   // Xing - update previous_block_state while encoding
   UINT8 * previous_blocks_avgs = previous_block_state->previous_blocks_avgs[ci][index0];
+  memset(previous_blocks_avgs, 0, 64*sizeof(UINT8));
   UINT8 * previous_blocks_avgs_ma = previous_block_state->previous_blocks_avgs_ma[ci][index0];
 
   // logging entire block
-  JCOEF* previous_blocks = previous_block_state->previous_blocks[ci][index0];
+  JCOEF* previous_blocks = &previous_block_state->previous_blocks[ci][index0];
   UINT8* max_table = max_pos_value_range[ci][1];
 
   //memset(previous_blocks, 0, 64*sizeof(JCOEF));
@@ -570,10 +571,10 @@ encode_one_block_entropy (working_state * state, JCOEFPTR block, int last_dc_val
 
    // for better dc
    if (temp2 >= 0)
-     previous_blocks[0] = nbits;
+     *previous_blocks = nbits;
    else
-     previous_blocks[0] = -nbits;
-   temp3 = previous_blocks[0] + 11;
+     *previous_blocks = -nbits;
+   temp3 = *previous_blocks + 11;
    // for better dc
 
 
