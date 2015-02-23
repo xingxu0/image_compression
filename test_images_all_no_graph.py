@@ -1,7 +1,7 @@
 import os, commands, re, sys
 
 folders = ['100', '200', '300', '400', '600', '800', '1000', '1200']
-folders = ['1200']
+folders = ['600']
 
 x = []
 y_encoding = []
@@ -37,7 +37,6 @@ for f in folders:
 		total_optimized_size += jpg_opt_size
 		total_encoded_size += out_size
 		total_encoding_time += encoding_time
-
 		c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran -decode tbl_" + "600" + "_23dc" + " temp.jpg " + str(i) + "_out.jpg")
 		#c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran -decode ../image_compression_github/image_compression/tbl_" + f + "_q75" + " temp.jpg " + str(i) + "_out.jpg")
 
