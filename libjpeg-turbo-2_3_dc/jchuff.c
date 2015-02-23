@@ -209,7 +209,7 @@ start_pass_huff (j_compress_ptr cinfo, boolean gather_statistics)
     }
     /* Initialize DC predictions to 0 */
     entropy->saved.last_dc_val[ci] = 0;
-    entropy->saved.last_dc_diff[ci] = 0; // -Xing
+    //entropy->saved.last_dc_diff[ci] = 0; // -Xing
   }
 
   /* Initialize bit buffer to empty */
@@ -509,7 +509,7 @@ flush_bits (working_state * state)
 
 LOCAL(boolean)
 encode_one_block_entropy (working_state * state, JCOEFPTR block, int last_dc_val,
-      int ci, int last_dc_diff_bits, previous_block_state_t * previous_block_state)
+      int ci, previous_block_state_t * previous_block_state)
 {
   //register int temp, temp2;
   //register int nbits;
@@ -517,8 +517,8 @@ encode_one_block_entropy (working_state * state, JCOEFPTR block, int last_dc_val
   //int Se = state->cinfo->lim_Se;
   //const int * natural_order = state->cinfo->natural_order;
 
-  int temp, temp2, temp3, sign = 0, better_dc_nbits;
-  int nbits, nbits_;
+  int temp, temp2, temp3, sign = 0;
+  int nbits;
   int r, code, size;
   JOCTET _buffer[BUFSIZE], *buffer;
   size_t put_buffer;  int put_bits;
@@ -624,8 +624,7 @@ encode_one_block_entropy (working_state * state, JCOEFPTR block, int last_dc_val
       temp2 = temp<=7 ? coef_to_entry_table[temp] : nbits; \
       /* if run length > 15, must emit special run-length-16 codes (0xF0) */ \
       while (r > 15) { \
-        f = t*1000/(max_table[last_non_zero-1]); \
-        p_table = (symbol_table_t *)&ac_table[ci][last_non_zero][get_first_dimension_index(ci, last_non_zero, f, dc_diff_bits)][get_second_dimension_index(ci, last_non_zero, previous_block_state,index1,index2,index3)]; \
+        p_table = (symbol_table_t *)&ac_table[ci][last_non_zero][get_first_dimension_index(ci, last_non_zero, t*1000/(max_table[last_non_zero-1]), dc_diff_bits)][get_second_dimension_index(ci, last_non_zero, previous_block_state,index1,index2,index3)]; \
         code = p_table->symbol[0xf0]; \
         size = p_table->bits[0xf0]; \
         EMIT_BITS(code, size) \
@@ -643,7 +642,6 @@ encode_one_block_entropy (working_state * state, JCOEFPTR block, int last_dc_val
       EMIT_CODE_ENTROPY(code, size) \
       /* see training_handle_2_3_separate.py for modification */ \
       t += nbits; \
-      ma += max_pos_value_range[ci][last_non_zero][k]; \
       r = k - LOOK_FORWARD_COEF + 1; \
       if (r < real_last_non_zero) \
         r = real_last_non_zero; \
@@ -822,7 +820,6 @@ emit_restart (working_state * state, int restart_num)
   for (ci = 0; ci < state->cinfo->comps_in_scan; ci++) {
   state->cur.previous_block_state.current_index[ci] = 0; // Xing
     state->cur.last_dc_val[ci] = 0;
-    state->cur.last_dc_diff[ci] = 0; // Xing, to use DC table
     for (temp1=0; temp1<LOOK_BACKWARD_BLOCK; ++temp1)
   	for (temp=0; temp<64; ++temp) {
   		//entropy->saved.previous_block_state.previous_blocks[ci][temp1][temp] = -1;
@@ -868,7 +865,7 @@ encode_mcu_huff (j_compress_ptr cinfo, JBLOCKROW *MCU_data)
     compptr = cinfo->cur_comp_info[ci];
     if (cinfo->private_option == 1) { // Xing: for our special encoding
       if (! encode_one_block_entropy(&state,
-         MCU_data[blkn][0], state.cur.last_dc_val[ci], ci, state.cur.last_dc_diff[ci], &state.cur.previous_block_state))
+         MCU_data[blkn][0], state.cur.last_dc_val[ci], ci, &state.cur.previous_block_state))
         return FALSE;
     } else {
       if (! encode_one_block(&state,
