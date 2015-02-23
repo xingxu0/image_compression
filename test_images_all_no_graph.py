@@ -23,7 +23,7 @@ for f in folders:
 		#if i == 1 or i == 20:
 		#	continue
 		print i
-		c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran -encode tbl_" + "600" + "_all_default" + " images/" + f + "_Q75/" + str(i) + ".jpg temp.jpg")
+		c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran -encode tbl_" + "600" + "_23dc" + " images/" + f + "_Q75/" + str(i) + ".jpg temp.jpg")
 		#c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran -encode ../image_compression_github/image_compression/tbl_" + f + "_q75" + " images/" + "1200" + "_Q75/" + str(i) + ".jpg temp.jpg")
 
 		print c
@@ -38,8 +38,7 @@ for f in folders:
 		total_encoded_size += out_size
 		total_encoding_time += encoding_time
 
-		continue
-		c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran -decode tbl_" + "600" + "_all_default" + " temp.jpg " + str(i) + "_out.jpg")
+		c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran -decode tbl_" + "600" + "_23dc" + " temp.jpg " + str(i) + "_out.jpg")
 		#c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran -decode ../image_compression_github/image_compression/tbl_" + f + "_q75" + " temp.jpg " + str(i) + "_out.jpg")
 
 		print c

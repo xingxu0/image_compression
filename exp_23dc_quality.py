@@ -38,7 +38,7 @@ def get_candidates_size(img_folder, q):
 		c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran -progressive " + img_folder + "/" + str(i) + ".jpg temp.jpg")
 		total_pro_size += os.path.getsize("temp.jpg")
 
-		c = commands.getstatusoutput("time -p /opt/mozjpeg/bin/jpegtran -quality " + img_folder + "/" + str(i) + ".jpg > temp.jpg")
+		c = commands.getstatusoutput("time -p /opt/mozjpeg/bin/jpegtran " + img_folder + "/" + str(i) + ".jpg > temp.jpg")
 		total_moz_size += os.path.getsize("temp.jpg")
 		
 		c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran -outputcoef t_moz temp.jpg temp2.jpg")
