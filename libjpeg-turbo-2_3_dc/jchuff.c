@@ -518,7 +518,7 @@ encode_one_block_entropy (working_state * state, JCOEFPTR block, int last_dc_val
   //int Se = state->cinfo->lim_Se;
   //const int * natural_order = state->cinfo->natural_order;
 
-  int temp, temp2, temp3;
+  int temp, temp2, temp3, sign = 0;
   int nbits;
   int r, code, size;
   JOCTET _buffer[BUFSIZE], *buffer;
@@ -623,7 +623,8 @@ encode_one_block_entropy (working_state * state, JCOEFPTR block, int last_dc_val
       temp -= temp3; \
       /* training_2_3_separate*/ \
       nbits = JPEG_NBITS_NONZERO(temp); \
-      temp2 = temp<=7 ? coef_to_entry_table[temp] : nbits; \
+      if (temp<=7) {sign = temp2 > 0 ? (INT32)1 : (INT32)0; temp2 = coef_to_entry_table[temp]; } \
+      else {temp2 = nbits;} \
       /* if run length > 15, must emit special run-length-16 codes (0xF0) */ \
       while (r > 15) { \
         p_table = (symbol_table_t *)&ac_table[ci][last_non_zero][get_first_dimension_index(ci, last_non_zero, t*1000/(max_table[last_non_zero-1]), dc_diff_bits)][get_second_dimension_index(ci, last_non_zero, previous_block_state,index1,index2,index3)]; \
