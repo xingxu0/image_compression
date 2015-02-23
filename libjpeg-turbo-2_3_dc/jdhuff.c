@@ -589,7 +589,7 @@ void entropy_table_initialization()
 
 typedef struct {
   int last_dc_val[MAX_COMPS_IN_SCAN]; /* last DC coef for each component */
-  int last_dc_diff[MAX_COMPS_IN_SCAN]; // - Xing
+  //int last_dc_diff[MAX_COMPS_IN_SCAN]; // - Xing
   previous_block_state_t previous_block_state; // Xing
 } savable_state;
 
@@ -680,7 +680,7 @@ start_pass_huff_decoder (j_decompress_ptr cinfo)
     entropy->saved.last_dc_diff[ci] = 0; // Xing
 	entropy->saved.previous_block_state.current_index[ci] = 0;
 	for (temp1=0; temp1<LOOK_BACKWARD_BLOCK; ++temp1)
-		entropy->saved.previous_block_state.previous_blocks[ci][temp1] = -1;
+		entropy->saved.previous_block_state.previous_blocks[ci][temp1] = 0;
 		for (temp=0; temp<64; ++temp) {
 			//entropy->saved.previous_block_state.previous_blocks[ci][temp1][temp] = -1;
 			entropy->saved.previous_block_state.previous_blocks_avgs[ci][temp1][temp] = 0;
