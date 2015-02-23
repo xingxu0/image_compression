@@ -639,10 +639,10 @@ encode_one_block_entropy (working_state * state, JCOEFPTR block, int last_dc_val
         last_non_zero += 16; \
       } \
       /* Emit Huffman symbol for run length / number of bits */ \
-      temp3 += (r<<4); \
+      temp4 += (r<<4); \
       p_table = (symbol_table_t *)&ac_table[ci][last_non_zero][get_first_dimension_index(ci, last_non_zero, t*1000/(max_table[last_non_zero-1]), dc_diff_bits)][get_second_dimension_index(ci, last_non_zero, previous_block_state,index1,index2,index3)]; \
-      code = p_table->symbol[temp3]; \
-      size = p_table->bits[temp3]; \
+      code = p_table->symbol[temp4]; \
+      size = p_table->bits[temp4]; \
       EMIT_CODE_ENTROPY(code, size) \
       /* see training_handle_2_3_separate.py for modification */ \
       t += nbits; \
