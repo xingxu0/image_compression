@@ -1145,6 +1145,7 @@ typedef struct
 {
 	int * max_bits;
 	int * valoffset;
+	int * run_length;
 	int lookup[1<<HUFF_LOOKAHEAD];
 } symbol_table_d;
 

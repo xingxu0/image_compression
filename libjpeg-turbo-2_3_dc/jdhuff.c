@@ -237,8 +237,9 @@ inline int get_second_dimension_index(int ci, int pos, previous_block_state_t * 
 }*/
 
 int ts = 0;
-void get_derived_huff_table_c(symbol_table_c* output_tbl, symbol_table_tmp tbl)
+void get_derived_huff_table_c(symbol_table_c* output_tbl)
 {
+	symbol_table_tmp * tbl = &table_tmp;
 	int lastp, p, l, code, si, i, entries = tbl->length, lookbits, ctr;
 	int * bits_aggre = malloc((entropy_max_AC_bits + 1)*sizeof(int));
 	char huffsize[entries + 1];
@@ -286,8 +287,9 @@ void get_derived_huff_table_c(symbol_table_c* output_tbl, symbol_table_tmp tbl)
   free(bits_aggre);
 }
 
-void get_derived_huff_table_d(symbol_table_d* output_tbl, symbol_table_tmp tbl)
+void get_derived_huff_table_d(symbol_table_d* output_tbl)
 {
+	symbol_table_tmp * tbl = &table_tmp;
 	int lastp, p, l, code, si, i, entries = tbl->length, lookbits, ctr;
 	int * bits_aggre = malloc((entropy_max_AC_bits + 1)*sizeof(int));
 	char huffsize[entries + 1];
@@ -328,7 +330,7 @@ void get_derived_huff_table_d(symbol_table_d* output_tbl, symbol_table_tmp tbl)
 	}
 
 	for (p = 0; p < lastp; p++) {
-		i = tbl->run_length == NULL ? p : tbl->run_length[p];
+		i = output_tbl->run_length == NULL ? p : tbl->run_length[p];
 		tbl->symbol[i] = huffcode[p];
 		tbl->bits[i] = huffsize[p];
 	}
@@ -422,6 +424,7 @@ boolean initialize_AC_table(int c, int i, int j, int k, int private_option)
 	} else {
 		ac_table_d[c][i][j][k].max_bits = malloc((entropy_max_AC_bits + 2)*sizeof(int));
 		ac_table_d[c][i][j][k].valoffset = malloc((entropy_max_AC_bits + 2)*sizeof(int));
+		ac_table_d[c][i][j][k].run_length = malloc(table_size*sizeof(int));
 		for (ii = 0; ii < table_size; ++ii)
 		{
 			int ret = fscanf(f, "%d: %d", &(table_tmp.bits[ii]), &(table_tmp.run_length[ii]));
@@ -478,6 +481,7 @@ void initialize_DC_table(int c, int i, int private_option)
 	} else {
 		dc_table_d[c][i].max_bits = malloc((entropy_max_AC_bits + 2)*sizeof(int));
 		dc_table_d[c][i].valoffset = malloc((entropy_max_AC_bits + 2)*sizeof(int));
+		dc_table_d[c][i].run_length = malloc(table_size*sizeof(int));
 		for (ii = 0; ii < table_size; ++ii)
 		{
 			int ret = fscanf(f, "%d: %d", &(table_tmp.bits[ii]), &(table_tmp.run_length[ii]));
@@ -676,7 +680,7 @@ void entropy_table_initialization(int private_option)
 		for (c=0; c<3; ++c) {
 			dc_table_d[c] = malloc(36*sizeof(symbol_table_d));
 			for (i=0; i<36; ++i)
-				initialize_DC_table(c, i);
+				initialize_DC_table(c, i, private_option);
 		}
 
 	}
@@ -1176,7 +1180,7 @@ jpeg_huff_decode (bitread_working_state * state,
 GLOBAL(int)
 jpeg_huff_decode_entropy (bitread_working_state * state,
                   register bit_buf_type get_buffer, register int bits_left,
-                  symbol_table_t * htbl, int min_bits)
+                  symbol_table_d * htbl, int min_bits)
 {
   register int l = min_bits;
   register INT32 code;
