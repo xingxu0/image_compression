@@ -677,7 +677,7 @@ start_pass_huff_decoder (j_decompress_ptr cinfo)
                             & entropy->ac_derived_tbls[actbl]);
     /* Initialize DC predictions to 0 */
     entropy->saved.last_dc_val[ci] = 0;
-    entropy->saved.last_dc_diff[ci] = 0; // Xing
+    //entropy->saved.last_dc_diff[ci] = 0; // Xing
 	entropy->saved.previous_block_state.current_index[ci] = 0;
 	for (temp1=0; temp1<LOOK_BACKWARD_BLOCK; ++temp1)
 		entropy->saved.previous_block_state.previous_blocks[ci][temp1] = 0;
