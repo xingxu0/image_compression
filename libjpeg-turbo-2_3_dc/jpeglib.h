@@ -1121,11 +1121,11 @@ char * table_folder;
 
 typedef struct
 {
-	UINT8 length;
-	UINT8 * bits;
-	unsigned int * symbol;
-	unsigned int * max_bits;
-	UINT8 * run_length;
+	int length;
+	int * bits;
+	int * symbol;
+	int * max_bits;
+	int * run_length;
 	int * valoffset;
 	int lookup[1<<HUFF_LOOKAHEAD];
 } symbol_table_t;
