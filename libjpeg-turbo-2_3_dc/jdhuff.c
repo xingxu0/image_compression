@@ -243,7 +243,8 @@ void get_derived_huff_table_c(symbol_table_c* output_tbl)
 	int lastp, p, l, code, si, i, entries = tbl->length;
 	int * bits_aggre = malloc((entropy_max_AC_bits + 1)*sizeof(int));
 	char huffsize[entries + 1];
-	unsigned int huffcode[entries + 1];
+	//unsigned int huffcode[entries + 1];
+	UINT16 huffcode[entries + 1];
 
 	p = 0;
 	i = 0;
@@ -407,10 +408,10 @@ boolean initialize_AC_table(int c, int i, int j, int k, int private_option)
 	table_tmp.length = table_size;
 	int ii;
 	if (private_option == 1) {
-		ac_table[c][i][j][k].symbol = malloc(table_size*sizeof(int));
+		ac_table[c][i][j][k].symbol = malloc(table_size*sizeof(UINT16));
 		for (ii = 0; ii< table_size; ++ii)
 			ac_table[c][i][j][k].symbol[ii] = -1;
-		ac_table[c][i][j][k].bits = malloc(table_size*sizeof(int));
+		ac_table[c][i][j][k].bits = malloc(table_size*sizeof(UINT8));
 		for (ii = 0; ii < table_size; ++ii)
 		{
 			int ret = fscanf(f, "%d: %d", &(table_tmp.bits[ii]), &(table_tmp.run_length[ii]));
@@ -467,10 +468,10 @@ void initialize_DC_table(int c, int i, int private_option)
 	int ii;
 	table_tmp.length = table_size;
 	if (private_option == 1) {
-		dc_table[c][i].symbol = malloc(table_size*sizeof(int));
+		dc_table[c][i].symbol = malloc(table_size*sizeof(UINT16));
 		for (ii = 0; ii< table_size; ++ii)
 			dc_table[c][i].symbol[ii] = -1;
-		dc_table[c][i].bits = malloc(table_size*sizeof(int));
+		dc_table[c][i].bits = malloc(table_size*sizeof(UINT8));
 		for (ii = 0; ii < table_size; ++ii)
 		{
 			int ret = fscanf(f, "%d: %d", &(table_tmp.bits[ii]), &(table_tmp.run_length[ii]));
