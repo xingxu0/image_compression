@@ -1155,8 +1155,8 @@ int* bits_saving;
 void entropy_table_initialization();
 
 int get_first_dimension_index(int ci, int pos, int f, int dc_diff);
-int get_second_dimension_index(int ci, int pos, previous_block_state_t* previous_block_state);
-int get_dc_index(int ci, previous_block_state_t * previous_block_state);
+int get_second_dimension_index(int ci, int pos, previous_block_state_t* previous_block_state, int index1, int index2, int index3);
+int get_dc_index(int ci, previous_block_state_t * previous_block_state, int index1, int index2);
 
 FILE * outputcoef;
 
