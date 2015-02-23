@@ -204,17 +204,17 @@ slowlabel: \
 
 #define HUFF_DECODE_ENTROPY(result,state,htbl,failaction,slowlabel) \
 { register int nb, look; \
-  if (bits_left < HUFF_LOOKAHEAD) { \
+  if (bits_left < HUFF_LOOKAHEAD_ENTROPY) { \
     if (! jpeg_fill_bit_buffer(&state,get_buffer,bits_left, 0)) {failaction;} \
     get_buffer = state.get_buffer; bits_left = state.bits_left; \
-    if (bits_left < HUFF_LOOKAHEAD) { \
+    if (bits_left < HUFF_LOOKAHEAD_ENTROPY) { \
       nb = 1; goto slowlabel; \
     } \
   } \
-  look = PEEK_BITS(HUFF_LOOKAHEAD); \
-  if ((nb = (htbl->lookup[look] >> HUFF_LOOKAHEAD)) <= HUFF_LOOKAHEAD) { \
+  look = PEEK_BITS(HUFF_LOOKAHEAD_ENTROPY); \
+  if ((nb = (htbl->lookup[look] >> HUFF_LOOKAHEAD_ENTROPY)) <= HUFF_LOOKAHEAD_ENTROPY) { \
     DROP_BITS(nb); \
-    result = htbl->lookup[look] & ((1 << HUFF_LOOKAHEAD) - 1); \
+    result = htbl->lookup[look] & ((1 << HUFF_LOOKAHEAD_ENTROPY) - 1); \
   } else { \
 slowlabel: \
     if ((result=jpeg_huff_decode_entropy(&state,get_buffer,bits_left,htbl,nb)) < 0) \
@@ -246,13 +246,13 @@ slowlabel: \
 
 #define HUFF_DECODE_FAST_ENTROPY(s,nb,htbl) \
   FILL_BIT_BUFFER_FAST; \
-  s = PEEK_BITS(HUFF_LOOKAHEAD); \
+  s = PEEK_BITS(HUFF_LOOKAHEAD_ENTROPY); \
   s = htbl->lookup[s]; \
-  nb = s >> HUFF_LOOKAHEAD; \
+  nb = s >> HUFF_LOOKAHEAD_ENTROPY; \
   /* Pre-execute the common case of nb <= HUFF_LOOKAHEAD */ \
   DROP_BITS(nb); \
-  s = s & ((1 << HUFF_LOOKAHEAD) - 1); \
-  if (nb > HUFF_LOOKAHEAD) { \
+  s = s & ((1 << HUFF_LOOKAHEAD_ENTROPY) - 1); \
+  if (nb > HUFF_LOOKAHEAD_ENTROPY) { \
     /* Equivalent of jpeg_huff_decode() */ \
     /* Don't use GET_BITS() here because we don't want to modify bits_left */ \
     s = (get_buffer >> bits_left) & ((1 << (nb)) - 1); \
