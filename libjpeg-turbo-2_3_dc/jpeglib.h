@@ -1128,10 +1128,28 @@ typedef struct
 	int * run_length;
 	int * valoffset;
 	int lookup[1<<HUFF_LOOKAHEAD];
-} symbol_table_t;
+} symbol_table_tmp;
 //symbol_table_t **** table;
-symbol_table_t **** ac_table; // for 1 dimention case
-symbol_table_t ** dc_table;
+symbol_table_tmp table_tmp; // for 1 dimention case
+
+typedef struct
+{
+	UINT8 * bits;
+	int * symbol;
+} symbol_table_c;
+
+symbol_table_c **** ac_table;
+symbol_table_c ** dc_table;
+
+typedef struct
+{
+	int * max_bits;
+	int * valoffset;
+	int lookup[1<<HUFF_LOOKAHEAD];
+} symbol_table_d;
+
+symbol_table_d **** ac_table_d;
+symbol_table_d ** dc_table_d;
 
 #define LOOK_BACKWARD_BLOCK 3
 #define LOOK_FORWARD_COEF 5

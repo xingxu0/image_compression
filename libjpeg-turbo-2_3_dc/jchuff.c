@@ -547,7 +547,7 @@ encode_one_block_entropy (working_state * state, JCOEFPTR block, int last_dc_val
 
   //memset(previous_blocks, 0, 64*sizeof(JCOEF));
 
-  symbol_table_t * p_table; // - Xing
+  symbol_table_c * p_table; // - Xing
 
   /* Encode the DC coefficient difference per section F.1.2.1 */
 
@@ -580,7 +580,7 @@ encode_one_block_entropy (working_state * state, JCOEFPTR block, int last_dc_val
 
 
   /* Emit the Huffman-coded symbol for the number of bits */
-  p_table = (symbol_table_t *)&dc_table[ci][get_dc_index(ci, previous_block_state, index1, index2)];
+  p_table = (symbol_table_c *)&dc_table[ci][get_dc_index(ci, previous_block_state, index1, index2)];
 
   code = p_table->symbol[temp3];
   size = p_table->bits[temp3];
@@ -628,7 +628,7 @@ encode_one_block_entropy (working_state * state, JCOEFPTR block, int last_dc_val
       /* if run length > 15, must emit special run-length-16 codes (0xF0) */ \
       temp2 += temp3; \
       while (r > 15) { \
-        p_table = (symbol_table_t *)&ac_table[ci][last_non_zero][get_first_dimension_index(ci, last_non_zero, t*1000/(max_table[last_non_zero]), dc_diff_bits)][get_second_dimension_index(ci, last_non_zero, previous_block_state,index1,index2,index3)]; \
+        p_table = (symbol_table_c *)&ac_table[ci][last_non_zero][get_first_dimension_index(ci, last_non_zero, t*1000/(max_table[last_non_zero]), dc_diff_bits)][get_second_dimension_index(ci, last_non_zero, previous_block_state,index1,index2,index3)]; \
         code = p_table->symbol[0xf0]; \
         size = p_table->bits[0xf0]; \
         EMIT_BITS(code, size) \
@@ -640,7 +640,7 @@ encode_one_block_entropy (working_state * state, JCOEFPTR block, int last_dc_val
       } \
       /* Emit Huffman symbol for run length / number of bits */ \
       temp += (r<<4); \
-      p_table = (symbol_table_t *)&ac_table[ci][last_non_zero][get_first_dimension_index(ci, last_non_zero, t*1000/(max_table[last_non_zero]), dc_diff_bits)][get_second_dimension_index(ci, last_non_zero, previous_block_state,index1,index2,index3)]; \
+      p_table = (symbol_table_c *)&ac_table[ci][last_non_zero][get_first_dimension_index(ci, last_non_zero, t*1000/(max_table[last_non_zero]), dc_diff_bits)][get_second_dimension_index(ci, last_non_zero, previous_block_state,index1,index2,index3)]; \
       code = p_table->symbol[temp]; \
       size = p_table->bits[temp]; \
       EMIT_CODE_ENTROPY(code, size) \
@@ -679,7 +679,7 @@ encode_one_block_entropy (working_state * state, JCOEFPTR block, int last_dc_val
 
   /* If the last coef(s) were zero, emit an end-of-block code */
   if (r > 0) {
-    p_table = (symbol_table_t *)&ac_table[ci][last_non_zero][get_first_dimension_index(ci, last_non_zero, t*1000/(max_table[last_non_zero]), dc_diff_bits)]
+    p_table = (symbol_table_c *)&ac_table[ci][last_non_zero][get_first_dimension_index(ci, last_non_zero, t*1000/(max_table[last_non_zero]), dc_diff_bits)]
                                               [get_second_dimension_index(ci, last_non_zero, previous_block_state,index1,index2,index3)];
     code = p_table->symbol[0];
     size = p_table->bits[0];

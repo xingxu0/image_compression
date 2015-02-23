@@ -237,7 +237,56 @@ inline int get_second_dimension_index(int ci, int pos, previous_block_state_t * 
 }*/
 
 int ts = 0;
-void get_derived_huff_table(symbol_table_t* tbl)
+void get_derived_huff_table_c(symbol_table_c* output_tbl, symbol_table_tmp tbl)
+{
+	int lastp, p, l, code, si, i, entries = tbl->length, lookbits, ctr;
+	int * bits_aggre = malloc((entropy_max_AC_bits + 1)*sizeof(int));
+	char huffsize[entries + 1];
+	unsigned int huffcode[entries + 1];
+
+	p = 0;
+	i = 0;
+	for (l = 0; l <= entropy_max_AC_bits; l++)
+		bits_aggre[l] = 0;
+	for (l = 1; l <= entropy_max_AC_bits; l++)
+	{
+		if (tbl->bits[i] < l) i++;
+		while (i < entries && tbl->bits[i] == l)
+		{
+			bits_aggre[l] ++;
+			i++;
+		}
+		if (i == entries) break;
+	}
+	for (l = 1; l <= entropy_max_AC_bits; l++) {
+		i = (int) bits_aggre[l];
+		while (i--)
+			huffsize[p++] = (char) l;
+	}
+	huffsize[p] = 0;
+	lastp = p;
+
+	code = 0;
+	si = huffsize[0];
+	p = 0;
+	while (huffsize[p]) {
+		while (((int) huffsize[p]) == si) {
+			huffcode[p++] = code;
+			code++;
+		}
+		code <<= 1;
+		si++;
+	}
+
+	for (p = 0; p < lastp; p++) {
+		i = tbl->run_length == NULL ? p : tbl->run_length[p];
+		output_tbl->symbol[i] = huffcode[p];
+		output_tbl->bits[i] = huffsize[p];
+	}
+  free(bits_aggre);
+}
+
+void get_derived_huff_table_d(symbol_table_d* output_tbl, symbol_table_tmp tbl)
 {
 	int lastp, p, l, code, si, i, entries = tbl->length, lookbits, ctr;
 	int * bits_aggre = malloc((entropy_max_AC_bits + 1)*sizeof(int));
@@ -290,17 +339,17 @@ void get_derived_huff_table(symbol_table_t* tbl)
 			/* valoffset[l] = huffval[] index of 1st symbol of code length l,
 			 * minus the minimum code of length l
 			 */
-			tbl->valoffset[l] = (INT32) p - (INT32) huffcode[p];
+			output_tbl->valoffset[l] = (INT32) p - (INT32) huffcode[p];
 			p += bits_aggre[l];
-			tbl->max_bits[l] = huffcode[p-1]; /* maximum code of length l */
+			output_tbl->max_bits[l] = huffcode[p-1]; /* maximum code of length l */
 		} else {
-			tbl->max_bits[l] = -1;	/* -1 if no codes of this length */
+			output_tbl->max_bits[l] = -1;	/* -1 if no codes of this length */
 		}
 	}
-	tbl->max_bits[entropy_max_AC_bits + 1] = 0xFFFFFL; /* ensures jpeg_huff_decode terminates */
+	output_tbl->max_bits[entropy_max_AC_bits + 1] = 0xFFFFFL; /* ensures jpeg_huff_decode terminates */
 
   for (i = 0; i < (1 << HUFF_LOOKAHEAD); i++)
-    tbl->lookup[i] = (HUFF_LOOKAHEAD + 1) << HUFF_LOOKAHEAD;
+    output_tbl->lookup[i] = (HUFF_LOOKAHEAD + 1) << HUFF_LOOKAHEAD;
 
   p = 0;
   for (l = 1; l <= HUFF_LOOKAHEAD; l++) {
@@ -309,7 +358,7 @@ void get_derived_huff_table(symbol_table_t* tbl)
       /* Generate left-justified code followed by all possible bit sequences */
     	lookbits = huffcode[p] << (HUFF_LOOKAHEAD-l);
       for (ctr = 1 << (HUFF_LOOKAHEAD-l); ctr > 0; ctr--) {
-      	tbl->lookup[lookbits] = (l << HUFF_LOOKAHEAD) | tbl->run_length[p];
+      	output_tbl->lookup[lookbits] = (l << HUFF_LOOKAHEAD) | tbl->run_length[p];
         lookbits++;
       }
     }
@@ -322,7 +371,7 @@ boolean default_table[3];
 int default_i[3];
 int default_j[3];
 int default_k[3];
-boolean initialize_AC_table(int c, int i, int j, int k)
+boolean initialize_AC_table(int c, int i, int j, int k, int private_option)
 {
 	int table_size = 256;
 	char filename[200];
@@ -331,7 +380,10 @@ boolean initialize_AC_table(int c, int i, int j, int k)
 	if (f == NULL) {
 
 		if (default_table[c]) {
-			memcpy(&ac_table[c][i][j][k], &ac_table[c][default_i[c]][default_j[c]][default_k[c]], sizeof(symbol_table_t));
+			if (private_option == 1)
+				memcpy(&ac_table[c][i][j][k], &ac_table[c][default_i[c]][default_j[c]][default_k[c]], sizeof(symbol_table_c));
+			else
+				memcpy(&ac_table_d[c][i][j][k], &ac_table_d[c][default_i[c]][default_j[c]][default_k[c]], sizeof(symbol_table_d));
 			return TRUE;
 		}
 
@@ -348,31 +400,38 @@ boolean initialize_AC_table(int c, int i, int j, int k)
 					return FALSE;
 				}
 	}
-	/*
-	ac_table[c][i][j][k].symbol = malloc(table_size*sizeof(int));
-	ac_table[c][i][j][k].bits = malloc(table_size*sizeof(int));
-	ac_table[c][i][j][k].run_length = malloc(table_size*sizeof(int*));
-	ac_table[c][i][j][k].s_max = malloc((max_bits + 1)*sizeof(int));
-	*/
+
 	ts += 1;
-	ac_table[c][i][j][k].length = table_size;
-	ac_table[c][i][j][k].symbol = malloc(table_size*sizeof(int));
+	table_tmp.length = table_size;
 	int ii;
-	for (ii = 0; ii< table_size; ++ii)
-		ac_table[c][i][j][k].symbol[ii] = -1;
-	ac_table[c][i][j][k].bits = malloc(table_size*sizeof(int));
-	ac_table[c][i][j][k].run_length = malloc(table_size*sizeof(int));
-	ac_table[c][i][j][k].max_bits = malloc((entropy_max_AC_bits + 2)*sizeof(int));
-	ac_table[c][i][j][k].valoffset = malloc((entropy_max_AC_bits + 2)*sizeof(int));
-	for (ii = 0; ii < table_size; ++ii)
-	{
-		int ret = fscanf(f, "%d: %d", &(ac_table[c][i][j][k].bits[ii]), &(ac_table[c][i][j][k].run_length[ii]));
-		if (! ret) continue;
-		if (ac_table[c][i][j][k].bits[ii] >= entropy_max_AC_bits) printf("!!! AC %d %d %d more bits than expected\n", i, j, k);
-		//if (ac_table[c][i][j].bits > 16) printf("Larger table %d %d %d\n", c, i, j);
+	if (private_option == 1) {
+		ac_table[c][i][j][k].symbol = malloc(table_size*sizeof(int));
+		for (ii = 0; ii< table_size; ++ii)
+			ac_table[c][i][j][k].symbol[ii] = -1;
+		ac_table[c][i][j][k].bits = malloc(table_size*sizeof(UINT8));
+		for (ii = 0; ii < table_size; ++ii)
+		{
+			int ret = fscanf(f, "%d: %d", &(table_tmp.bits[ii]), &(table_tmp.run_length[ii]));
+			ac_table[c][i][j][k].bits[ii] = table_tmp.bits[ii];
+			if (! ret) continue;
+			if (ac_table[c][i][j][k].bits[ii] >= entropy_max_AC_bits) printf("!!! AC %d %d %d more bits than expected\n", i, j, k);
+			//if (ac_table[c][i][j].bits > 16) printf("Larger table %d %d %d\n", c, i, j);
+		}
+		fclose(f);
+		get_derived_huff_table_c(&(ac_table[c][i][j][k]));
+	} else {
+		ac_table_d[c][i][j][k].max_bits = malloc((entropy_max_AC_bits + 2)*sizeof(int));
+		ac_table_d[c][i][j][k].valoffset = malloc((entropy_max_AC_bits + 2)*sizeof(int));
+		for (ii = 0; ii < table_size; ++ii)
+		{
+			int ret = fscanf(f, "%d: %d", &(table_tmp.bits[ii]), &(table_tmp.run_length[ii]));
+			if (! ret) continue;
+			if (table_tmp.bits[ii] >= entropy_max_AC_bits) printf("!!! AC %d %d %d more bits than expected\n", i, j, k);
+			//if (ac_table[c][i][j].bits > 16) printf("Larger table %d %d %d\n", c, i, j);
+		}
+		fclose(f);
+		get_derived_huff_table_d(&(ac_table_d[c][i][j][k]));
 	}
-	fclose(f);
-	get_derived_huff_table(&(ac_table[c][i][j][k]));
 	//for printing...
 
 	
@@ -385,7 +444,7 @@ boolean initialize_AC_table(int c, int i, int j, int k)
 	return TRUE;
 }
 
-void initialize_DC_table(int c, int i)
+void initialize_DC_table(int c, int i, int private_option)
 {
 	char filename[200];
 	int table_size = 25;
@@ -401,22 +460,33 @@ void initialize_DC_table(int c, int i)
 		}
 	}
 
-	dc_table[c][i].length = table_size;
-	dc_table[c][i].symbol = malloc(table_size*sizeof(int));
-	dc_table[c][i].bits = malloc(table_size*sizeof(int));
-	dc_table[c][i].run_length = malloc(table_size*sizeof(int));
-	dc_table[c][i].max_bits = malloc((entropy_max_AC_bits + 2)*sizeof(int));
-	dc_table[c][i].valoffset = malloc((entropy_max_AC_bits + 2)*sizeof(int));
 	int ii;
-	for (ii=0; ii<24; ++ii)
-	{
-		int ret = fscanf(f, "%d: %d", &(dc_table[c][i].bits[ii]), &(dc_table[c][i].run_length[ii]));
-		if (! ret) continue;
-		if (dc_table[c][i].bits[ii] >= entropy_max_AC_bits) printf("!!! DC %d more bits than expected: %d, %d (%d)\n", i, dc_table[c][i].bits[ii], dc_table[c][i].run_length[ii], ii);
+	if (private_option == 1) {
+		dc_table[c][i].symbol = malloc(table_size*sizeof(int));
+		for (ii = 0; ii< table_size; ++ii)
+			dc_table[c][i].symbol[ii] = -1;
+		dc_table[c][i].bits = malloc(table_size*sizeof(UINT8));
+		for (ii = 0; ii < table_size; ++ii)
+		{
+			int ret = fscanf(f, "%d: %d", &(table_tmp.bits[ii]), &(table_tmp.run_length[ii]));
+			dc_table[c][i].bits[ii] = table_tmp.bits[ii];
+			if (! ret) continue;
+			if (dc_table[c][i].bits[ii] >= entropy_max_AC_bits) printf("!!! DC %d more bits than expected: %d, %d (%d)\n", i, dc_table[c][i].bits[ii], table_tmp.run_length[ii], ii);
+		}
+		fclose(f);
+		get_derived_huff_table_c(&(dc_table[c][i]));
+	} else {
+		dc_table_d[c][i].max_bits = malloc((entropy_max_AC_bits + 2)*sizeof(int));
+		dc_table_d[c][i].valoffset = malloc((entropy_max_AC_bits + 2)*sizeof(int));
+		for (ii = 0; ii < table_size; ++ii)
+		{
+			int ret = fscanf(f, "%d: %d", &(table_tmp.bits[ii]), &(table_tmp.run_length[ii]));
+			if (! ret) continue;
+			if (table_tmp.bits[ii] >= entropy_max_AC_bits) printf("!!! DC %d more bits than expected: %d, %d (%d)\n", i, dc_table[c][i].bits[ii], dc_table[c][i].run_length[ii], ii);
+		}
+		fclose(f);
+		get_derived_huff_table_d(&(dc_table_d[c][i]));
 	}
-	fclose(f);
-
-	get_derived_huff_table(&(dc_table[c][i]));
 /*
 	if (c==2) {
 		printf("dc table...\r\n");
@@ -543,37 +613,72 @@ void initialize_coef_bins_p(int c)
 	*/
 }
 
-void entropy_table_initialization()
+void entropy_table_initialization(int private_option)
 {
+	int table_size = 256;
 	entropy_max_AC_bits = 18;
+
+	table_tmp.symbol = malloc(table_size*sizeof(int));
+	int ii;
+	for (ii = 0; ii< table_size; ++ii)
+		table_tmp.symbol[ii] = -1;
+	table_tmp.bits = malloc(table_size*sizeof(int));
+	table_tmp.run_length = malloc(table_size*sizeof(int));
+	table_tmp.max_bits = malloc((entropy_max_AC_bits + 2)*sizeof(int));
+	table_tmp.valoffset = malloc((entropy_max_AC_bits + 2)*sizeof(int));
+
+
 
 	// initialize AC table
 	first_dimension_bins = 20;
 	second_dimension_bins = 20;
-	ac_table = malloc(3*sizeof(symbol_table_t ***));
-	int c, i, j, k;
-	for (c=0; c<3; ++c)
-		default_table[c] = FALSE;
-	for (c=0; c<3; ++c) {
-		ac_table[c] = malloc(64*sizeof(symbol_table_t **));
-		for (i=1; i<64; ++i) {
-			ac_table[c][i] = malloc((first_dimension_bins + 1)*sizeof(symbol_table_t*));
-			for (j=0; j<(first_dimension_bins + 1); ++j) {
-				ac_table[c][i][j] = malloc((second_dimension_bins + 5 + 1)*sizeof(symbol_table_t));
-				for (k=0; k<second_dimension_bins + 5 + 1; ++k)
-					if (!initialize_AC_table(c, i, j, k)) break;
+
+	int c,i,j,k;
+	if (private_option == 1) {
+		ac_table = malloc(3*sizeof(symbol_table_c ***));
+		for (c=0; c<3; ++c)
+			default_table[c] = FALSE;
+		for (c=0; c<3; ++c) {
+			ac_table[c] = malloc(64*sizeof(symbol_table_c **));
+			for (i=1; i<64; ++i) {
+				ac_table[c][i] = malloc((first_dimension_bins + 1)*sizeof(symbol_table_c*));
+				for (j=0; j<(first_dimension_bins + 1); ++j) {
+					ac_table[c][i][j] = malloc((second_dimension_bins + 5 + 1)*sizeof(symbol_table_c));
+					for (k=0; k<second_dimension_bins + 5 + 1; ++k)
+						if (!initialize_AC_table(c, i, j, k, private_option)) break;
+				}
 			}
 		}
-	}
-#ifdef DEBUG
-	printf("got %d AC tables\n", ts);
-#endif
 
-	dc_table = malloc(3*sizeof(symbol_table_t *));
-	for (c=0; c<3; ++c) {
-		dc_table[c] = malloc(36*sizeof(symbol_table_t));
-		for (i=0; i<36; ++i)
-			initialize_DC_table(c, i);
+		dc_table = malloc(3*sizeof(symbol_table_c *));
+		for (c=0; c<3; ++c) {
+			dc_table[c] = malloc(36*sizeof(symbol_table_c));
+			for (i=0; i<36; ++i)
+				initialize_DC_table(c, i);
+		}
+	} else {
+		ac_table_d = malloc(3*sizeof(symbol_table_d ***));
+		for (c=0; c<3; ++c)
+			default_table[c] = FALSE;
+		for (c=0; c<3; ++c) {
+			ac_table_d[c] = malloc(64*sizeof(symbol_table_d **));
+			for (i=1; i<64; ++i) {
+				ac_table_d[c][i] = malloc((first_dimension_bins + 1)*sizeof(symbol_table_d*));
+				for (j=0; j<(first_dimension_bins + 1); ++j) {
+					ac_table_d[c][i][j] = malloc((second_dimension_bins + 5 + 1)*sizeof(symbol_table_d));
+					for (k=0; k<second_dimension_bins + 5 + 1; ++k)
+						if (!initialize_AC_table(c, i, j, k, private_option)) break;
+				}
+			}
+		}
+
+		dc_table_d = malloc(3*sizeof(symbol_table_d *));
+		for (c=0; c<3; ++c) {
+			dc_table_d[c] = malloc(36*sizeof(symbol_table_d));
+			for (i=0; i<36; ++i)
+				initialize_DC_table(c, i);
+		}
+
 	}
 
 	// initialize max_pos_value
@@ -1297,7 +1402,7 @@ decode_mcu_slow_entropy (j_decompress_ptr cinfo, JBLOCKROW *MCU_data)
 
   int ci, tmp, tmp2;
   register int s, k, r, t;
-  register symbol_table_t* p_table;
+  register symbol_table_d* p_table;
   JBLOCKROW block;
   previous_block_state_t * pre_state = &state.previous_block_state;
   UINT8 *previous_blocks_avgs, *previous_blocks_avgs_ma;
@@ -1317,7 +1422,7 @@ decode_mcu_slow_entropy (j_decompress_ptr cinfo, JBLOCKROW *MCU_data)
     previous_blocks = &pre_state->previous_blocks[ci][index0];
     memset(previous_blocks_avgs, 0, 64*sizeof(UINT8));
 
-    p_table = (symbol_table_t *)&dc_table[ci][get_dc_index(ci, pre_state, index1, index2)];
+    p_table = (symbol_table_d *)&dc_table_d[ci][get_dc_index(ci, pre_state, index1, index2)];
 
     /* Decode a single block's worth of coefficients */
 
@@ -1357,7 +1462,7 @@ decode_mcu_slow_entropy (j_decompress_ptr cinfo, JBLOCKROW *MCU_data)
 
 
       for (k = 1; k < DCTSIZE2; k++) {
-    	  p_table = (symbol_table_t *)&ac_table[ci][k][get_first_dimension_index(ci, k, t*1000/max_pos_value_range[ci][1][k], tmp)][get_second_dimension_index(ci, k, &state.previous_block_state, index1, index2, index3)];
+    	  p_table = (symbol_table_d *)&ac_table_d[ci][k][get_first_dimension_index(ci, k, t*1000/max_pos_value_range[ci][1][k], tmp)][get_second_dimension_index(ci, k, &state.previous_block_state, index1, index2, index3)];
     	  HUFF_DECODE_ENTROPY(s, br_state, p_table, return FALSE, label2);
 
         r = s >> 4;
@@ -1525,7 +1630,7 @@ decode_mcu_fast_entropy (j_decompress_ptr cinfo, JBLOCKROW *MCU_data)
 
   int ci, tmp, tmp2;
   register int s, k, r, t, l;
-  register symbol_table_t* p_table;
+  register symbol_table_d* p_table;
   JBLOCKROW block;
   previous_block_state_t * pre_state = &state.previous_block_state;
   UINT8 *previous_blocks_avgs, *previous_blocks_avgs_ma;
@@ -1545,7 +1650,7 @@ decode_mcu_fast_entropy (j_decompress_ptr cinfo, JBLOCKROW *MCU_data)
       previous_blocks_avgs_ma = pre_state->previous_blocks_avgs_ma[ci][index0];
       previous_blocks = &pre_state->previous_blocks[ci][index0];
       memset(previous_blocks_avgs, 0, 64*sizeof(UINT8));
-    p_table = (symbol_table_t *)&dc_table[ci][get_dc_index(ci, pre_state, index1, index2)];
+    p_table = (symbol_table_d *)&dc_table_d[ci][get_dc_index(ci, pre_state, index1, index2)];
 
     HUFF_DECODE_FAST_ENTROPY(s, l, p_table);
 
@@ -1577,7 +1682,7 @@ decode_mcu_fast_entropy (j_decompress_ptr cinfo, JBLOCKROW *MCU_data)
 
     int real_last_non_zero = 1;
       for (k = 1; k < DCTSIZE2; k++) {
-        p_table = (symbol_table_t *)&ac_table[ci][k][get_first_dimension_index(ci, k, t*1000/max_pos_value_range[ci][1][k], tmp)][get_second_dimension_index(ci, k, &state.previous_block_state, index1, index2, index3)];
+        p_table = (symbol_table_d *)&ac_table_d[ci][k][get_first_dimension_index(ci, k, t*1000/max_pos_value_range[ci][1][k], tmp)][get_second_dimension_index(ci, k, &state.previous_block_state, index1, index2, index3)];
         HUFF_DECODE_FAST_ENTROPY(s, l, p_table);
         r = s >> 4;
         s &= 15;
