@@ -1509,8 +1509,8 @@ decode_mcu_fast_entropy (j_decompress_ptr cinfo, JBLOCKROW *MCU_data)
   buffer = (JOCTET *) br_state.next_input_byte;
   ASSIGN_STATE(state, entropy->saved);
 
-  int f, ci, tmp;
-  register int s, k, r, t, l, abs_real_dc_bits, real_dc_bits, get_bits;
+  int ci, tmp;
+  register int s, k, r, t, l;
   register symbol_table_t* p_table;
   JBLOCKROW block;
   previous_block_state_t * pre_state = &state.previous_block_state;
@@ -1528,36 +1528,34 @@ decode_mcu_fast_entropy (j_decompress_ptr cinfo, JBLOCKROW *MCU_data)
       index2 = index1 == 0 ? LOOK_BACKWARD_BLOCK : index1 - 1;
       index3 = index2 == 0 ? LOOK_BACKWARD_BLOCK : index2 - 1;
 
-    previous_blocks_avgs = pre_state->previous_blocks_avgs[ci][index0];
-    previous_blocks_avgs_ma = pre_state->previous_blocks_avgs_ma[ci][index0];
-    previous_blocks = &pre_state->previous_blocks[ci][index0];
+      previous_blocks_avgs = pre_state->previous_blocks_avgs[ci][index0];
+      previous_blocks_avgs_ma = pre_state->previous_blocks_avgs_ma[ci][index0];
+      previous_blocks = &pre_state->previous_blocks[ci][index0];
+      memset(previous_blocks_avgs, 0, 64*sizeof(UINT8));
     p_table = (symbol_table_t *)&dc_table[ci][get_dc_index(ci, pre_state, index1, index2)];
 
     HUFF_DECODE_FAST_ENTROPY(s, l, p_table);
 
     //state.last_dc_diff[ci] = 0;
-    real_dc_bits = s - 11;
-    abs_real_dc_bits = abs(real_dc_bits);
-    if (real_dc_bits) {
+    r = tmp = s - 11;
+    tmp2 = tmp >> (CHAR_BIT * sizeof(int) - 1);
+    tmp ^= tmp2;
+    tmp -= tmp2;
+    if (r) {
       FILL_BIT_BUFFER_FAST
-      get_bits = abs_real_dc_bits - 1;
-      //state.last_dc_diff[ci] = abs_real_dc_bits;
-      if (get_bits)
+      tmp2 = tmp - 1;
+      if (tmp2)
       {
-    	  r = GET_BITS(get_bits);
-    	  s = r | (1 << get_bits);
+    	  CHECK_BIT_BUFFER(br_state, tmp2, return FALSE);
+    	  s = GET_BITS(tmp2) | (1<<tmp2);
       }
       else s = 1;
-      if (real_dc_bits < 0) s=-s;
+      if (r < 0) s=-s;
     } else s=0;
 
-    tmp = abs_real_dc_bits;
 
     // for better dc
-    if (s >= 0)
-      previous_blocks[0] = abs_real_dc_bits;
-    else
-      previous_blocks[0] = -abs_real_dc_bits;
+    *previous_blocks = r;
     // for better dc
 
       s += state.last_dc_val[ci];
@@ -1566,8 +1564,7 @@ decode_mcu_fast_entropy (j_decompress_ptr cinfo, JBLOCKROW *MCU_data)
 
     int real_last_non_zero = 1;
       for (k = 1; k < DCTSIZE2; k++) {
-    	f = t == 0 ? 0 : t*1000/max_pos_value_range[ci][1][k-1];
-        p_table = (symbol_table_t *)&ac_table[ci][k][get_first_dimension_index(ci, k, f, tmp)][get_second_dimension_index(ci, k, &state.previous_block_state, index1, index2, index3)];
+        p_table = (symbol_table_t *)&ac_table[ci][k][get_first_dimension_index(ci, k, t*1000/max_pos_value_range[ci][1][k-1], tmp)][get_second_dimension_index(ci, k, &state.previous_block_state, index1, index2, index3)];
         HUFF_DECODE_FAST_ENTROPY(s, l, p_table);
         r = s >> 4;
         s &= 15;
@@ -1639,7 +1636,7 @@ decode_mcu (j_decompress_ptr cinfo, JBLOCKROW *MCU_data)
 {
   huff_entropy_ptr entropy = (huff_entropy_ptr) cinfo->entropy;
   int usefast = 1;
-  usefast = 0;
+  //usefast = 0;
 
   /* Process restart marker if needed; may have to suspend */
   if (cinfo->restart_interval) {
