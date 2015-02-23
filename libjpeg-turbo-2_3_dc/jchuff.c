@@ -825,7 +825,7 @@ emit_restart (working_state * state, int restart_num)
   	for (temp=0; temp<64; ++temp) {
   		//entropy->saved.previous_block_state.previous_blocks[ci][temp1][temp] = -1;
   		state->cur.previous_block_state.previous_blocks_avgs[ci][temp1][temp] = 0;
-  		state->cur.previous_block_state.previous_blocks[ci][temp1][temp] = 0;
+  		//state->cur.previous_block_state.previous_blocks[ci][temp1][temp] = 0;
   	}
   }
   /* The restart counter is not updated until we successfully write the MCU. */
