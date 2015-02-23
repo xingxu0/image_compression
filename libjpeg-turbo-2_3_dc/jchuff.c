@@ -623,8 +623,8 @@ encode_one_block_entropy (working_state * state, JCOEFPTR block, int last_dc_val
       temp -= temp3; \
       /* training_2_3_separate*/ \
       nbits = JPEG_NBITS_NONZERO(temp); \
-      if (temp<=7) {sign = temp2 > 0 ? (INT32)1 : (INT32)0; temp3 = coef_to_entry_table[temp]; } \
-      else {temp3 = nbits;} \
+      if (temp<=7) {sign = temp2 > 0 ? (INT32)1 : (INT32)0; temp4 = coef_to_entry_table[temp]; } \
+      else {temp4 = nbits;} \
       /* if run length > 15, must emit special run-length-16 codes (0xF0) */ \
       temp2 += temp3; \
       while (r > 15) { \
