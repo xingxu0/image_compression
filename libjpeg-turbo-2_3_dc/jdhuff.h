@@ -212,9 +212,9 @@ slowlabel: \
     } \
   } \
   look = PEEK_BITS(HUFF_LOOKAHEAD_ENTROPY); \
-  if ((nb = (htbl->lookup[look] >> HUFF_LOOKAHEAD_ENTROPY)) <= HUFF_LOOKAHEAD_ENTROPY) { \
+  if ((nb = (htbl->lookup[look] >> 8)) <= HUFF_LOOKAHEAD_ENTROPY) { \
     DROP_BITS(nb); \
-    result = htbl->lookup[look] & ((1 << HUFF_LOOKAHEAD_ENTROPY) - 1); \
+    result = htbl->lookup[look] & ((1 << 8) - 1); \
   } else { \
 slowlabel: \
     if ((result=jpeg_huff_decode_entropy(&state,get_buffer,bits_left,htbl,nb)) < 0) \
@@ -248,10 +248,10 @@ slowlabel: \
   FILL_BIT_BUFFER_FAST; \
   s = PEEK_BITS(HUFF_LOOKAHEAD_ENTROPY); \
   s = htbl->lookup[s]; \
-  nb = s >> HUFF_LOOKAHEAD_ENTROPY; \
+  nb = s >> 8; \
   /* Pre-execute the common case of nb <= HUFF_LOOKAHEAD */ \
   DROP_BITS(nb); \
-  s = s & ((1 << HUFF_LOOKAHEAD_ENTROPY) - 1); \
+  s = s & ((1 << 8) - 1); \
   if (nb > HUFF_LOOKAHEAD_ENTROPY) { \
     /* Equivalent of jpeg_huff_decode() */ \
     /* Don't use GET_BITS() here because we don't want to modify bits_left */ \
