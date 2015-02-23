@@ -170,7 +170,7 @@ start_pass_huff (j_compress_ptr cinfo, boolean gather_statistics)
     entropy->saved.previous_block_state.current_index[ci] = 0;
     for (temp1=0; temp1<LOOK_BACKWARD_BLOCK; ++temp1)
       for (temp=0; temp<64; ++temp) {
-        //entropy->saved.previous_block_state.previous_blocks[ci][temp1][temp] = -1;
+        entropy->saved.previous_block_state.previous_blocks[ci][temp1][temp] = 0;
         entropy->saved.previous_block_state.previous_blocks_avgs[ci][temp1][temp] = 0;
       }
   }

@@ -1,7 +1,7 @@
 import os, commands, re, sys
 
 folders = ['100', '200', '300', '400', '600', '800', '1000', '1200']
-folders = ['600']
+folders = ['1200']
 
 x = []
 y_encoding = []
