@@ -1137,7 +1137,7 @@ symbol_table_t ** dc_table;
 #define LOOK_FORWARD_COEF 5
 typedef struct
 {
-	JCOEF previous_blocks[3][LOOK_BACKWARD_BLOCK + 1][64];
+	JCOEF previous_blocks[3][LOOK_BACKWARD_BLOCK + 1];
 	UINT8 previous_blocks_avgs[3][LOOK_BACKWARD_BLOCK + 1][64];
 	UINT8 previous_blocks_avgs_ma[3][LOOK_BACKWARD_BLOCK + 1][64];
 	UINT8 current_index[3];
