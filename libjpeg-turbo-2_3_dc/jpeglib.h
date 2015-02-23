@@ -1123,8 +1123,8 @@ typedef struct
 {
 	UINT8 length;
 	UINT8 * bits;
-	unsigned short * symbol;
-	short * max_bits;
+	unsigned int * symbol;
+	unsigned int * max_bits;
 	UINT8 * run_length;
 	int * valoffset;
 	int lookup[1<<HUFF_LOOKAHEAD];
