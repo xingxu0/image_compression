@@ -1144,8 +1144,8 @@ typedef struct
 {
 	int * max_bits;  // int32
 	int * valoffset; // int32
-	int * run_length; // uint8
-	int lookup[1<<HUFF_LOOKAHEAD]; // int
+	UINT8 * run_length; // uint8
+	UINT16 lookup[1<<HUFF_LOOKAHEAD]; // int
 } symbol_table_d;
 
 symbol_table_d **** ac_table_d;
