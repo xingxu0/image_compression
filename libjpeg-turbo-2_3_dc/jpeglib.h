@@ -1133,8 +1133,8 @@ symbol_table_tmp table_tmp; // for 1 dimention case
 
 typedef struct
 {
-	int * bits;
-	int * symbol;
+	UINT8 * bits; // char
+	UINT16 * symbol; // unsigned int
 } symbol_table_c;
 
 symbol_table_c **** ac_table;
@@ -1142,10 +1142,10 @@ symbol_table_c ** dc_table;
 
 typedef struct
 {
-	int * max_bits;
-	int * valoffset;
-	int * run_length;
-	int lookup[1<<HUFF_LOOKAHEAD];
+	int * max_bits;  // int32
+	int * valoffset; // int32
+	int * run_length; // uint8
+	int lookup[1<<HUFF_LOOKAHEAD]; // int
 } symbol_table_d;
 
 symbol_table_d **** ac_table_d;
