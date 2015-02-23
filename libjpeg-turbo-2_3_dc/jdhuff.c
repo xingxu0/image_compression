@@ -360,7 +360,7 @@ void get_derived_huff_table_d(symbol_table_d* output_tbl)
       /* Generate left-justified code followed by all possible bit sequences */
     	lookbits = huffcode[p] << (HUFF_LOOKAHEAD-l);
       for (ctr = 1 << (HUFF_LOOKAHEAD-l); ctr > 0; ctr--) {
-      	output_tbl->lookup[lookbits] = (l << HUFF_LOOKAHEAD) | tbl->run_length[p];
+      	output_tbl->lookup[lookbits] = (l << HUFF_LOOKAHEAD) | output_tbl->run_length[p];
         lookbits++;
       }
     }
@@ -428,6 +428,7 @@ boolean initialize_AC_table(int c, int i, int j, int k, int private_option)
 		for (ii = 0; ii < table_size; ++ii)
 		{
 			int ret = fscanf(f, "%d: %d", &(table_tmp.bits[ii]), &(table_tmp.run_length[ii]));
+			ac_table_d[c][i][j][k].run_length[ii] = table_tmp.run_length[ii];
 			if (! ret) continue;
 			if (table_tmp.bits[ii] >= entropy_max_AC_bits) printf("!!! AC %d %d %d more bits than expected\n", i, j, k);
 			//if (ac_table[c][i][j].bits > 16) printf("Larger table %d %d %d\n", c, i, j);
@@ -486,6 +487,7 @@ void initialize_DC_table(int c, int i, int private_option)
 		for (ii = 0; ii < table_size; ++ii)
 		{
 			int ret = fscanf(f, "%d: %d", &(table_tmp.bits[ii]), &(table_tmp.run_length[ii]));
+			dc_table_d[c][i].run_length[ii] = table_tmp.run_length[ii];
 			if (! ret) continue;
 			if (table_tmp.bits[ii] >= entropy_max_AC_bits) printf("!!! DC %d more bits than expected 2!\n");
 		}
