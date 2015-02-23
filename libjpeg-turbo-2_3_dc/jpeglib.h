@@ -1127,14 +1127,13 @@ typedef struct
 	int * max_bits;
 	int * run_length;
 	int * valoffset;
-	int lookup[1<<HUFF_LOOKAHEAD];
 } symbol_table_tmp;
 //symbol_table_t **** table;
 symbol_table_tmp table_tmp; // for 1 dimention case
 
 typedef struct
 {
-	UINT8 * bits;
+	int * bits;
 	int * symbol;
 } symbol_table_c;
 

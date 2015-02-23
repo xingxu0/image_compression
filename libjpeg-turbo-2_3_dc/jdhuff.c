@@ -410,7 +410,7 @@ boolean initialize_AC_table(int c, int i, int j, int k, int private_option)
 		ac_table[c][i][j][k].symbol = malloc(table_size*sizeof(int));
 		for (ii = 0; ii< table_size; ++ii)
 			ac_table[c][i][j][k].symbol[ii] = -1;
-		ac_table[c][i][j][k].bits = malloc(table_size*sizeof(UINT8));
+		ac_table[c][i][j][k].bits = malloc(table_size*sizeof(int));
 		for (ii = 0; ii < table_size; ++ii)
 		{
 			int ret = fscanf(f, "%d: %d", &(table_tmp.bits[ii]), &(table_tmp.run_length[ii]));
@@ -464,11 +464,12 @@ void initialize_DC_table(int c, int i, int private_option)
 	}
 
 	int ii;
+	table_tmp.length = table_size;
 	if (private_option == 1) {
 		dc_table[c][i].symbol = malloc(table_size*sizeof(int));
 		for (ii = 0; ii< table_size; ++ii)
 			dc_table[c][i].symbol[ii] = -1;
-		dc_table[c][i].bits = malloc(table_size*sizeof(UINT8));
+		dc_table[c][i].bits = malloc(table_size*sizeof(int));
 		for (ii = 0; ii < table_size; ++ii)
 		{
 			int ret = fscanf(f, "%d: %d", &(table_tmp.bits[ii]), &(table_tmp.run_length[ii]));
@@ -630,8 +631,6 @@ void entropy_table_initialization(int private_option)
 	table_tmp.run_length = malloc(table_size*sizeof(int));
 	table_tmp.max_bits = malloc((entropy_max_AC_bits + 2)*sizeof(int));
 	table_tmp.valoffset = malloc((entropy_max_AC_bits + 2)*sizeof(int));
-
-
 
 	// initialize AC table
 	first_dimension_bins = 20;
