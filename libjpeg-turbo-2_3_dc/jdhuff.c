@@ -356,13 +356,13 @@ boolean initialize_AC_table(int c, int i, int j, int k)
 	*/
 	ts += 1;
 	ac_table[c][i][j][k].length = table_size;
-	ac_table[c][i][j][k].symbol = malloc(table_size*sizeof(int));
+	ac_table[c][i][j][k].symbol = malloc(table_size*sizeof(unsigned short));
 	int ii;
 	for (ii = 0; ii< table_size; ++ii)
 		ac_table[c][i][j][k].symbol[ii] = -1;
-	ac_table[c][i][j][k].bits = malloc(table_size*sizeof(int));
-	ac_table[c][i][j][k].run_length = malloc(table_size*sizeof(int));
-	ac_table[c][i][j][k].max_bits = malloc((entropy_max_AC_bits + 2)*sizeof(int));
+	ac_table[c][i][j][k].bits = malloc(table_size*sizeof(UINT8));
+	ac_table[c][i][j][k].run_length = malloc(table_size*sizeof(UINT8));
+	ac_table[c][i][j][k].max_bits = malloc((entropy_max_AC_bits + 2)*sizeof(short));
 	ac_table[c][i][j][k].valoffset = malloc((entropy_max_AC_bits + 2)*sizeof(int));
 	for (ii = 0; ii < table_size; ++ii)
 	{
@@ -402,10 +402,10 @@ void initialize_DC_table(int c, int i)
 	}
 
 	dc_table[c][i].length = table_size;
-	dc_table[c][i].symbol = malloc(table_size*sizeof(int));
-	dc_table[c][i].bits = malloc(table_size*sizeof(int));
-	dc_table[c][i].run_length = malloc(table_size*sizeof(int));
-	dc_table[c][i].max_bits = malloc((entropy_max_AC_bits + 2)*sizeof(int));
+	dc_table[c][i].symbol = malloc(table_size*sizeof(unsigned short));
+	dc_table[c][i].bits = malloc(table_size*sizeof(UINT8));
+	dc_table[c][i].run_length = malloc(table_size*sizeof(UINT8));
+	dc_table[c][i].max_bits = malloc((entropy_max_AC_bits + 2)*sizeof(short));
 	dc_table[c][i].valoffset = malloc((entropy_max_AC_bits + 2)*sizeof(int));
 	int ii;
 	for (ii=0; ii<24; ++ii)
@@ -545,7 +545,7 @@ void initialize_coef_bins_p(int c)
 
 void entropy_table_initialization()
 {
-	entropy_max_AC_bits = 32;
+	entropy_max_AC_bits = 16;
 
 	// initialize AC table
 	first_dimension_bins = 20;
