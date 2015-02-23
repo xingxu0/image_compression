@@ -1151,7 +1151,7 @@ process_restart (j_decompress_ptr cinfo)
   		for (temp=0; temp<64; ++temp) {
   			//entropy->saved.previous_block_state.previous_blocks[ci][temp1][temp] = -1;
   			entropy->saved.previous_block_state.previous_blocks_avgs[ci][temp1][temp] = 0;
-  			entropy->saved.previous_block_state.previous_blocks[ci][temp1][temp] = 0;
+  			//entropy->saved.previous_block_state.previous_blocks[ci][temp1][temp] = 0;
   		}
 
   }
@@ -1507,7 +1507,7 @@ decode_mcu_fast_entropy (j_decompress_ptr cinfo, JBLOCKROW *MCU_data)
   buffer = (JOCTET *) br_state.next_input_byte;
   ASSIGN_STATE(state, entropy->saved);
 
-  int now_index, f, ci, tmp;
+  int f, ci, tmp;
   register int s, k, r, t, l, abs_real_dc_bits, real_dc_bits, get_bits;
   register symbol_table_t* p_table;
   JBLOCKROW block;
