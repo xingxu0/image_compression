@@ -476,7 +476,7 @@ void initialize_DC_table(int c, int i, int private_option)
 			int ret = fscanf(f, "%d: %d", &(table_tmp.bits[ii]), &(table_tmp.run_length[ii]));
 			dc_table[c][i].bits[ii] = table_tmp.bits[ii];
 			if (! ret) continue;
-			if (dc_table[c][i].bits[ii] >= entropy_max_AC_bits) printf("!!! DC %d more bits than expected 1!\n");
+			if (dc_table[c][i].bits[ii] >= entropy_max_AC_bits) printf("!!! DC %d %d more bits than expected 1!\n", c, i);
 		}
 		fclose(f);
 		get_derived_huff_table_c(&(dc_table[c][i]));
@@ -489,7 +489,7 @@ void initialize_DC_table(int c, int i, int private_option)
 			int ret = fscanf(f, "%d: %d", &(table_tmp.bits[ii]), &(table_tmp.run_length[ii]));
 			dc_table_d[c][i].run_length[ii] = table_tmp.run_length[ii];
 			if (! ret) continue;
-			if (table_tmp.bits[ii] >= entropy_max_AC_bits) printf("!!! DC %d more bits than expected 2!\n");
+			if (table_tmp.bits[ii] >= entropy_max_AC_bits) printf("!!! DC %d %d more bits than expected 2!\n", c, i);
 		}
 		fclose(f);
 		get_derived_huff_table_d(&(dc_table_d[c][i]));
