@@ -1113,7 +1113,7 @@ struct jpeg_color_quantizer { long dummy; };
 
 
 // Xing
-#define HUFF_LOOKAHEAD	6	/* # of bits of lookahead */
+#define HUFF_LOOKAHEAD_ENTROPY	6	/* # of bits of lookahead */
 
 int entropy_max_AC_bits;
 int first_dimension_bins, second_dimension_bins;
@@ -1145,7 +1145,7 @@ typedef struct
 	int * max_bits;  // int32
 	int * valoffset; // int32
 	UINT8 * run_length; // uint8
-	UINT16 lookup[1<<HUFF_LOOKAHEAD]; // int
+	UINT16 lookup[1<<HUFF_LOOKAHEAD_ENTROPY]; // int
 } symbol_table_d;
 
 symbol_table_d **** ac_table_d;
