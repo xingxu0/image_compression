@@ -168,6 +168,7 @@ start_pass_huff (j_compress_ptr cinfo, boolean gather_statistics)
   for (ci = 0; ci < cinfo->comps_in_scan; ci++) {
     entropy->saved.previous_block_state.current_index[ci] = 0;
     for (temp1=0; temp1<LOOK_BACKWARD_BLOCK; ++temp1)
+      entropy->saved.previous_block_state.previous_blocks[ci][temp1] = 0;
       for (temp=0; temp<64; ++temp) {
         //entropy->saved.previous_block_state.previous_blocks[ci][temp1][temp] = -1;
         entropy->saved.previous_block_state.previous_blocks_avgs[ci][temp1][temp] = 0;
@@ -517,7 +518,7 @@ encode_one_block_entropy (working_state * state, JCOEFPTR block, int last_dc_val
   //int Se = state->cinfo->lim_Se;
   //const int * natural_order = state->cinfo->natural_order;
 
-  int temp, temp2, temp3, sign = 0;
+  int temp, temp2, temp3;
   int nbits;
   int r, code, size;
   JOCTET _buffer[BUFSIZE], *buffer;
@@ -793,6 +794,16 @@ encode_one_block (working_state * state, JCOEFPTR block, int last_dc_val,
     EMIT_BITS(code, size)
   }
 
+  if (outputcoef != NULL) {
+		int idx;
+		fprintf(outputcoef, "%d: ", ci);
+		for (idx = 0; idx < DCTSIZE2; idx++)
+		{
+				fprintf(outputcoef, "%d ", block[jpeg_natural_order[idx]]);
+		}
+		fprintf(outputcoef, "\n");
+  }
+
   state->cur.put_buffer = put_buffer;
   state->cur.put_bits = put_bits;
   STORE_BUFFER()
@@ -822,6 +833,7 @@ emit_restart (working_state * state, int restart_num)
   state->cur.previous_block_state.current_index[ci] = 0; // Xing
     state->cur.last_dc_val[ci] = 0;
     for (temp1=0; temp1<LOOK_BACKWARD_BLOCK; ++temp1)
+    state->cur.previous_block_state.previous_blocks[ci][temp1] = 0;
   	for (temp=0; temp<64; ++temp) {
   		//entropy->saved.previous_block_state.previous_blocks[ci][temp1][temp] = -1;
   		state->cur.previous_block_state.previous_blocks_avgs[ci][temp1][temp] = 0;
