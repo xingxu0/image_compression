@@ -353,7 +353,8 @@ void get_derived_huff_table_d(symbol_table_d* output_tbl)
 	output_tbl->max_bits[entropy_max_AC_bits + 1] = 0xFFFFFL; /* ensures jpeg_huff_decode terminates */
 
   for (i = 0; i < (1 << HUFF_LOOKAHEAD_ENTROPY); i++)
-    output_tbl->lookup[i] = (HUFF_LOOKAHEAD_ENTROPY + 1) << HUFF_LOOKAHEAD_ENTROPY;
+    //output_tbl->lookup[i] = (HUFF_LOOKAHEAD_ENTROPY + 1) << HUFF_LOOKAHEAD_ENTROPY;
+	output_tbl->lookup[i] = (HUFF_LOOKAHEAD_ENTROPY + 1) << 8;
 
   p = 0;
   for (l = 1; l <= HUFF_LOOKAHEAD_ENTROPY; l++) {
@@ -362,7 +363,8 @@ void get_derived_huff_table_d(symbol_table_d* output_tbl)
       /* Generate left-justified code followed by all possible bit sequences */
     	lookbits = huffcode[p] << (HUFF_LOOKAHEAD_ENTROPY-l);
       for (ctr = 1 << (HUFF_LOOKAHEAD_ENTROPY-l); ctr > 0; ctr--) {
-      	output_tbl->lookup[lookbits] = (l << HUFF_LOOKAHEAD_ENTROPY) | output_tbl->run_length[p];
+      	//output_tbl->lookup[lookbits] = (l << HUFF_LOOKAHEAD_ENTROPY) | output_tbl->run_length[p];
+      	output_tbl->lookup[lookbits] = (l << 8) | output_tbl->run_length[p];
         lookbits++;
       }
     }
