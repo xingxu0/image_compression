@@ -1144,7 +1144,7 @@ process_restart (j_decompress_ptr cinfo)
   int temp1, temp;
   for (ci = 0; ci < cinfo->comps_in_scan; ci++) {
     entropy->saved.last_dc_val[ci] = 0;
-    entropy->saved.last_dc_diff[ci] = 0; // Xing
+    //entropy->saved.last_dc_diff[ci] = 0; // Xing
   	entropy->saved.previous_block_state.current_index[ci] = 0;
   	//memset(&entropy->saved.previous_block_state.previous_blocks_avgs[0][0][0], 0, ci*LOOK_BACKWARD_BLOCK*64);
 
@@ -1535,13 +1535,13 @@ decode_mcu_fast_entropy (j_decompress_ptr cinfo, JBLOCKROW *MCU_data)
 
     HUFF_DECODE_FAST_ENTROPY(s, l, p_table);
 
-    state.last_dc_diff[ci] = 0;
+    //state.last_dc_diff[ci] = 0;
     real_dc_bits = s - 11;
     abs_real_dc_bits = abs(real_dc_bits);
     if (real_dc_bits) {
       FILL_BIT_BUFFER_FAST
       get_bits = abs_real_dc_bits - 1;
-      state.last_dc_diff[ci] = abs_real_dc_bits;
+      //state.last_dc_diff[ci] = abs_real_dc_bits;
       if (get_bits)
       {
     	  r = GET_BITS(get_bits);
