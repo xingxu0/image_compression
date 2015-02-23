@@ -89,10 +89,10 @@ inline int get_dc_index(int ci, previous_block_state_t * previous_block_state, i
   //now_index = now_index == 0 ? LOOK_BACKWARD_BLOCK - 1 : now_index - 1;
   temp = b[index1];
   if (temp) {
-	  t += 1;
-	  t -= 2*(((unsigned int)temp)>>31);
-	  //if (temp < 0) t-=1;
-	  //else t+=1;
+	  //t += 1;
+	  //t -= 2*(((unsigned int)temp)>>31);
+	  if (temp < 0) t-=1;
+	  else t+=1;
 	  temp3 = temp >> (CHAR_BIT * sizeof(int) - 1); \
 	  temp ^= temp3; \
 	  temp -= temp3; \
@@ -102,10 +102,10 @@ inline int get_dc_index(int ci, previous_block_state_t * previous_block_state, i
   //now_index = now_index == 0 ? LOOK_BACKWARD_BLOCK - 1 : now_index - 1;
   temp = b[index2];
   if (temp) {
-	  t += 1;
-	  t -= 2*(((unsigned int)temp)>>31);
-	  //if (temp < 0) t-=1;
-	  //else t+=1;
+	  //t += 1;
+	  //t -= 2*(((unsigned int)temp)>>31);
+	  if (temp < 0) t-=1;
+	  else t+=1;
 	  temp3 = temp >> (CHAR_BIT * sizeof(int) - 1); \
 	  temp ^= temp3; \
 	  temp -= temp3; \
@@ -114,14 +114,13 @@ inline int get_dc_index(int ci, previous_block_state_t * previous_block_state, i
 
 	s>>=1;
 	if (t) {
-		s += 24;
-		s -= 12*(((unsigned int)t)>>31);
+		//s += 24;
+		//s -= 12*(((unsigned int)t)>>31);
+		if (t<0) s+=12;
+		else s+=24;
 		return s;
 	}
 	else return s;
-	//if (t<0) s+=12;
-	//else if (t) s+=24;
-	//return s;
 }
 
 inline int get_first_dimension_index(int ci, int pos, int f, int dc_diff) {
