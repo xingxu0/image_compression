@@ -705,7 +705,7 @@ encode_one_block_entropy (working_state * state, JCOEFPTR block, int last_dc_val
 
 LOCAL(boolean)
 encode_one_block (working_state * state, JCOEFPTR block, int last_dc_val,
-                  c_derived_tbl *dctbl, c_derived_tbl *actbl)
+                  c_derived_tbl *dctbl, c_derived_tbl *actbl, int ci)
 {
   int temp, temp2, temp3;
   int nbits;
@@ -894,7 +894,7 @@ encode_mcu_huff (j_compress_ptr cinfo, JBLOCKROW *MCU_data)
       if (! encode_one_block(&state,
                              MCU_data[blkn][0], state.cur.last_dc_val[ci],
                              entropy->dc_derived_tbls[compptr->dc_tbl_no],
-                             entropy->ac_derived_tbls[compptr->ac_tbl_no]))
+                             entropy->ac_derived_tbls[compptr->ac_tbl_no], ci))
         return FALSE;
     }
     /* Update last_dc_val */
