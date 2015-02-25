@@ -805,6 +805,18 @@ encode_one_block (working_state * state, JCOEFPTR block, int last_dc_val,
     size = actbl->ehufsi[0];
     EMIT_BITS(code, size)
   }
+  
+  
+  if (outputcoef != NULL) {
+		int idx;
+		fprintf(outputcoef, "%d: ", ci);
+		for (idx = 0; idx < DCTSIZE2; idx++)
+		{
+				fprintf(outputcoef, "%d ", block[jpeg_natural_order[idx]]);
+		}
+		fprintf(outputcoef, "\n");
+  }
+
 
   state->cur.put_buffer = put_buffer;
   state->cur.put_bits = put_bits;
