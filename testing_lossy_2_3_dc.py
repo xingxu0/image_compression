@@ -129,9 +129,9 @@ def calc_gain(comp, dep1_s, dep2_s):
 		block_t = lib.get_blocks_all_in_bits(f, comp)
 		block_t_o = lib.get_blocks_with_dc_in_diff(f, comp)
 		
-		zero_off(block_t, block_t_o, lib.code)
-	
 		for ii in range(len(block_t)):
+			zero_off(block_t[ii], block_t_o[ii], lib.code)
+			
 			x, dc_s_bits, dc_bits, r, coef_bits = lib.get_bits_detail(block_t[ii], lib.code, comp=="0")
 			t_ac_b += coef_bits
 			t_run_length_bits += r
