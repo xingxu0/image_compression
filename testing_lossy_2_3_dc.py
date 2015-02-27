@@ -337,7 +337,7 @@ def calc_gain(comp, dep1_s, dep2_s):
 	print "\n\tTesting DONE"
 	return total_gain + gain_dc, t_total_bits, t_total_bits_opt, total_lossy
 
-if len(sys.argv) != 4:
+if len(sys.argv) != 5:
 	print "usage: python testing_lossy.py [TESTING IMAGES FOLDER] [TABLE FOLDER] [OUTPUT FILE] [GAIN BITS THRESHOLD]"
 	exit()
 
