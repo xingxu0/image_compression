@@ -714,6 +714,8 @@ encode_one_block (working_state * state, JCOEFPTR block, int last_dc_val,
   size_t put_buffer;  int put_bits;
   int code_0xf0 = actbl->ehufco[0xf0], size_0xf0 = actbl->ehufsi[0xf0];
   size_t bytes, bytestocopy;  int localbuf = 0;
+  
+  JCOEF block_[DCTSIZE2];
 
   if (inputcoef != NULL) {
 	int idx, ret, input_ci;
@@ -721,10 +723,11 @@ encode_one_block (working_state * state, JCOEFPTR block, int last_dc_val,
 	if (input_ci != ci) printf("wrong ci\n");
 	for (idx = 0; idx < DCTSIZE2; idx++)
 		{
-			ret = fscanf(inputcoef, "%d ", (JCOEF *)(&block[jpeg_zigzag_order[idx]]));
-			printf("%d ", block[idx]);
+			ret = fscanf(inputcoef, "%d ", block_[jpeg_zigzag_order[idx]]));
+			printf("%d ", block_[idx]);
 		}
 	printf("\n");
+	block = block_;
   }
 
   put_buffer = state->cur.put_buffer;
