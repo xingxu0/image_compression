@@ -176,6 +176,7 @@ def calc_gain(comp, dep1_s, dep2_s):
 			oc_dc_t[i][j] = 0
 
 	files = glob.glob(test_folder + "/*.block")	
+	files = glob.glob(test_folder + "/1.jpg.block")	
 	ratio = 0	
 	lib.fprint("\tTesting: ")
 	print "\t",
