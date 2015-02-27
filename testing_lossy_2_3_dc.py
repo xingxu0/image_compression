@@ -79,13 +79,13 @@ def zero_off(b, b_o, code, ci):
 			diff = get_code(x,code)+1-get_code(0, code)
 		if diff >= thre:
 			if not modified:
-				print " "
-				print " "
+				#print " "
+				#print " "
 				modified = True
-			print "comp", ci, ":"
-			print b
-			print b_o
-			print "\t", p[i], ":", diff, "    before", be, " after ", af
+			#print "comp", ci, ":"
+			#print b
+			#print b_o
+			#print "\t", p[i], ":", diff, "    before", be, " after ", af
 			b[p[i]] = 0
 			b_o[p[i]] = 0
 			
@@ -180,7 +180,7 @@ def calc_gain(comp, dep1_s, dep2_s):
 			oc_dc_t[i][j] = 0
 
 	files = glob.glob(test_folder + "/*.block")	
-	files = glob.glob(test_folder + "/1.jpg.block")	
+	#files = glob.glob(test_folder + "/1.jpg.block")	
 	ratio = 0	
 	lib.fprint("\tTesting: ")
 	print "\t",
