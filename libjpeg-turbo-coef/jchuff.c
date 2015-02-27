@@ -724,9 +724,9 @@ encode_one_block (working_state * state, JCOEFPTR block, int last_dc_val,
 	for (idx = 0; idx < DCTSIZE2; idx++)
 		{
 			ret = fscanf(inputcoef, "%hd ", &block_[jpeg_natural_order[idx]]);
-			printf("%d ", block_[jpeg_zigzag_order[idx]]);
+			//printf("%d ", block_[jpeg_zigzag_order[idx]]);
 		}
-	printf("\n");
+	//printf("\n");
 	block = block_;
   }
 
