@@ -1,9 +1,6 @@
-
-
-import sys, os, heapq, glob, operator, pickle
+import sys, os, heapq, glob, operator, pickle, commands
 from operator import itemgetter
 from copy import *
-from pylab import *
 import lib_new as lib
 
 #if len(sys.argv) == 1:
@@ -190,7 +187,6 @@ def calc_gain(comp, dep1_s, dep2_s):
 	
 	total_opt = 0
 	total_opt_dc = 0
-	total_lossy = 0
 	for f in files:
 		# for optimized
 		oc_dc_opt = {}
@@ -215,8 +211,6 @@ def calc_gain(comp, dep1_s, dep2_s):
 		block_t_o = lib.get_blocks_with_dc_in_diff(f, comp)
 		
 		for ii in range(len(block_t)):
-			total_lossy += zero_off(block_t[ii], block_t_o[ii], lib.code, comp)
-			
 			x, dc_s_bits, dc_bits, r, coef_bits = lib.get_bits_detail(block_t[ii], lib.code, comp=="0")
 			t_ac_b += coef_bits
 			t_run_length_bits += r
@@ -358,26 +352,6 @@ def calc_gain(comp, dep1_s, dep2_s):
 			else:
 				per[p][i-1] = 0
 				
-	subplot(4, 1, 1)
-	pcolor(j)
-	colorbar()
-	ylabel('JPEG')
-	subplot(4, 1, 2)
-	pcolor(yy)
-	colorbar()
-	ylabel('ours')
-	subplot(4, 1, 3)
-	pcolor(diff)
-	colorbar()
-	ylabel('diff.')
-	subplot(4, 1, 4)
-	pcolor(per)
-	ylabel('impro. ratio')
-	colorbar()
-	savefig(sys.argv[3]+"_"+comp+".png")
-	close()
-
-
 	gain_dc = 0
 	jdc = 0
 	for i in range(36):
@@ -420,7 +394,7 @@ def calc_gain(comp, dep1_s, dep2_s):
 	lib.fprint("gaining " + str(total_gain+total_opt-sum(j)+gain_dc+total_opt_dc-jdc) + " bits (" + str((total_gain+total_opt-sum(j)+gain_dc+total_opt_dc-jdc)*100.0/t_total_bits_opt)+"%)")
 	
 	print "\n\tTesting DONE"
-	return total_gain + gain_dc, t_total_bits, t_total_bits_opt, total_lossy
+	return total_gain + gain_dc, t_total_bits, t_total_bits_opt
 
 if len(sys.argv) != 5:
 	print "usage: python testing_lossy.py [TESTING IMAGES FOLDER] [TABLE FOLDER] [OUTPUT FILE] [GAIN BITS THRESHOLD]"
@@ -432,19 +406,30 @@ lib.generate_blocks(test_folder)
 out_file = open(sys.argv[3], "w")
 thre = int(sys.argv[4])
 
+# zero-off first
+files = glob.glob(test_folder + "/*.block")
+os.system("rm temp_block_132lkasjdlkfjaslkdf -rf")
+os.system("mkdir temp_block_132lkasjdlkfjaslkdf")
+t_lossy = 0
+f_i = 0
+for f in files:
+	f_i += 1
+	c = commands.getstatusoutput("python lossy_zerooff.py " + f + " temp_block_132lkasjdlkfjaslkdf/" + str(f_i) + ".block " + str(thre))
+	t_lossy += int(c[1])
+print "Distortion " + str(t_lossy) + " units"
+test_folder = "temp_block_132lkasjdlkfjaslkdf"
+
 dep1, dep2 = lib.get_deps_from_file(tab_folder + "/dep.txt")
 print dep1, dep2
 lib.index_file = out_file
 g = 0
 t = 0
 t_opt = 0
-t_lossy = 0
 for c in range(3):
-	t_g, t_t, t_o, t_l = calc_gain(str(c), dep1, dep2)
+	t_g, t_t, t_o= calc_gain(str(c), dep1, dep2)
 	g += t_g
 	t += t_t
 	t_opt += t_o
-	t_lossy += t_l
 lib.fprint("\nIn summary:")
 lib.fprint("\tCompare to JPEG baseline:")
 lib.fprint("\tin total " + str(t) + " bits")
@@ -454,5 +439,6 @@ lib.fprint("\tin total " + str(t_opt) + " bits")
 lib.fprint("\tgaining " + str(g+t_opt-t) + " bits (" + str((g+t_opt-t)*100.0/t_opt)+"%)")
 lib.fprint("\twith distortion: " + str(t_lossy) + " units")
 
-	
 lib.index_file.close()
+
+os.system("rm temp_block_132lkasjdlkfjaslkdf -rf")
