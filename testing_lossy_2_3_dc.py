@@ -10,12 +10,67 @@ import lib_new as lib
 #	print "usage: python runsize.py size(600, 1200), component_number(0,1,2) start_learn_image(1-100), end_learn_image(1-100), end_test_image(1-100), dep. 1(0:DC, 1:avg_pre_coef, 2:avg_pre_block_coef, 3:pre_block_coef, r:last_block_eob, 5:pre_blocks_sign), dep. 2(0:DC, 1:avg_pre_coef, 2:avg_pre_block_coef, 3:pre_block_coef, 4:last_block_eob, 5:pre_blocks_sign)"
 #	exit()
 
+def get_r_l(x, code):
+	l = " (" + str(code[x]) + ")"
+	if x:
+		return "r_" + str(x>>4) + "_l_" + str(x&15) + l
+	else:
+		return "EOB" + l
+
 def zero_off(b, b_o, code):
-	for i in range(63, 0, -1):
-		if b[i]:
-			b[i] = 0
-			b_o[i] = 0
-			break
+	r = 0
+	pos = 1
+
+	r_l = []
+	p = []
+	for i in range(1, 64):
+		if b[i] == 0:
+			r += 1
+			continue
+
+		while (r > 15):
+			r_l.append(0xf0)
+			p.append(i)
+			pos += 16
+			r -= 16
+		r_l.append((r<<4)+b[i])
+		p.append(i)
+		pos = i + 1
+		r = 0
+	if r > 0:
+		r_l.append(0)
+		p.append(-1)
+	
+	for i in range(len(r_l)):
+		b = ""
+		a = ""
+		x = r_l[i]
+		if (x & 15) != 1:
+			continue
+		
+		if i < len(r_l)-1:
+			y = r_l[i+1]
+			diff = code[x]+code[y]+1 # e.g., run-2-length-1, run-3-length-1; or, run-2-length-1, EOB; 1 is for the magnitude bits of +1 or -1;
+			b = get_r_l(x, code) + " " + get_r_l(y, code) + " + 1 bit"
+			if y==0:
+				diff -= code[0]
+				a = get_r_l(y, code)
+			else:
+				s = y & 15
+				if s==0:
+					diff = -1
+				else:
+					diff -= code[(((x>>4) + (y>>4) + 1) << 4) + s]
+					a = get_r_l((((x>>4) + (y>>4) + 1) << 4) + s, code)
+		else:
+			b = get_r_l(x, code) + " + 1 bit"
+			a = get_r_l(0, code)
+			diff = code[x]+1-code[0]
+		if diff >= thre:
+			print b
+			print "\t", p[i], ":", diff, "    before", b, " after ", a
+			b[p[i]] = 0
+			b_o[p[i]] = 0
 
 def load_code_table(i, d1, d2, table_folder):
 	fname = table_folder + "/" + str(i)+"_"+str(d1)+"_"+str(d2)+".table"
