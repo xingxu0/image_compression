@@ -1,16 +1,29 @@
-import os, sys, glob
+import os, sys, glob, commands
 
 fs = glob.glob("images/TESTIMAGES/RGB/RGB_R02_0600x0600/*.png")
 
 thre = sys.argv[1]
 
 q = "75"
-os.system("mkdir psnr_600_q75")
+folder = "psnr_600_q75_" + thre
+c = commands.getstatusoutput("rm %s -rf"%(folder))
+c = commands.getstatusoutput("mkdir " + folder)
+x=0
+delta = 0.0
 for f in fs:
-	x += 1	
-	cmd = "convert -quality " + q  + " "  + f + " psnr_600_q75/" + str(x) +".jpg"
-	os.system("/opt/libjpeg-turbo/bin/jpegtran -outputcoef temp.block psnr_600_q75/%s.jpg temp.jpg"%(str(x)))
-	os.system("python lossy_zerooff.py temp.block temp_out.block " + thre)
-	os.system("/opt/libjpeg-turbo/bin/jpegtran -inputcoef temp_out.block temp.jpg psnr_600_q75/%s_zerooff.jpg"%(str(x)))
-	os.system("compare -metric PSNR " + f + " psnr_600_q75/%s.jpg temp_diff.png"%(str(x)))
-	os.system("compare -metric PSNR " + f + " psnr_600_q75/%s_zerooff.jpg temp_diff.png"%(str(x)))
+	x += 1
+	print " "
+	print x,":","    ", 
+	c = commands.getstatusoutput("convert -quality " + q  + " "  + f + " " + folder + "/" + str(x) +".jpg")
+	c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran -outputcoef temp.block %s/%s.jpg temp.jpg"%(folder, str(x)))
+	c = commands.getstatusoutput("python lossy_zerooff.py temp.block temp_out.block " + thre)
+	c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran -inputcoef temp_out.block temp.jpg %s/%s_zerooff.jpg"%(folder, str(x)))
+	c = commands.getstatusoutput("compare -metric PSNR " + f + " %s/%s.jpg temp_diff.png"%(folder, str(x)))
+	print c[1], 
+	psnr1 = float(c[1])
+	c = commands.getstatusoutput("compare -metric PSNR " + f + " %s/%s_zerooff.jpg temp_diff.png"%(folder, str(x)))
+	print c[1]
+	psnr2 = float(c[1])
+	delta += psnr1-psnr2
+print delta, delta/x
+
