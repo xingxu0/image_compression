@@ -23,7 +23,7 @@
  * of a DCT block read in natural order (left to right, top to bottom).
  */
 
-#if 0                           /* This table is not actually needed in v6a */
+#if 1                           /* This table is not actually needed in v6a */
 
 const int jpeg_zigzag_order[DCTSIZE2] = {
    0,  1,  5,  6, 14, 15, 27, 28,
