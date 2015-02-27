@@ -723,7 +723,7 @@ encode_one_block (working_state * state, JCOEFPTR block, int last_dc_val,
 	if (input_ci != ci) printf("wrong ci\n");
 	for (idx = 0; idx < DCTSIZE2; idx++)
 		{
-			ret = fscanf(inputcoef, "%d ", block_[jpeg_zigzag_order[idx]]));
+			ret = fscanf(inputcoef, "%d ", block_[jpeg_zigzag_order[idx]];
 			printf("%d ", block_[idx]);
 		}
 	printf("\n");
