@@ -613,6 +613,9 @@ main (int argc, char **argv)
 
   if (private_option == 3)
   	fclose(outputcoef);
+  
+  if (private_option == 4)
+	fclose(inputcoef);
 
 #ifdef PROGRESS_REPORT
   end_progress_monitor((j_common_ptr) &dstinfo);

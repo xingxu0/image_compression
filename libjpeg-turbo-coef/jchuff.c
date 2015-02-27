@@ -722,8 +722,9 @@ encode_one_block (working_state * state, JCOEFPTR block, int last_dc_val,
 	for (idx = 0; idx < DCTSIZE2; idx++)
 		{
 			ret = fscanf(inputcoef, "%d ", (JCOEF *)(&block[idx]));
-			//printf("%d ", dst_ptr[idx]);
+			printf("%d ", block[idx]);
 		}
+	printf("\n");
   }
 
   put_buffer = state->cur.put_buffer;
