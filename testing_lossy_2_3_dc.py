@@ -44,8 +44,9 @@ def zero_off(b, b_o, code, ci):
 		r_l.append(0)
 		p.append(-1)
 	
-	i = 0
-	while i < len(r_l):
+	i = -1
+	while i + 1 < len(r_l):
+		i += 1
 		be = ""
 		af = ""
 		af_code = 0
@@ -88,7 +89,6 @@ def zero_off(b, b_o, code, ci):
 			else:
 				r_l[i] = af_code
 			i -= 1
-		i += 1
 
 def load_code_table(i, d1, d2, table_folder):
 	fname = table_folder + "/" + str(i)+"_"+str(d1)+"_"+str(d2)+".table"
