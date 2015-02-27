@@ -20,6 +20,7 @@
 #include "jinclude.h"
 #include "jpeglib.h"
 #include "jchuff.h"             /* Declarations shared with jcphuff.c */
+#include "jpegint.h"
 #include <limits.h>
 
 /*
