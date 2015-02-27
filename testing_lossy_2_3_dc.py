@@ -28,7 +28,7 @@ def get_r_l(x, code):
 		return "EOB" + l
 
 def zero_off(b, b_o, code, ci):
-	modified = False
+	modified = 0
 	r = 0
 	pos = 1
 
@@ -78,10 +78,11 @@ def zero_off(b, b_o, code, ci):
 			af_code = 0
 			diff = get_code(x,code)+1-get_code(0, code)
 		if diff >= thre:
-			if not modified:
+			if modified == 0:
 				#print " "
 				#print " "
-				modified = True
+				#modified = True
+			modified += 1
 			#print "comp", ci, ":"
 			#print b
 			#print b_o
@@ -97,6 +98,7 @@ def zero_off(b, b_o, code, ci):
 				r_l[i] = af_code
 				p[i] = -1
 			i -= 1
+	return modified
 
 def load_code_table(i, d1, d2, table_folder):
 	fname = table_folder + "/" + str(i)+"_"+str(d1)+"_"+str(d2)+".table"
@@ -212,7 +214,7 @@ def calc_gain(comp, dep1_s, dep2_s):
 		block_t_o = lib.get_blocks_with_dc_in_diff(f, comp)
 		
 		for ii in range(len(block_t)):
-			zero_off(block_t[ii], block_t_o[ii], lib.code, comp)
+			total_lossy += zero_off(block_t[ii], block_t_o[ii], lib.code, comp)
 			
 			x, dc_s_bits, dc_bits, r, coef_bits = lib.get_bits_detail(block_t[ii], lib.code, comp=="0")
 			t_ac_b += coef_bits
@@ -449,7 +451,7 @@ lib.fprint("\tgaining " + str(g) + " bits (" + str(g*100.0/t)+"%)")
 lib.fprint("\tCompare to JPEG optimize:")
 lib.fprint("\tin total " + str(t_opt) + " bits")
 lib.fprint("\tgaining " + str(g+t_opt-t) + " bits (" + str((g+t_opt-t)*100.0/t_opt)+"%)")
-lib.fprint("\twith lossy: " + str(g+t_opt-t+t_lossy) + " bits (" + str((g+t_opt-t+t_lossy)*100.0/t_opt)+"%)")
+lib.fprint("\twith distortion: " + str(t_lossy) + " units")
 
 	
 lib.index_file.close()
