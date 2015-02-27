@@ -18,6 +18,7 @@ def get_code(x, code):
 		r-=16
 		ret += code[0xf0]
 	ret += code[(r<<4)+s]
+	return ret
 
 def get_r_l(x, code):
 	l = " (" + str(get_code(x,code)) + ")"
