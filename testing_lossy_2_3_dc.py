@@ -82,6 +82,7 @@ def zero_off(b, b_o, code, ci):
 				#print " "
 				#print " "
 				#modified = True
+				pass
 			modified += 1
 			#print "comp", ci, ":"
 			#print b
