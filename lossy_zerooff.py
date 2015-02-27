@@ -101,13 +101,13 @@ def zero_off(b, b_o, code, ci):
 			i -= 1
 	return modified
 
-if len(sys.argv) != 5:
+if len(sys.argv) != 4:
 	print "usage: python lossy_zerooff.py [INPUT.block] [OUTPUT.block] [GAIN BITS THRESHOLD]"
 	exit()
 
-in_ = sys.argv[2]
-out_ = sys.argv[3]
-thre = int(sys.argv[4])
+in_ = sys.argv[1]
+out_ = sys.argv[2]
+thre = int(sys.argv[3])
 
 l_in = open(in_).readlines()
 l_out = open(out_, "w")
@@ -130,10 +130,9 @@ for l in l_in:
 			b.append(lib.get_bits(abs(int(s[j]))))
 			b_o.append(int(s[j]))
 
-	total_lossy = zero_off(b, b_o, code, comp)
+	total_lossy = zero_off(b, b_o, code, s[0].split(":")[0])
 	l_out.write(s[0] + " ")
 	for x in b_o:
 		l_out.write(str(x)+" ")
 	l_out.write("\n")
-l_in.close()
 l_out.close()

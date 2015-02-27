@@ -100,6 +100,8 @@ def calc_gain(comp, dep1_s, dep2_s):
 	print "\nTEST  SET:"
 	print "\nJPEG Baseline: dc symbol length:" + str(t_dc_s) + "\tdc actual bits:" + str(t_dc_b) + "\trun length bits:" + str(t_run_length_bits) + "\tactual AC bits:" + str(t_ac_b) + "\ttotal bits:" + str(t_total_bits)
 	print "\nJPEG Optimize: dc symbol length:" + str(total_opt_dc) + "\tdc actual bits:" + str(t_dc_b) + "\trun length bits:" + str(total_opt) + "\tactual AC bits:" + str(t_ac_b) + "\ttotal bits:" + str(t_total_bits_opt) + "\teob bits:"+str(total_eob)
+
+	return t_total_bits, t_total_bits_opt
 	
 if len(sys.argv) != 2:
 	print "usage: python testing.py [TESTING IMAGES FOLDER]"
@@ -111,4 +113,9 @@ g = 0
 t = 0
 t_opt = 0
 for c in range(3):
-	calc_gain(str(c), 0, 0)
+	a,b = calc_gain(str(c), 0, 0)
+	t +=a
+	t_opt+=b
+
+print "JPEG Baseline: " + str(t) + " bits"
+print "JPEG Optimize: " + str(t_opt) + " bits"
