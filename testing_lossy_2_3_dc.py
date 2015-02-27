@@ -87,6 +87,7 @@ def zero_off(b, b_o, code, ci):
 				r_l[i] = af_code
 			else:
 				r_l[i] = af_code
+			i -= 1
 		i += 1
 
 def load_code_table(i, d1, d2, table_folder):
