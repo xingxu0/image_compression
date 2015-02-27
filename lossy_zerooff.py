@@ -112,6 +112,7 @@ thre = int(sys.argv[4])
 l_in = open(in_).readlines()
 l_out = open(out_, "w")
 
+total_modified = 0
 for l in l_in:
 	s = l[:-2].split(" ")
 	b = []
@@ -130,10 +131,11 @@ for l in l_in:
 			b.append(lib.get_bits(abs(int(s[j]))))
 			b_o.append(int(s[j]))
 
-	total_lossy = zero_off(b, b_o, code, comp)
+	total_modified += zero_off(b, b_o, code, comp)
 	l_out.write(s[0] + " ")
 	for x in b_o:
 		l_out.write(str(x)+" ")
 	l_out.write("\n")
 l_in.close()
 l_out.close()
+print total_modified
