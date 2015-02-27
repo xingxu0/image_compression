@@ -78,7 +78,9 @@ def zero_off(b, b_o, code, ci):
 			diff = get_code(x,code)+1-get_code(0, code)
 		if diff >= thre:
 			print " "
-			print "comp", ci, ":", b
+			print "comp", ci, ":"
+			print b
+			print b_o
 			print "\t", p[i], ":", diff, "    before", be, " after ", af
 			b[p[i]] = 0
 			b_o[p[i]] = 0
