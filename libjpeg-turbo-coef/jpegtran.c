@@ -494,8 +494,10 @@ main (int argc, char **argv)
   else
   	outputcoef = NULL;
   
-  if (private_option == 4)
+  if (private_option == 4) {
         inputcoef = fopen(inputcoefname, "r");
+	printf("%s\n", inputcoefname);
+  }
   else
 	inputcoef = NULL;
 
