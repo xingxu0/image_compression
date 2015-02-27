@@ -131,7 +131,7 @@ for l in l_in:
 			b.append(lib.get_bits(abs(int(s[j]))))
 			b_o.append(int(s[j]))
 
-	total_modified += zero_off(b, b_o, code, comp)
+	total_modified += zero_off(b, b_o, code, s[0].split(":")[0])
 	l_out.write(s[0] + " ")
 	for x in b_o:
 		l_out.write(str(x)+" ")
