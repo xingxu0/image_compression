@@ -84,11 +84,12 @@ def zero_off(b, b_o, code, ci):
 			b_o[p[i]] = 0
 			
 			if i<len(r_l)-1:			
-				r_l.pop(i+1)
-				p.pop(i+1)
+				r_l.pop(i)
+				p.pop(i)
 				r_l[i] = af_code
 			else:
 				r_l[i] = af_code
+				p[i] = -1
 			i -= 1
 
 def load_code_table(i, d1, d2, table_folder):
