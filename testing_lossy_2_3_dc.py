@@ -60,8 +60,15 @@ def zero_off(b, b_o, code, ci):
 				if s==0:
 					diff = -1
 				else:
-					diff -= code[(((x>>4) + (y>>4) + 1) << 4) + s]
-					af = get_r_l((((x>>4) + (y>>4) + 1) << 4) + s, code)
+					r_ = ((x>>4) + (y>>4) + 1)
+					if r_<=15:
+						diff -= code[(r_ << 4) + s]
+						af = get_r_l((r_ << 4) + s, code)
+					else:
+						diff -= code[0xf0]
+						af = get_r_l(0xf0, code)
+						r_ -= 16
+						af += " " + get_r_l((r_ << 4) + s, code)
 		else:
 			be = get_r_l(x, code) + " + 1 bit"
 			af = get_r_l(0, code)
