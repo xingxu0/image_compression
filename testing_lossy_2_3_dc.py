@@ -17,7 +17,7 @@ def get_r_l(x, code):
 	else:
 		return "EOB" + l
 
-def zero_off(b, b_o, code):
+def zero_off(b, b_o, code, ci):
 	r = 0
 	pos = 1
 
@@ -42,8 +42,8 @@ def zero_off(b, b_o, code):
 		p.append(-1)
 	
 	for i in range(len(r_l)):
-		b = ""
-		a = ""
+		be = ""
+		af = ""
 		x = r_l[i]
 		if (x & 15) != 1:
 			continue
@@ -51,24 +51,25 @@ def zero_off(b, b_o, code):
 		if i < len(r_l)-1:
 			y = r_l[i+1]
 			diff = code[x]+code[y]+1 # e.g., run-2-length-1, run-3-length-1; or, run-2-length-1, EOB; 1 is for the magnitude bits of +1 or -1;
-			b = get_r_l(x, code) + " " + get_r_l(y, code) + " + 1 bit"
+			be = get_r_l(x, code) + " " + get_r_l(y, code) + " + 1 bit"
 			if y==0:
 				diff -= code[0]
-				a = get_r_l(y, code)
+				af = get_r_l(y, code)
 			else:
 				s = y & 15
 				if s==0:
 					diff = -1
 				else:
 					diff -= code[(((x>>4) + (y>>4) + 1) << 4) + s]
-					a = get_r_l((((x>>4) + (y>>4) + 1) << 4) + s, code)
+					af = get_r_l((((x>>4) + (y>>4) + 1) << 4) + s, code)
 		else:
-			b = get_r_l(x, code) + " + 1 bit"
-			a = get_r_l(0, code)
+			be = get_r_l(x, code) + " + 1 bit"
+			af = get_r_l(0, code)
 			diff = code[x]+1-code[0]
 		if diff >= thre:
-			print b
-			print "\t", p[i], ":", diff, "    before", b, " after ", a
+			print " "
+			print "comp", ci, ":", be
+			print "\t", p[i], ":", diff, "    before", be, " after ", af
 			b[p[i]] = 0
 			b_o[p[i]] = 0
 
@@ -185,7 +186,7 @@ def calc_gain(comp, dep1_s, dep2_s):
 		block_t_o = lib.get_blocks_with_dc_in_diff(f, comp)
 		
 		for ii in range(len(block_t)):
-			zero_off(block_t[ii], block_t_o[ii], lib.code)
+			zero_off(block_t[ii], block_t_o[ii], lib.code, comp)
 			
 			x, dc_s_bits, dc_bits, r, coef_bits = lib.get_bits_detail(block_t[ii], lib.code, comp=="0")
 			t_ac_b += coef_bits
