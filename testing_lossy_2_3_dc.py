@@ -28,6 +28,7 @@ def get_r_l(x, code):
 		return "EOB" + l
 
 def zero_off(b, b_o, code, ci):
+	modified = False
 	r = 0
 	pos = 1
 
@@ -77,7 +78,10 @@ def zero_off(b, b_o, code, ci):
 			af_code = 0
 			diff = get_code(x,code)+1-get_code(0, code)
 		if diff >= thre:
-			print " "
+			if not modified:
+				print " "
+				print " "
+				modified = True
 			print "comp", ci, ":"
 			print b
 			print b_o
