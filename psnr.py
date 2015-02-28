@@ -9,6 +9,7 @@ folder = "psnr_600_q75_" + thre
 c = commands.getstatusoutput("rm %s -rf"%(folder))
 c = commands.getstatusoutput("mkdir " + folder)
 x=0
+psnr1_ = 0.0
 delta = 0.0
 for f in fs:
 	x += 1
@@ -25,5 +26,7 @@ for f in fs:
 	print c[1]
 	psnr2 = float(c[1])
 	delta += psnr1-psnr2
+	psnr1_ += psnr1
+print psnr1_, psnr1_/x
 print delta, delta/x
 
