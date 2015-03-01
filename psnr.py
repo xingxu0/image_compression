@@ -1,11 +1,11 @@
 import os, sys, glob, commands
 
-fs = glob.glob("images/TESTIMAGES/RGB/RGB_R02_0600x0600/*.png")
+fs = glob.glob("images/TESTIMAGES/RGB/RGB_OR_1200x1200/*.png")
 
 thre = sys.argv[1]
 
 q = "75"
-folder = "psnr_600_q75_" + thre
+folder = "psnr_1200_q75_" + thre
 c = commands.getstatusoutput("rm %s -rf"%(folder))
 c = commands.getstatusoutput("mkdir " + folder)
 x=0

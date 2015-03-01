@@ -440,6 +440,12 @@ lib.fprint("\tin total " + str(t_opt) + " bits")
 lib.fprint("\tgaining " + str(g+t_opt-t) + " bits (" + str((g+t_opt-t)*100.0/t_opt)+"%)")
 lib.fprint("\twith distortion: " + str(t_lossy) + " units")
 
+ori_jpeg_std = 154343935
+ori_jpeg_opt = 151788064
+
+lib.fprint("\t compare to original images:")
+lib.fprint("\t our: %d, std %d, gain %f\%"%(t-g, ori_jpeg_std, 100*(1.0-(t-g)*1.0/ori_jpeg_std)))
+lib.fprint("\t our: %d, opt %d, gain %f\%"%(t-g, ori_jpeg_opt, 100*(1.0-(t-g)*1.0/ori_jpeg_opt)))
 lib.index_file.close()
 
 os.system("rm temp_block_132lkasjdlkfjaslkdf -rf")

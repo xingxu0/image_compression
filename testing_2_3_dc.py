@@ -1,5 +1,3 @@
-
-
 import sys, os, heapq, glob, operator, pickle, lib
 from operator import itemgetter
 from copy import *
@@ -260,26 +258,6 @@ def calc_gain(comp, dep1_s, dep2_s):
 			else:
 				per[p][i-1] = 0
 				
-	subplot(4, 1, 1)
-	pcolor(j)
-	colorbar()
-	ylabel('JPEG')
-	subplot(4, 1, 2)
-	pcolor(yy)
-	colorbar()
-	ylabel('ours')
-	subplot(4, 1, 3)
-	pcolor(diff)
-	colorbar()
-	ylabel('diff.')
-	subplot(4, 1, 4)
-	pcolor(per)
-	ylabel('impro. ratio')
-	colorbar()
-	savefig(sys.argv[3]+"_"+comp+".png")
-	close()
-
-
 	gain_dc = 0
 	jdc = 0
 	for i in range(36):
