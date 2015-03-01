@@ -444,8 +444,8 @@ ori_jpeg_std = 154343935
 ori_jpeg_opt = 151788064
 
 lib.fprint("\t compare to original images:")
-lib.fprint("\t our: %d, std %d, gain %f\%"%(t-g, ori_jpeg_std, 100*(1.0-(t-g)*1.0/ori_jpeg_std)))
-lib.fprint("\t our: %d, opt %d, gain %f\%"%(t-g, ori_jpeg_opt, 100*(1.0-(t-g)*1.0/ori_jpeg_opt)))
+lib.fprint("\t our: %d, std %d, gain %f%%"%(t-g, ori_jpeg_std, 100*(1.0-(t-g)*1.0/ori_jpeg_std)))
+lib.fprint("\t our: %d, opt %d, gain %f%%"%(t-g, ori_jpeg_opt, 100*(1.0-(t-g)*1.0/ori_jpeg_opt)))
 lib.index_file.close()
 
 os.system("rm temp_block_132lkasjdlkfjaslkdf -rf")
