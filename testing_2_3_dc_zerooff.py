@@ -309,9 +309,9 @@ if len(sys.argv) != 5:
 
 tab_folder = sys.argv[2]
 test_folder = sys.argv[1]
+lib.zerooff_thre = int(sys.argv[4])
 lib.generate_blocks(test_folder)
 out_file = open(sys.argv[3], "w")
-lib.zerooff_thre = int(sys.argv[4])
 
 
 dep1, dep2 = lib.get_deps_from_file(tab_folder + "/dep.txt")
