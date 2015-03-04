@@ -117,7 +117,7 @@ inline int get_second_dimension_index(int ci, int pos, previous_block_state_t * 
 	int l;
 	register int k, su = 0, ma = 0;
 	l = pos + LOOK_FORWARD_COEF > 64 ? 64 : pos + LOOK_FORWARD_COEF;
-	UINT8* max_table = max_pos_value_range[ci][pos];
+	UINT16* max_table = max_pos_value_range[ci][pos];
 	UINT8 (*avgs_)[64] = previous_block_state->previous_blocks_avgs[ci];
 	UINT8 (*ma_)[64] = previous_block_state->previous_blocks_avgs_ma[ci];
 	//for (i=0; i<LOOK_BACKWARD_BLOCK; ++i) {
@@ -433,7 +433,7 @@ void initialize_max_pos_value(int c)
 			t = 1;
 			for (k=i; k<=j; ++k)
 				t += max_pos_value[c][k];
-			if (t>255) t=255;
+			//if (t>255) t=255;
 			max_pos_value_range[c][i][j] = t;
 			max_pos_value_range_r[c][j][i] = t;
 		}

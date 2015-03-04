@@ -536,7 +536,7 @@ encode_one_block_entropy (working_state * state, JCOEFPTR block, int last_dc_val
 
   // logging entire block
   JCOEF* previous_blocks = previous_block_state->previous_blocks[ci][LOOK_BACKWARD_BLOCK];
-  UINT8* max_table = max_pos_value_range[ci][1];
+  UINT16* max_table = max_pos_value_range[ci][1];
 
   //memset(previous_blocks, 0, 64*sizeof(JCOEF));
 
