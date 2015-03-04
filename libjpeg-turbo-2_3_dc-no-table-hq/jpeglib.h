@@ -1145,7 +1145,7 @@ typedef struct
 
 //UINT8 max_pos_value[3][64];
 UINT16 max_pos_value_range[3][64][64];
-UINT16 max_pos_value_range_r[3][64][64];
+UINT8 max_pos_value_range_r[3][64][64];
 
 int* coef_bins[3][64 + 1];
 int* coef_bins_p[3][64 + 1];

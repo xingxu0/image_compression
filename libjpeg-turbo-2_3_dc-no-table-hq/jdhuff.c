@@ -435,6 +435,7 @@ void initialize_max_pos_value(int c)
 				t += max_pos_value[c][k];
 			//if (t>255) t=255;
 			max_pos_value_range[c][i][j] = t;
+			if (t>255) t=255;
 			max_pos_value_range_r[c][j][i] = t;
 		}
 	}
