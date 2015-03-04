@@ -47,54 +47,80 @@ inline int get_bin(int * bin, int bins, int f) {
 }
 
 inline int get_bin_naive(int *bin, int f) {
-  if (f < bin[0]) return 0;
-  if (f < bin[1]) return 1;
-  if (f < bin[2]) return 2;
-  if (f < bin[3]) return 3;
-  if (f < bin[3]) return 3;
-  if (f < bin[4]) return 4;
-  if (f < bin[5]) return 5;
-  if (f < bin[6]) return 6;
-  if (f < bin[7]) return 7;
-  if (f < bin[8]) return 8;
-  if (f < bin[9]) return 9;
-  if (f < bin[10]) return 10;
-  if (f < bin[11]) return 11;
-  if (f < bin[12]) return 12;
-  if (f < bin[13]) return 13;
-  if (f < bin[13]) return 13;
-  if (f < bin[14]) return 14;
-  if (f < bin[15]) return 15;
-  if (f < bin[16]) return 16;
-  if (f < bin[17]) return 17;
-  if (f < bin[18]) return 18;
-  if (f < bin[19]) return 19;
-  if (f < bin[20]) return 20;
-  return 20;
+  if (f < bin[10]) {
+	  if (f < bin[4]) {
+		  if (f < bin[0]) return 0;
+		  if (f < bin[1]) return 1;
+		  if (f < bin[2]) return 2;
+		  if (f < bin[3]) return 3;
+		  return 4;
+	  } else {
+		  if (f < bin[5]) return 5;
+		  if (f < bin[6]) return 6;
+		  if (f < bin[7]) return 7;
+		  if (f < bin[8]) return 8;
+		  if (f < bin[9]) return 9;
+		  return 10;
+	  }
+  }
+  else {
+	  if (f < bin[15]) {
+		  if (f < bin[11]) return 11;
+		  if (f < bin[12]) return 12;
+		  if (f < bin[13]) return 13;
+		  if (f < bin[14]) return 14;
+		  return 15;
+	  } else {
+		  if (f < bin[16]) return 16;
+		  if (f < bin[17]) return 17;
+		  if (f < bin[18]) return 18;
+		  if (f < bin[19]) return 19;
+		  if (f < bin[20]) return 20;
+		  return 20;
+	  }
+  }
 }
 
-inline int get_dc_index(int ci, previous_block_state_t * previous_block_state) {
-	int s=0, t=0, tmp;
-	int now_index = previous_block_state->current_index[ci];
-	JCOEF (*b)[64] = previous_block_state->previous_blocks[ci];
+inline int get_dc_index(int ci, previous_block_state_t * previous_block_state, int index1, int index2) {
+	int s=0, t=0, temp, temp3;
+	//int now_index = previous_block_state->current_index[ci];
+	JCOEF *b = previous_block_state->previous_blocks[ci];
 	//for (i=0; i<2; ++i) {
-  now_index = now_index == 0 ? LOOK_BACKWARD_BLOCK - 1 : now_index - 1;
-  tmp = b[now_index][0];
-  s += abs(tmp);
-  if (tmp < 0) t-=1;
-  else if (tmp) t+=1;
+  //now_index = now_index == 0 ? LOOK_BACKWARD_BLOCK - 1 : now_index - 1;
+  temp = b[index1];
+  if (temp) {
+	  //t += 1;
+	  //t -= 2*(((unsigned int)temp)>>31);
+	  if (temp < 0) t-=1;
+	  else t+=1;
+	  temp3 = temp >> (CHAR_BIT * sizeof(int) - 1); \
+	  temp ^= temp3; \
+	  temp -= temp3; \
+	  s += temp;
+  }
 
-  now_index = now_index == 0 ? LOOK_BACKWARD_BLOCK - 1 : now_index - 1;
-  tmp = b[now_index][0];
-  s += abs(tmp);
-  if (tmp < 0) t-=1;
-  else if (tmp) t+=1;
-	//}
+  //now_index = now_index == 0 ? LOOK_BACKWARD_BLOCK - 1 : now_index - 1;
+  temp = b[index2];
+  if (temp) {
+	  //t += 1;
+	  //t -= 2*(((unsigned int)temp)>>31);
+	  if (temp < 0) t-=1;
+	  else t+=1;
+	  temp3 = temp >> (CHAR_BIT * sizeof(int) - 1); \
+	  temp ^= temp3; \
+	  temp -= temp3; \
+	  s += temp;
+  }
 
 	s>>=1;
-	if (t<0) s+=12;
-	else if (t) s+=24;
-	return s;
+	if (t) {
+		//s += 24;
+		//s -= 12*(((unsigned int)t)>>31);
+		if (t<0) s+=12;
+		else s+=24;
+		return s;
+	}
+	else return s;
 }
 
 inline int get_first_dimension_index(int ci, int pos, int f, int dc_diff) {
@@ -111,8 +137,7 @@ inline int get_first_dimension_index(int ci, int pos, int f, int dc_diff) {
 	*/
 }
 
-inline int get_second_dimension_index(int ci, int pos, previous_block_state_t * previous_block_state) {
-	int now_index = previous_block_state->current_index[ci];
+inline int get_second_dimension_index(int ci, int pos, previous_block_state_t * previous_block_state, int index1, int index2, int index3) {
 	//int i;
 	int l;
 	register int k, su = 0, ma = 0;
@@ -123,32 +148,29 @@ inline int get_second_dimension_index(int ci, int pos, previous_block_state_t * 
 	//for (i=0; i<LOOK_BACKWARD_BLOCK; ++i) {
 
 	// for 3 times
-		now_index = now_index == 0 ? LOOK_BACKWARD_BLOCK - 1 : now_index - 1;
 		//if (previous_block_state->previous_blocks_avgs[ci][now_index][pos] != -1) {
-			k = avgs_[now_index][pos];
+			k = avgs_[index1][pos];
 			su += k;
 			if (k != 0)
-			  ma += ma_[now_index][pos];
+			  ma += ma_[index1][pos];
 			else
-		      ma += max_table[l - 1];
+		      ma += max_table[l];
 
-			now_index = now_index == 0 ? LOOK_BACKWARD_BLOCK - 1 : now_index - 1;
 			    //if (previous_block_state->previous_blocks_avgs[ci][now_index][pos] != -1) {
-			      k = avgs_[now_index][pos];
+			      k = avgs_[index2][pos];
 			      su += k;
 			      if (k != 0)
-			        ma += ma_[now_index][pos];
+			        ma += ma_[index2][pos];
 			      else
-			          ma += max_table[l - 1];
+			          ma += max_table[l];
 
-			      now_index = now_index == 0 ? LOOK_BACKWARD_BLOCK - 1 : now_index - 1;
 			          //if (previous_block_state->previous_blocks_avgs[ci][now_index][pos] != -1) {
-			            k = avgs_[now_index][pos];
+			            k = avgs_[index3][pos];
 			            su += k;
 			            if (k != 0)
-			              ma += ma_[now_index][pos];
+			              ma += ma_[index3][pos];
 			            else
-			                ma += max_table[l - 1];
+			                ma += max_table[l];
 		/*
 		}
 		else {
@@ -169,9 +191,8 @@ inline int get_second_dimension_index(int ci, int pos, previous_block_state_t * 
 	*/
 	//}
 
-	int f = su ? su*1000/ma : 0;
 	//return get_bin(coef_bins_p[ci][pos], second_dimension_bins, f);
-	return get_bin_naive(coef_bins_p[ci][pos], f);
+	return get_bin_naive(coef_bins_p[ci][pos], su*1000/ma);
 }
 
 /*
@@ -216,12 +237,14 @@ inline int get_second_dimension_index(int ci, int pos, previous_block_state_t * 
 }*/
 
 int ts = 0;
-void get_derived_huff_table(symbol_table_t* tbl)
+void get_derived_huff_table_c(symbol_table_c* output_tbl)
 {
-	int lastp, p, l, code, si, i, entries = tbl->length, lookbits, ctr;
+	symbol_table_tmp * tbl = &table_tmp;
+	int lastp, p, l, code, si, i, entries = tbl->length;
 	int * bits_aggre = malloc((entropy_max_AC_bits + 1)*sizeof(int));
 	char huffsize[entries + 1];
-	unsigned int huffcode[entries + 1];
+	//unsigned int huffcode[entries + 1];
+	UINT16 huffcode[entries + 1];
 
 	p = 0;
 	i = 0;
@@ -259,6 +282,57 @@ void get_derived_huff_table(symbol_table_t* tbl)
 
 	for (p = 0; p < lastp; p++) {
 		i = tbl->run_length == NULL ? p : tbl->run_length[p];
+		output_tbl->symbol[i] = huffcode[p];
+		output_tbl->bits[i] = huffsize[p];
+	}
+  free(bits_aggre);
+}
+
+void get_derived_huff_table_d(symbol_table_d* output_tbl)
+{
+	symbol_table_tmp * tbl = &table_tmp;
+	int lastp, p, l, code, si, i, entries = tbl->length, lookbits, ctr;
+	int * bits_aggre = malloc((entropy_max_AC_bits + 1)*sizeof(int));
+	char huffsize[entries + 1];
+	//unsigned int huffcode[entries + 1];
+	UINT16 huffcode[entries + 1];
+
+	p = 0;
+	i = 0;
+	for (l = 0; l <= entropy_max_AC_bits; l++)
+		bits_aggre[l] = 0;
+	for (l = 1; l <= entropy_max_AC_bits; l++)
+	{
+		if (tbl->bits[i] < l) i++;
+		while (i < entries && tbl->bits[i] == l)
+		{
+			bits_aggre[l] ++;
+			i++;
+		}
+		if (i == entries) break;
+	}
+	for (l = 1; l <= entropy_max_AC_bits; l++) {
+		i = (int) bits_aggre[l];
+		while (i--)
+			huffsize[p++] = (char) l;
+	}
+	huffsize[p] = 0;
+	lastp = p;
+
+	code = 0;
+	si = huffsize[0];
+	p = 0;
+	while (huffsize[p]) {
+		while (((int) huffsize[p]) == si) {
+			huffcode[p++] = code;
+			code++;
+		}
+		code <<= 1;
+		si++;
+	}
+
+	for (p = 0; p < lastp; p++) {
+		i = output_tbl->run_length == NULL ? p : tbl->run_length[p];
 		tbl->symbol[i] = huffcode[p];
 		tbl->bits[i] = huffsize[p];
 	}
@@ -269,26 +343,28 @@ void get_derived_huff_table(symbol_table_t* tbl)
 			/* valoffset[l] = huffval[] index of 1st symbol of code length l,
 			 * minus the minimum code of length l
 			 */
-			tbl->valoffset[l] = (INT32) p - (INT32) huffcode[p];
+			output_tbl->valoffset[l] = (INT32) p - (INT32) huffcode[p];
 			p += bits_aggre[l];
-			tbl->max_bits[l] = huffcode[p-1]; /* maximum code of length l */
+			output_tbl->max_bits[l] = huffcode[p-1]; /* maximum code of length l */
 		} else {
-			tbl->max_bits[l] = -1;	/* -1 if no codes of this length */
+			output_tbl->max_bits[l] = -1;	/* -1 if no codes of this length */
 		}
 	}
-	tbl->max_bits[entropy_max_AC_bits + 1] = 0xFFFFFL; /* ensures jpeg_huff_decode terminates */
+	output_tbl->max_bits[entropy_max_AC_bits + 1] = 0xFFFFFL; /* ensures jpeg_huff_decode terminates */
 
-  for (i = 0; i < (1 << HUFF_LOOKAHEAD); i++)
-    tbl->lookup[i] = (HUFF_LOOKAHEAD + 1) << HUFF_LOOKAHEAD;
+  for (i = 0; i < (1 << HUFF_LOOKAHEAD_ENTROPY); i++)
+    //output_tbl->lookup[i] = (HUFF_LOOKAHEAD_ENTROPY + 1) << HUFF_LOOKAHEAD_ENTROPY;
+	output_tbl->lookup[i] = (HUFF_LOOKAHEAD_ENTROPY + 1) << 8;
 
   p = 0;
-  for (l = 1; l <= HUFF_LOOKAHEAD; l++) {
+  for (l = 1; l <= HUFF_LOOKAHEAD_ENTROPY; l++) {
     for (i = 1; i <= (int) bits_aggre[l]; i++, p++) {
       /* l = current code's length, p = its index in huffcode[] & huffval[]. */
       /* Generate left-justified code followed by all possible bit sequences */
-    	lookbits = huffcode[p] << (HUFF_LOOKAHEAD-l);
-      for (ctr = 1 << (HUFF_LOOKAHEAD-l); ctr > 0; ctr--) {
-      	tbl->lookup[lookbits] = (l << HUFF_LOOKAHEAD) | tbl->run_length[p];
+    	lookbits = huffcode[p] << (HUFF_LOOKAHEAD_ENTROPY-l);
+      for (ctr = 1 << (HUFF_LOOKAHEAD_ENTROPY-l); ctr > 0; ctr--) {
+      	//output_tbl->lookup[lookbits] = (l << HUFF_LOOKAHEAD_ENTROPY) | output_tbl->run_length[p];
+      	output_tbl->lookup[lookbits] = (l << 8) | output_tbl->run_length[p];
         lookbits++;
       }
     }
@@ -301,7 +377,7 @@ boolean default_table[3];
 int default_i[3];
 int default_j[3];
 int default_k[3];
-boolean initialize_AC_table(int c, int i, int j, int k)
+boolean initialize_AC_table(int c, int i, int j, int k, int private_option)
 {
 	int table_size = 256;
 	char filename[200];
@@ -310,7 +386,10 @@ boolean initialize_AC_table(int c, int i, int j, int k)
 	if (f == NULL) {
 
 		if (default_table[c]) {
-			memcpy(&ac_table[c][i][j][k], &ac_table[c][default_i[c]][default_j[c]][default_k[c]], sizeof(symbol_table_t));
+			if (private_option == 1)
+				memcpy(&ac_table[c][i][j][k], &ac_table[c][default_i[c]][default_j[c]][default_k[c]], sizeof(symbol_table_c));
+			else
+				memcpy(&ac_table_d[c][i][j][k], &ac_table_d[c][default_i[c]][default_j[c]][default_k[c]], sizeof(symbol_table_d));
 			return TRUE;
 		}
 
@@ -327,31 +406,40 @@ boolean initialize_AC_table(int c, int i, int j, int k)
 					return FALSE;
 				}
 	}
-	/*
-	ac_table[c][i][j][k].symbol = malloc(table_size*sizeof(int));
-	ac_table[c][i][j][k].bits = malloc(table_size*sizeof(int));
-	ac_table[c][i][j][k].run_length = malloc(table_size*sizeof(int*));
-	ac_table[c][i][j][k].s_max = malloc((max_bits + 1)*sizeof(int));
-	*/
+
 	ts += 1;
-	ac_table[c][i][j][k].length = table_size;
-	ac_table[c][i][j][k].symbol = malloc(table_size*sizeof(int));
+	table_tmp.length = table_size;
 	int ii;
-	for (ii = 0; ii< table_size; ++ii)
-		ac_table[c][i][j][k].symbol[ii] = -1;
-	ac_table[c][i][j][k].bits = malloc(table_size*sizeof(int));
-	ac_table[c][i][j][k].run_length = malloc(table_size*sizeof(int));
-	ac_table[c][i][j][k].max_bits = malloc((entropy_max_AC_bits + 2)*sizeof(int));
-	ac_table[c][i][j][k].valoffset = malloc((entropy_max_AC_bits + 2)*sizeof(int));
-	for (ii = 0; ii < table_size; ++ii)
-	{
-		int ret = fscanf(f, "%d: %d", &(ac_table[c][i][j][k].bits[ii]), &(ac_table[c][i][j][k].run_length[ii]));
-		if (! ret) continue;
-		if (ac_table[c][i][j][k].bits[ii] >= entropy_max_AC_bits) printf("!!! AC %d %d %d more bits than expected\n", i, j, k);
-		//if (ac_table[c][i][j].bits > 16) printf("Larger table %d %d %d\n", c, i, j);
+	if (private_option == 1) {
+		ac_table[c][i][j][k].symbol = malloc(table_size*sizeof(UINT16));
+		for (ii = 0; ii< table_size; ++ii)
+			ac_table[c][i][j][k].symbol[ii] = -1;
+		ac_table[c][i][j][k].bits = malloc(table_size*sizeof(UINT8));
+		for (ii = 0; ii < table_size; ++ii)
+		{
+			int ret = fscanf(f, "%d: %d", &(table_tmp.bits[ii]), &(table_tmp.run_length[ii]));
+			ac_table[c][i][j][k].bits[ii] = table_tmp.bits[ii];
+			if (! ret) continue;
+			if (ac_table[c][i][j][k].bits[ii] >= entropy_max_AC_bits) printf("!!! AC %d %d %d more bits than expected\n", i, j, k);
+			//if (ac_table[c][i][j].bits > 16) printf("Larger table %d %d %d\n", c, i, j);
+		}
+		fclose(f);
+		get_derived_huff_table_c(&(ac_table[c][i][j][k]));
+	} else {
+		ac_table_d[c][i][j][k].max_bits = malloc((entropy_max_AC_bits + 2)*sizeof(int));
+		ac_table_d[c][i][j][k].valoffset = malloc((entropy_max_AC_bits + 2)*sizeof(int));
+		ac_table_d[c][i][j][k].run_length = malloc(table_size*sizeof(UINT8));
+		for (ii = 0; ii < table_size; ++ii)
+		{
+			int ret = fscanf(f, "%d: %d", &(table_tmp.bits[ii]), &(table_tmp.run_length[ii]));
+			ac_table_d[c][i][j][k].run_length[ii] = table_tmp.run_length[ii];
+			if (! ret) continue;
+			if (table_tmp.bits[ii] >= entropy_max_AC_bits) printf("!!! AC %d %d %d more bits than expected\n", i, j, k);
+			//if (ac_table[c][i][j].bits > 16) printf("Larger table %d %d %d\n", c, i, j);
+		}
+		fclose(f);
+		get_derived_huff_table_d(&(ac_table_d[c][i][j][k]));
 	}
-	fclose(f);
-	get_derived_huff_table(&(ac_table[c][i][j][k]));
 	//for printing...
 
 	
@@ -364,7 +452,7 @@ boolean initialize_AC_table(int c, int i, int j, int k)
 	return TRUE;
 }
 
-void initialize_DC_table(int c, int i)
+void initialize_DC_table(int c, int i, int private_option)
 {
 	char filename[200];
 	int table_size = 25;
@@ -380,22 +468,36 @@ void initialize_DC_table(int c, int i)
 		}
 	}
 
-	dc_table[c][i].length = table_size;
-	dc_table[c][i].symbol = malloc(table_size*sizeof(int));
-	dc_table[c][i].bits = malloc(table_size*sizeof(int));
-	dc_table[c][i].run_length = malloc(table_size*sizeof(int));
-	dc_table[c][i].max_bits = malloc((entropy_max_AC_bits + 2)*sizeof(int));
-	dc_table[c][i].valoffset = malloc((entropy_max_AC_bits + 2)*sizeof(int));
 	int ii;
-	for (ii=0; ii<24; ++ii)
-	{
-		int ret = fscanf(f, "%d: %d", &(dc_table[c][i].bits[ii]), &(dc_table[c][i].run_length[ii]));
-		if (! ret) continue;
-		if (dc_table[c][i].bits[ii] >= entropy_max_AC_bits) printf("!!! DC %d more bits than expected: %d, %d (%d)\n", i, dc_table[c][i].bits[ii], dc_table[c][i].run_length[ii], ii);
+	table_tmp.length = table_size;
+	if (private_option == 1) {
+		dc_table[c][i].symbol = malloc(table_size*sizeof(UINT16));
+		for (ii = 0; ii< table_size; ++ii)
+			dc_table[c][i].symbol[ii] = -1;
+		dc_table[c][i].bits = malloc(table_size*sizeof(UINT8));
+		for (ii = 0; ii < table_size; ++ii)
+		{
+			int ret = fscanf(f, "%d: %d", &(table_tmp.bits[ii]), &(table_tmp.run_length[ii]));
+			dc_table[c][i].bits[ii] = table_tmp.bits[ii];
+			if (! ret) continue;
+			if (dc_table[c][i].bits[ii] >= entropy_max_AC_bits) printf("!!! DC %d %d more bits than expected 1!\n", c, i);
+		}
+		fclose(f);
+		get_derived_huff_table_c(&(dc_table[c][i]));
+	} else {
+		dc_table_d[c][i].max_bits = malloc((entropy_max_AC_bits + 2)*sizeof(int));
+		dc_table_d[c][i].valoffset = malloc((entropy_max_AC_bits + 2)*sizeof(int));
+		dc_table_d[c][i].run_length = malloc(table_size*sizeof(UINT8));
+		for (ii = 0; ii < table_size; ++ii)
+		{
+			int ret = fscanf(f, "%d: %d", &(table_tmp.bits[ii]), &(table_tmp.run_length[ii]));
+			dc_table_d[c][i].run_length[ii] = table_tmp.run_length[ii];
+			if (! ret) continue;
+			if (table_tmp.bits[ii] >= entropy_max_AC_bits) printf("!!! DC %d %d more bits than expected 2!\n", c, i);
+		}
+		fclose(f);
+		get_derived_huff_table_d(&(dc_table_d[c][i]));
 	}
-	fclose(f);
-
-	get_derived_huff_table(&(dc_table[c][i]));
 /*
 	if (c==2) {
 		printf("dc table...\r\n");
@@ -425,7 +527,7 @@ void initialize_max_pos_value(int c)
 
 	int t = 0;
 	for (i=0; i<64; ++i)
-			for (j=0; j<64; ++j)
+			for (j=0; j<65; ++j)
 				max_pos_value_range[c][i][j] = 1;
 
 	for (i=0; i<64; ++i) {
@@ -433,8 +535,8 @@ void initialize_max_pos_value(int c)
 			t = 1;
 			for (k=i; k<=j; ++k)
 				t += max_pos_value[c][k];
-			//if (t>255) t=255;
-			max_pos_value_range[c][i][j] = t;
+			if (t>511) t=511;
+			max_pos_value_range[c][i][j+1] = t;
 			if (t>255) t=255;
 			max_pos_value_range_r[c][j][i] = t;
 		}
@@ -523,37 +625,70 @@ void initialize_coef_bins_p(int c)
 	*/
 }
 
-void entropy_table_initialization()
+void entropy_table_initialization(int private_option)
 {
-	entropy_max_AC_bits = 32;
+	int table_size = 256;
+	entropy_max_AC_bits = 18;
+
+	table_tmp.symbol = malloc(table_size*sizeof(int));
+	int ii;
+	for (ii = 0; ii< table_size; ++ii)
+		table_tmp.symbol[ii] = -1;
+	table_tmp.bits = malloc(table_size*sizeof(int));
+	table_tmp.run_length = malloc(table_size*sizeof(int));
+	table_tmp.max_bits = malloc((entropy_max_AC_bits + 2)*sizeof(int));
+	table_tmp.valoffset = malloc((entropy_max_AC_bits + 2)*sizeof(int));
 
 	// initialize AC table
 	first_dimension_bins = 20;
 	second_dimension_bins = 20;
-	ac_table = malloc(3*sizeof(symbol_table_t ***));
-	int c, i, j, k;
-	for (c=0; c<3; ++c)
-		default_table[c] = FALSE;
-	for (c=0; c<3; ++c) {
-		ac_table[c] = malloc(64*sizeof(symbol_table_t **));
-		for (i=1; i<64; ++i) {
-			ac_table[c][i] = malloc((first_dimension_bins + 1)*sizeof(symbol_table_t*));
-			for (j=0; j<(first_dimension_bins + 1); ++j) {
-				ac_table[c][i][j] = malloc((second_dimension_bins + 5 + 1)*sizeof(symbol_table_t));
-				for (k=0; k<second_dimension_bins + 5 + 1; ++k)
-					if (!initialize_AC_table(c, i, j, k)) break;
+
+	int c,i,j,k;
+	if (private_option == 1) {
+		ac_table = malloc(3*sizeof(symbol_table_c ***));
+		for (c=0; c<3; ++c)
+			default_table[c] = FALSE;
+		for (c=0; c<3; ++c) {
+			ac_table[c] = malloc(64*sizeof(symbol_table_c **));
+			for (i=1; i<64; ++i) {
+				ac_table[c][i] = malloc((first_dimension_bins + 1)*sizeof(symbol_table_c*));
+				for (j=0; j<(first_dimension_bins + 1); ++j) {
+					ac_table[c][i][j] = malloc((second_dimension_bins + 5 + 1)*sizeof(symbol_table_c));
+					for (k=0; k<second_dimension_bins + 5 + 1; ++k)
+						if (!initialize_AC_table(c, i, j, k, private_option)) break;
+				}
 			}
 		}
-	}
-#ifdef DEBUG
-	printf("got %d AC tables\n", ts);
-#endif
 
-	dc_table = malloc(3*sizeof(symbol_table_t *));
-	for (c=0; c<3; ++c) {
-		dc_table[c] = malloc(36*sizeof(symbol_table_t));
-		for (i=0; i<36; ++i)
-			initialize_DC_table(c, i);
+		dc_table = malloc(3*sizeof(symbol_table_c *));
+		for (c=0; c<3; ++c) {
+			dc_table[c] = malloc(36*sizeof(symbol_table_c));
+			for (i=0; i<36; ++i)
+				initialize_DC_table(c, i, private_option);
+		}
+	} else {
+		ac_table_d = malloc(3*sizeof(symbol_table_d ***));
+		for (c=0; c<3; ++c)
+			default_table[c] = FALSE;
+		for (c=0; c<3; ++c) {
+			ac_table_d[c] = malloc(64*sizeof(symbol_table_d **));
+			for (i=1; i<64; ++i) {
+				ac_table_d[c][i] = malloc((first_dimension_bins + 1)*sizeof(symbol_table_d*));
+				for (j=0; j<(first_dimension_bins + 1); ++j) {
+					ac_table_d[c][i][j] = malloc((second_dimension_bins + 5 + 1)*sizeof(symbol_table_d));
+					for (k=0; k<second_dimension_bins + 5 + 1; ++k)
+						if (!initialize_AC_table(c, i, j, k, private_option)) break;
+				}
+			}
+		}
+
+		dc_table_d = malloc(3*sizeof(symbol_table_d *));
+		for (c=0; c<3; ++c) {
+			dc_table_d[c] = malloc(36*sizeof(symbol_table_d));
+			for (i=0; i<36; ++i)
+				initialize_DC_table(c, i, private_option);
+		}
+
 	}
 
 	// initialize max_pos_value
@@ -583,7 +718,7 @@ void entropy_table_initialization()
 
 typedef struct {
   int last_dc_val[MAX_COMPS_IN_SCAN]; /* last DC coef for each component */
-  int last_dc_diff[MAX_COMPS_IN_SCAN]; // - Xing
+  //int last_dc_diff[MAX_COMPS_IN_SCAN]; // - Xing
   previous_block_state_t previous_block_state; // Xing
 } savable_state;
 
@@ -671,9 +806,10 @@ start_pass_huff_decoder (j_decompress_ptr cinfo)
                             & entropy->ac_derived_tbls[actbl]);
     /* Initialize DC predictions to 0 */
     entropy->saved.last_dc_val[ci] = 0;
-    entropy->saved.last_dc_diff[ci] = 0; // Xing
+    //entropy->saved.last_dc_diff[ci] = 0; // Xing
 	entropy->saved.previous_block_state.current_index[ci] = 0;
 	for (temp1=0; temp1<LOOK_BACKWARD_BLOCK; ++temp1)
+		entropy->saved.previous_block_state.previous_blocks[ci][temp1] = 0;
 		for (temp=0; temp<64; ++temp) {
 			//entropy->saved.previous_block_state.previous_blocks[ci][temp1][temp] = -1;
 			entropy->saved.previous_block_state.previous_blocks_avgs[ci][temp1][temp] = 0;
@@ -1050,7 +1186,7 @@ jpeg_huff_decode (bitread_working_state * state,
 GLOBAL(int)
 jpeg_huff_decode_entropy (bitread_working_state * state,
                   register bit_buf_type get_buffer, register int bits_left,
-                  symbol_table_t * htbl, int min_bits)
+                  symbol_table_d * htbl, int min_bits)
 {
   register int l = min_bits;
   register INT32 code;
@@ -1137,15 +1273,16 @@ process_restart (j_decompress_ptr cinfo)
   int temp1, temp;
   for (ci = 0; ci < cinfo->comps_in_scan; ci++) {
     entropy->saved.last_dc_val[ci] = 0;
-    entropy->saved.last_dc_diff[ci] = 0; // Xing
+    //entropy->saved.last_dc_diff[ci] = 0; // Xing
   	entropy->saved.previous_block_state.current_index[ci] = 0;
   	//memset(&entropy->saved.previous_block_state.previous_blocks_avgs[0][0][0], 0, ci*LOOK_BACKWARD_BLOCK*64);
 
   	for (temp1=0; temp1<LOOK_BACKWARD_BLOCK; ++temp1)
+  		entropy->saved.previous_block_state.previous_blocks[ci][temp1] = 0;
   		for (temp=0; temp<64; ++temp) {
   			//entropy->saved.previous_block_state.previous_blocks[ci][temp1][temp] = -1;
   			entropy->saved.previous_block_state.previous_blocks_avgs[ci][temp1][temp] = 0;
-  			entropy->saved.previous_block_state.previous_blocks[ci][temp1][temp] = 0;
+  			//entropy->saved.previous_block_state.previous_blocks[ci][temp1][temp] = 0;
   		}
 
   }
@@ -1273,50 +1410,51 @@ decode_mcu_slow_entropy (j_decompress_ptr cinfo, JBLOCKROW *MCU_data)
   BITREAD_LOAD_STATE(cinfo,entropy->bitstate);
   ASSIGN_STATE(state, entropy->saved);
 
-  int now_index, f, ci, tmp;
-  register int s, k, r, t, abs_real_dc_bits, real_dc_bits, get_bits;
-  register symbol_table_t* p_table;
+  int ci, tmp, tmp2;
+  register int s, k, r, t;
+  register symbol_table_d* p_table;
   JBLOCKROW block;
   previous_block_state_t * pre_state = &state.previous_block_state;
   UINT8 *previous_blocks_avgs, *previous_blocks_avgs_ma;
   JCOEF * previous_blocks;
+  int index0, index1, index2, index3;
   for (blkn = 0; blkn < cinfo->blocks_in_MCU; blkn++) {
     block = MCU_data[blkn];
     t = 0;
-    f = 0;
     ci = cinfo->MCU_membership[blkn];
+    index0 = pre_state->current_index[ci];
+      index1 = index0 == 0 ? LOOK_BACKWARD_BLOCK : index0 - 1;
+      index2 = index1 == 0 ? LOOK_BACKWARD_BLOCK : index1 - 1;
+      index3 = index2 == 0 ? LOOK_BACKWARD_BLOCK : index2 - 1;
 
-    previous_blocks_avgs = pre_state->previous_blocks_avgs[ci][LOOK_BACKWARD_BLOCK];
-    previous_blocks_avgs_ma = pre_state->previous_blocks_avgs_ma[ci][LOOK_BACKWARD_BLOCK];
-    previous_blocks = pre_state->previous_blocks[ci][LOOK_BACKWARD_BLOCK];
-    p_table = (symbol_table_t *)&dc_table[ci][get_dc_index(ci, pre_state)];
+    previous_blocks_avgs = pre_state->previous_blocks_avgs[ci][index0];
+    previous_blocks_avgs_ma = pre_state->previous_blocks_avgs_ma[ci][index0];
+    previous_blocks = &pre_state->previous_blocks[ci][index0];
+    memset(previous_blocks_avgs, 0, 64*sizeof(UINT8));
+
+    p_table = (symbol_table_d *)&dc_table_d[ci][get_dc_index(ci, pre_state, index1, index2)];
 
     /* Decode a single block's worth of coefficients */
 
     /* Section F.2.2.1: decode the DC coefficient difference */
     HUFF_DECODE_ENTROPY(s, br_state, p_table, return FALSE, label1);
-    state.last_dc_diff[ci] = 0;
-    real_dc_bits = s - 11;
-    abs_real_dc_bits = abs(real_dc_bits);
-    if (real_dc_bits) {
-      get_bits = abs_real_dc_bits - 1;
-      state.last_dc_diff[ci] = abs_real_dc_bits;
-      if (get_bits)
+    r = tmp = s - 11;
+    tmp2 = tmp >> (CHAR_BIT * sizeof(int) - 1);
+    tmp ^= tmp2;
+    tmp -= tmp2;
+    if (r) {
+      tmp2 = tmp - 1;
+      if (tmp2)
       {
-    	  CHECK_BIT_BUFFER(br_state, get_bits, return FALSE);
-    	  r = GET_BITS(get_bits);
-    	  s = r | (1<<get_bits);
+    	  CHECK_BIT_BUFFER(br_state, tmp2, return FALSE);
+    	  s = GET_BITS(tmp2) | (1<<tmp2);
       }
       else s = 1;
-      if (real_dc_bits < 0) s=-s;
+      if (r < 0) s=-s;
     } else s=0;
-    tmp = abs_real_dc_bits; // for 1st ac decoding
 
     // for better dc
-    if (s >= 0)
-      previous_blocks[0] = abs_real_dc_bits;
-    else
-      previous_blocks[0] = -abs_real_dc_bits;
+    *previous_blocks = r;
     // for better dc
 
       /* Convert DC difference to actual value, update last_dc_val */
@@ -1334,8 +1472,7 @@ decode_mcu_slow_entropy (j_decompress_ptr cinfo, JBLOCKROW *MCU_data)
 
 
       for (k = 1; k < DCTSIZE2; k++) {
-    	  f = t == 0 ? 0 : t*1000/max_pos_value_range[ci][1][k-1];
-    	  p_table = (symbol_table_t *)&ac_table[ci][k][get_first_dimension_index(ci, k, f, tmp)][get_second_dimension_index(ci, k, &state.previous_block_state)];
+    	  p_table = (symbol_table_d *)&ac_table_d[ci][k][get_first_dimension_index(ci, k, t*1000/max_pos_value_range[ci][1][k], tmp)][get_second_dimension_index(ci, k, &state.previous_block_state, index1, index2, index3)];
     	  HUFF_DECODE_ENTROPY(s, br_state, p_table, return FALSE, label2);
 
         r = s >> 4;
@@ -1374,7 +1511,7 @@ decode_mcu_slow_entropy (j_decompress_ptr cinfo, JBLOCKROW *MCU_data)
         }
       }
 
-    now_index = pre_state->current_index[ci];
+    /*now_index = pre_state->current_index[ci];
     memcpy(pre_state->previous_blocks[ci][now_index],
             pre_state->previous_blocks[ci][LOOK_BACKWARD_BLOCK],
                64*sizeof(JCOEF));
@@ -1385,10 +1522,11 @@ decode_mcu_slow_entropy (j_decompress_ptr cinfo, JBLOCKROW *MCU_data)
     		pre_state->previous_blocks_avgs_ma[ci][LOOK_BACKWARD_BLOCK],
         		   64*sizeof(UINT8));
     memset(pre_state->previous_blocks_avgs[ci][LOOK_BACKWARD_BLOCK], 0, 64*sizeof(UINT8));   // not sure if this is 100% correct, check later, basically mark every INT to -1
+    */
     //for (int temp=1; temp<64; ++temp) {
     //	state.previous_block_state.previous_blocks_avgs[ci][now_index][temp] = -1;
     //}
-    pre_state->current_index[ci] = now_index == LOOK_BACKWARD_BLOCK - 1 ? 0 : now_index + 1;
+    pre_state->current_index[ci] = index3;
   }
 
   /* Completed MCU, so update state */
@@ -1500,49 +1638,52 @@ decode_mcu_fast_entropy (j_decompress_ptr cinfo, JBLOCKROW *MCU_data)
   buffer = (JOCTET *) br_state.next_input_byte;
   ASSIGN_STATE(state, entropy->saved);
 
-  int now_index, f, ci, tmp;
-  register int s, k, r, t, l, abs_real_dc_bits, real_dc_bits, get_bits;
-  register symbol_table_t* p_table;
+  int ci, tmp, tmp2;
+  register int s, k, r, t, l;
+  register symbol_table_d* p_table;
   JBLOCKROW block;
   previous_block_state_t * pre_state = &state.previous_block_state;
   UINT8 *previous_blocks_avgs, *previous_blocks_avgs_ma;
   JCOEF *previous_blocks;
+
+  int index0, index1, index2, index3;
   for (blkn = 0; blkn < cinfo->blocks_in_MCU; blkn++) {
     block = MCU_data[blkn];
     t = 0;
-    f = 0;
     ci = cinfo->MCU_membership[blkn];
+    index0 = pre_state->current_index[ci];
+      index1 = index0 == 0 ? LOOK_BACKWARD_BLOCK : index0 - 1;
+      index2 = index1 == 0 ? LOOK_BACKWARD_BLOCK : index1 - 1;
+      index3 = index2 == 0 ? LOOK_BACKWARD_BLOCK : index2 - 1;
 
-    previous_blocks_avgs = pre_state->previous_blocks_avgs[ci][LOOK_BACKWARD_BLOCK];
-    previous_blocks_avgs_ma = pre_state->previous_blocks_avgs_ma[ci][LOOK_BACKWARD_BLOCK];
-    previous_blocks = pre_state->previous_blocks[ci][LOOK_BACKWARD_BLOCK];
-    p_table = (symbol_table_t *)&dc_table[ci][get_dc_index(ci, pre_state)];
+      previous_blocks_avgs = pre_state->previous_blocks_avgs[ci][index0];
+      previous_blocks_avgs_ma = pre_state->previous_blocks_avgs_ma[ci][index0];
+      previous_blocks = &pre_state->previous_blocks[ci][index0];
+      memset(previous_blocks_avgs, 0, 64*sizeof(UINT8));
+    p_table = (symbol_table_d *)&dc_table_d[ci][get_dc_index(ci, pre_state, index1, index2)];
 
     HUFF_DECODE_FAST_ENTROPY(s, l, p_table);
 
-    state.last_dc_diff[ci] = 0;
-    real_dc_bits = s - 11;
-    abs_real_dc_bits = abs(real_dc_bits);
-    if (real_dc_bits) {
+    //state.last_dc_diff[ci] = 0;
+    r = tmp = s - 11;
+    tmp2 = tmp >> (CHAR_BIT * sizeof(int) - 1);
+    tmp ^= tmp2;
+    tmp -= tmp2;
+    if (r) {
       FILL_BIT_BUFFER_FAST
-      get_bits = abs_real_dc_bits - 1;
-      state.last_dc_diff[ci] = abs_real_dc_bits;
-      if (get_bits)
+      tmp2 = tmp - 1;
+      if (tmp2)
       {
-    	  r = GET_BITS(get_bits);
-    	  s = r | (1 << get_bits);
+    	  CHECK_BIT_BUFFER(br_state, tmp2, return FALSE);
+    	  s = GET_BITS(tmp2) | (1<<tmp2);
       }
       else s = 1;
-      if (real_dc_bits < 0) s=-s;
+      if (r < 0) s=-s;
     } else s=0;
 
-    tmp = abs_real_dc_bits;
 
     // for better dc
-    if (s >= 0)
-      previous_blocks[0] = abs_real_dc_bits;
-    else
-      previous_blocks[0] = -abs_real_dc_bits;
+    *previous_blocks = r;
     // for better dc
 
       s += state.last_dc_val[ci];
@@ -1551,8 +1692,7 @@ decode_mcu_fast_entropy (j_decompress_ptr cinfo, JBLOCKROW *MCU_data)
 
     int real_last_non_zero = 1;
       for (k = 1; k < DCTSIZE2; k++) {
-    	f = t == 0 ? 0 : t*1000/max_pos_value_range[ci][1][k-1];
-        p_table = (symbol_table_t *)&ac_table[ci][k][get_first_dimension_index(ci, k, f, tmp)][get_second_dimension_index(ci, k, &state.previous_block_state)];
+        p_table = (symbol_table_d *)&ac_table_d[ci][k][get_first_dimension_index(ci, k, t*1000/max_pos_value_range[ci][1][k], tmp)][get_second_dimension_index(ci, k, &state.previous_block_state, index1, index2, index3)];
         HUFF_DECODE_FAST_ENTROPY(s, l, p_table);
         r = s >> 4;
         s &= 15;
@@ -1585,18 +1725,7 @@ decode_mcu_fast_entropy (j_decompress_ptr cinfo, JBLOCKROW *MCU_data)
         }
       }
 
-    now_index = pre_state->current_index[ci];
-    memcpy(pre_state->previous_blocks[ci][now_index],
-    		pre_state->previous_blocks[ci][LOOK_BACKWARD_BLOCK],
-           64*sizeof(JCOEF));
-    memcpy(pre_state->previous_blocks_avgs[ci][now_index],
-    		pre_state->previous_blocks_avgs[ci][LOOK_BACKWARD_BLOCK],
-             		   64*sizeof(UINT8));
-    memcpy(pre_state->previous_blocks_avgs_ma[ci][now_index],
-    		pre_state->previous_blocks_avgs_ma[ci][LOOK_BACKWARD_BLOCK],
-             		   64*sizeof(UINT8));
-    memset(pre_state->previous_blocks_avgs[ci][LOOK_BACKWARD_BLOCK], 0, 64*sizeof(UINT8));   // not sure if this is 100% correct, check later, basically mark every INT to -1
-    pre_state->current_index[ci] = now_index == LOOK_BACKWARD_BLOCK - 1 ? 0 : now_index + 1;
+    pre_state->current_index[ci] = index3;
   }
 
   if (cinfo->unread_marker != 0) {
@@ -1635,6 +1764,7 @@ decode_mcu (j_decompress_ptr cinfo, JBLOCKROW *MCU_data)
 {
   huff_entropy_ptr entropy = (huff_entropy_ptr) cinfo->entropy;
   int usefast = 1;
+  //usefast = 0;
 
   /* Process restart marker if needed; may have to suspend */
   if (cinfo->restart_interval) {

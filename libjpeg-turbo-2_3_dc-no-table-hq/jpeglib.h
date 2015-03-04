@@ -1113,7 +1113,7 @@ struct jpeg_color_quantizer { long dummy; };
 
 
 // Xing
-#define HUFF_LOOKAHEAD	8	/* # of bits of lookahead */
+#define HUFF_LOOKAHEAD_ENTROPY	6	/* # of bits of lookahead */
 
 int entropy_max_AC_bits;
 int first_dimension_bins, second_dimension_bins;
@@ -1127,24 +1127,42 @@ typedef struct
 	int * max_bits;
 	int * run_length;
 	int * valoffset;
-	int lookup[1<<HUFF_LOOKAHEAD];
-} symbol_table_t;
+} symbol_table_tmp;
 //symbol_table_t **** table;
-symbol_table_t **** ac_table; // for 1 dimention case
-symbol_table_t ** dc_table;
+symbol_table_tmp table_tmp; // for 1 dimention case
+
+typedef struct
+{
+	UINT8 * bits; // char
+	UINT16 * symbol; // unsigned int
+} symbol_table_c;
+
+symbol_table_c **** ac_table;
+symbol_table_c ** dc_table;
+
+typedef struct
+{
+	int * max_bits;  // int32
+	int * valoffset; // int32
+	UINT8 * run_length; // uint8
+	UINT16 lookup[1<<HUFF_LOOKAHEAD_ENTROPY]; // int
+} symbol_table_d;
+
+symbol_table_d **** ac_table_d;
+symbol_table_d ** dc_table_d;
 
 #define LOOK_BACKWARD_BLOCK 3
 #define LOOK_FORWARD_COEF 5
 typedef struct
 {
-	JCOEF previous_blocks[3][LOOK_BACKWARD_BLOCK + 1][64];
+	JCOEF previous_blocks[3][LOOK_BACKWARD_BLOCK + 1];
 	UINT8 previous_blocks_avgs[3][LOOK_BACKWARD_BLOCK + 1][64];
 	UINT8 previous_blocks_avgs_ma[3][LOOK_BACKWARD_BLOCK + 1][64];
 	UINT8 current_index[3];
 } previous_block_state_t;
 
-//UINT8 max_pos_value[3][64];
-UINT16 max_pos_value_range[3][64][64];
+UINT8 max_pos_value[3][64];
+UINT16 max_pos_value_range[3][64][65];
 UINT8 max_pos_value_range_r[3][64][64];
 
 int* coef_bins[3][64 + 1];
@@ -1155,8 +1173,8 @@ int* bits_saving;
 void entropy_table_initialization();
 
 int get_first_dimension_index(int ci, int pos, int f, int dc_diff);
-int get_second_dimension_index(int ci, int pos, previous_block_state_t* previous_block_state);
-int get_dc_index(int ci, previous_block_state_t * previous_block_state);
+int get_second_dimension_index(int ci, int pos, previous_block_state_t* previous_block_state, int index1, int index2, int index3);
+int get_dc_index(int ci, previous_block_state_t * previous_block_state, int index1, int index2);
 
 FILE * outputcoef;
 

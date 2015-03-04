@@ -480,7 +480,7 @@ main (int argc, char **argv)
   /* add by Xing Xu */
   // private_option: 1 is for encoding, 2 is for decoding
   if (private_option == 1 || private_option == 2) {
-  	entropy_table_initialization();
+  	entropy_table_initialization(private_option);
   }
   if (private_option == 3)
   	outputcoef = fopen(outputcoefname, WRITE_BINARY);

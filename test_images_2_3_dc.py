@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from pylab import *
 
 folders = ['100', '200', '300', '400', '600', '800', '1000', '1200']
-folders = ['600']
+folders = ['1200']
 
 x = []
 y_encoding = []
@@ -37,7 +37,7 @@ for f in folders:
 		total_optimized_size += jpg_opt_size
 		total_encoded_size += out_size
 		total_encoding_time += encoding_time
-		continue
+		#continue
 		c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran -decode tbl_" + f + "_23dc" + " temp.jpg " + str(i) + "_out.jpg")
 		print c
 		# sample output: Total time elapsed : 46321 us
