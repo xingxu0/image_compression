@@ -6,18 +6,18 @@ from pylab import *
 
 def get_threshold_jpg(in_, out_, threshold):
 	global folder
-	c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran -outputcoef temp.block %s temp.jpg"%(in_)))
+	c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran -outputcoef temp.block %s temp.jpg"%(in_))
 	c = commands.getstatusoutput("python lossy_zerooff.py temp.block temp_out.block %s"%(threshold))
 	c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran -inputcoef temp_out.block temp.jpg %s"%(out_))
 
-fs = glob.glob("images/TESTIMAGES/RGB/RGB_OR_600x600/*.png")
+fs = glob.glob("images/TESTIMAGES/RGB/RGB_R02_0600x0600/*.png")
 
 qs = [30,40,50,60,70,80,90]
 qs = [30, 50, 70]
 
 root_folder = "psnr_q_vs_t"
-c = commands.getstatusoutput("rm %s -rf"%(folder))
-c = commands.getstatusoutput("mkdir " + folder)
+c = commands.getstatusoutput("rm %s -rf"%(root_folder))
+c = commands.getstatusoutput("mkdir " + root_folder)
 
 folder = ""
 p_q_x = []
@@ -29,7 +29,7 @@ p_5_y = []
 p_10_x = []
 p_10_y = []
 for q in qs:
-	folder = "%s/q=%s"%(root_folder, q)
+	folder = "%s/q_%s"%(root_folder, q)
 	c = commands.getstatusoutput("rm %s -rf"%(folder))
 	c = commands.getstatusoutput("mkdir %s"%(folder))
 
