@@ -7,7 +7,8 @@ from pylab import *
 
 def get_threshold_jpg(out_, threshold, block_file, base_file):
 	global folder
-	c = commands.getstatusoutput("python lossy_zerooff.py %s tmp_out.block %s"%(block_file, threshold))
+	c = commands.getstatusoutput("python lossy_zerooff.py %s tmp_out.block %s"%(block_file, str(threshold)))
+	print "(", c[1], 
 	c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran -inputcoef tmp_out.block %s %s"%(base_file, out_))
 
 fs = glob.glob("images/TESTIMAGES/RGB/RGB_R02_0600x0600/*.png")
@@ -16,10 +17,10 @@ fs = glob.glob("images/TESTIMAGES/RGB/RGB_R02_0600x0600/*.png")
 
 qs = range(60, 91)
 qs = [30,40,50,60,70,80,90]
-qs = range(75, 95, 2)
+qs = range(70, 90, 5)
 print qs
 #qs = [30, 50, 70]
-thre = [0,1,3,5] # 0 is for original (no thresholding)
+thre = [0,1.0/8/8/3,1.0/8/8/2,1.0/8/8,3.0/8/8] # 0 is for original (no thresholding)
 print thre
 
 root_folder = "psnr_q_vs_t"
@@ -50,7 +51,7 @@ for q in qs:
 		psnr[t] = 0.0
 		size[t] = 0
 
-	#fs = fs[0:1]
+	fs = fs[0:10]
 	for f in fs:
 		ind += 1
 		#print " "
@@ -58,14 +59,14 @@ for q in qs:
 		c = commands.getstatusoutput("convert -quality " + str(q)  + " "  + f + " " + folder + "/" + str(ind) +".jpg")
 		c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran -outputcoef tmp.block %s %s"%(folder+"/"+str(ind)+".jpg", folder+"/"+str(ind)+"_std.jpg"))
 		c = commands.getstatusoutput("compare -metric PSNR " + f + " %s/%s.jpg tmp_diff.png"%(folder, str(ind)))
-		print c[1], 
+		print "[",c[1], "]",
 		psnr[0] += float(c[1])
 		size[0] += os.path.getsize("%s/%s_std.jpg"%(folder, str(ind)))
 		for t in thre:
 			if t:
 				get_threshold_jpg(folder+"/"+str(ind)+"_%d.jpg"%(t), t, "tmp.block", folder+"/"+str(ind)+"_std.jpg")
 				c = commands.getstatusoutput("compare -metric PSNR " + f + " %s/%s_%d.jpg tmp_diff.png"%(folder, str(ind), t))
-				print c[1],
+				print c[1], ")",
 				psnr[t] += float(c[1])
 				size[t] += os.path.getsize("%s/%s_%d.jpg"%(folder, str(ind), t))
 		print ""
@@ -90,7 +91,7 @@ for t in thre:
 	ax.plot(x[t], y[t], '-x')
 	ax2.plot(qs, s_r[t], '-o')
 	if t:
-		leg.append("th=" + str(t))
+		leg.append("th=" + "%.3f"%(t))
 	else:
 		leg.append("original")
 ax.set_xlabel("file size (B)")
@@ -101,5 +102,7 @@ ax.legend(leg, 4)
 ax2.grid()
 ax2.set_xlabel("Q")
 ax2.set_ylabel("Bits Saving (%)")
+ax2.set_xlim([min(qs)-3, max(qs)+3])
 tight_layout()
 savefig("psnr_quality_vs_threshold.png")
+savefig("psnr_quality_vs_threshold.eps")
