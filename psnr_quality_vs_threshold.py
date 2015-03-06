@@ -2,6 +2,7 @@
 
 import os, sys, glob, commands
 import matplotlib.pyplot as plt
+import matplotlib.gridspec as gridspec
 from pylab import *
 
 def get_threshold_jpg(out_, threshold, block_file, base_file):
@@ -14,22 +15,27 @@ fs = glob.glob("images/TESTIMAGES/RGB/RGB_R02_0600x0600/*.png")
 
 
 qs = range(60, 91)
+qs = [30,40,50,60,70,80,90]
+qs = range(75, 95, 2)
 print qs
 #qs = [30, 50, 70]
+thre = [0,1,3,5] # 0 is for original (no thresholding)
+print thre
 
 root_folder = "psnr_q_vs_t"
 c = commands.getstatusoutput("rm %s -rf"%(root_folder))
 c = commands.getstatusoutput("mkdir " + root_folder)
 
 folder = ""
-p_q_x = []
-p_q_y = []
-p_3_x = []
-p_3_y = []
-p_5_x = []
-p_5_y = []
-p_10_x = []
-p_10_y = []
+
+x = {}
+y = {}
+s_r = {} # size reduction
+for t in thre:
+	x[t] = []
+	y[t] = []
+	s_r[t] = []
+
 for q in qs:
 	print ""
 	print q
@@ -37,76 +43,63 @@ for q in qs:
 	c = commands.getstatusoutput("rm %s -rf"%(folder))
 	c = commands.getstatusoutput("mkdir %s"%(folder))
 
-	x=0
-	psnr1_ = 0.0
-	delta = 0.0
-	psnr_q = 0.0
-	psnr_3 = 0.0
-	psnr_5 = 0.0
-	psnr_10 = 0.0
-	size_q = 0
-	size_3 = 0
-	size_5 = 0
-	size_10 = 0
-	#fs = fs[0:20]
-	for f in fs:
-		x += 1
-		#print " "
-		print x,f,":","    ", 
-		c = commands.getstatusoutput("convert -quality " + str(q)  + " "  + f + " " + folder + "/" + str(x) +".jpg")
-		c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran -outputcoef tmp.block %s %s"%(folder+"/"+str(x)+".jpg", folder+"/"+str(x)+"_std.jpg"))
-		get_threshold_jpg(folder+"/"+str(x)+"_3.jpg", 3, "tmp.block", folder+"/"+str(x)+"_std.jpg")
-		get_threshold_jpg(folder+"/"+str(x)+"_5.jpg", 5, "tmp.block", folder+"/"+str(x)+"_std.jpg")
-		get_threshold_jpg(folder+"/"+str(x)+"_10.jpg", 10, "tmp.block", folder+"/"+str(x)+"_std.jpg")
-		c = commands.getstatusoutput("compare -metric PSNR " + f + " %s/%s.jpg tmp_diff.png"%(folder, str(x)))
-		print c[1], 
-		psnr_q += float(c[1])
-		c = commands.getstatusoutput("compare -metric PSNR " + f + " %s/%s_3.jpg tmp_diff.png"%(folder, str(x)))
-		print c[1],
-		psnr_3 += float(c[1])
-		c = commands.getstatusoutput("compare -metric PSNR " + f + " %s/%s_5.jpg tmp_diff.png"%(folder, str(x)))
-		print c[1],
-		psnr_5 += float(c[1])
-		c = commands.getstatusoutput("compare -metric PSNR " + f + " %s/%s_10.jpg tmp_diff.png"%(folder, str(x)))
-		print c[1]
-		psnr_10 += float(c[1])
-		size_q += os.path.getsize("%s/%s_std.jpg"%(folder, str(x)))
-		size_3 += os.path.getsize("%s/%s_3.jpg"%(folder, str(x)))
-		size_5 += os.path.getsize("%s/%s_5.jpg"%(folder, str(x)))
-		size_10 += os.path.getsize("%s/%s_10.jpg"%(folder, str(x)))
-	
-		
-	psnr_q /= len(fs)
-	psnr_3 /= len(fs)
-	psnr_5 /= len(fs)
-	psnr_10 /= len(fs)
-	size_q /= len(fs)
-	size_3 /= len(fs)
-	size_5 /= len(fs)
-	size_10 /= len(fs)
-	p_q_x.append(size_q)
-	p_3_x.append(size_3)
-	p_5_x.append(size_5)
-	p_10_x.append(size_10)
-	p_q_y.append(psnr_q)
-	p_3_y.append(psnr_3)
-	p_5_y.append(psnr_5)
-	p_10_y.append(psnr_10)
+	ind=0
+	psnr = {}
+	size = {}
+	for t in thre:
+		psnr[t] = 0.0
+		size[t] = 0
 
-print p_q_x, p_q_y
-print p_3_x, p_3_y
-print p_5_x, p_5_y
-print p_10_x, p_10_y
-exit(0)
+	#fs = fs[0:1]
+	for f in fs:
+		ind += 1
+		#print " "
+		print ind,f,":","    ", 
+		c = commands.getstatusoutput("convert -quality " + str(q)  + " "  + f + " " + folder + "/" + str(ind) +".jpg")
+		c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran -outputcoef tmp.block %s %s"%(folder+"/"+str(ind)+".jpg", folder+"/"+str(ind)+"_std.jpg"))
+		c = commands.getstatusoutput("compare -metric PSNR " + f + " %s/%s.jpg tmp_diff.png"%(folder, str(ind)))
+		print c[1], 
+		psnr[0] += float(c[1])
+		size[0] += os.path.getsize("%s/%s_std.jpg"%(folder, str(ind)))
+		for t in thre:
+			if t:
+				get_threshold_jpg(folder+"/"+str(ind)+"_%d.jpg"%(t), t, "tmp.block", folder+"/"+str(ind)+"_std.jpg")
+				c = commands.getstatusoutput("compare -metric PSNR " + f + " %s/%s_%d.jpg tmp_diff.png"%(folder, str(ind), t))
+				print c[1],
+				psnr[t] += float(c[1])
+				size[t] += os.path.getsize("%s/%s_%d.jpg"%(folder, str(ind), t))
+		print ""
+	
+	for t in thre:
+		psnr[t] /= len(fs)
+		size[t] /= len(fs)
+		s_r[t].append(100*(1-size[t]*1.0/size[0]))
+		x[t].append(size[t])
+		y[t].append(psnr[t])
+print x
+print y
+print s_r
 
 fig = plt.figure()
-ax = fig.add_subplot(111)
-ax.plot(p_q_x, p_q_y, '-x')
-ax.plot(p_3_x, p_3_y, '-o')
-ax.plot(p_5_x, p_5_y, '-s')
-ax.plot(p_10_x, p_10_y, '-d')
+gs = gridspec.GridSpec(2,1,height_ratios=[2,1])
+ax = plt.subplot(gs[0])
+#ax2 = fig.add_subplot(212)
+ax2 = plt.subplot(gs[1])
+leg = []
+for t in thre:
+	ax.plot(x[t], y[t], '-x')
+	ax2.plot(qs, s_r[t], '-o')
+	if t:
+		leg.append("th=" + str(t))
+	else:
+		leg.append("original")
 ax.set_xlabel("file size (B)")
 ax.grid()
 ax.set_ylabel("PSNR (dB)")
-ax.legend(['original','th=3', 'th=5', 'th=10'], 4)
+ax.legend(leg, 4)
+#ax2.legend(leg, 4)
+ax2.grid()
+ax2.set_xlabel("Q")
+ax2.set_ylabel("Bits Saving (%)")
+tight_layout()
 savefig("psnr_quality_vs_threshold.png")
