@@ -1,0 +1,8 @@
+Component 0
+[0, 8, 16, 23, 30, 38, 45, 51, 57, 63, 69, 75, 81, 86, 92, 97, 102, 107, 112, 117, 122, 126, 130, 134, 139, 143, 146, 150, 154, 157, 160, 164, 168, 171, 174, 178, 181, 184, 187, 190, 193, 196, 199, 203, 206, 208, 210, 213, 215, 217, 219, 221, 223, 226, 228, 229, 231, 233, 235, 236, 238, 240, 242, 244]
+Traceback (most recent call last):
+  File "training_paras.py", line 174, in <module>
+    create_table(str(c), dep1, dep2)
+  File "training_paras.py", line 82, in create_table
+    oc[i][j][p][pp][(z<<4) + b] = 0			# for one run-length, positive sign
+KeyboardInterrupt
