@@ -1,3 +1,4 @@
+#psnr
 import os, sys, glob, commands
 
 fs = glob.glob("images/TESTIMAGES/RGB/RGB_OR_1200x1200/*.png")
