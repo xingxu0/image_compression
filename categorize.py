@@ -7,6 +7,7 @@ q_bucket = range(0, 100, 10)
 f_bucket = {}
 
 for q in q_bucket:
+	commands.getstatusoutput("rm q_%s -rf"%(q))
 	commands.getstatusoutput("mkdir q_%s"%(q))
 	f_bucket[q] = 0
 
