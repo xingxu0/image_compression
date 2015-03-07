@@ -1098,7 +1098,7 @@ def generate_blocks(folder):
 		sys.stdout.flush()
 		cmd = "/opt/libjpeg-turbo/bin/jpegtran -outputcoef temp.block " + f + " temp.out"
 		os.system(cmd)
-		os.system("python lossy_zerooff.py temp.block " + folder + "/" + name + ".block " + str(zerooff_thre))
+		os.system("python lossy_zerooff.py temp.block " + folder + "/" + name + ".block " + str(zerooff_thre) + " 75")
 	os.system("rm temp.out")
 	os.system("rm temp.block")
 
