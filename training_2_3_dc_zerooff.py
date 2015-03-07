@@ -212,7 +212,7 @@ if len(sys.argv) < 6:
 	exit()
 	
 in_folder = sys.argv[1]
-lib.zerooff_thre = int(sys.argv[5])
+lib.zerooff_thre = float(sys.argv[5])
 lib.generate_blocks(in_folder)
 tab_folder = sys.argv[2]
 os.system("rm -rf " + tab_folder)

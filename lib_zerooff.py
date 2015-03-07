@@ -1529,4 +1529,4 @@ pre_bins = 500
 max_pos1 = 0
 max_pos2 = 0
 
-zerooff_thre = 1000
+zerooff_thre = 1000.0
