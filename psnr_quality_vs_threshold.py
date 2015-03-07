@@ -5,9 +5,9 @@ import matplotlib.pyplot as plt
 import matplotlib.gridspec as gridspec
 from pylab import *
 
-def get_threshold_jpg(out_, threshold, block_file, base_file):
+def get_threshold_jpg(out_, threshold, block_file, base_file, quality):
 	global folder
-	c = commands.getstatusoutput("python lossy_zerooff.py %s tmp_out.block %s"%(block_file, str(threshold)))
+	c = commands.getstatusoutput("python lossy_zerooff.py %s tmp_out.block %s %s"%(block_file, str(threshold), str(quality)))
 	print "(", c[1], 
 	c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran -inputcoef tmp_out.block %s %s"%(base_file, out_))
 
@@ -17,10 +17,13 @@ fs = glob.glob("images/TESTIMAGES/RGB/RGB_R02_0600x0600/*.png")
 
 qs = range(60, 91)
 qs = [30,40,50,60,70,80,90]
-qs = range(70, 90, 5)
+qs = range(40, 100, 5)
 print qs
 #qs = [30, 50, 70]
-thre = [0,1.0/8/8/3,1.0/8/8/2,1.0/8/8,3.0/8/8] # 0 is for original (no thresholding)
+#thre = [0,1.0/8/8/3,1.0/8/8/2,1.0/8/8,3.0/8/8] # 0 is for original (no thresholding)
+thre = [0,1.0/18/18/8, 1.0/18/18/5, 1.0/18/18/3,1.0/18/18,3.0/18/18] # 0 is for original (no thresholding)
+#thre = [0,1,3,5]
+
 print thre
 
 root_folder = "psnr_q_vs_t"
@@ -51,7 +54,6 @@ for q in qs:
 		psnr[t] = 0.0
 		size[t] = 0
 
-	fs = fs[0:10]
 	for f in fs:
 		ind += 1
 		#print " "
@@ -64,7 +66,7 @@ for q in qs:
 		size[0] += os.path.getsize("%s/%s_std.jpg"%(folder, str(ind)))
 		for t in thre:
 			if t:
-				get_threshold_jpg(folder+"/"+str(ind)+"_%d.jpg"%(t), t, "tmp.block", folder+"/"+str(ind)+"_std.jpg")
+				get_threshold_jpg(folder+"/"+str(ind)+"_%d.jpg"%(t), t, "tmp.block", folder+"/"+str(ind)+"_std.jpg", q)
 				c = commands.getstatusoutput("compare -metric PSNR " + f + " %s/%s_%d.jpg tmp_diff.png"%(folder, str(ind), t))
 				print c[1], ")",
 				psnr[t] += float(c[1])
@@ -91,7 +93,7 @@ for t in thre:
 	ax.plot(x[t], y[t], '-x')
 	ax2.plot(qs, s_r[t], '-o')
 	if t:
-		leg.append("th=" + "%.3f"%(t))
+		leg.append("th=" + "%.5f"%(t))
 	else:
 		leg.append("original")
 ax.set_xlabel("file size (B)")

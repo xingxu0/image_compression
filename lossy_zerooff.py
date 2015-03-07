@@ -59,6 +59,7 @@ def get_r_l(x, code):
 		return "EOB" + l
 
 def zero_off(b, b_o, code, ci, sf):
+	global thre
 	modified = 0
 	r = 0
 	pos = 1
@@ -108,7 +109,8 @@ def zero_off(b, b_o, code, ci, sf):
 			af = get_r_l(0, code)
 			af_code = 0
 			diff = get_code(x,code)+1-get_code(0, code)
-		if diff >= thre*pow((quant[ci][jpeg_natural[p[i]]]*sf+50)/100, 2):
+		#if diff >= thre*pow((quant[ci][jpeg_natural[p[i]]]*sf+50)/100, 2):
+		if diff >= thre*pow(quant[ci][jpeg_natural[p[i]]], 2):
 		#if diff >= thre:
 			if modified == 0:
 				#print " "
