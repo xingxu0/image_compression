@@ -10,7 +10,13 @@ for q in q_bucket:
 	commands.getstatusoutput("mkdir q_%s"%(q))
 	f_bucket[q] = 0
 
+p = 0
+last_p = 0
 for f in fs:
+	p += 1
+	if p*100/len(fs) > last_p:
+		last_p = p*100/len(fs)
+		print str(last_p)+"%"
 	c = commands.getstatusoutput("identify -verbose %s | grep Quality"%(f))
 	if c[1].find("Quality:") == -1:
 		continue
@@ -19,4 +25,5 @@ for f in fs:
 	commands.getstatusoutput("cp %s q_%s/"%(f, q_))
 	f_bucket[q_] += 1
 
-print f_bucket
+for q in q_bucket:
+	print "quality range [%d, %d]:\t%d,\t%d%%"%(q, q+9, f_bucket[q], f_bucket[q]*100/p)
