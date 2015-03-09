@@ -309,7 +309,7 @@ if len(sys.argv) != 5:
 
 tab_folder = sys.argv[2]
 test_folder = sys.argv[1]
-lib.zerooff_thre = int(sys.argv[4])
+lib.zerooff_thre = float(sys.argv[4])
 lib.generate_blocks(test_folder)
 out_file = open(sys.argv[3], "w")
 

@@ -1,7 +1,8 @@
 # this file is to plot PSNR / rate curve for different quality factor, and by zero-off of using different threshold
-
-import os, sys, glob, commands
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
+import os, sys, glob, commands
 import matplotlib.gridspec as gridspec
 from pylab import *
 
@@ -11,18 +12,22 @@ def get_threshold_jpg(out_, threshold, block_file, base_file, quality):
 	print "(", c[1], 
 	c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran -inputcoef tmp_out.block %s %s"%(base_file, out_))
 
-fs = glob.glob("images/TESTIMAGES/RGB/RGB_R02_0600x0600/*.png")
-#fs = glob.glob("images/TESTIMAGES/RGB/RGB_OR_1200x1200/*.png")
+#reso = "600"
+#fs = glob.glob("images/TESTIMAGES/RGB/RGB_R02_0600x0600/*.png")
+reso = "1200"
+fs = glob.glob("images/TESTIMAGES/RGB/RGB_OR_1200x1200/*.png")
+fs = fs[:20]
 
 
 qs = range(60, 91)
 qs = [30,40,50,60,70,80,90]
-qs = range(40, 100, 5)
+qs = range(40, 95, 5)
 print qs
 #qs = [30, 50, 70]
 #thre = [0,1.0/8/8/3,1.0/8/8/2,1.0/8/8,3.0/8/8] # 0 is for original (no thresholding)
 thre = [0,1.0/18/18/8, 1.0/18/18/5, 1.0/18/18/3,1.0/18/18,3.0/18/18] # 0 is for original (no thresholding)
-#thre = [0,1,3,5]
+#thre = [0,1.0/18/18/3,1.0/18/18,3.0/18/18, 5.0/18/18, 10.0/18/18] # 0 is for original (no thresholding)
+
 
 print thre
 
@@ -106,5 +111,5 @@ ax2.set_xlabel("Q")
 ax2.set_ylabel("Bits Saving (%)")
 ax2.set_xlim([min(qs)-3, max(qs)+3])
 tight_layout()
-savefig("psnr_quality_vs_threshold.png")
-savefig("psnr_quality_vs_threshold.eps")
+savefig("psnr_quality_vs_threshold_%s.png"%(reso))
+savefig("psnr_quality_vs_threshold_%s.eps"%(reso))
