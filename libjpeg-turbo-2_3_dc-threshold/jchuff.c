@@ -578,7 +578,7 @@ void zerooff(JCOEF* b, signed char* huff_code, unsigned char* quant) {
 
         if (diff >= 0.03*quant[jpeg_natural_order[p[i]]]*quant[jpeg_natural_order[p[i]]]) {
         	modified = TRUE;
-            printf("%d : %d\n", p[i], diff);
+            //printf("%d : %d\n", p[i], diff);
 			b[p[i]] = 0;
 
 			if (i<ind - 1) {
@@ -590,6 +590,7 @@ void zerooff(JCOEF* b, signed char* huff_code, unsigned char* quant) {
 			}
         }
     }
+    return;
 
     if (modified) {
     	for (i=0;i<64;++i)
