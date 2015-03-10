@@ -530,7 +530,7 @@ void zerooff(JCOEF* b, signed char* huff_code, unsigned char* quant) {
 			r += 1;
 			continue;
 		}
-		code[ind] = (r<<4) + JPEG_NBITS_NONZERO(abs(b[i]));
+		code[ind] = (r<<4) + JPEG_NBITS_NONZERO(abs(b[jpeg_natural_order[i]]));
 		p[ind] = jpeg_natural_order[i];
 		++ind;
 		r = 0;
