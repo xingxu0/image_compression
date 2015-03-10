@@ -541,13 +541,15 @@ void zerooff(JCOEF* b, signed char* huff_code, unsigned char* quant) {
         ++ind;
     }
 
-    unsigned char x, y, diff, s, r_, af_code;
+    boolean modified = FALSE;
+    unsigned short x, y, diff, s, r_, af_code;
 
+    /*
     printf("%d\n", ind);
     for (i=0; i<64; ++i) {
         if (code[i] == 255) break;
         printf("%d:%d\n", code[i], p[i]);
-    }
+    }*/
 
     for (i=0; i<ind; ++i) {
         af_code = 0;
@@ -575,6 +577,7 @@ void zerooff(JCOEF* b, signed char* huff_code, unsigned char* quant) {
         }
 
         if (diff >= 0.03*quant[jpeg_natural_order[p[i]]]*quant[jpeg_natural_order[p[i]]]) {
+        	modified = TRUE;
             printf("%d : %d\n", p[i], diff);
 			b[p[i]] = 0;
 
@@ -586,6 +589,12 @@ void zerooff(JCOEF* b, signed char* huff_code, unsigned char* quant) {
 				p[i + 1] = -1;
 			}
         }
+    }
+
+    if (modified) {
+    	for (i=0;i<64;++i)
+    		printf("%d ", b[i]);
+    	printf("\n");
     }
 }
 
