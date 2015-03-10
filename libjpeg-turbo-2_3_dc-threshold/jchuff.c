@@ -526,12 +526,12 @@ void zerooff(JCOEF* b, signed char* huff_code, unsigned char* quant) {
     int r = 0, ind = 0;
     //memset(code, (unsigned short)255, 64);
     for (i=1;i<64;++i) {
-		if (!b[i]) {
+		if (!b[jpeg_natural_order[i]]) {
 			r += 1;
 			continue;
 		}
 		code[ind] = (r<<4) + JPEG_NBITS_NONZERO(abs(b[i]));
-		p[ind] = i;
+		p[ind] = jpeg_natural_order[i];
 		++ind;
 		r = 0;
     }
@@ -576,7 +576,7 @@ void zerooff(JCOEF* b, signed char* huff_code, unsigned char* quant) {
             af_code = 0;
         }
 
-        if (diff >= 0.003*quant[jpeg_natural_order[p[i]]]*quant[jpeg_natural_order[p[i]]]) {
+        if (diff >= 0.003*quant[p[i]]*quant[p[i]]) {
         	modified = TRUE;
             //printf("%d : %d\n", p[i], diff);
 			b[p[i]] = 0;
