@@ -542,7 +542,8 @@ void zerooff(JCOEF* b, signed char* huff_code, unsigned char* quant) {
     }
 
     boolean modified = FALSE;
-    unsigned short x, y, diff, s, r_, af_code;
+    unsigned short x, y, s, r_, af_code;
+    int diff;
 
     /*
     printf("%d\n", ind);
