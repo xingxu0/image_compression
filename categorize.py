@@ -3,7 +3,7 @@ import os, sys, glob, commands
 folder = sys.argv[1]
 fs = glob.glob("%s/*.jpg"%(folder)) + glob.glob("%s/*.jpeg"%(folder))
 
-q_bucket = range(0, 100, 10)
+q_bucket = range(0, 101, 10)
 f_bucket = {}
 
 for q in q_bucket:
@@ -20,6 +20,7 @@ for f in fs:
 		print str(last_p)+"%"
 	c = commands.getstatusoutput("identify -verbose %s | grep Quality"%(f))
 	if c[1].find("Quality:") == -1:
+		commands.getstatusoutput("identify -verbose %s &>> missing_pics_issue.out"%(f))
 		continue
 	q = int(c[1][c[1].find("Quality:") + 8:])
 	q_ = q / 10 * 10
