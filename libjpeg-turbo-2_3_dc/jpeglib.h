@@ -1134,7 +1134,7 @@ symbol_table_tmp table_tmp; // for 1 dimention case
 typedef struct
 {
 	UINT8 * bits; // char
-	UINT32 * symbol; // unsigned int
+	int * symbol; // unsigned int
 } symbol_table_c;
 
 symbol_table_c **** ac_table;
