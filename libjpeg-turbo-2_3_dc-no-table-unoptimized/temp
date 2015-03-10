@@ -1,0 +1,624 @@
+make  all-recursive
+make[1]: Entering directory `/home/xing/research/image_compression/libjpeg-turbo-memory-opt'
+Making all in java
+make[2]: Entering directory `/home/xing/research/image_compression/libjpeg-turbo-memory-opt/java'
+echo timestamp > classnodist_noinst.stamp
+make[2]: Leaving directory `/home/xing/research/image_compression/libjpeg-turbo-memory-opt/java'
+Making all in simd
+make[2]: Entering directory `/home/xing/research/image_compression/libjpeg-turbo-memory-opt/simd'
+make[3]: Entering directory `/home/xing/research/image_compression/libjpeg-turbo-memory-opt'
+make[3]: Leaving directory `/home/xing/research/image_compression/libjpeg-turbo-memory-opt'
+make  all-am
+make[3]: Entering directory `/home/xing/research/image_compression/libjpeg-turbo-memory-opt/simd'
+make[4]: Entering directory `/home/xing/research/image_compression/libjpeg-turbo-memory-opt'
+make[4]: Leaving directory `/home/xing/research/image_compression/libjpeg-turbo-memory-opt'
+if /bin/sh ../libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I.. -I.. -I..  -I.. -Wall  -O3 -MT jsimd_x86_64.lo -MD -MP -MF ".deps/jsimd_x86_64.Tpo" -c -o jsimd_x86_64.lo jsimd_x86_64.c; \
+	then mv -f ".deps/jsimd_x86_64.Tpo" ".deps/jsimd_x86_64.Plo"; else rm -f ".deps/jsimd_x86_64.Tpo"; exit 1; fi
+mkdir .libs
+ gcc -DHAVE_CONFIG_H -I. -I. -I.. -I.. -I.. -I.. -Wall -O3 -MT jsimd_x86_64.lo -MD -MP -MF .deps/jsimd_x86_64.Tpo -c jsimd_x86_64.c  -fPIC -DPIC -o .libs/jsimd_x86_64.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I.. -I.. -I.. -I.. -Wall -O3 -MT jsimd_x86_64.lo -MD -MP -MF .deps/jsimd_x86_64.Tpo -c jsimd_x86_64.c -o jsimd_x86_64.o >/dev/null 2>&1
+/bin/sh ../libtool --mode=compile --tag NASM ./nasm_lt.sh nasm -felf64 -DELF -D__x86_64__ -I. -I. jfdctflt-sse-64.asm -o jfdctflt-sse-64.lo
+ ./nasm_lt.sh nasm -felf64 -DELF -D__x86_64__ -I. -I. jfdctflt-sse-64.asm  -fPIC -DPIC -o .libs/jfdctflt-sse-64.o
+nasm -felf64 -DELF -D__x86_64__ -I./ -I./ jfdctflt-sse-64.asm -DPIC -o .libs/jfdctflt-sse-64.o
+ ./nasm_lt.sh nasm -felf64 -DELF -D__x86_64__ -I. -I. jfdctflt-sse-64.asm -o jfdctflt-sse-64.o >/dev/null 2>&1
+/bin/sh ../libtool --mode=compile --tag NASM ./nasm_lt.sh nasm -felf64 -DELF -D__x86_64__ -I. -I. jccolor-sse2-64.asm -o jccolor-sse2-64.lo
+ ./nasm_lt.sh nasm -felf64 -DELF -D__x86_64__ -I. -I. jccolor-sse2-64.asm  -fPIC -DPIC -o .libs/jccolor-sse2-64.o
+nasm -felf64 -DELF -D__x86_64__ -I./ -I./ jccolor-sse2-64.asm -DPIC -o .libs/jccolor-sse2-64.o
+ ./nasm_lt.sh nasm -felf64 -DELF -D__x86_64__ -I. -I. jccolor-sse2-64.asm -o jccolor-sse2-64.o >/dev/null 2>&1
+/bin/sh ../libtool --mode=compile --tag NASM ./nasm_lt.sh nasm -felf64 -DELF -D__x86_64__ -I. -I. jcgray-sse2-64.asm -o jcgray-sse2-64.lo
+ ./nasm_lt.sh nasm -felf64 -DELF -D__x86_64__ -I. -I. jcgray-sse2-64.asm  -fPIC -DPIC -o .libs/jcgray-sse2-64.o
+nasm -felf64 -DELF -D__x86_64__ -I./ -I./ jcgray-sse2-64.asm -DPIC -o .libs/jcgray-sse2-64.o
+ ./nasm_lt.sh nasm -felf64 -DELF -D__x86_64__ -I. -I. jcgray-sse2-64.asm -o jcgray-sse2-64.o >/dev/null 2>&1
+/bin/sh ../libtool --mode=compile --tag NASM ./nasm_lt.sh nasm -felf64 -DELF -D__x86_64__ -I. -I. jcsample-sse2-64.asm -o jcsample-sse2-64.lo
+ ./nasm_lt.sh nasm -felf64 -DELF -D__x86_64__ -I. -I. jcsample-sse2-64.asm  -fPIC -DPIC -o .libs/jcsample-sse2-64.o
+nasm -felf64 -DELF -D__x86_64__ -I./ -I./ jcsample-sse2-64.asm -DPIC -o .libs/jcsample-sse2-64.o
+ ./nasm_lt.sh nasm -felf64 -DELF -D__x86_64__ -I. -I. jcsample-sse2-64.asm -o jcsample-sse2-64.o >/dev/null 2>&1
+/bin/sh ../libtool --mode=compile --tag NASM ./nasm_lt.sh nasm -felf64 -DELF -D__x86_64__ -I. -I. jdcolor-sse2-64.asm -o jdcolor-sse2-64.lo
+ ./nasm_lt.sh nasm -felf64 -DELF -D__x86_64__ -I. -I. jdcolor-sse2-64.asm  -fPIC -DPIC -o .libs/jdcolor-sse2-64.o
+nasm -felf64 -DELF -D__x86_64__ -I./ -I./ jdcolor-sse2-64.asm -DPIC -o .libs/jdcolor-sse2-64.o
+ ./nasm_lt.sh nasm -felf64 -DELF -D__x86_64__ -I. -I. jdcolor-sse2-64.asm -o jdcolor-sse2-64.o >/dev/null 2>&1
+/bin/sh ../libtool --mode=compile --tag NASM ./nasm_lt.sh nasm -felf64 -DELF -D__x86_64__ -I. -I. jdmerge-sse2-64.asm -o jdmerge-sse2-64.lo
+ ./nasm_lt.sh nasm -felf64 -DELF -D__x86_64__ -I. -I. jdmerge-sse2-64.asm  -fPIC -DPIC -o .libs/jdmerge-sse2-64.o
+nasm -felf64 -DELF -D__x86_64__ -I./ -I./ jdmerge-sse2-64.asm -DPIC -o .libs/jdmerge-sse2-64.o
+ ./nasm_lt.sh nasm -felf64 -DELF -D__x86_64__ -I. -I. jdmerge-sse2-64.asm -o jdmerge-sse2-64.o >/dev/null 2>&1
+/bin/sh ../libtool --mode=compile --tag NASM ./nasm_lt.sh nasm -felf64 -DELF -D__x86_64__ -I. -I. jdsample-sse2-64.asm -o jdsample-sse2-64.lo
+ ./nasm_lt.sh nasm -felf64 -DELF -D__x86_64__ -I. -I. jdsample-sse2-64.asm  -fPIC -DPIC -o .libs/jdsample-sse2-64.o
+nasm -felf64 -DELF -D__x86_64__ -I./ -I./ jdsample-sse2-64.asm -DPIC -o .libs/jdsample-sse2-64.o
+ ./nasm_lt.sh nasm -felf64 -DELF -D__x86_64__ -I. -I. jdsample-sse2-64.asm -o jdsample-sse2-64.o >/dev/null 2>&1
+/bin/sh ../libtool --mode=compile --tag NASM ./nasm_lt.sh nasm -felf64 -DELF -D__x86_64__ -I. -I. jfdctfst-sse2-64.asm -o jfdctfst-sse2-64.lo
+ ./nasm_lt.sh nasm -felf64 -DELF -D__x86_64__ -I. -I. jfdctfst-sse2-64.asm  -fPIC -DPIC -o .libs/jfdctfst-sse2-64.o
+nasm -felf64 -DELF -D__x86_64__ -I./ -I./ jfdctfst-sse2-64.asm -DPIC -o .libs/jfdctfst-sse2-64.o
+ ./nasm_lt.sh nasm -felf64 -DELF -D__x86_64__ -I. -I. jfdctfst-sse2-64.asm -o jfdctfst-sse2-64.o >/dev/null 2>&1
+/bin/sh ../libtool --mode=compile --tag NASM ./nasm_lt.sh nasm -felf64 -DELF -D__x86_64__ -I. -I. jfdctint-sse2-64.asm -o jfdctint-sse2-64.lo
+ ./nasm_lt.sh nasm -felf64 -DELF -D__x86_64__ -I. -I. jfdctint-sse2-64.asm  -fPIC -DPIC -o .libs/jfdctint-sse2-64.o
+nasm -felf64 -DELF -D__x86_64__ -I./ -I./ jfdctint-sse2-64.asm -DPIC -o .libs/jfdctint-sse2-64.o
+ ./nasm_lt.sh nasm -felf64 -DELF -D__x86_64__ -I. -I. jfdctint-sse2-64.asm -o jfdctint-sse2-64.o >/dev/null 2>&1
+/bin/sh ../libtool --mode=compile --tag NASM ./nasm_lt.sh nasm -felf64 -DELF -D__x86_64__ -I. -I. jidctflt-sse2-64.asm -o jidctflt-sse2-64.lo
+ ./nasm_lt.sh nasm -felf64 -DELF -D__x86_64__ -I. -I. jidctflt-sse2-64.asm  -fPIC -DPIC -o .libs/jidctflt-sse2-64.o
+nasm -felf64 -DELF -D__x86_64__ -I./ -I./ jidctflt-sse2-64.asm -DPIC -o .libs/jidctflt-sse2-64.o
+ ./nasm_lt.sh nasm -felf64 -DELF -D__x86_64__ -I. -I. jidctflt-sse2-64.asm -o jidctflt-sse2-64.o >/dev/null 2>&1
+/bin/sh ../libtool --mode=compile --tag NASM ./nasm_lt.sh nasm -felf64 -DELF -D__x86_64__ -I. -I. jidctfst-sse2-64.asm -o jidctfst-sse2-64.lo
+ ./nasm_lt.sh nasm -felf64 -DELF -D__x86_64__ -I. -I. jidctfst-sse2-64.asm  -fPIC -DPIC -o .libs/jidctfst-sse2-64.o
+nasm -felf64 -DELF -D__x86_64__ -I./ -I./ jidctfst-sse2-64.asm -DPIC -o .libs/jidctfst-sse2-64.o
+ ./nasm_lt.sh nasm -felf64 -DELF -D__x86_64__ -I. -I. jidctfst-sse2-64.asm -o jidctfst-sse2-64.o >/dev/null 2>&1
+/bin/sh ../libtool --mode=compile --tag NASM ./nasm_lt.sh nasm -felf64 -DELF -D__x86_64__ -I. -I. jidctint-sse2-64.asm -o jidctint-sse2-64.lo
+ ./nasm_lt.sh nasm -felf64 -DELF -D__x86_64__ -I. -I. jidctint-sse2-64.asm  -fPIC -DPIC -o .libs/jidctint-sse2-64.o
+nasm -felf64 -DELF -D__x86_64__ -I./ -I./ jidctint-sse2-64.asm -DPIC -o .libs/jidctint-sse2-64.o
+ ./nasm_lt.sh nasm -felf64 -DELF -D__x86_64__ -I. -I. jidctint-sse2-64.asm -o jidctint-sse2-64.o >/dev/null 2>&1
+/bin/sh ../libtool --mode=compile --tag NASM ./nasm_lt.sh nasm -felf64 -DELF -D__x86_64__ -I. -I. jidctred-sse2-64.asm -o jidctred-sse2-64.lo
+ ./nasm_lt.sh nasm -felf64 -DELF -D__x86_64__ -I. -I. jidctred-sse2-64.asm  -fPIC -DPIC -o .libs/jidctred-sse2-64.o
+nasm -felf64 -DELF -D__x86_64__ -I./ -I./ jidctred-sse2-64.asm -DPIC -o .libs/jidctred-sse2-64.o
+ ./nasm_lt.sh nasm -felf64 -DELF -D__x86_64__ -I. -I. jidctred-sse2-64.asm -o jidctred-sse2-64.o >/dev/null 2>&1
+/bin/sh ../libtool --mode=compile --tag NASM ./nasm_lt.sh nasm -felf64 -DELF -D__x86_64__ -I. -I. jquantf-sse2-64.asm -o jquantf-sse2-64.lo
+ ./nasm_lt.sh nasm -felf64 -DELF -D__x86_64__ -I. -I. jquantf-sse2-64.asm  -fPIC -DPIC -o .libs/jquantf-sse2-64.o
+nasm -felf64 -DELF -D__x86_64__ -I./ -I./ jquantf-sse2-64.asm -DPIC -o .libs/jquantf-sse2-64.o
+ ./nasm_lt.sh nasm -felf64 -DELF -D__x86_64__ -I. -I. jquantf-sse2-64.asm -o jquantf-sse2-64.o >/dev/null 2>&1
+/bin/sh ../libtool --mode=compile --tag NASM ./nasm_lt.sh nasm -felf64 -DELF -D__x86_64__ -I. -I. jquanti-sse2-64.asm -o jquanti-sse2-64.lo
+ ./nasm_lt.sh nasm -felf64 -DELF -D__x86_64__ -I. -I. jquanti-sse2-64.asm  -fPIC -DPIC -o .libs/jquanti-sse2-64.o
+nasm -felf64 -DELF -D__x86_64__ -I./ -I./ jquanti-sse2-64.asm -DPIC -o .libs/jquanti-sse2-64.o
+ ./nasm_lt.sh nasm -felf64 -DELF -D__x86_64__ -I. -I. jquanti-sse2-64.asm -o jquanti-sse2-64.o >/dev/null 2>&1
+/bin/sh ../libtool --mode=link --tag=CC gcc  -O3   -o libsimd.la   jsimd_x86_64.lo jfdctflt-sse-64.lo jccolor-sse2-64.lo jcgray-sse2-64.lo jcsample-sse2-64.lo jdcolor-sse2-64.lo jdmerge-sse2-64.lo jdsample-sse2-64.lo jfdctfst-sse2-64.lo jfdctint-sse2-64.lo jidctflt-sse2-64.lo jidctfst-sse2-64.lo jidctint-sse2-64.lo jidctred-sse2-64.lo jquantf-sse2-64.lo jquanti-sse2-64.lo  
+ar cru .libs/libsimd.a .libs/jsimd_x86_64.o .libs/jfdctflt-sse-64.o .libs/jccolor-sse2-64.o .libs/jcgray-sse2-64.o .libs/jcsample-sse2-64.o .libs/jdcolor-sse2-64.o .libs/jdmerge-sse2-64.o .libs/jdsample-sse2-64.o .libs/jfdctfst-sse2-64.o .libs/jfdctint-sse2-64.o .libs/jidctflt-sse2-64.o .libs/jidctfst-sse2-64.o .libs/jidctint-sse2-64.o .libs/jidctred-sse2-64.o .libs/jquantf-sse2-64.o .libs/jquanti-sse2-64.o
+ranlib .libs/libsimd.a
+creating libsimd.la
+(cd .libs && rm -f libsimd.la && ln -s ../libsimd.la libsimd.la)
+make[3]: Leaving directory `/home/xing/research/image_compression/libjpeg-turbo-memory-opt/simd'
+make[2]: Leaving directory `/home/xing/research/image_compression/libjpeg-turbo-memory-opt/simd'
+Making all in md5
+make[2]: Entering directory `/home/xing/research/image_compression/libjpeg-turbo-memory-opt/md5'
+if gcc -DHAVE_CONFIG_H -I. -I. -I.. -I.. -I..   -Wall -I. -O3 -MT md5cmp-md5cmp.o -MD -MP -MF ".deps/md5cmp-md5cmp.Tpo" -c -o md5cmp-md5cmp.o `test -f 'md5cmp.c' || echo './'`md5cmp.c; \
+	then mv -f ".deps/md5cmp-md5cmp.Tpo" ".deps/md5cmp-md5cmp.Po"; else rm -f ".deps/md5cmp-md5cmp.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -I. -I. -I.. -I.. -I..   -Wall -I. -O3 -MT md5cmp-md5.o -MD -MP -MF ".deps/md5cmp-md5.Tpo" -c -o md5cmp-md5.o `test -f 'md5.c' || echo './'`md5.c; \
+	then mv -f ".deps/md5cmp-md5.Tpo" ".deps/md5cmp-md5.Po"; else rm -f ".deps/md5cmp-md5.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -I. -I. -I.. -I.. -I..   -Wall -I. -O3 -MT md5cmp-md5hl.o -MD -MP -MF ".deps/md5cmp-md5hl.Tpo" -c -o md5cmp-md5hl.o `test -f 'md5hl.c' || echo './'`md5hl.c; \
+	then mv -f ".deps/md5cmp-md5hl.Tpo" ".deps/md5cmp-md5hl.Po"; else rm -f ".deps/md5cmp-md5hl.Tpo"; exit 1; fi
+/bin/sh ../libtool --mode=link --tag=CC gcc  -O3   -o md5cmp  md5cmp-md5cmp.o md5cmp-md5.o md5cmp-md5hl.o  
+mkdir .libs
+gcc -O3 -o md5cmp md5cmp-md5cmp.o md5cmp-md5.o md5cmp-md5hl.o 
+make[2]: Leaving directory `/home/xing/research/image_compression/libjpeg-turbo-memory-opt/md5'
+make[2]: Entering directory `/home/xing/research/image_compression/libjpeg-turbo-memory-opt'
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT jcapimin.lo -MD -MP -MF ".deps/jcapimin.Tpo" -c -o jcapimin.lo jcapimin.c; \
+	then mv -f ".deps/jcapimin.Tpo" ".deps/jcapimin.Plo"; else rm -f ".deps/jcapimin.Tpo"; exit 1; fi
+mkdir .libs
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT jcapimin.lo -MD -MP -MF .deps/jcapimin.Tpo -c jcapimin.c  -fPIC -DPIC -o .libs/jcapimin.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT jcapimin.lo -MD -MP -MF .deps/jcapimin.Tpo -c jcapimin.c -o jcapimin.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT jcapistd.lo -MD -MP -MF ".deps/jcapistd.Tpo" -c -o jcapistd.lo jcapistd.c; \
+	then mv -f ".deps/jcapistd.Tpo" ".deps/jcapistd.Plo"; else rm -f ".deps/jcapistd.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT jcapistd.lo -MD -MP -MF .deps/jcapistd.Tpo -c jcapistd.c  -fPIC -DPIC -o .libs/jcapistd.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT jcapistd.lo -MD -MP -MF .deps/jcapistd.Tpo -c jcapistd.c -o jcapistd.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT jccoefct.lo -MD -MP -MF ".deps/jccoefct.Tpo" -c -o jccoefct.lo jccoefct.c; \
+	then mv -f ".deps/jccoefct.Tpo" ".deps/jccoefct.Plo"; else rm -f ".deps/jccoefct.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT jccoefct.lo -MD -MP -MF .deps/jccoefct.Tpo -c jccoefct.c  -fPIC -DPIC -o .libs/jccoefct.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT jccoefct.lo -MD -MP -MF .deps/jccoefct.Tpo -c jccoefct.c -o jccoefct.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT jccolor.lo -MD -MP -MF ".deps/jccolor.Tpo" -c -o jccolor.lo jccolor.c; \
+	then mv -f ".deps/jccolor.Tpo" ".deps/jccolor.Plo"; else rm -f ".deps/jccolor.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT jccolor.lo -MD -MP -MF .deps/jccolor.Tpo -c jccolor.c  -fPIC -DPIC -o .libs/jccolor.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT jccolor.lo -MD -MP -MF .deps/jccolor.Tpo -c jccolor.c -o jccolor.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT jcdctmgr.lo -MD -MP -MF ".deps/jcdctmgr.Tpo" -c -o jcdctmgr.lo jcdctmgr.c; \
+	then mv -f ".deps/jcdctmgr.Tpo" ".deps/jcdctmgr.Plo"; else rm -f ".deps/jcdctmgr.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT jcdctmgr.lo -MD -MP -MF .deps/jcdctmgr.Tpo -c jcdctmgr.c  -fPIC -DPIC -o .libs/jcdctmgr.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT jcdctmgr.lo -MD -MP -MF .deps/jcdctmgr.Tpo -c jcdctmgr.c -o jcdctmgr.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT jchuff.lo -MD -MP -MF ".deps/jchuff.Tpo" -c -o jchuff.lo jchuff.c; \
+	then mv -f ".deps/jchuff.Tpo" ".deps/jchuff.Plo"; else rm -f ".deps/jchuff.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT jchuff.lo -MD -MP -MF .deps/jchuff.Tpo -c jchuff.c  -fPIC -DPIC -o .libs/jchuff.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT jchuff.lo -MD -MP -MF .deps/jchuff.Tpo -c jchuff.c -o jchuff.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT jcinit.lo -MD -MP -MF ".deps/jcinit.Tpo" -c -o jcinit.lo jcinit.c; \
+	then mv -f ".deps/jcinit.Tpo" ".deps/jcinit.Plo"; else rm -f ".deps/jcinit.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT jcinit.lo -MD -MP -MF .deps/jcinit.Tpo -c jcinit.c  -fPIC -DPIC -o .libs/jcinit.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT jcinit.lo -MD -MP -MF .deps/jcinit.Tpo -c jcinit.c -o jcinit.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT jcmainct.lo -MD -MP -MF ".deps/jcmainct.Tpo" -c -o jcmainct.lo jcmainct.c; \
+	then mv -f ".deps/jcmainct.Tpo" ".deps/jcmainct.Plo"; else rm -f ".deps/jcmainct.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT jcmainct.lo -MD -MP -MF .deps/jcmainct.Tpo -c jcmainct.c  -fPIC -DPIC -o .libs/jcmainct.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT jcmainct.lo -MD -MP -MF .deps/jcmainct.Tpo -c jcmainct.c -o jcmainct.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT jcmarker.lo -MD -MP -MF ".deps/jcmarker.Tpo" -c -o jcmarker.lo jcmarker.c; \
+	then mv -f ".deps/jcmarker.Tpo" ".deps/jcmarker.Plo"; else rm -f ".deps/jcmarker.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT jcmarker.lo -MD -MP -MF .deps/jcmarker.Tpo -c jcmarker.c  -fPIC -DPIC -o .libs/jcmarker.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT jcmarker.lo -MD -MP -MF .deps/jcmarker.Tpo -c jcmarker.c -o jcmarker.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT jcmaster.lo -MD -MP -MF ".deps/jcmaster.Tpo" -c -o jcmaster.lo jcmaster.c; \
+	then mv -f ".deps/jcmaster.Tpo" ".deps/jcmaster.Plo"; else rm -f ".deps/jcmaster.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT jcmaster.lo -MD -MP -MF .deps/jcmaster.Tpo -c jcmaster.c  -fPIC -DPIC -o .libs/jcmaster.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT jcmaster.lo -MD -MP -MF .deps/jcmaster.Tpo -c jcmaster.c -o jcmaster.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT jcomapi.lo -MD -MP -MF ".deps/jcomapi.Tpo" -c -o jcomapi.lo jcomapi.c; \
+	then mv -f ".deps/jcomapi.Tpo" ".deps/jcomapi.Plo"; else rm -f ".deps/jcomapi.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT jcomapi.lo -MD -MP -MF .deps/jcomapi.Tpo -c jcomapi.c  -fPIC -DPIC -o .libs/jcomapi.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT jcomapi.lo -MD -MP -MF .deps/jcomapi.Tpo -c jcomapi.c -o jcomapi.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT jcparam.lo -MD -MP -MF ".deps/jcparam.Tpo" -c -o jcparam.lo jcparam.c; \
+	then mv -f ".deps/jcparam.Tpo" ".deps/jcparam.Plo"; else rm -f ".deps/jcparam.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT jcparam.lo -MD -MP -MF .deps/jcparam.Tpo -c jcparam.c  -fPIC -DPIC -o .libs/jcparam.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT jcparam.lo -MD -MP -MF .deps/jcparam.Tpo -c jcparam.c -o jcparam.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT jcphuff.lo -MD -MP -MF ".deps/jcphuff.Tpo" -c -o jcphuff.lo jcphuff.c; \
+	then mv -f ".deps/jcphuff.Tpo" ".deps/jcphuff.Plo"; else rm -f ".deps/jcphuff.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT jcphuff.lo -MD -MP -MF .deps/jcphuff.Tpo -c jcphuff.c  -fPIC -DPIC -o .libs/jcphuff.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT jcphuff.lo -MD -MP -MF .deps/jcphuff.Tpo -c jcphuff.c -o jcphuff.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT jcprepct.lo -MD -MP -MF ".deps/jcprepct.Tpo" -c -o jcprepct.lo jcprepct.c; \
+	then mv -f ".deps/jcprepct.Tpo" ".deps/jcprepct.Plo"; else rm -f ".deps/jcprepct.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT jcprepct.lo -MD -MP -MF .deps/jcprepct.Tpo -c jcprepct.c  -fPIC -DPIC -o .libs/jcprepct.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT jcprepct.lo -MD -MP -MF .deps/jcprepct.Tpo -c jcprepct.c -o jcprepct.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT jcsample.lo -MD -MP -MF ".deps/jcsample.Tpo" -c -o jcsample.lo jcsample.c; \
+	then mv -f ".deps/jcsample.Tpo" ".deps/jcsample.Plo"; else rm -f ".deps/jcsample.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT jcsample.lo -MD -MP -MF .deps/jcsample.Tpo -c jcsample.c  -fPIC -DPIC -o .libs/jcsample.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT jcsample.lo -MD -MP -MF .deps/jcsample.Tpo -c jcsample.c -o jcsample.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT jctrans.lo -MD -MP -MF ".deps/jctrans.Tpo" -c -o jctrans.lo jctrans.c; \
+	then mv -f ".deps/jctrans.Tpo" ".deps/jctrans.Plo"; else rm -f ".deps/jctrans.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT jctrans.lo -MD -MP -MF .deps/jctrans.Tpo -c jctrans.c  -fPIC -DPIC -o .libs/jctrans.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT jctrans.lo -MD -MP -MF .deps/jctrans.Tpo -c jctrans.c -o jctrans.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT jdapimin.lo -MD -MP -MF ".deps/jdapimin.Tpo" -c -o jdapimin.lo jdapimin.c; \
+	then mv -f ".deps/jdapimin.Tpo" ".deps/jdapimin.Plo"; else rm -f ".deps/jdapimin.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT jdapimin.lo -MD -MP -MF .deps/jdapimin.Tpo -c jdapimin.c  -fPIC -DPIC -o .libs/jdapimin.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT jdapimin.lo -MD -MP -MF .deps/jdapimin.Tpo -c jdapimin.c -o jdapimin.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT jdapistd.lo -MD -MP -MF ".deps/jdapistd.Tpo" -c -o jdapistd.lo jdapistd.c; \
+	then mv -f ".deps/jdapistd.Tpo" ".deps/jdapistd.Plo"; else rm -f ".deps/jdapistd.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT jdapistd.lo -MD -MP -MF .deps/jdapistd.Tpo -c jdapistd.c  -fPIC -DPIC -o .libs/jdapistd.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT jdapistd.lo -MD -MP -MF .deps/jdapistd.Tpo -c jdapistd.c -o jdapistd.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT jdatadst.lo -MD -MP -MF ".deps/jdatadst.Tpo" -c -o jdatadst.lo jdatadst.c; \
+	then mv -f ".deps/jdatadst.Tpo" ".deps/jdatadst.Plo"; else rm -f ".deps/jdatadst.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT jdatadst.lo -MD -MP -MF .deps/jdatadst.Tpo -c jdatadst.c  -fPIC -DPIC -o .libs/jdatadst.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT jdatadst.lo -MD -MP -MF .deps/jdatadst.Tpo -c jdatadst.c -o jdatadst.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT jdatasrc.lo -MD -MP -MF ".deps/jdatasrc.Tpo" -c -o jdatasrc.lo jdatasrc.c; \
+	then mv -f ".deps/jdatasrc.Tpo" ".deps/jdatasrc.Plo"; else rm -f ".deps/jdatasrc.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT jdatasrc.lo -MD -MP -MF .deps/jdatasrc.Tpo -c jdatasrc.c  -fPIC -DPIC -o .libs/jdatasrc.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT jdatasrc.lo -MD -MP -MF .deps/jdatasrc.Tpo -c jdatasrc.c -o jdatasrc.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT jdcoefct.lo -MD -MP -MF ".deps/jdcoefct.Tpo" -c -o jdcoefct.lo jdcoefct.c; \
+	then mv -f ".deps/jdcoefct.Tpo" ".deps/jdcoefct.Plo"; else rm -f ".deps/jdcoefct.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT jdcoefct.lo -MD -MP -MF .deps/jdcoefct.Tpo -c jdcoefct.c  -fPIC -DPIC -o .libs/jdcoefct.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT jdcoefct.lo -MD -MP -MF .deps/jdcoefct.Tpo -c jdcoefct.c -o jdcoefct.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT jdcolor.lo -MD -MP -MF ".deps/jdcolor.Tpo" -c -o jdcolor.lo jdcolor.c; \
+	then mv -f ".deps/jdcolor.Tpo" ".deps/jdcolor.Plo"; else rm -f ".deps/jdcolor.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT jdcolor.lo -MD -MP -MF .deps/jdcolor.Tpo -c jdcolor.c  -fPIC -DPIC -o .libs/jdcolor.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT jdcolor.lo -MD -MP -MF .deps/jdcolor.Tpo -c jdcolor.c -o jdcolor.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT jddctmgr.lo -MD -MP -MF ".deps/jddctmgr.Tpo" -c -o jddctmgr.lo jddctmgr.c; \
+	then mv -f ".deps/jddctmgr.Tpo" ".deps/jddctmgr.Plo"; else rm -f ".deps/jddctmgr.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT jddctmgr.lo -MD -MP -MF .deps/jddctmgr.Tpo -c jddctmgr.c  -fPIC -DPIC -o .libs/jddctmgr.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT jddctmgr.lo -MD -MP -MF .deps/jddctmgr.Tpo -c jddctmgr.c -o jddctmgr.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT jdhuff.lo -MD -MP -MF ".deps/jdhuff.Tpo" -c -o jdhuff.lo jdhuff.c; \
+	then mv -f ".deps/jdhuff.Tpo" ".deps/jdhuff.Plo"; else rm -f ".deps/jdhuff.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT jdhuff.lo -MD -MP -MF .deps/jdhuff.Tpo -c jdhuff.c  -fPIC -DPIC -o .libs/jdhuff.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT jdhuff.lo -MD -MP -MF .deps/jdhuff.Tpo -c jdhuff.c -o jdhuff.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT jdinput.lo -MD -MP -MF ".deps/jdinput.Tpo" -c -o jdinput.lo jdinput.c; \
+	then mv -f ".deps/jdinput.Tpo" ".deps/jdinput.Plo"; else rm -f ".deps/jdinput.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT jdinput.lo -MD -MP -MF .deps/jdinput.Tpo -c jdinput.c  -fPIC -DPIC -o .libs/jdinput.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT jdinput.lo -MD -MP -MF .deps/jdinput.Tpo -c jdinput.c -o jdinput.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT jdmainct.lo -MD -MP -MF ".deps/jdmainct.Tpo" -c -o jdmainct.lo jdmainct.c; \
+	then mv -f ".deps/jdmainct.Tpo" ".deps/jdmainct.Plo"; else rm -f ".deps/jdmainct.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT jdmainct.lo -MD -MP -MF .deps/jdmainct.Tpo -c jdmainct.c  -fPIC -DPIC -o .libs/jdmainct.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT jdmainct.lo -MD -MP -MF .deps/jdmainct.Tpo -c jdmainct.c -o jdmainct.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT jdmarker.lo -MD -MP -MF ".deps/jdmarker.Tpo" -c -o jdmarker.lo jdmarker.c; \
+	then mv -f ".deps/jdmarker.Tpo" ".deps/jdmarker.Plo"; else rm -f ".deps/jdmarker.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT jdmarker.lo -MD -MP -MF .deps/jdmarker.Tpo -c jdmarker.c  -fPIC -DPIC -o .libs/jdmarker.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT jdmarker.lo -MD -MP -MF .deps/jdmarker.Tpo -c jdmarker.c -o jdmarker.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT jdmaster.lo -MD -MP -MF ".deps/jdmaster.Tpo" -c -o jdmaster.lo jdmaster.c; \
+	then mv -f ".deps/jdmaster.Tpo" ".deps/jdmaster.Plo"; else rm -f ".deps/jdmaster.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT jdmaster.lo -MD -MP -MF .deps/jdmaster.Tpo -c jdmaster.c  -fPIC -DPIC -o .libs/jdmaster.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT jdmaster.lo -MD -MP -MF .deps/jdmaster.Tpo -c jdmaster.c -o jdmaster.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT jdmerge.lo -MD -MP -MF ".deps/jdmerge.Tpo" -c -o jdmerge.lo jdmerge.c; \
+	then mv -f ".deps/jdmerge.Tpo" ".deps/jdmerge.Plo"; else rm -f ".deps/jdmerge.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT jdmerge.lo -MD -MP -MF .deps/jdmerge.Tpo -c jdmerge.c  -fPIC -DPIC -o .libs/jdmerge.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT jdmerge.lo -MD -MP -MF .deps/jdmerge.Tpo -c jdmerge.c -o jdmerge.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT jdphuff.lo -MD -MP -MF ".deps/jdphuff.Tpo" -c -o jdphuff.lo jdphuff.c; \
+	then mv -f ".deps/jdphuff.Tpo" ".deps/jdphuff.Plo"; else rm -f ".deps/jdphuff.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT jdphuff.lo -MD -MP -MF .deps/jdphuff.Tpo -c jdphuff.c  -fPIC -DPIC -o .libs/jdphuff.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT jdphuff.lo -MD -MP -MF .deps/jdphuff.Tpo -c jdphuff.c -o jdphuff.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT jdpostct.lo -MD -MP -MF ".deps/jdpostct.Tpo" -c -o jdpostct.lo jdpostct.c; \
+	then mv -f ".deps/jdpostct.Tpo" ".deps/jdpostct.Plo"; else rm -f ".deps/jdpostct.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT jdpostct.lo -MD -MP -MF .deps/jdpostct.Tpo -c jdpostct.c  -fPIC -DPIC -o .libs/jdpostct.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT jdpostct.lo -MD -MP -MF .deps/jdpostct.Tpo -c jdpostct.c -o jdpostct.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT jdsample.lo -MD -MP -MF ".deps/jdsample.Tpo" -c -o jdsample.lo jdsample.c; \
+	then mv -f ".deps/jdsample.Tpo" ".deps/jdsample.Plo"; else rm -f ".deps/jdsample.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT jdsample.lo -MD -MP -MF .deps/jdsample.Tpo -c jdsample.c  -fPIC -DPIC -o .libs/jdsample.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT jdsample.lo -MD -MP -MF .deps/jdsample.Tpo -c jdsample.c -o jdsample.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT jdtrans.lo -MD -MP -MF ".deps/jdtrans.Tpo" -c -o jdtrans.lo jdtrans.c; \
+	then mv -f ".deps/jdtrans.Tpo" ".deps/jdtrans.Plo"; else rm -f ".deps/jdtrans.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT jdtrans.lo -MD -MP -MF .deps/jdtrans.Tpo -c jdtrans.c  -fPIC -DPIC -o .libs/jdtrans.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT jdtrans.lo -MD -MP -MF .deps/jdtrans.Tpo -c jdtrans.c -o jdtrans.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT jerror.lo -MD -MP -MF ".deps/jerror.Tpo" -c -o jerror.lo jerror.c; \
+	then mv -f ".deps/jerror.Tpo" ".deps/jerror.Plo"; else rm -f ".deps/jerror.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT jerror.lo -MD -MP -MF .deps/jerror.Tpo -c jerror.c  -fPIC -DPIC -o .libs/jerror.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT jerror.lo -MD -MP -MF .deps/jerror.Tpo -c jerror.c -o jerror.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT jfdctflt.lo -MD -MP -MF ".deps/jfdctflt.Tpo" -c -o jfdctflt.lo jfdctflt.c; \
+	then mv -f ".deps/jfdctflt.Tpo" ".deps/jfdctflt.Plo"; else rm -f ".deps/jfdctflt.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT jfdctflt.lo -MD -MP -MF .deps/jfdctflt.Tpo -c jfdctflt.c  -fPIC -DPIC -o .libs/jfdctflt.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT jfdctflt.lo -MD -MP -MF .deps/jfdctflt.Tpo -c jfdctflt.c -o jfdctflt.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT jfdctfst.lo -MD -MP -MF ".deps/jfdctfst.Tpo" -c -o jfdctfst.lo jfdctfst.c; \
+	then mv -f ".deps/jfdctfst.Tpo" ".deps/jfdctfst.Plo"; else rm -f ".deps/jfdctfst.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT jfdctfst.lo -MD -MP -MF .deps/jfdctfst.Tpo -c jfdctfst.c  -fPIC -DPIC -o .libs/jfdctfst.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT jfdctfst.lo -MD -MP -MF .deps/jfdctfst.Tpo -c jfdctfst.c -o jfdctfst.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT jfdctint.lo -MD -MP -MF ".deps/jfdctint.Tpo" -c -o jfdctint.lo jfdctint.c; \
+	then mv -f ".deps/jfdctint.Tpo" ".deps/jfdctint.Plo"; else rm -f ".deps/jfdctint.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT jfdctint.lo -MD -MP -MF .deps/jfdctint.Tpo -c jfdctint.c  -fPIC -DPIC -o .libs/jfdctint.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT jfdctint.lo -MD -MP -MF .deps/jfdctint.Tpo -c jfdctint.c -o jfdctint.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT jidctflt.lo -MD -MP -MF ".deps/jidctflt.Tpo" -c -o jidctflt.lo jidctflt.c; \
+	then mv -f ".deps/jidctflt.Tpo" ".deps/jidctflt.Plo"; else rm -f ".deps/jidctflt.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT jidctflt.lo -MD -MP -MF .deps/jidctflt.Tpo -c jidctflt.c  -fPIC -DPIC -o .libs/jidctflt.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT jidctflt.lo -MD -MP -MF .deps/jidctflt.Tpo -c jidctflt.c -o jidctflt.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT jidctfst.lo -MD -MP -MF ".deps/jidctfst.Tpo" -c -o jidctfst.lo jidctfst.c; \
+	then mv -f ".deps/jidctfst.Tpo" ".deps/jidctfst.Plo"; else rm -f ".deps/jidctfst.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT jidctfst.lo -MD -MP -MF .deps/jidctfst.Tpo -c jidctfst.c  -fPIC -DPIC -o .libs/jidctfst.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT jidctfst.lo -MD -MP -MF .deps/jidctfst.Tpo -c jidctfst.c -o jidctfst.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT jidctint.lo -MD -MP -MF ".deps/jidctint.Tpo" -c -o jidctint.lo jidctint.c; \
+	then mv -f ".deps/jidctint.Tpo" ".deps/jidctint.Plo"; else rm -f ".deps/jidctint.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT jidctint.lo -MD -MP -MF .deps/jidctint.Tpo -c jidctint.c  -fPIC -DPIC -o .libs/jidctint.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT jidctint.lo -MD -MP -MF .deps/jidctint.Tpo -c jidctint.c -o jidctint.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT jidctred.lo -MD -MP -MF ".deps/jidctred.Tpo" -c -o jidctred.lo jidctred.c; \
+	then mv -f ".deps/jidctred.Tpo" ".deps/jidctred.Plo"; else rm -f ".deps/jidctred.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT jidctred.lo -MD -MP -MF .deps/jidctred.Tpo -c jidctred.c  -fPIC -DPIC -o .libs/jidctred.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT jidctred.lo -MD -MP -MF .deps/jidctred.Tpo -c jidctred.c -o jidctred.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT jquant1.lo -MD -MP -MF ".deps/jquant1.Tpo" -c -o jquant1.lo jquant1.c; \
+	then mv -f ".deps/jquant1.Tpo" ".deps/jquant1.Plo"; else rm -f ".deps/jquant1.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT jquant1.lo -MD -MP -MF .deps/jquant1.Tpo -c jquant1.c  -fPIC -DPIC -o .libs/jquant1.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT jquant1.lo -MD -MP -MF .deps/jquant1.Tpo -c jquant1.c -o jquant1.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT jquant2.lo -MD -MP -MF ".deps/jquant2.Tpo" -c -o jquant2.lo jquant2.c; \
+	then mv -f ".deps/jquant2.Tpo" ".deps/jquant2.Plo"; else rm -f ".deps/jquant2.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT jquant2.lo -MD -MP -MF .deps/jquant2.Tpo -c jquant2.c  -fPIC -DPIC -o .libs/jquant2.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT jquant2.lo -MD -MP -MF .deps/jquant2.Tpo -c jquant2.c -o jquant2.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT jutils.lo -MD -MP -MF ".deps/jutils.Tpo" -c -o jutils.lo jutils.c; \
+	then mv -f ".deps/jutils.Tpo" ".deps/jutils.Plo"; else rm -f ".deps/jutils.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT jutils.lo -MD -MP -MF .deps/jutils.Tpo -c jutils.c  -fPIC -DPIC -o .libs/jutils.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT jutils.lo -MD -MP -MF .deps/jutils.Tpo -c jutils.c -o jutils.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT jmemmgr.lo -MD -MP -MF ".deps/jmemmgr.Tpo" -c -o jmemmgr.lo jmemmgr.c; \
+	then mv -f ".deps/jmemmgr.Tpo" ".deps/jmemmgr.Plo"; else rm -f ".deps/jmemmgr.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT jmemmgr.lo -MD -MP -MF .deps/jmemmgr.Tpo -c jmemmgr.c  -fPIC -DPIC -o .libs/jmemmgr.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT jmemmgr.lo -MD -MP -MF .deps/jmemmgr.Tpo -c jmemmgr.c -o jmemmgr.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT jmemnobs.lo -MD -MP -MF ".deps/jmemnobs.Tpo" -c -o jmemnobs.lo jmemnobs.c; \
+	then mv -f ".deps/jmemnobs.Tpo" ".deps/jmemnobs.Plo"; else rm -f ".deps/jmemnobs.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT jmemnobs.lo -MD -MP -MF .deps/jmemnobs.Tpo -c jmemnobs.c  -fPIC -DPIC -o .libs/jmemnobs.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT jmemnobs.lo -MD -MP -MF .deps/jmemnobs.Tpo -c jmemnobs.c -o jmemnobs.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT jaricom.lo -MD -MP -MF ".deps/jaricom.Tpo" -c -o jaricom.lo jaricom.c; \
+	then mv -f ".deps/jaricom.Tpo" ".deps/jaricom.Plo"; else rm -f ".deps/jaricom.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT jaricom.lo -MD -MP -MF .deps/jaricom.Tpo -c jaricom.c  -fPIC -DPIC -o .libs/jaricom.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT jaricom.lo -MD -MP -MF .deps/jaricom.Tpo -c jaricom.c -o jaricom.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT jcarith.lo -MD -MP -MF ".deps/jcarith.Tpo" -c -o jcarith.lo jcarith.c; \
+	then mv -f ".deps/jcarith.Tpo" ".deps/jcarith.Plo"; else rm -f ".deps/jcarith.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT jcarith.lo -MD -MP -MF .deps/jcarith.Tpo -c jcarith.c  -fPIC -DPIC -o .libs/jcarith.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT jcarith.lo -MD -MP -MF .deps/jcarith.Tpo -c jcarith.c -o jcarith.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT jdarith.lo -MD -MP -MF ".deps/jdarith.Tpo" -c -o jdarith.lo jdarith.c; \
+	then mv -f ".deps/jdarith.Tpo" ".deps/jdarith.Plo"; else rm -f ".deps/jdarith.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT jdarith.lo -MD -MP -MF .deps/jdarith.Tpo -c jdarith.c  -fPIC -DPIC -o .libs/jdarith.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT jdarith.lo -MD -MP -MF .deps/jdarith.Tpo -c jdarith.c -o jdarith.o >/dev/null 2>&1
+/bin/sh ./libtool --mode=link --tag=CC gcc  -O3   -o libjpeg.la -rpath /opt/libjpeg-turbo/lib64 -version-info 63:0:1 -no-undefined -Wl,--version-script,libjpeg.map  jcapimin.lo jcapistd.lo jccoefct.lo jccolor.lo jcdctmgr.lo jchuff.lo jcinit.lo jcmainct.lo jcmarker.lo jcmaster.lo jcomapi.lo jcparam.lo jcphuff.lo jcprepct.lo jcsample.lo jctrans.lo jdapimin.lo jdapistd.lo jdatadst.lo jdatasrc.lo jdcoefct.lo jdcolor.lo jddctmgr.lo jdhuff.lo jdinput.lo jdmainct.lo jdmarker.lo jdmaster.lo jdmerge.lo jdphuff.lo jdpostct.lo jdsample.lo jdtrans.lo jerror.lo jfdctflt.lo jfdctfst.lo jfdctint.lo jidctflt.lo jidctfst.lo jidctint.lo jidctred.lo jquant1.lo jquant2.lo jutils.lo jmemmgr.lo jmemnobs.lo jaricom.lo jcarith.lo jdarith.lo  simd/libsimd.la 
+gcc -shared  .libs/jcapimin.o .libs/jcapistd.o .libs/jccoefct.o .libs/jccolor.o .libs/jcdctmgr.o .libs/jchuff.o .libs/jcinit.o .libs/jcmainct.o .libs/jcmarker.o .libs/jcmaster.o .libs/jcomapi.o .libs/jcparam.o .libs/jcphuff.o .libs/jcprepct.o .libs/jcsample.o .libs/jctrans.o .libs/jdapimin.o .libs/jdapistd.o .libs/jdatadst.o .libs/jdatasrc.o .libs/jdcoefct.o .libs/jdcolor.o .libs/jddctmgr.o .libs/jdhuff.o .libs/jdinput.o .libs/jdmainct.o .libs/jdmarker.o .libs/jdmaster.o .libs/jdmerge.o .libs/jdphuff.o .libs/jdpostct.o .libs/jdsample.o .libs/jdtrans.o .libs/jerror.o .libs/jfdctflt.o .libs/jfdctfst.o .libs/jfdctint.o .libs/jidctflt.o .libs/jidctfst.o .libs/jidctint.o .libs/jidctred.o .libs/jquant1.o .libs/jquant2.o .libs/jutils.o .libs/jmemmgr.o .libs/jmemnobs.o .libs/jaricom.o .libs/jcarith.o .libs/jdarith.o -Wl,--whole-archive simd/.libs/libsimd.a -Wl,--no-whole-archive   -Wl,--version-script -Wl,libjpeg.map -Wl,-soname -Wl,libjpeg.so.62 -o .libs/libjpeg.so.62.1.0
+(cd .libs && rm -f libjpeg.so.62 && ln -s libjpeg.so.62.1.0 libjpeg.so.62)
+(cd .libs && rm -f libjpeg.so && ln -s libjpeg.so.62.1.0 libjpeg.so)
+rm -fr .libs/libjpeg.lax
+mkdir .libs/libjpeg.lax
+rm -fr .libs/libjpeg.lax/libsimd.a
+mkdir .libs/libjpeg.lax/libsimd.a
+(cd .libs/libjpeg.lax/libsimd.a && ar x /home/xing/research/image_compression/libjpeg-turbo-memory-opt/simd/.libs/libsimd.a)
+ar cru .libs/libjpeg.a  jcapimin.o jcapistd.o jccoefct.o jccolor.o jcdctmgr.o jchuff.o jcinit.o jcmainct.o jcmarker.o jcmaster.o jcomapi.o jcparam.o jcphuff.o jcprepct.o jcsample.o jctrans.o jdapimin.o jdapistd.o jdatadst.o jdatasrc.o jdcoefct.o jdcolor.o jddctmgr.o jdhuff.o jdinput.o jdmainct.o jdmarker.o jdmaster.o jdmerge.o jdphuff.o jdpostct.o jdsample.o jdtrans.o jerror.o jfdctflt.o jfdctfst.o jfdctint.o jidctflt.o jidctfst.o jidctint.o jidctred.o jquant1.o jquant2.o jutils.o jmemmgr.o jmemnobs.o jaricom.o jcarith.o jdarith.o .libs/libjpeg.lax/libsimd.a/jidctflt-sse2-64.o .libs/libjpeg.lax/libsimd.a/jfdctfst-sse2-64.o .libs/libjpeg.lax/libsimd.a/jdsample-sse2-64.o .libs/libjpeg.lax/libsimd.a/jidctint-sse2-64.o .libs/libjpeg.lax/libsimd.a/jdmerge-sse2-64.o .libs/libjpeg.lax/libsimd.a/jidctred-sse2-64.o .libs/libjpeg.lax/libsimd.a/jfdctint-sse2-64.o .libs/libjpeg.lax/libsimd.a/jquanti-sse2-64.o .libs/libjpeg.lax/libsimd.a/jsimd_x86_64.o .libs/libjpeg.lax/libsimd.a/jidctfst-sse2-64.o .libs/libjpeg.lax/libsimd.a/jcgray-sse2-64.o .libs/libjpeg.lax/libsimd.a/jccolor-sse2-64.o .libs/libjpeg.lax/libsimd.a/jcsample-sse2-64.o .libs/libjpeg.lax/libsimd.a/jdcolor-sse2-64.o .libs/libjpeg.lax/libsimd.a/jfdctflt-sse-64.o .libs/libjpeg.lax/libsimd.a/jquantf-sse2-64.o 
+ranlib .libs/libjpeg.a
+rm -fr .libs/libjpeg.lax
+creating libjpeg.la
+(cd .libs && rm -f libjpeg.la && ln -s ../libjpeg.la libjpeg.la)
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT libturbojpeg_la-jcapimin.lo -MD -MP -MF ".deps/libturbojpeg_la-jcapimin.Tpo" -c -o libturbojpeg_la-jcapimin.lo `test -f 'jcapimin.c' || echo './'`jcapimin.c; \
+	then mv -f ".deps/libturbojpeg_la-jcapimin.Tpo" ".deps/libturbojpeg_la-jcapimin.Plo"; else rm -f ".deps/libturbojpeg_la-jcapimin.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jcapimin.lo -MD -MP -MF .deps/libturbojpeg_la-jcapimin.Tpo -c jcapimin.c  -fPIC -DPIC -o .libs/libturbojpeg_la-jcapimin.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jcapimin.lo -MD -MP -MF .deps/libturbojpeg_la-jcapimin.Tpo -c jcapimin.c -o libturbojpeg_la-jcapimin.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT libturbojpeg_la-jcapistd.lo -MD -MP -MF ".deps/libturbojpeg_la-jcapistd.Tpo" -c -o libturbojpeg_la-jcapistd.lo `test -f 'jcapistd.c' || echo './'`jcapistd.c; \
+	then mv -f ".deps/libturbojpeg_la-jcapistd.Tpo" ".deps/libturbojpeg_la-jcapistd.Plo"; else rm -f ".deps/libturbojpeg_la-jcapistd.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jcapistd.lo -MD -MP -MF .deps/libturbojpeg_la-jcapistd.Tpo -c jcapistd.c  -fPIC -DPIC -o .libs/libturbojpeg_la-jcapistd.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jcapistd.lo -MD -MP -MF .deps/libturbojpeg_la-jcapistd.Tpo -c jcapistd.c -o libturbojpeg_la-jcapistd.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT libturbojpeg_la-jccoefct.lo -MD -MP -MF ".deps/libturbojpeg_la-jccoefct.Tpo" -c -o libturbojpeg_la-jccoefct.lo `test -f 'jccoefct.c' || echo './'`jccoefct.c; \
+	then mv -f ".deps/libturbojpeg_la-jccoefct.Tpo" ".deps/libturbojpeg_la-jccoefct.Plo"; else rm -f ".deps/libturbojpeg_la-jccoefct.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jccoefct.lo -MD -MP -MF .deps/libturbojpeg_la-jccoefct.Tpo -c jccoefct.c  -fPIC -DPIC -o .libs/libturbojpeg_la-jccoefct.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jccoefct.lo -MD -MP -MF .deps/libturbojpeg_la-jccoefct.Tpo -c jccoefct.c -o libturbojpeg_la-jccoefct.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT libturbojpeg_la-jccolor.lo -MD -MP -MF ".deps/libturbojpeg_la-jccolor.Tpo" -c -o libturbojpeg_la-jccolor.lo `test -f 'jccolor.c' || echo './'`jccolor.c; \
+	then mv -f ".deps/libturbojpeg_la-jccolor.Tpo" ".deps/libturbojpeg_la-jccolor.Plo"; else rm -f ".deps/libturbojpeg_la-jccolor.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jccolor.lo -MD -MP -MF .deps/libturbojpeg_la-jccolor.Tpo -c jccolor.c  -fPIC -DPIC -o .libs/libturbojpeg_la-jccolor.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jccolor.lo -MD -MP -MF .deps/libturbojpeg_la-jccolor.Tpo -c jccolor.c -o libturbojpeg_la-jccolor.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT libturbojpeg_la-jcdctmgr.lo -MD -MP -MF ".deps/libturbojpeg_la-jcdctmgr.Tpo" -c -o libturbojpeg_la-jcdctmgr.lo `test -f 'jcdctmgr.c' || echo './'`jcdctmgr.c; \
+	then mv -f ".deps/libturbojpeg_la-jcdctmgr.Tpo" ".deps/libturbojpeg_la-jcdctmgr.Plo"; else rm -f ".deps/libturbojpeg_la-jcdctmgr.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jcdctmgr.lo -MD -MP -MF .deps/libturbojpeg_la-jcdctmgr.Tpo -c jcdctmgr.c  -fPIC -DPIC -o .libs/libturbojpeg_la-jcdctmgr.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jcdctmgr.lo -MD -MP -MF .deps/libturbojpeg_la-jcdctmgr.Tpo -c jcdctmgr.c -o libturbojpeg_la-jcdctmgr.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT libturbojpeg_la-jchuff.lo -MD -MP -MF ".deps/libturbojpeg_la-jchuff.Tpo" -c -o libturbojpeg_la-jchuff.lo `test -f 'jchuff.c' || echo './'`jchuff.c; \
+	then mv -f ".deps/libturbojpeg_la-jchuff.Tpo" ".deps/libturbojpeg_la-jchuff.Plo"; else rm -f ".deps/libturbojpeg_la-jchuff.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jchuff.lo -MD -MP -MF .deps/libturbojpeg_la-jchuff.Tpo -c jchuff.c  -fPIC -DPIC -o .libs/libturbojpeg_la-jchuff.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jchuff.lo -MD -MP -MF .deps/libturbojpeg_la-jchuff.Tpo -c jchuff.c -o libturbojpeg_la-jchuff.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT libturbojpeg_la-jcinit.lo -MD -MP -MF ".deps/libturbojpeg_la-jcinit.Tpo" -c -o libturbojpeg_la-jcinit.lo `test -f 'jcinit.c' || echo './'`jcinit.c; \
+	then mv -f ".deps/libturbojpeg_la-jcinit.Tpo" ".deps/libturbojpeg_la-jcinit.Plo"; else rm -f ".deps/libturbojpeg_la-jcinit.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jcinit.lo -MD -MP -MF .deps/libturbojpeg_la-jcinit.Tpo -c jcinit.c  -fPIC -DPIC -o .libs/libturbojpeg_la-jcinit.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jcinit.lo -MD -MP -MF .deps/libturbojpeg_la-jcinit.Tpo -c jcinit.c -o libturbojpeg_la-jcinit.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT libturbojpeg_la-jcmainct.lo -MD -MP -MF ".deps/libturbojpeg_la-jcmainct.Tpo" -c -o libturbojpeg_la-jcmainct.lo `test -f 'jcmainct.c' || echo './'`jcmainct.c; \
+	then mv -f ".deps/libturbojpeg_la-jcmainct.Tpo" ".deps/libturbojpeg_la-jcmainct.Plo"; else rm -f ".deps/libturbojpeg_la-jcmainct.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jcmainct.lo -MD -MP -MF .deps/libturbojpeg_la-jcmainct.Tpo -c jcmainct.c  -fPIC -DPIC -o .libs/libturbojpeg_la-jcmainct.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jcmainct.lo -MD -MP -MF .deps/libturbojpeg_la-jcmainct.Tpo -c jcmainct.c -o libturbojpeg_la-jcmainct.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT libturbojpeg_la-jcmarker.lo -MD -MP -MF ".deps/libturbojpeg_la-jcmarker.Tpo" -c -o libturbojpeg_la-jcmarker.lo `test -f 'jcmarker.c' || echo './'`jcmarker.c; \
+	then mv -f ".deps/libturbojpeg_la-jcmarker.Tpo" ".deps/libturbojpeg_la-jcmarker.Plo"; else rm -f ".deps/libturbojpeg_la-jcmarker.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jcmarker.lo -MD -MP -MF .deps/libturbojpeg_la-jcmarker.Tpo -c jcmarker.c  -fPIC -DPIC -o .libs/libturbojpeg_la-jcmarker.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jcmarker.lo -MD -MP -MF .deps/libturbojpeg_la-jcmarker.Tpo -c jcmarker.c -o libturbojpeg_la-jcmarker.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT libturbojpeg_la-jcmaster.lo -MD -MP -MF ".deps/libturbojpeg_la-jcmaster.Tpo" -c -o libturbojpeg_la-jcmaster.lo `test -f 'jcmaster.c' || echo './'`jcmaster.c; \
+	then mv -f ".deps/libturbojpeg_la-jcmaster.Tpo" ".deps/libturbojpeg_la-jcmaster.Plo"; else rm -f ".deps/libturbojpeg_la-jcmaster.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jcmaster.lo -MD -MP -MF .deps/libturbojpeg_la-jcmaster.Tpo -c jcmaster.c  -fPIC -DPIC -o .libs/libturbojpeg_la-jcmaster.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jcmaster.lo -MD -MP -MF .deps/libturbojpeg_la-jcmaster.Tpo -c jcmaster.c -o libturbojpeg_la-jcmaster.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT libturbojpeg_la-jcomapi.lo -MD -MP -MF ".deps/libturbojpeg_la-jcomapi.Tpo" -c -o libturbojpeg_la-jcomapi.lo `test -f 'jcomapi.c' || echo './'`jcomapi.c; \
+	then mv -f ".deps/libturbojpeg_la-jcomapi.Tpo" ".deps/libturbojpeg_la-jcomapi.Plo"; else rm -f ".deps/libturbojpeg_la-jcomapi.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jcomapi.lo -MD -MP -MF .deps/libturbojpeg_la-jcomapi.Tpo -c jcomapi.c  -fPIC -DPIC -o .libs/libturbojpeg_la-jcomapi.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jcomapi.lo -MD -MP -MF .deps/libturbojpeg_la-jcomapi.Tpo -c jcomapi.c -o libturbojpeg_la-jcomapi.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT libturbojpeg_la-jcparam.lo -MD -MP -MF ".deps/libturbojpeg_la-jcparam.Tpo" -c -o libturbojpeg_la-jcparam.lo `test -f 'jcparam.c' || echo './'`jcparam.c; \
+	then mv -f ".deps/libturbojpeg_la-jcparam.Tpo" ".deps/libturbojpeg_la-jcparam.Plo"; else rm -f ".deps/libturbojpeg_la-jcparam.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jcparam.lo -MD -MP -MF .deps/libturbojpeg_la-jcparam.Tpo -c jcparam.c  -fPIC -DPIC -o .libs/libturbojpeg_la-jcparam.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jcparam.lo -MD -MP -MF .deps/libturbojpeg_la-jcparam.Tpo -c jcparam.c -o libturbojpeg_la-jcparam.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT libturbojpeg_la-jcphuff.lo -MD -MP -MF ".deps/libturbojpeg_la-jcphuff.Tpo" -c -o libturbojpeg_la-jcphuff.lo `test -f 'jcphuff.c' || echo './'`jcphuff.c; \
+	then mv -f ".deps/libturbojpeg_la-jcphuff.Tpo" ".deps/libturbojpeg_la-jcphuff.Plo"; else rm -f ".deps/libturbojpeg_la-jcphuff.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jcphuff.lo -MD -MP -MF .deps/libturbojpeg_la-jcphuff.Tpo -c jcphuff.c  -fPIC -DPIC -o .libs/libturbojpeg_la-jcphuff.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jcphuff.lo -MD -MP -MF .deps/libturbojpeg_la-jcphuff.Tpo -c jcphuff.c -o libturbojpeg_la-jcphuff.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT libturbojpeg_la-jcprepct.lo -MD -MP -MF ".deps/libturbojpeg_la-jcprepct.Tpo" -c -o libturbojpeg_la-jcprepct.lo `test -f 'jcprepct.c' || echo './'`jcprepct.c; \
+	then mv -f ".deps/libturbojpeg_la-jcprepct.Tpo" ".deps/libturbojpeg_la-jcprepct.Plo"; else rm -f ".deps/libturbojpeg_la-jcprepct.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jcprepct.lo -MD -MP -MF .deps/libturbojpeg_la-jcprepct.Tpo -c jcprepct.c  -fPIC -DPIC -o .libs/libturbojpeg_la-jcprepct.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jcprepct.lo -MD -MP -MF .deps/libturbojpeg_la-jcprepct.Tpo -c jcprepct.c -o libturbojpeg_la-jcprepct.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT libturbojpeg_la-jcsample.lo -MD -MP -MF ".deps/libturbojpeg_la-jcsample.Tpo" -c -o libturbojpeg_la-jcsample.lo `test -f 'jcsample.c' || echo './'`jcsample.c; \
+	then mv -f ".deps/libturbojpeg_la-jcsample.Tpo" ".deps/libturbojpeg_la-jcsample.Plo"; else rm -f ".deps/libturbojpeg_la-jcsample.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jcsample.lo -MD -MP -MF .deps/libturbojpeg_la-jcsample.Tpo -c jcsample.c  -fPIC -DPIC -o .libs/libturbojpeg_la-jcsample.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jcsample.lo -MD -MP -MF .deps/libturbojpeg_la-jcsample.Tpo -c jcsample.c -o libturbojpeg_la-jcsample.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT libturbojpeg_la-jctrans.lo -MD -MP -MF ".deps/libturbojpeg_la-jctrans.Tpo" -c -o libturbojpeg_la-jctrans.lo `test -f 'jctrans.c' || echo './'`jctrans.c; \
+	then mv -f ".deps/libturbojpeg_la-jctrans.Tpo" ".deps/libturbojpeg_la-jctrans.Plo"; else rm -f ".deps/libturbojpeg_la-jctrans.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jctrans.lo -MD -MP -MF .deps/libturbojpeg_la-jctrans.Tpo -c jctrans.c  -fPIC -DPIC -o .libs/libturbojpeg_la-jctrans.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jctrans.lo -MD -MP -MF .deps/libturbojpeg_la-jctrans.Tpo -c jctrans.c -o libturbojpeg_la-jctrans.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT libturbojpeg_la-jdapimin.lo -MD -MP -MF ".deps/libturbojpeg_la-jdapimin.Tpo" -c -o libturbojpeg_la-jdapimin.lo `test -f 'jdapimin.c' || echo './'`jdapimin.c; \
+	then mv -f ".deps/libturbojpeg_la-jdapimin.Tpo" ".deps/libturbojpeg_la-jdapimin.Plo"; else rm -f ".deps/libturbojpeg_la-jdapimin.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jdapimin.lo -MD -MP -MF .deps/libturbojpeg_la-jdapimin.Tpo -c jdapimin.c  -fPIC -DPIC -o .libs/libturbojpeg_la-jdapimin.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jdapimin.lo -MD -MP -MF .deps/libturbojpeg_la-jdapimin.Tpo -c jdapimin.c -o libturbojpeg_la-jdapimin.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT libturbojpeg_la-jdapistd.lo -MD -MP -MF ".deps/libturbojpeg_la-jdapistd.Tpo" -c -o libturbojpeg_la-jdapistd.lo `test -f 'jdapistd.c' || echo './'`jdapistd.c; \
+	then mv -f ".deps/libturbojpeg_la-jdapistd.Tpo" ".deps/libturbojpeg_la-jdapistd.Plo"; else rm -f ".deps/libturbojpeg_la-jdapistd.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jdapistd.lo -MD -MP -MF .deps/libturbojpeg_la-jdapistd.Tpo -c jdapistd.c  -fPIC -DPIC -o .libs/libturbojpeg_la-jdapistd.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jdapistd.lo -MD -MP -MF .deps/libturbojpeg_la-jdapistd.Tpo -c jdapistd.c -o libturbojpeg_la-jdapistd.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT libturbojpeg_la-jdatadst.lo -MD -MP -MF ".deps/libturbojpeg_la-jdatadst.Tpo" -c -o libturbojpeg_la-jdatadst.lo `test -f 'jdatadst.c' || echo './'`jdatadst.c; \
+	then mv -f ".deps/libturbojpeg_la-jdatadst.Tpo" ".deps/libturbojpeg_la-jdatadst.Plo"; else rm -f ".deps/libturbojpeg_la-jdatadst.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jdatadst.lo -MD -MP -MF .deps/libturbojpeg_la-jdatadst.Tpo -c jdatadst.c  -fPIC -DPIC -o .libs/libturbojpeg_la-jdatadst.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jdatadst.lo -MD -MP -MF .deps/libturbojpeg_la-jdatadst.Tpo -c jdatadst.c -o libturbojpeg_la-jdatadst.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT libturbojpeg_la-jdatasrc.lo -MD -MP -MF ".deps/libturbojpeg_la-jdatasrc.Tpo" -c -o libturbojpeg_la-jdatasrc.lo `test -f 'jdatasrc.c' || echo './'`jdatasrc.c; \
+	then mv -f ".deps/libturbojpeg_la-jdatasrc.Tpo" ".deps/libturbojpeg_la-jdatasrc.Plo"; else rm -f ".deps/libturbojpeg_la-jdatasrc.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jdatasrc.lo -MD -MP -MF .deps/libturbojpeg_la-jdatasrc.Tpo -c jdatasrc.c  -fPIC -DPIC -o .libs/libturbojpeg_la-jdatasrc.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jdatasrc.lo -MD -MP -MF .deps/libturbojpeg_la-jdatasrc.Tpo -c jdatasrc.c -o libturbojpeg_la-jdatasrc.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT libturbojpeg_la-jdcoefct.lo -MD -MP -MF ".deps/libturbojpeg_la-jdcoefct.Tpo" -c -o libturbojpeg_la-jdcoefct.lo `test -f 'jdcoefct.c' || echo './'`jdcoefct.c; \
+	then mv -f ".deps/libturbojpeg_la-jdcoefct.Tpo" ".deps/libturbojpeg_la-jdcoefct.Plo"; else rm -f ".deps/libturbojpeg_la-jdcoefct.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jdcoefct.lo -MD -MP -MF .deps/libturbojpeg_la-jdcoefct.Tpo -c jdcoefct.c  -fPIC -DPIC -o .libs/libturbojpeg_la-jdcoefct.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jdcoefct.lo -MD -MP -MF .deps/libturbojpeg_la-jdcoefct.Tpo -c jdcoefct.c -o libturbojpeg_la-jdcoefct.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT libturbojpeg_la-jdcolor.lo -MD -MP -MF ".deps/libturbojpeg_la-jdcolor.Tpo" -c -o libturbojpeg_la-jdcolor.lo `test -f 'jdcolor.c' || echo './'`jdcolor.c; \
+	then mv -f ".deps/libturbojpeg_la-jdcolor.Tpo" ".deps/libturbojpeg_la-jdcolor.Plo"; else rm -f ".deps/libturbojpeg_la-jdcolor.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jdcolor.lo -MD -MP -MF .deps/libturbojpeg_la-jdcolor.Tpo -c jdcolor.c  -fPIC -DPIC -o .libs/libturbojpeg_la-jdcolor.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jdcolor.lo -MD -MP -MF .deps/libturbojpeg_la-jdcolor.Tpo -c jdcolor.c -o libturbojpeg_la-jdcolor.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT libturbojpeg_la-jddctmgr.lo -MD -MP -MF ".deps/libturbojpeg_la-jddctmgr.Tpo" -c -o libturbojpeg_la-jddctmgr.lo `test -f 'jddctmgr.c' || echo './'`jddctmgr.c; \
+	then mv -f ".deps/libturbojpeg_la-jddctmgr.Tpo" ".deps/libturbojpeg_la-jddctmgr.Plo"; else rm -f ".deps/libturbojpeg_la-jddctmgr.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jddctmgr.lo -MD -MP -MF .deps/libturbojpeg_la-jddctmgr.Tpo -c jddctmgr.c  -fPIC -DPIC -o .libs/libturbojpeg_la-jddctmgr.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jddctmgr.lo -MD -MP -MF .deps/libturbojpeg_la-jddctmgr.Tpo -c jddctmgr.c -o libturbojpeg_la-jddctmgr.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT libturbojpeg_la-jdhuff.lo -MD -MP -MF ".deps/libturbojpeg_la-jdhuff.Tpo" -c -o libturbojpeg_la-jdhuff.lo `test -f 'jdhuff.c' || echo './'`jdhuff.c; \
+	then mv -f ".deps/libturbojpeg_la-jdhuff.Tpo" ".deps/libturbojpeg_la-jdhuff.Plo"; else rm -f ".deps/libturbojpeg_la-jdhuff.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jdhuff.lo -MD -MP -MF .deps/libturbojpeg_la-jdhuff.Tpo -c jdhuff.c  -fPIC -DPIC -o .libs/libturbojpeg_la-jdhuff.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jdhuff.lo -MD -MP -MF .deps/libturbojpeg_la-jdhuff.Tpo -c jdhuff.c -o libturbojpeg_la-jdhuff.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT libturbojpeg_la-jdinput.lo -MD -MP -MF ".deps/libturbojpeg_la-jdinput.Tpo" -c -o libturbojpeg_la-jdinput.lo `test -f 'jdinput.c' || echo './'`jdinput.c; \
+	then mv -f ".deps/libturbojpeg_la-jdinput.Tpo" ".deps/libturbojpeg_la-jdinput.Plo"; else rm -f ".deps/libturbojpeg_la-jdinput.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jdinput.lo -MD -MP -MF .deps/libturbojpeg_la-jdinput.Tpo -c jdinput.c  -fPIC -DPIC -o .libs/libturbojpeg_la-jdinput.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jdinput.lo -MD -MP -MF .deps/libturbojpeg_la-jdinput.Tpo -c jdinput.c -o libturbojpeg_la-jdinput.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT libturbojpeg_la-jdmainct.lo -MD -MP -MF ".deps/libturbojpeg_la-jdmainct.Tpo" -c -o libturbojpeg_la-jdmainct.lo `test -f 'jdmainct.c' || echo './'`jdmainct.c; \
+	then mv -f ".deps/libturbojpeg_la-jdmainct.Tpo" ".deps/libturbojpeg_la-jdmainct.Plo"; else rm -f ".deps/libturbojpeg_la-jdmainct.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jdmainct.lo -MD -MP -MF .deps/libturbojpeg_la-jdmainct.Tpo -c jdmainct.c  -fPIC -DPIC -o .libs/libturbojpeg_la-jdmainct.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jdmainct.lo -MD -MP -MF .deps/libturbojpeg_la-jdmainct.Tpo -c jdmainct.c -o libturbojpeg_la-jdmainct.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT libturbojpeg_la-jdmarker.lo -MD -MP -MF ".deps/libturbojpeg_la-jdmarker.Tpo" -c -o libturbojpeg_la-jdmarker.lo `test -f 'jdmarker.c' || echo './'`jdmarker.c; \
+	then mv -f ".deps/libturbojpeg_la-jdmarker.Tpo" ".deps/libturbojpeg_la-jdmarker.Plo"; else rm -f ".deps/libturbojpeg_la-jdmarker.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jdmarker.lo -MD -MP -MF .deps/libturbojpeg_la-jdmarker.Tpo -c jdmarker.c  -fPIC -DPIC -o .libs/libturbojpeg_la-jdmarker.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jdmarker.lo -MD -MP -MF .deps/libturbojpeg_la-jdmarker.Tpo -c jdmarker.c -o libturbojpeg_la-jdmarker.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT libturbojpeg_la-jdmaster.lo -MD -MP -MF ".deps/libturbojpeg_la-jdmaster.Tpo" -c -o libturbojpeg_la-jdmaster.lo `test -f 'jdmaster.c' || echo './'`jdmaster.c; \
+	then mv -f ".deps/libturbojpeg_la-jdmaster.Tpo" ".deps/libturbojpeg_la-jdmaster.Plo"; else rm -f ".deps/libturbojpeg_la-jdmaster.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jdmaster.lo -MD -MP -MF .deps/libturbojpeg_la-jdmaster.Tpo -c jdmaster.c  -fPIC -DPIC -o .libs/libturbojpeg_la-jdmaster.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jdmaster.lo -MD -MP -MF .deps/libturbojpeg_la-jdmaster.Tpo -c jdmaster.c -o libturbojpeg_la-jdmaster.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT libturbojpeg_la-jdmerge.lo -MD -MP -MF ".deps/libturbojpeg_la-jdmerge.Tpo" -c -o libturbojpeg_la-jdmerge.lo `test -f 'jdmerge.c' || echo './'`jdmerge.c; \
+	then mv -f ".deps/libturbojpeg_la-jdmerge.Tpo" ".deps/libturbojpeg_la-jdmerge.Plo"; else rm -f ".deps/libturbojpeg_la-jdmerge.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jdmerge.lo -MD -MP -MF .deps/libturbojpeg_la-jdmerge.Tpo -c jdmerge.c  -fPIC -DPIC -o .libs/libturbojpeg_la-jdmerge.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jdmerge.lo -MD -MP -MF .deps/libturbojpeg_la-jdmerge.Tpo -c jdmerge.c -o libturbojpeg_la-jdmerge.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT libturbojpeg_la-jdphuff.lo -MD -MP -MF ".deps/libturbojpeg_la-jdphuff.Tpo" -c -o libturbojpeg_la-jdphuff.lo `test -f 'jdphuff.c' || echo './'`jdphuff.c; \
+	then mv -f ".deps/libturbojpeg_la-jdphuff.Tpo" ".deps/libturbojpeg_la-jdphuff.Plo"; else rm -f ".deps/libturbojpeg_la-jdphuff.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jdphuff.lo -MD -MP -MF .deps/libturbojpeg_la-jdphuff.Tpo -c jdphuff.c  -fPIC -DPIC -o .libs/libturbojpeg_la-jdphuff.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jdphuff.lo -MD -MP -MF .deps/libturbojpeg_la-jdphuff.Tpo -c jdphuff.c -o libturbojpeg_la-jdphuff.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT libturbojpeg_la-jdpostct.lo -MD -MP -MF ".deps/libturbojpeg_la-jdpostct.Tpo" -c -o libturbojpeg_la-jdpostct.lo `test -f 'jdpostct.c' || echo './'`jdpostct.c; \
+	then mv -f ".deps/libturbojpeg_la-jdpostct.Tpo" ".deps/libturbojpeg_la-jdpostct.Plo"; else rm -f ".deps/libturbojpeg_la-jdpostct.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jdpostct.lo -MD -MP -MF .deps/libturbojpeg_la-jdpostct.Tpo -c jdpostct.c  -fPIC -DPIC -o .libs/libturbojpeg_la-jdpostct.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jdpostct.lo -MD -MP -MF .deps/libturbojpeg_la-jdpostct.Tpo -c jdpostct.c -o libturbojpeg_la-jdpostct.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT libturbojpeg_la-jdsample.lo -MD -MP -MF ".deps/libturbojpeg_la-jdsample.Tpo" -c -o libturbojpeg_la-jdsample.lo `test -f 'jdsample.c' || echo './'`jdsample.c; \
+	then mv -f ".deps/libturbojpeg_la-jdsample.Tpo" ".deps/libturbojpeg_la-jdsample.Plo"; else rm -f ".deps/libturbojpeg_la-jdsample.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jdsample.lo -MD -MP -MF .deps/libturbojpeg_la-jdsample.Tpo -c jdsample.c  -fPIC -DPIC -o .libs/libturbojpeg_la-jdsample.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jdsample.lo -MD -MP -MF .deps/libturbojpeg_la-jdsample.Tpo -c jdsample.c -o libturbojpeg_la-jdsample.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT libturbojpeg_la-jdtrans.lo -MD -MP -MF ".deps/libturbojpeg_la-jdtrans.Tpo" -c -o libturbojpeg_la-jdtrans.lo `test -f 'jdtrans.c' || echo './'`jdtrans.c; \
+	then mv -f ".deps/libturbojpeg_la-jdtrans.Tpo" ".deps/libturbojpeg_la-jdtrans.Plo"; else rm -f ".deps/libturbojpeg_la-jdtrans.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jdtrans.lo -MD -MP -MF .deps/libturbojpeg_la-jdtrans.Tpo -c jdtrans.c  -fPIC -DPIC -o .libs/libturbojpeg_la-jdtrans.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jdtrans.lo -MD -MP -MF .deps/libturbojpeg_la-jdtrans.Tpo -c jdtrans.c -o libturbojpeg_la-jdtrans.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT libturbojpeg_la-jerror.lo -MD -MP -MF ".deps/libturbojpeg_la-jerror.Tpo" -c -o libturbojpeg_la-jerror.lo `test -f 'jerror.c' || echo './'`jerror.c; \
+	then mv -f ".deps/libturbojpeg_la-jerror.Tpo" ".deps/libturbojpeg_la-jerror.Plo"; else rm -f ".deps/libturbojpeg_la-jerror.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jerror.lo -MD -MP -MF .deps/libturbojpeg_la-jerror.Tpo -c jerror.c  -fPIC -DPIC -o .libs/libturbojpeg_la-jerror.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jerror.lo -MD -MP -MF .deps/libturbojpeg_la-jerror.Tpo -c jerror.c -o libturbojpeg_la-jerror.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT libturbojpeg_la-jfdctflt.lo -MD -MP -MF ".deps/libturbojpeg_la-jfdctflt.Tpo" -c -o libturbojpeg_la-jfdctflt.lo `test -f 'jfdctflt.c' || echo './'`jfdctflt.c; \
+	then mv -f ".deps/libturbojpeg_la-jfdctflt.Tpo" ".deps/libturbojpeg_la-jfdctflt.Plo"; else rm -f ".deps/libturbojpeg_la-jfdctflt.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jfdctflt.lo -MD -MP -MF .deps/libturbojpeg_la-jfdctflt.Tpo -c jfdctflt.c  -fPIC -DPIC -o .libs/libturbojpeg_la-jfdctflt.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jfdctflt.lo -MD -MP -MF .deps/libturbojpeg_la-jfdctflt.Tpo -c jfdctflt.c -o libturbojpeg_la-jfdctflt.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT libturbojpeg_la-jfdctfst.lo -MD -MP -MF ".deps/libturbojpeg_la-jfdctfst.Tpo" -c -o libturbojpeg_la-jfdctfst.lo `test -f 'jfdctfst.c' || echo './'`jfdctfst.c; \
+	then mv -f ".deps/libturbojpeg_la-jfdctfst.Tpo" ".deps/libturbojpeg_la-jfdctfst.Plo"; else rm -f ".deps/libturbojpeg_la-jfdctfst.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jfdctfst.lo -MD -MP -MF .deps/libturbojpeg_la-jfdctfst.Tpo -c jfdctfst.c  -fPIC -DPIC -o .libs/libturbojpeg_la-jfdctfst.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jfdctfst.lo -MD -MP -MF .deps/libturbojpeg_la-jfdctfst.Tpo -c jfdctfst.c -o libturbojpeg_la-jfdctfst.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT libturbojpeg_la-jfdctint.lo -MD -MP -MF ".deps/libturbojpeg_la-jfdctint.Tpo" -c -o libturbojpeg_la-jfdctint.lo `test -f 'jfdctint.c' || echo './'`jfdctint.c; \
+	then mv -f ".deps/libturbojpeg_la-jfdctint.Tpo" ".deps/libturbojpeg_la-jfdctint.Plo"; else rm -f ".deps/libturbojpeg_la-jfdctint.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jfdctint.lo -MD -MP -MF .deps/libturbojpeg_la-jfdctint.Tpo -c jfdctint.c  -fPIC -DPIC -o .libs/libturbojpeg_la-jfdctint.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jfdctint.lo -MD -MP -MF .deps/libturbojpeg_la-jfdctint.Tpo -c jfdctint.c -o libturbojpeg_la-jfdctint.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT libturbojpeg_la-jidctflt.lo -MD -MP -MF ".deps/libturbojpeg_la-jidctflt.Tpo" -c -o libturbojpeg_la-jidctflt.lo `test -f 'jidctflt.c' || echo './'`jidctflt.c; \
+	then mv -f ".deps/libturbojpeg_la-jidctflt.Tpo" ".deps/libturbojpeg_la-jidctflt.Plo"; else rm -f ".deps/libturbojpeg_la-jidctflt.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jidctflt.lo -MD -MP -MF .deps/libturbojpeg_la-jidctflt.Tpo -c jidctflt.c  -fPIC -DPIC -o .libs/libturbojpeg_la-jidctflt.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jidctflt.lo -MD -MP -MF .deps/libturbojpeg_la-jidctflt.Tpo -c jidctflt.c -o libturbojpeg_la-jidctflt.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT libturbojpeg_la-jidctfst.lo -MD -MP -MF ".deps/libturbojpeg_la-jidctfst.Tpo" -c -o libturbojpeg_la-jidctfst.lo `test -f 'jidctfst.c' || echo './'`jidctfst.c; \
+	then mv -f ".deps/libturbojpeg_la-jidctfst.Tpo" ".deps/libturbojpeg_la-jidctfst.Plo"; else rm -f ".deps/libturbojpeg_la-jidctfst.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jidctfst.lo -MD -MP -MF .deps/libturbojpeg_la-jidctfst.Tpo -c jidctfst.c  -fPIC -DPIC -o .libs/libturbojpeg_la-jidctfst.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jidctfst.lo -MD -MP -MF .deps/libturbojpeg_la-jidctfst.Tpo -c jidctfst.c -o libturbojpeg_la-jidctfst.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT libturbojpeg_la-jidctint.lo -MD -MP -MF ".deps/libturbojpeg_la-jidctint.Tpo" -c -o libturbojpeg_la-jidctint.lo `test -f 'jidctint.c' || echo './'`jidctint.c; \
+	then mv -f ".deps/libturbojpeg_la-jidctint.Tpo" ".deps/libturbojpeg_la-jidctint.Plo"; else rm -f ".deps/libturbojpeg_la-jidctint.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jidctint.lo -MD -MP -MF .deps/libturbojpeg_la-jidctint.Tpo -c jidctint.c  -fPIC -DPIC -o .libs/libturbojpeg_la-jidctint.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jidctint.lo -MD -MP -MF .deps/libturbojpeg_la-jidctint.Tpo -c jidctint.c -o libturbojpeg_la-jidctint.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT libturbojpeg_la-jidctred.lo -MD -MP -MF ".deps/libturbojpeg_la-jidctred.Tpo" -c -o libturbojpeg_la-jidctred.lo `test -f 'jidctred.c' || echo './'`jidctred.c; \
+	then mv -f ".deps/libturbojpeg_la-jidctred.Tpo" ".deps/libturbojpeg_la-jidctred.Plo"; else rm -f ".deps/libturbojpeg_la-jidctred.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jidctred.lo -MD -MP -MF .deps/libturbojpeg_la-jidctred.Tpo -c jidctred.c  -fPIC -DPIC -o .libs/libturbojpeg_la-jidctred.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jidctred.lo -MD -MP -MF .deps/libturbojpeg_la-jidctred.Tpo -c jidctred.c -o libturbojpeg_la-jidctred.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT libturbojpeg_la-jquant1.lo -MD -MP -MF ".deps/libturbojpeg_la-jquant1.Tpo" -c -o libturbojpeg_la-jquant1.lo `test -f 'jquant1.c' || echo './'`jquant1.c; \
+	then mv -f ".deps/libturbojpeg_la-jquant1.Tpo" ".deps/libturbojpeg_la-jquant1.Plo"; else rm -f ".deps/libturbojpeg_la-jquant1.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jquant1.lo -MD -MP -MF .deps/libturbojpeg_la-jquant1.Tpo -c jquant1.c  -fPIC -DPIC -o .libs/libturbojpeg_la-jquant1.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jquant1.lo -MD -MP -MF .deps/libturbojpeg_la-jquant1.Tpo -c jquant1.c -o libturbojpeg_la-jquant1.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT libturbojpeg_la-jquant2.lo -MD -MP -MF ".deps/libturbojpeg_la-jquant2.Tpo" -c -o libturbojpeg_la-jquant2.lo `test -f 'jquant2.c' || echo './'`jquant2.c; \
+	then mv -f ".deps/libturbojpeg_la-jquant2.Tpo" ".deps/libturbojpeg_la-jquant2.Plo"; else rm -f ".deps/libturbojpeg_la-jquant2.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jquant2.lo -MD -MP -MF .deps/libturbojpeg_la-jquant2.Tpo -c jquant2.c  -fPIC -DPIC -o .libs/libturbojpeg_la-jquant2.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jquant2.lo -MD -MP -MF .deps/libturbojpeg_la-jquant2.Tpo -c jquant2.c -o libturbojpeg_la-jquant2.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT libturbojpeg_la-jutils.lo -MD -MP -MF ".deps/libturbojpeg_la-jutils.Tpo" -c -o libturbojpeg_la-jutils.lo `test -f 'jutils.c' || echo './'`jutils.c; \
+	then mv -f ".deps/libturbojpeg_la-jutils.Tpo" ".deps/libturbojpeg_la-jutils.Plo"; else rm -f ".deps/libturbojpeg_la-jutils.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jutils.lo -MD -MP -MF .deps/libturbojpeg_la-jutils.Tpo -c jutils.c  -fPIC -DPIC -o .libs/libturbojpeg_la-jutils.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jutils.lo -MD -MP -MF .deps/libturbojpeg_la-jutils.Tpo -c jutils.c -o libturbojpeg_la-jutils.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT libturbojpeg_la-jmemmgr.lo -MD -MP -MF ".deps/libturbojpeg_la-jmemmgr.Tpo" -c -o libturbojpeg_la-jmemmgr.lo `test -f 'jmemmgr.c' || echo './'`jmemmgr.c; \
+	then mv -f ".deps/libturbojpeg_la-jmemmgr.Tpo" ".deps/libturbojpeg_la-jmemmgr.Plo"; else rm -f ".deps/libturbojpeg_la-jmemmgr.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jmemmgr.lo -MD -MP -MF .deps/libturbojpeg_la-jmemmgr.Tpo -c jmemmgr.c  -fPIC -DPIC -o .libs/libturbojpeg_la-jmemmgr.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jmemmgr.lo -MD -MP -MF .deps/libturbojpeg_la-jmemmgr.Tpo -c jmemmgr.c -o libturbojpeg_la-jmemmgr.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT libturbojpeg_la-jmemnobs.lo -MD -MP -MF ".deps/libturbojpeg_la-jmemnobs.Tpo" -c -o libturbojpeg_la-jmemnobs.lo `test -f 'jmemnobs.c' || echo './'`jmemnobs.c; \
+	then mv -f ".deps/libturbojpeg_la-jmemnobs.Tpo" ".deps/libturbojpeg_la-jmemnobs.Plo"; else rm -f ".deps/libturbojpeg_la-jmemnobs.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jmemnobs.lo -MD -MP -MF .deps/libturbojpeg_la-jmemnobs.Tpo -c jmemnobs.c  -fPIC -DPIC -o .libs/libturbojpeg_la-jmemnobs.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jmemnobs.lo -MD -MP -MF .deps/libturbojpeg_la-jmemnobs.Tpo -c jmemnobs.c -o libturbojpeg_la-jmemnobs.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT libturbojpeg_la-jaricom.lo -MD -MP -MF ".deps/libturbojpeg_la-jaricom.Tpo" -c -o libturbojpeg_la-jaricom.lo `test -f 'jaricom.c' || echo './'`jaricom.c; \
+	then mv -f ".deps/libturbojpeg_la-jaricom.Tpo" ".deps/libturbojpeg_la-jaricom.Plo"; else rm -f ".deps/libturbojpeg_la-jaricom.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jaricom.lo -MD -MP -MF .deps/libturbojpeg_la-jaricom.Tpo -c jaricom.c  -fPIC -DPIC -o .libs/libturbojpeg_la-jaricom.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jaricom.lo -MD -MP -MF .deps/libturbojpeg_la-jaricom.Tpo -c jaricom.c -o libturbojpeg_la-jaricom.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT libturbojpeg_la-jcarith.lo -MD -MP -MF ".deps/libturbojpeg_la-jcarith.Tpo" -c -o libturbojpeg_la-jcarith.lo `test -f 'jcarith.c' || echo './'`jcarith.c; \
+	then mv -f ".deps/libturbojpeg_la-jcarith.Tpo" ".deps/libturbojpeg_la-jcarith.Plo"; else rm -f ".deps/libturbojpeg_la-jcarith.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jcarith.lo -MD -MP -MF .deps/libturbojpeg_la-jcarith.Tpo -c jcarith.c  -fPIC -DPIC -o .libs/libturbojpeg_la-jcarith.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jcarith.lo -MD -MP -MF .deps/libturbojpeg_la-jcarith.Tpo -c jcarith.c -o libturbojpeg_la-jcarith.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT libturbojpeg_la-jdarith.lo -MD -MP -MF ".deps/libturbojpeg_la-jdarith.Tpo" -c -o libturbojpeg_la-jdarith.lo `test -f 'jdarith.c' || echo './'`jdarith.c; \
+	then mv -f ".deps/libturbojpeg_la-jdarith.Tpo" ".deps/libturbojpeg_la-jdarith.Plo"; else rm -f ".deps/libturbojpeg_la-jdarith.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jdarith.lo -MD -MP -MF .deps/libturbojpeg_la-jdarith.Tpo -c jdarith.c  -fPIC -DPIC -o .libs/libturbojpeg_la-jdarith.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jdarith.lo -MD -MP -MF .deps/libturbojpeg_la-jdarith.Tpo -c jdarith.c -o libturbojpeg_la-jdarith.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT libturbojpeg_la-turbojpeg.lo -MD -MP -MF ".deps/libturbojpeg_la-turbojpeg.Tpo" -c -o libturbojpeg_la-turbojpeg.lo `test -f 'turbojpeg.c' || echo './'`turbojpeg.c; \
+	then mv -f ".deps/libturbojpeg_la-turbojpeg.Tpo" ".deps/libturbojpeg_la-turbojpeg.Plo"; else rm -f ".deps/libturbojpeg_la-turbojpeg.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-turbojpeg.lo -MD -MP -MF .deps/libturbojpeg_la-turbojpeg.Tpo -c turbojpeg.c  -fPIC -DPIC -o .libs/libturbojpeg_la-turbojpeg.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-turbojpeg.lo -MD -MP -MF .deps/libturbojpeg_la-turbojpeg.Tpo -c turbojpeg.c -o libturbojpeg_la-turbojpeg.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT libturbojpeg_la-transupp.lo -MD -MP -MF ".deps/libturbojpeg_la-transupp.Tpo" -c -o libturbojpeg_la-transupp.lo `test -f 'transupp.c' || echo './'`transupp.c; \
+	then mv -f ".deps/libturbojpeg_la-transupp.Tpo" ".deps/libturbojpeg_la-transupp.Plo"; else rm -f ".deps/libturbojpeg_la-transupp.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-transupp.lo -MD -MP -MF .deps/libturbojpeg_la-transupp.Tpo -c transupp.c  -fPIC -DPIC -o .libs/libturbojpeg_la-transupp.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-transupp.lo -MD -MP -MF .deps/libturbojpeg_la-transupp.Tpo -c transupp.c -o libturbojpeg_la-transupp.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT libturbojpeg_la-jdatadst-tj.lo -MD -MP -MF ".deps/libturbojpeg_la-jdatadst-tj.Tpo" -c -o libturbojpeg_la-jdatadst-tj.lo `test -f 'jdatadst-tj.c' || echo './'`jdatadst-tj.c; \
+	then mv -f ".deps/libturbojpeg_la-jdatadst-tj.Tpo" ".deps/libturbojpeg_la-jdatadst-tj.Plo"; else rm -f ".deps/libturbojpeg_la-jdatadst-tj.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jdatadst-tj.lo -MD -MP -MF .deps/libturbojpeg_la-jdatadst-tj.Tpo -c jdatadst-tj.c  -fPIC -DPIC -o .libs/libturbojpeg_la-jdatadst-tj.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jdatadst-tj.lo -MD -MP -MF .deps/libturbojpeg_la-jdatadst-tj.Tpo -c jdatadst-tj.c -o libturbojpeg_la-jdatadst-tj.o >/dev/null 2>&1
+if /bin/sh ./libtool --mode=compile --tag=CC gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT libturbojpeg_la-jdatasrc-tj.lo -MD -MP -MF ".deps/libturbojpeg_la-jdatasrc-tj.Tpo" -c -o libturbojpeg_la-jdatasrc-tj.lo `test -f 'jdatasrc-tj.c' || echo './'`jdatasrc-tj.c; \
+	then mv -f ".deps/libturbojpeg_la-jdatasrc-tj.Tpo" ".deps/libturbojpeg_la-jdatasrc-tj.Plo"; else rm -f ".deps/libturbojpeg_la-jdatasrc-tj.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jdatasrc-tj.lo -MD -MP -MF .deps/libturbojpeg_la-jdatasrc-tj.Tpo -c jdatasrc-tj.c  -fPIC -DPIC -o .libs/libturbojpeg_la-jdatasrc-tj.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I. -Wall -O3 -MT libturbojpeg_la-jdatasrc-tj.lo -MD -MP -MF .deps/libturbojpeg_la-jdatasrc-tj.Tpo -c jdatasrc-tj.c -o libturbojpeg_la-jdatasrc-tj.o >/dev/null 2>&1
+/bin/sh ./libtool --mode=link --tag=CC gcc  -O3   -o libturbojpeg.la -rpath /opt/libjpeg-turbo/lib64 -version-info 1:0:1 -no-undefined -Wl,--version-script,./turbojpeg-mapfile  libturbojpeg_la-jcapimin.lo libturbojpeg_la-jcapistd.lo libturbojpeg_la-jccoefct.lo libturbojpeg_la-jccolor.lo libturbojpeg_la-jcdctmgr.lo libturbojpeg_la-jchuff.lo libturbojpeg_la-jcinit.lo libturbojpeg_la-jcmainct.lo libturbojpeg_la-jcmarker.lo libturbojpeg_la-jcmaster.lo libturbojpeg_la-jcomapi.lo libturbojpeg_la-jcparam.lo libturbojpeg_la-jcphuff.lo libturbojpeg_la-jcprepct.lo libturbojpeg_la-jcsample.lo libturbojpeg_la-jctrans.lo libturbojpeg_la-jdapimin.lo libturbojpeg_la-jdapistd.lo libturbojpeg_la-jdatadst.lo libturbojpeg_la-jdatasrc.lo libturbojpeg_la-jdcoefct.lo libturbojpeg_la-jdcolor.lo libturbojpeg_la-jddctmgr.lo libturbojpeg_la-jdhuff.lo libturbojpeg_la-jdinput.lo libturbojpeg_la-jdmainct.lo libturbojpeg_la-jdmarker.lo libturbojpeg_la-jdmaster.lo libturbojpeg_la-jdmerge.lo libturbojpeg_la-jdphuff.lo libturbojpeg_la-jdpostct.lo libturbojpeg_la-jdsample.lo libturbojpeg_la-jdtrans.lo libturbojpeg_la-jerror.lo libturbojpeg_la-jfdctflt.lo libturbojpeg_la-jfdctfst.lo libturbojpeg_la-jfdctint.lo libturbojpeg_la-jidctflt.lo libturbojpeg_la-jidctfst.lo libturbojpeg_la-jidctint.lo libturbojpeg_la-jidctred.lo libturbojpeg_la-jquant1.lo libturbojpeg_la-jquant2.lo libturbojpeg_la-jutils.lo libturbojpeg_la-jmemmgr.lo libturbojpeg_la-jmemnobs.lo libturbojpeg_la-jaricom.lo libturbojpeg_la-jcarith.lo libturbojpeg_la-jdarith.lo  libturbojpeg_la-turbojpeg.lo libturbojpeg_la-transupp.lo libturbojpeg_la-jdatadst-tj.lo libturbojpeg_la-jdatasrc-tj.lo   simd/libsimd.la 
+gcc -shared  .libs/libturbojpeg_la-jcapimin.o .libs/libturbojpeg_la-jcapistd.o .libs/libturbojpeg_la-jccoefct.o .libs/libturbojpeg_la-jccolor.o .libs/libturbojpeg_la-jcdctmgr.o .libs/libturbojpeg_la-jchuff.o .libs/libturbojpeg_la-jcinit.o .libs/libturbojpeg_la-jcmainct.o .libs/libturbojpeg_la-jcmarker.o .libs/libturbojpeg_la-jcmaster.o .libs/libturbojpeg_la-jcomapi.o .libs/libturbojpeg_la-jcparam.o .libs/libturbojpeg_la-jcphuff.o .libs/libturbojpeg_la-jcprepct.o .libs/libturbojpeg_la-jcsample.o .libs/libturbojpeg_la-jctrans.o .libs/libturbojpeg_la-jdapimin.o .libs/libturbojpeg_la-jdapistd.o .libs/libturbojpeg_la-jdatadst.o .libs/libturbojpeg_la-jdatasrc.o .libs/libturbojpeg_la-jdcoefct.o .libs/libturbojpeg_la-jdcolor.o .libs/libturbojpeg_la-jddctmgr.o .libs/libturbojpeg_la-jdhuff.o .libs/libturbojpeg_la-jdinput.o .libs/libturbojpeg_la-jdmainct.o .libs/libturbojpeg_la-jdmarker.o .libs/libturbojpeg_la-jdmaster.o .libs/libturbojpeg_la-jdmerge.o .libs/libturbojpeg_la-jdphuff.o .libs/libturbojpeg_la-jdpostct.o .libs/libturbojpeg_la-jdsample.o .libs/libturbojpeg_la-jdtrans.o .libs/libturbojpeg_la-jerror.o .libs/libturbojpeg_la-jfdctflt.o .libs/libturbojpeg_la-jfdctfst.o .libs/libturbojpeg_la-jfdctint.o .libs/libturbojpeg_la-jidctflt.o .libs/libturbojpeg_la-jidctfst.o .libs/libturbojpeg_la-jidctint.o .libs/libturbojpeg_la-jidctred.o .libs/libturbojpeg_la-jquant1.o .libs/libturbojpeg_la-jquant2.o .libs/libturbojpeg_la-jutils.o .libs/libturbojpeg_la-jmemmgr.o .libs/libturbojpeg_la-jmemnobs.o .libs/libturbojpeg_la-jaricom.o .libs/libturbojpeg_la-jcarith.o .libs/libturbojpeg_la-jdarith.o .libs/libturbojpeg_la-turbojpeg.o .libs/libturbojpeg_la-transupp.o .libs/libturbojpeg_la-jdatadst-tj.o .libs/libturbojpeg_la-jdatasrc-tj.o -Wl,--whole-archive simd/.libs/libsimd.a -Wl,--no-whole-archive   -Wl,--version-script -Wl,./turbojpeg-mapfile -Wl,-soname -Wl,libturbojpeg.so.0 -o .libs/libturbojpeg.so.0.1.0
+(cd .libs && rm -f libturbojpeg.so.0 && ln -s libturbojpeg.so.0.1.0 libturbojpeg.so.0)
+(cd .libs && rm -f libturbojpeg.so && ln -s libturbojpeg.so.0.1.0 libturbojpeg.so)
+rm -fr .libs/libturbojpeg.lax
+mkdir .libs/libturbojpeg.lax
+rm -fr .libs/libturbojpeg.lax/libsimd.a
+mkdir .libs/libturbojpeg.lax/libsimd.a
+(cd .libs/libturbojpeg.lax/libsimd.a && ar x /home/xing/research/image_compression/libjpeg-turbo-memory-opt/simd/.libs/libsimd.a)
+ar cru .libs/libturbojpeg.a  libturbojpeg_la-jcapimin.o libturbojpeg_la-jcapistd.o libturbojpeg_la-jccoefct.o libturbojpeg_la-jccolor.o libturbojpeg_la-jcdctmgr.o libturbojpeg_la-jchuff.o libturbojpeg_la-jcinit.o libturbojpeg_la-jcmainct.o libturbojpeg_la-jcmarker.o libturbojpeg_la-jcmaster.o libturbojpeg_la-jcomapi.o libturbojpeg_la-jcparam.o libturbojpeg_la-jcphuff.o libturbojpeg_la-jcprepct.o libturbojpeg_la-jcsample.o libturbojpeg_la-jctrans.o libturbojpeg_la-jdapimin.o libturbojpeg_la-jdapistd.o libturbojpeg_la-jdatadst.o libturbojpeg_la-jdatasrc.o libturbojpeg_la-jdcoefct.o libturbojpeg_la-jdcolor.o libturbojpeg_la-jddctmgr.o libturbojpeg_la-jdhuff.o libturbojpeg_la-jdinput.o libturbojpeg_la-jdmainct.o libturbojpeg_la-jdmarker.o libturbojpeg_la-jdmaster.o libturbojpeg_la-jdmerge.o libturbojpeg_la-jdphuff.o libturbojpeg_la-jdpostct.o libturbojpeg_la-jdsample.o libturbojpeg_la-jdtrans.o libturbojpeg_la-jerror.o libturbojpeg_la-jfdctflt.o libturbojpeg_la-jfdctfst.o libturbojpeg_la-jfdctint.o libturbojpeg_la-jidctflt.o libturbojpeg_la-jidctfst.o libturbojpeg_la-jidctint.o libturbojpeg_la-jidctred.o libturbojpeg_la-jquant1.o libturbojpeg_la-jquant2.o libturbojpeg_la-jutils.o libturbojpeg_la-jmemmgr.o libturbojpeg_la-jmemnobs.o libturbojpeg_la-jaricom.o libturbojpeg_la-jcarith.o libturbojpeg_la-jdarith.o libturbojpeg_la-turbojpeg.o libturbojpeg_la-transupp.o libturbojpeg_la-jdatadst-tj.o libturbojpeg_la-jdatasrc-tj.o .libs/libturbojpeg.lax/libsimd.a/jidctflt-sse2-64.o .libs/libturbojpeg.lax/libsimd.a/jfdctfst-sse2-64.o .libs/libturbojpeg.lax/libsimd.a/jdsample-sse2-64.o .libs/libturbojpeg.lax/libsimd.a/jidctint-sse2-64.o .libs/libturbojpeg.lax/libsimd.a/jdmerge-sse2-64.o .libs/libturbojpeg.lax/libsimd.a/jidctred-sse2-64.o .libs/libturbojpeg.lax/libsimd.a/jfdctint-sse2-64.o .libs/libturbojpeg.lax/libsimd.a/jquanti-sse2-64.o .libs/libturbojpeg.lax/libsimd.a/jsimd_x86_64.o .libs/libturbojpeg.lax/libsimd.a/jidctfst-sse2-64.o .libs/libturbojpeg.lax/libsimd.a/jcgray-sse2-64.o .libs/libturbojpeg.lax/libsimd.a/jccolor-sse2-64.o .libs/libturbojpeg.lax/libsimd.a/jcsample-sse2-64.o .libs/libturbojpeg.lax/libsimd.a/jdcolor-sse2-64.o .libs/libturbojpeg.lax/libsimd.a/jfdctflt-sse-64.o .libs/libturbojpeg.lax/libsimd.a/jquantf-sse2-64.o 
+ranlib .libs/libturbojpeg.a
+rm -fr .libs/libturbojpeg.lax
+creating libturbojpeg.la
+(cd .libs && rm -f libturbojpeg.la && ln -s ../libturbojpeg.la libturbojpeg.la)
+if gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall -DGIF_SUPPORTED -DPPM_SUPPORTED -DBMP_SUPPORTED -DTARGA_SUPPORTED -O3 -MT cjpeg-cdjpeg.o -MD -MP -MF ".deps/cjpeg-cdjpeg.Tpo" -c -o cjpeg-cdjpeg.o `test -f 'cdjpeg.c' || echo './'`cdjpeg.c; \
+	then mv -f ".deps/cjpeg-cdjpeg.Tpo" ".deps/cjpeg-cdjpeg.Po"; else rm -f ".deps/cjpeg-cdjpeg.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall -DGIF_SUPPORTED -DPPM_SUPPORTED -DBMP_SUPPORTED -DTARGA_SUPPORTED -O3 -MT cjpeg-cjpeg.o -MD -MP -MF ".deps/cjpeg-cjpeg.Tpo" -c -o cjpeg-cjpeg.o `test -f 'cjpeg.c' || echo './'`cjpeg.c; \
+	then mv -f ".deps/cjpeg-cjpeg.Tpo" ".deps/cjpeg-cjpeg.Po"; else rm -f ".deps/cjpeg-cjpeg.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall -DGIF_SUPPORTED -DPPM_SUPPORTED -DBMP_SUPPORTED -DTARGA_SUPPORTED -O3 -MT cjpeg-rdgif.o -MD -MP -MF ".deps/cjpeg-rdgif.Tpo" -c -o cjpeg-rdgif.o `test -f 'rdgif.c' || echo './'`rdgif.c; \
+	then mv -f ".deps/cjpeg-rdgif.Tpo" ".deps/cjpeg-rdgif.Po"; else rm -f ".deps/cjpeg-rdgif.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall -DGIF_SUPPORTED -DPPM_SUPPORTED -DBMP_SUPPORTED -DTARGA_SUPPORTED -O3 -MT cjpeg-rdppm.o -MD -MP -MF ".deps/cjpeg-rdppm.Tpo" -c -o cjpeg-rdppm.o `test -f 'rdppm.c' || echo './'`rdppm.c; \
+	then mv -f ".deps/cjpeg-rdppm.Tpo" ".deps/cjpeg-rdppm.Po"; else rm -f ".deps/cjpeg-rdppm.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall -DGIF_SUPPORTED -DPPM_SUPPORTED -DBMP_SUPPORTED -DTARGA_SUPPORTED -O3 -MT cjpeg-rdswitch.o -MD -MP -MF ".deps/cjpeg-rdswitch.Tpo" -c -o cjpeg-rdswitch.o `test -f 'rdswitch.c' || echo './'`rdswitch.c; \
+	then mv -f ".deps/cjpeg-rdswitch.Tpo" ".deps/cjpeg-rdswitch.Po"; else rm -f ".deps/cjpeg-rdswitch.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall -DGIF_SUPPORTED -DPPM_SUPPORTED -DBMP_SUPPORTED -DTARGA_SUPPORTED -O3 -MT cjpeg-rdbmp.o -MD -MP -MF ".deps/cjpeg-rdbmp.Tpo" -c -o cjpeg-rdbmp.o `test -f 'rdbmp.c' || echo './'`rdbmp.c; \
+	then mv -f ".deps/cjpeg-rdbmp.Tpo" ".deps/cjpeg-rdbmp.Po"; else rm -f ".deps/cjpeg-rdbmp.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall -DGIF_SUPPORTED -DPPM_SUPPORTED -DBMP_SUPPORTED -DTARGA_SUPPORTED -O3 -MT cjpeg-rdtarga.o -MD -MP -MF ".deps/cjpeg-rdtarga.Tpo" -c -o cjpeg-rdtarga.o `test -f 'rdtarga.c' || echo './'`rdtarga.c; \
+	then mv -f ".deps/cjpeg-rdtarga.Tpo" ".deps/cjpeg-rdtarga.Po"; else rm -f ".deps/cjpeg-rdtarga.Tpo"; exit 1; fi
+/bin/sh ./libtool --mode=link --tag=CC gcc  -O3   -o cjpeg  cjpeg-cdjpeg.o cjpeg-cjpeg.o cjpeg-rdgif.o cjpeg-rdppm.o cjpeg-rdswitch.o cjpeg-rdbmp.o cjpeg-rdtarga.o libjpeg.la 
+gcc -O3 -o .libs/cjpeg cjpeg-cdjpeg.o cjpeg-cjpeg.o cjpeg-rdgif.o cjpeg-rdppm.o cjpeg-rdswitch.o cjpeg-rdbmp.o cjpeg-rdtarga.o  ./.libs/libjpeg.so -Wl,--rpath -Wl,/opt/libjpeg-turbo/lib64
+creating cjpeg
+if gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall -DGIF_SUPPORTED -DPPM_SUPPORTED -DBMP_SUPPORTED -DTARGA_SUPPORTED -O3 -MT djpeg-cdjpeg.o -MD -MP -MF ".deps/djpeg-cdjpeg.Tpo" -c -o djpeg-cdjpeg.o `test -f 'cdjpeg.c' || echo './'`cdjpeg.c; \
+	then mv -f ".deps/djpeg-cdjpeg.Tpo" ".deps/djpeg-cdjpeg.Po"; else rm -f ".deps/djpeg-cdjpeg.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall -DGIF_SUPPORTED -DPPM_SUPPORTED -DBMP_SUPPORTED -DTARGA_SUPPORTED -O3 -MT djpeg-djpeg.o -MD -MP -MF ".deps/djpeg-djpeg.Tpo" -c -o djpeg-djpeg.o `test -f 'djpeg.c' || echo './'`djpeg.c; \
+	then mv -f ".deps/djpeg-djpeg.Tpo" ".deps/djpeg-djpeg.Po"; else rm -f ".deps/djpeg-djpeg.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall -DGIF_SUPPORTED -DPPM_SUPPORTED -DBMP_SUPPORTED -DTARGA_SUPPORTED -O3 -MT djpeg-rdcolmap.o -MD -MP -MF ".deps/djpeg-rdcolmap.Tpo" -c -o djpeg-rdcolmap.o `test -f 'rdcolmap.c' || echo './'`rdcolmap.c; \
+	then mv -f ".deps/djpeg-rdcolmap.Tpo" ".deps/djpeg-rdcolmap.Po"; else rm -f ".deps/djpeg-rdcolmap.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall -DGIF_SUPPORTED -DPPM_SUPPORTED -DBMP_SUPPORTED -DTARGA_SUPPORTED -O3 -MT djpeg-rdswitch.o -MD -MP -MF ".deps/djpeg-rdswitch.Tpo" -c -o djpeg-rdswitch.o `test -f 'rdswitch.c' || echo './'`rdswitch.c; \
+	then mv -f ".deps/djpeg-rdswitch.Tpo" ".deps/djpeg-rdswitch.Po"; else rm -f ".deps/djpeg-rdswitch.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall -DGIF_SUPPORTED -DPPM_SUPPORTED -DBMP_SUPPORTED -DTARGA_SUPPORTED -O3 -MT djpeg-wrgif.o -MD -MP -MF ".deps/djpeg-wrgif.Tpo" -c -o djpeg-wrgif.o `test -f 'wrgif.c' || echo './'`wrgif.c; \
+	then mv -f ".deps/djpeg-wrgif.Tpo" ".deps/djpeg-wrgif.Po"; else rm -f ".deps/djpeg-wrgif.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall -DGIF_SUPPORTED -DPPM_SUPPORTED -DBMP_SUPPORTED -DTARGA_SUPPORTED -O3 -MT djpeg-wrppm.o -MD -MP -MF ".deps/djpeg-wrppm.Tpo" -c -o djpeg-wrppm.o `test -f 'wrppm.c' || echo './'`wrppm.c; \
+	then mv -f ".deps/djpeg-wrppm.Tpo" ".deps/djpeg-wrppm.Po"; else rm -f ".deps/djpeg-wrppm.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall -DGIF_SUPPORTED -DPPM_SUPPORTED -DBMP_SUPPORTED -DTARGA_SUPPORTED -O3 -MT djpeg-wrbmp.o -MD -MP -MF ".deps/djpeg-wrbmp.Tpo" -c -o djpeg-wrbmp.o `test -f 'wrbmp.c' || echo './'`wrbmp.c; \
+	then mv -f ".deps/djpeg-wrbmp.Tpo" ".deps/djpeg-wrbmp.Po"; else rm -f ".deps/djpeg-wrbmp.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall -DGIF_SUPPORTED -DPPM_SUPPORTED -DBMP_SUPPORTED -DTARGA_SUPPORTED -O3 -MT djpeg-wrtarga.o -MD -MP -MF ".deps/djpeg-wrtarga.Tpo" -c -o djpeg-wrtarga.o `test -f 'wrtarga.c' || echo './'`wrtarga.c; \
+	then mv -f ".deps/djpeg-wrtarga.Tpo" ".deps/djpeg-wrtarga.Po"; else rm -f ".deps/djpeg-wrtarga.Tpo"; exit 1; fi
+/bin/sh ./libtool --mode=link --tag=CC gcc  -O3   -o djpeg  djpeg-cdjpeg.o djpeg-djpeg.o djpeg-rdcolmap.o djpeg-rdswitch.o djpeg-wrgif.o djpeg-wrppm.o djpeg-wrbmp.o djpeg-wrtarga.o libjpeg.la 
+gcc -O3 -o .libs/djpeg djpeg-cdjpeg.o djpeg-djpeg.o djpeg-rdcolmap.o djpeg-rdswitch.o djpeg-wrgif.o djpeg-wrppm.o djpeg-wrbmp.o djpeg-wrtarga.o  ./.libs/libjpeg.so -Wl,--rpath -Wl,/opt/libjpeg-turbo/lib64
+creating djpeg
+if gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT jpegtran.o -MD -MP -MF ".deps/jpegtran.Tpo" -c -o jpegtran.o jpegtran.c; \
+	then mv -f ".deps/jpegtran.Tpo" ".deps/jpegtran.Po"; else rm -f ".deps/jpegtran.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT rdswitch.o -MD -MP -MF ".deps/rdswitch.Tpo" -c -o rdswitch.o rdswitch.c; \
+	then mv -f ".deps/rdswitch.Tpo" ".deps/rdswitch.Po"; else rm -f ".deps/rdswitch.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT cdjpeg.o -MD -MP -MF ".deps/cdjpeg.Tpo" -c -o cdjpeg.o cdjpeg.c; \
+	then mv -f ".deps/cdjpeg.Tpo" ".deps/cdjpeg.Po"; else rm -f ".deps/cdjpeg.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT transupp.o -MD -MP -MF ".deps/transupp.Tpo" -c -o transupp.o transupp.c; \
+	then mv -f ".deps/transupp.Tpo" ".deps/transupp.Po"; else rm -f ".deps/transupp.Tpo"; exit 1; fi
+/bin/sh ./libtool --mode=link --tag=CC gcc  -O3   -o jpegtran  jpegtran.o rdswitch.o cdjpeg.o transupp.o libjpeg.la 
+gcc -O3 -o .libs/jpegtran jpegtran.o rdswitch.o cdjpeg.o transupp.o  ./.libs/libjpeg.so -Wl,--rpath -Wl,/opt/libjpeg-turbo/lib64
+creating jpegtran
+if gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT rdjpgcom.o -MD -MP -MF ".deps/rdjpgcom.Tpo" -c -o rdjpgcom.o rdjpgcom.c; \
+	then mv -f ".deps/rdjpgcom.Tpo" ".deps/rdjpgcom.Po"; else rm -f ".deps/rdjpgcom.Tpo"; exit 1; fi
+/bin/sh ./libtool --mode=link --tag=CC gcc  -O3   -o rdjpgcom  rdjpgcom.o libjpeg.la 
+gcc -O3 -o .libs/rdjpgcom rdjpgcom.o  ./.libs/libjpeg.so -Wl,--rpath -Wl,/opt/libjpeg-turbo/lib64
+creating rdjpgcom
+if gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT wrjpgcom.o -MD -MP -MF ".deps/wrjpgcom.Tpo" -c -o wrjpgcom.o wrjpgcom.c; \
+	then mv -f ".deps/wrjpgcom.Tpo" ".deps/wrjpgcom.Po"; else rm -f ".deps/wrjpgcom.Tpo"; exit 1; fi
+/bin/sh ./libtool --mode=link --tag=CC gcc  -O3   -o wrjpgcom  wrjpgcom.o libjpeg.la 
+gcc -O3 -o .libs/wrjpgcom wrjpgcom.o  ./.libs/libjpeg.so -Wl,--rpath -Wl,/opt/libjpeg-turbo/lib64
+creating wrjpgcom
+if gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall -DBMP_SUPPORTED -DPPM_SUPPORTED -O3 -MT tjbench-tjbench.o -MD -MP -MF ".deps/tjbench-tjbench.Tpo" -c -o tjbench-tjbench.o `test -f 'tjbench.c' || echo './'`tjbench.c; \
+	then mv -f ".deps/tjbench-tjbench.Tpo" ".deps/tjbench-tjbench.Po"; else rm -f ".deps/tjbench-tjbench.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall -DBMP_SUPPORTED -DPPM_SUPPORTED -O3 -MT tjbench-bmp.o -MD -MP -MF ".deps/tjbench-bmp.Tpo" -c -o tjbench-bmp.o `test -f 'bmp.c' || echo './'`bmp.c; \
+	then mv -f ".deps/tjbench-bmp.Tpo" ".deps/tjbench-bmp.Po"; else rm -f ".deps/tjbench-bmp.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall -DBMP_SUPPORTED -DPPM_SUPPORTED -O3 -MT tjbench-tjutil.o -MD -MP -MF ".deps/tjbench-tjutil.Tpo" -c -o tjbench-tjutil.o `test -f 'tjutil.c' || echo './'`tjutil.c; \
+	then mv -f ".deps/tjbench-tjutil.Tpo" ".deps/tjbench-tjutil.Po"; else rm -f ".deps/tjbench-tjutil.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall -DBMP_SUPPORTED -DPPM_SUPPORTED -O3 -MT tjbench-rdbmp.o -MD -MP -MF ".deps/tjbench-rdbmp.Tpo" -c -o tjbench-rdbmp.o `test -f 'rdbmp.c' || echo './'`rdbmp.c; \
+	then mv -f ".deps/tjbench-rdbmp.Tpo" ".deps/tjbench-rdbmp.Po"; else rm -f ".deps/tjbench-rdbmp.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall -DBMP_SUPPORTED -DPPM_SUPPORTED -O3 -MT tjbench-rdppm.o -MD -MP -MF ".deps/tjbench-rdppm.Tpo" -c -o tjbench-rdppm.o `test -f 'rdppm.c' || echo './'`rdppm.c; \
+	then mv -f ".deps/tjbench-rdppm.Tpo" ".deps/tjbench-rdppm.Po"; else rm -f ".deps/tjbench-rdppm.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall -DBMP_SUPPORTED -DPPM_SUPPORTED -O3 -MT tjbench-wrbmp.o -MD -MP -MF ".deps/tjbench-wrbmp.Tpo" -c -o tjbench-wrbmp.o `test -f 'wrbmp.c' || echo './'`wrbmp.c; \
+	then mv -f ".deps/tjbench-wrbmp.Tpo" ".deps/tjbench-wrbmp.Po"; else rm -f ".deps/tjbench-wrbmp.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall -DBMP_SUPPORTED -DPPM_SUPPORTED -O3 -MT tjbench-wrppm.o -MD -MP -MF ".deps/tjbench-wrppm.Tpo" -c -o tjbench-wrppm.o `test -f 'wrppm.c' || echo './'`wrppm.c; \
+	then mv -f ".deps/tjbench-wrppm.Tpo" ".deps/tjbench-wrppm.Po"; else rm -f ".deps/tjbench-wrppm.Tpo"; exit 1; fi
+/bin/sh ./libtool --mode=link --tag=CC gcc  -O3   -o tjbench  tjbench-tjbench.o tjbench-bmp.o tjbench-tjutil.o tjbench-rdbmp.o tjbench-rdppm.o tjbench-wrbmp.o tjbench-wrppm.o libturbojpeg.la libjpeg.la -lm 
+gcc -O3 -o .libs/tjbench tjbench-tjbench.o tjbench-bmp.o tjbench-tjutil.o tjbench-rdbmp.o tjbench-rdppm.o tjbench-wrbmp.o tjbench-wrppm.o  ./.libs/libturbojpeg.so ./.libs/libjpeg.so -lm -Wl,--rpath -Wl,/opt/libjpeg-turbo/lib64
+creating tjbench
+if gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT jcstest.o -MD -MP -MF ".deps/jcstest.Tpo" -c -o jcstest.o jcstest.c; \
+	then mv -f ".deps/jcstest.Tpo" ".deps/jcstest.Po"; else rm -f ".deps/jcstest.Tpo"; exit 1; fi
+/bin/sh ./libtool --mode=link --tag=CC gcc  -O3   -o jcstest  jcstest.o libjpeg.la 
+gcc -O3 -o .libs/jcstest jcstest.o  ./.libs/libjpeg.so -Wl,--rpath -Wl,/opt/libjpeg-turbo/lib64
+creating jcstest
+if gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT tjunittest.o -MD -MP -MF ".deps/tjunittest.Tpo" -c -o tjunittest.o tjunittest.c; \
+	then mv -f ".deps/tjunittest.Tpo" ".deps/tjunittest.Po"; else rm -f ".deps/tjunittest.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -I.   -Wall  -O3 -MT tjutil.o -MD -MP -MF ".deps/tjutil.Tpo" -c -o tjutil.o tjutil.c; \
+	then mv -f ".deps/tjutil.Tpo" ".deps/tjutil.Po"; else rm -f ".deps/tjutil.Tpo"; exit 1; fi
+/bin/sh ./libtool --mode=link --tag=CC gcc  -O3   -o tjunittest  tjunittest.o tjutil.o libturbojpeg.la 
+gcc -O3 -o .libs/tjunittest tjunittest.o tjutil.o  ./.libs/libturbojpeg.so -Wl,--rpath -Wl,/opt/libjpeg-turbo/lib64
+creating tjunittest
+make[2]: Leaving directory `/home/xing/research/image_compression/libjpeg-turbo-memory-opt'
+make[1]: Leaving directory `/home/xing/research/image_compression/libjpeg-turbo-memory-opt'
