@@ -646,7 +646,7 @@ encode_one_block_entropy (working_state * state, JCOEFPTR block, int last_dc_val
       code = p_table->symbol[temp3]; \
       size = p_table->bits[temp3]; \
       EMIT_CODE_ENTROPY(code, size) \
-      printf("2 %d %d (%d)\n", code, size, temp); \
+      printf("2 %d %d (%d)\n", code, size, temp3); \
       /* see training_handle_2_3_separate.py for modification */ \
       t += nbits; \
       ma += max_pos_value_range[ci][last_non_zero][k]; \
