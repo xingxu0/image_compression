@@ -36,7 +36,7 @@ for f in folders:
 		total_optimized_size += jpg_opt_size
 		total_encoded_size += out_size
 		total_encoding_time += encoding_time
-		#continue
+		continue
 		#c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran -decode tbl_" + "1200" + "_23dc_zerooff_003" + " temp.jpg " + str(i) + "_out.jpg")
 		c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran -decode tbl_" + "1200" + "_23dc" + " temp.jpg " + str(i) + "_out.jpg")
 

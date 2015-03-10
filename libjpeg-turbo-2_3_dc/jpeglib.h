@@ -1134,7 +1134,7 @@ symbol_table_tmp table_tmp; // for 1 dimention case
 typedef struct
 {
 	UINT8 * bits; // char
-	UINT16 * symbol; // unsigned int
+	int * symbol; // unsigned int
 } symbol_table_c;
 
 symbol_table_c **** ac_table;
@@ -1162,7 +1162,7 @@ typedef struct
 } previous_block_state_t;
 
 UINT8 max_pos_value[3][64];
-UINT8 max_pos_value_range[3][64][65];
+UINT16 max_pos_value_range[3][64][65];
 UINT8 max_pos_value_range_r[3][64][64];
 
 int* coef_bins[3][64 + 1];

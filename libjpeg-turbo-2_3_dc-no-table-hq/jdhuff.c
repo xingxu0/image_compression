@@ -244,7 +244,7 @@ void get_derived_huff_table_c(symbol_table_c* output_tbl)
 	int * bits_aggre = malloc((entropy_max_AC_bits + 1)*sizeof(int));
 	char huffsize[entries + 1];
 	//unsigned int huffcode[entries + 1];
-	UINT16 huffcode[entries + 1];
+	int huffcode[entries + 1];
 
 	p = 0;
 	i = 0;
@@ -295,7 +295,7 @@ void get_derived_huff_table_d(symbol_table_d* output_tbl)
 	int * bits_aggre = malloc((entropy_max_AC_bits + 1)*sizeof(int));
 	char huffsize[entries + 1];
 	//unsigned int huffcode[entries + 1];
-	UINT16 huffcode[entries + 1];
+	int huffcode[entries + 1];
 
 	p = 0;
 	i = 0;
@@ -411,7 +411,7 @@ boolean initialize_AC_table(int c, int i, int j, int k, int private_option)
 	table_tmp.length = table_size;
 	int ii;
 	if (private_option == 1) {
-		ac_table[c][i][j][k].symbol = malloc(table_size*sizeof(UINT16));
+		ac_table[c][i][j][k].symbol = malloc(table_size*sizeof(int));
 		for (ii = 0; ii< table_size; ++ii)
 			ac_table[c][i][j][k].symbol[ii] = -1;
 		ac_table[c][i][j][k].bits = malloc(table_size*sizeof(UINT8));
@@ -471,7 +471,7 @@ void initialize_DC_table(int c, int i, int private_option)
 	int ii;
 	table_tmp.length = table_size;
 	if (private_option == 1) {
-		dc_table[c][i].symbol = malloc(table_size*sizeof(UINT16));
+		dc_table[c][i].symbol = malloc(table_size*sizeof(int));
 		for (ii = 0; ii< table_size; ++ii)
 			dc_table[c][i].symbol[ii] = -1;
 		dc_table[c][i].bits = malloc(table_size*sizeof(UINT8));
@@ -628,7 +628,7 @@ void initialize_coef_bins_p(int c)
 void entropy_table_initialization(int private_option)
 {
 	int table_size = 256;
-	entropy_max_AC_bits = 18;
+	entropy_max_AC_bits = 32;
 
 	table_tmp.symbol = malloc(table_size*sizeof(int));
 	int ii;
