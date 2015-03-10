@@ -632,6 +632,7 @@ encode_one_block_entropy (working_state * state, JCOEFPTR block, int last_dc_val
         code = p_table->symbol[0xf0]; \
         size = p_table->bits[0xf0]; \
         EMIT_BITS(code, size) \
+        printf("1 %d %d\n", code, size); \
         r -= 16; \
         ma += max_pos_value_range[ci][last_non_zero][last_non_zero + 15]; \
         /* for (temp3=last_non_zero; temp3<last_non_zero+16; ++temp3) */ \
@@ -645,6 +646,7 @@ encode_one_block_entropy (working_state * state, JCOEFPTR block, int last_dc_val
       code = p_table->symbol[temp3]; \
       size = p_table->bits[temp3]; \
       EMIT_CODE_ENTROPY(code, size) \
+      printf("2 %d %d (%d)\n", code, size, temp); \
       /* see training_handle_2_3_separate.py for modification */ \
       t += nbits; \
       ma += max_pos_value_range[ci][last_non_zero][k]; \
@@ -687,6 +689,7 @@ encode_one_block_entropy (working_state * state, JCOEFPTR block, int last_dc_val
     code = p_table->symbol[0];
     size = p_table->bits[0];
     EMIT_BITS(code, size)
+    printf("3 %d %d\n", code, size);
   }
 
   state->cur.put_buffer = put_buffer;
