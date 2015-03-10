@@ -16,7 +16,7 @@
 /* Derived data constructed for each Huffman table */
 
 #define HUFF_LOOKAHEAD  8       /* # of bits of lookahead */
-#define HUFF_LOOKAHEAD_ENTROPY 6
+#define HUFF_LOOKAHEAD_ENTROPY 8
 
 typedef struct {
   /* Basic tables: (element [0] of each array is unused) */

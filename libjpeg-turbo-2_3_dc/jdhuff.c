@@ -627,7 +627,7 @@ void initialize_coef_bins_p(int c)
 void entropy_table_initialization(int private_option)
 {
 	int table_size = 256;
-	entropy_max_AC_bits = 18;
+	entropy_max_AC_bits = 32;
 
 	table_tmp.symbol = malloc(table_size*sizeof(int));
 	int ii;
