@@ -125,7 +125,7 @@ typedef unsigned char boolean;
  * your system can't cope with binary I/O to stdin/stdout.  See comments at
  * head of cjpeg.c or djpeg.c.
  */
-#undef TWO_FILE_COMMANDLINE
+#define TWO_FILE_COMMANDLINE
 
 /* By default, we open image files with fopen(...,"rb") or fopen(...,"wb").
  * This is necessary on systems that distinguish text files from binary files,
