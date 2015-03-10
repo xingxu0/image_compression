@@ -22,7 +22,9 @@ for f in folders:
 	total_decoding_time = 0
 	for i in range(1, 101):#101):
 		print i
-		c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran -encode tbl_" + "1200" + "_23dc_zerooff_003" + " images/" + f + "_Q75/" + str(i) + ".jpg temp.jpg")
+		#c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran -encode tbl_" + "1200" + "_23dc_zerooff_003" + " images/" + f + "_Q75/" + str(i) + ".jpg temp.jpg")
+		c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran -encode tbl_" + "1200" + "_23dc" + " images/" + f + "_Q75/" + str(i) + ".jpg temp.jpg")
+
 		print c
 		# sample output: Total saving: 134751 bits\nOriginal filesize: 106207, encoded filesize: 89350, saving: 0.158718\nTotal time elapsed : 65678 us'
 		m = re.match("Total saving: (.*) bits\nOriginal filesize: (.*), encoded filesize: (.*), saving: (.*)\nTotal time elapsed : (.*) us", c[1])
@@ -35,7 +37,9 @@ for f in folders:
 		total_encoded_size += out_size
 		total_encoding_time += encoding_time
 		#continue
-		c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran -decode tbl_" + "1200" + "_23dc_zerooff_003" + " temp.jpg " + str(i) + "_out.jpg")
+		#c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran -decode tbl_" + "1200" + "_23dc_zerooff_003" + " temp.jpg " + str(i) + "_out.jpg")
+		c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran -decode tbl_" + "1200" + "_23dc" + " temp.jpg " + str(i) + "_out.jpg")
+
 		print c
 		# sample output: Total time elapsed : 46321 us
 		m = re.match("Total time elapsed : (.*) us", c[1])

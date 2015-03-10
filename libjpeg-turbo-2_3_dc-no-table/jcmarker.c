@@ -149,7 +149,7 @@ emit_dqt (j_compress_ptr cinfo, int index)
 /* Emit a DQT marker */
 /* Returns the precision used (0 = 8bits, 1 = 16bits) for baseline checking */
 {
-//if (cinfo->private_option == 1) return 0;
+if (cinfo->private_option == 1) return 0;
   JQUANT_TBL * qtbl = cinfo->quant_tbl_ptrs[index];
   int prec;
   int i;
@@ -189,7 +189,7 @@ LOCAL(void)
 emit_dht (j_compress_ptr cinfo, int index, boolean is_ac)
 /* Emit a DHT marker */
 {
-//if (cinfo->private_option == 1) return;
+if (cinfo->private_option == 1) return;
 
   JHUFF_TBL * htbl;
   int length, i;
