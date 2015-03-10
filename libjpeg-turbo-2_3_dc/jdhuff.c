@@ -244,7 +244,7 @@ void get_derived_huff_table_c(symbol_table_c* output_tbl)
 	int * bits_aggre = malloc((entropy_max_AC_bits + 1)*sizeof(int));
 	char huffsize[entries + 1];
 	//unsigned int huffcode[entries + 1];
-	UINT16 huffcode[entries + 1];
+	int huffcode[entries + 1];
 
 	p = 0;
 	i = 0;
