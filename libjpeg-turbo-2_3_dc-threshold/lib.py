@@ -74,11 +74,6 @@ def generate_bits(vals, bits):
 		for i in range(t):
 			ret[vals[now]] = b
 			now += 1
-	for x in range(255):
-		if x in ret:
-			print ret[x],",",
-		else:
-			print -1,",",
 	return ret	
 
 def get_luminance_codes():
@@ -1100,7 +1095,7 @@ def generate_blocks(folder):
 	for f in f_jpgs:
 		name = f[f.rfind("/") + 1 : ]
 		sys.stdout.flush()
-		cmd = "/opt/libjpeg-turbo/bin/jpegtran -outputcoef " + folder + "/" + name + ".block " + f + " temp.out"
+		cmd = "jpegtran -outputcoef " + folder + "/" + name + ".block " + f + " temp.out"
 		os.system(cmd)
 	os.system("rm temp.out")
 
