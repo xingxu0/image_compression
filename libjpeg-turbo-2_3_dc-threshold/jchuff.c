@@ -505,6 +505,89 @@ flush_bits (working_state * state)
   return TRUE;
 }
 
+int get_bits(unsigned short x, signed char* huff_code) {
+    int s,r,ret;
+    s = x&15;
+	r = x>>4;
+	ret = 0;
+	while (r>15) {
+		r-=16;
+		ret += huff_code[0xf0];
+	}
+	ret += huff_code[(r<<4)+s];
+	return ret;
+}
+
+void zerooff(JCOEF* b, signed char* huff_code, unsigned char* quant) {
+    int i=0;
+
+    unsigned short code[64];
+    unsigned char p[64];
+    int r = 0, ind = 0;
+    //memset(code, (unsigned short)255, 64);
+    for (i=1;i<64;++i) {
+		if (!b[i]) {
+			r += 1;
+			continue;
+		}
+		code[ind] = (r<<4) + JPEG_NBITS_NONZERO[abs(b[i])];
+		p[ind] = i;
+		++ind;
+		r = 0;
+    }
+    if (r>0) {
+        code[ind] = 0;
+        p[ind] = -1;
+        ++ind;
+    }
+
+    unsigned char x, y, diff, s, r_, af_code;
+
+    printf("%d\n", ind);
+    for (i=0; i<64; ++i) {
+        if (code[i] == 255) break;
+        printf("%d:%d\n", code[i], p[i]);
+    }
+
+    for (i=0; i<ind; ++i) {
+        af_code = 0;
+        x = code[i];
+        if ((x & 15) != 1) continue;
+
+        if (i < ind - 1) {
+            y = code[i + 1];
+            diff = get_bits(x, huff_code) + get_bits(y, huff_code) + 1;
+            if (!y)
+				diff -= get_bits(0, huff_code);
+			else {
+			    s = y & 15;
+				if (!s)
+					diff = -1;
+				else {
+					r_ = ((x>>4) + (y>>4) + 1);
+					diff -= get_bits((r_ << 4) + s, huff_code);
+					af_code = (r_ << 4) + s;
+				}
+			}
+        } else {
+            diff = get_bits(x, huff_code) + 1 - get_bits(0, huff_code);
+            af_code = 0;
+        }
+
+        if (diff >= 0.03*quant[jpeg_natural_order[p[i]]]*quant[jpeg_natural_order[p[i]]]) {
+            printf("%d : %d\n", p[i], diff);
+			b[p[i]] = 0;
+
+			if (i<ind - 1) {
+			    code[i + 1] = af_code;
+			}
+			else {
+			    code[i + 1] = af_code;
+				p[i + 1] = -1;
+			}
+        }
+    }
+}
 
 /* Encode a single block's worth of coefficients */
 
@@ -517,6 +600,14 @@ encode_one_block_entropy (working_state * state, JCOEFPTR block, int last_dc_val
   //register int k, r, i;
   //int Se = state->cinfo->lim_Se;
   //const int * natural_order = state->cinfo->natural_order;
+
+  // start of thresholding block
+  if (ci)
+	  zerooff(block, chro_huff_code, chro_quant);
+  else
+	  zerooff(block, lumi_huff_code, lumi_quant);
+
+  // end of thresholding block
 
   int temp, temp2, temp3, sign = 0;
   int nbits;
