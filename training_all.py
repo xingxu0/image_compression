@@ -231,7 +231,7 @@ def create_table(comp, dep1_s, dep2_s):
 	lib.index_file.close()
 	print "\n\tTraining DONE"
 	
-if len(sys.argv) < 5:
+if len(sys.argv) < 3:
 	print "usage: python training.py [TRAINING IMAGE FOLDER] [TABLE FOLDER] [DEPENDANT 1] [DEPENDANT 2]"
 	print "\t0:DC, 1:avg_pre_coef, 2:avg_pre_block_coef, 3:pre_block_coef, r:last_block_eob, 5:pre_blocks_sign"
 	exit()
@@ -242,8 +242,8 @@ tab_folder = sys.argv[2]
 os.system("rm -rf " + tab_folder)
 os.system("mkdir " + tab_folder)
 
-dep1 = sys.argv[3]
-dep2 = sys.argv[4]
+dep1 = "1"
+dep2 = "12"
 
 dep_file = open(tab_folder + "/dep.txt", "w")
 dep_file.write(dep1 + " " + dep2 + " \n")
