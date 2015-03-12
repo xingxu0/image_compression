@@ -71,7 +71,7 @@ for q in qs:
 				size += os.path.getsize(f_out)
 			else:
 				c = commands.getstatusoutput("compare -metric PSNR %s/%d_q_100.png %s tmp_diff.png"%(folder, ind, f_in))
-				c1 = commands.getstatusoutput("pyssim %s/%d_q_100.png %s "%(folder, ind, f_out))
+				c1 = commands.getstatusoutput("pyssim %s/%d_q_100.png %s "%(folder, ind, f_in))
 				size += os.path.getsize(f_in)
 			psnr += float(c[1])
 			ssim += float(c1[1])
