@@ -2,8 +2,8 @@ import os, commands, re, sys, time, glob
 import matplotlib.pyplot as plt
 from pylab import *
 
-QP = 75
-TRAIN_NUMBER = 90 
+QP = 71
+TRAIN_NUMBER = 1000
 
 def get_quality(s):
 	c = commands.getstatusoutput("identify -verbose %s | grep Quality"%(s))
