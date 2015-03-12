@@ -1,6 +1,4 @@
 import os, commands, re, sys, time, glob
-import matplotlib.pyplot as plt
-from pylab import *
 
 QP = 71
 TRAIN_NUMBER = 1000
