@@ -16,12 +16,12 @@ reso = "600"
 fs = glob.glob("images/TESTIMAGES/RGB/RGB_R02_0600x0600/*.png")
 #reso = "1200"
 #fs = glob.glob("images/TESTIMAGES/RGB/RGB_OR_1200x1200/*.png")
-fs = fs[:1]
+#fs = fs[:1]
 
 
 qs = range(60, 91)
 qs = [30,40,50,60,70,80,90]
-qs = range(40, 95, 15)
+qs = range(70, 95, 5)
 print qs
 #qs = [30, 50, 70]
 #thre = [0,1.0/8/8/3,1.0/8/8/2,1.0/8/8,3.0/8/8] # 0 is for original (no thresholding)
@@ -67,7 +67,7 @@ for q in qs:
 		ind += 1
 		#print " "
 		print ind,f,":","    ", 
-		c = commands.getstatusoutput("convert -quality " + str(q)  + " "  + f + " " + folder + "/" + str(ind) +".jpg")
+		c = commands.getstatusoutput("convert -sampling-factor 4:2:0 -quality " + str(q)  + " "  + f + " " + folder + "/" + str(ind) +".jpg")
 		c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran -outputcoef tmp.block %s %s"%(folder+"/"+str(ind)+".jpg", folder+"/"+str(ind)+"_std.jpg"))
 		c = commands.getstatusoutput("compare -metric PSNR " + f + " %s/%s.jpg tmp_diff.png"%(folder, str(ind)))
 		print "[psnr ",c[1], "]",

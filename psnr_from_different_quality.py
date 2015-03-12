@@ -32,10 +32,12 @@ folder = root_folder
 
 x = {}
 y = {}
+y2 = {}
 s_r = {} # size reduction
 for t in qs:
 	x[t] = []
 	y[t] = []
+	y2[t] = []
 	s_r[t] = []
 
 ind = 0
@@ -53,6 +55,7 @@ for q in qs:
 			continue
 		ind = 0
 		psnr = 0.0
+		ssim = 0.0
 		size = 0.0
 		ind = 0
 		for f in fs:
@@ -64,20 +67,26 @@ for q in qs:
 			if d != q:
 				c = commands.getstatusoutput("convert -sampling-factor 4:2:0 -quality " + str(d)  + " "  + f_in + " " + f_out)
 				c = commands.getstatusoutput("compare -metric PSNR %s/%d_q_100.png %s tmp_diff.png"%(folder, ind, f_out))
+				c1 = commands.getstatusoutput("pyssim %s/%d_q_100.png %s "%(folder, ind, f_out))
 				size += os.path.getsize(f_out)
 			else:
 				c = commands.getstatusoutput("compare -metric PSNR %s/%d_q_100.png %s tmp_diff.png"%(folder, ind, f_in))
+				c1 = commands.getstatusoutput("pyssim %s/%d_q_100.png %s "%(folder, ind, f_out))
 				size += os.path.getsize(f_in)
 			psnr += float(c[1])
+			ssim += float(c1[1])
 			ind += 1
 		psnr /= len(fs)
+		ssim /= len(fs)
 		size /= len(fs)
-		print q, d, ":", psnr, size
+		print q, d, ":", psnr, ssim, size
 		x[q].append(size)
 		y[q].append(psnr)
+		y2[q].append(ssim)
 
 print x
 print y
+print y2
 
 fig = plt.figure()
 ax = fig.add_subplot(111)
@@ -94,5 +103,23 @@ ax.set_ylabel("PSNR (dB)")
 ax.legend(leg, 4)
 #ax2.legend(leg, 4)
 tight_layout()
-savefig("psnr_transcoding_%s.png"%(reso))
-savefig("psnr_transcoding_%s.eps"%(reso))
+savefig("Q_psnr_transcoding_%s.png"%(reso))
+savefig("Q_psnr_transcoding_%s.eps"%(reso))
+
+fig = plt.figure()
+ax = fig.add_subplot(111)
+leg = []
+for t in qs:
+	ax.plot(x[t], y2[t], '-x')
+	if t != 100:
+		leg.append("QP="+str(t))
+	else:
+		leg.append("QP=raw_image")
+ax.set_xlabel("file size (B)")
+ax.grid()
+ax.set_ylabel("SSIM")
+ax.legend(leg, 4)
+#ax2.legend(leg, 4)
+tight_layout()
+savefig("Q_ssim_transcoding_%s.png"%(reso))
+savefig("Q_ssim_transcoding_%s.eps"%(reso))
