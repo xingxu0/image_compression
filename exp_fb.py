@@ -1,11 +1,11 @@
 import os, commands, re, sys, time, glob
-from pylab import *
 
 QP = 71
 TRAIN_NUMBER = 1000
 
 def get_quality(s):
-	c = commands.getstatusoutput("identify -verbose %s | grep Quality"%(f))
+	c = commands.getstatusoutput("identify -verbose %s | grep Quality"%(s))
+	print c[1]
 	if c[1].find("Quality:") == -1:
 		return -1
 	return int(c[1][c[1].find("Quality:") + 8:])
@@ -35,23 +35,23 @@ def get_candidates_size(img_folder):
 	total_pro_size = 0
 	total_moz_size = 0
 	for f in glob.glob("%s/*.jpg"%(img_folder)):
-		os.system("/opt/libjpeg-turbo/bin/jpegtran -copy none %s temp.jpg"%(f))
-		total_std_size += os.path.getsize("temp.jpg")
+		c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran -copy none %s %s/temp.jpg"%(f, img_folder))
+		total_std_size += os.path.getsize("%s/temp.jpg"%(img_folder))
 
-		c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran -copy none -optimize %s temp.jpg"%(f))
-		total_opt_size += os.path.getsize("temp.jpg")
+		c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran -copy none -optimize %s %s/temp.jpg"%(f, img_folder))
+		total_opt_size += os.path.getsize("%s/temp.jpg"%(img_folder))
 
-		c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran -copy none -arithmetic %s temp.jpg"%(f))
-		total_ari_size += os.path.getsize("temp.jpg")
+		c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran -copy none -arithmetic %s %s/temp.jpg"%(f, img_folder))
+		total_ari_size += os.path.getsize("%s/temp.jpg"%(img_folder))
 
-		c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran -copy none -progressive %s temp.jpg"%(f))
-		total_pro_size += os.path.getsize("temp.jpg")
+		c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran -copy none -progressive %s %s/temp.jpg"%(f, img_folder))
+		total_pro_size += os.path.getsize("%s/temp.jpg"%(img_folder))
 
-		c = commands.getstatusoutput("time -p /opt/mozjpeg/bin/jpegtran -copy none %s > temp.jpg"%(f))
-		total_moz_size += os.path.getsize("temp.jpg")
+		c = commands.getstatusoutput("time -p /opt/mozjpeg/bin/jpegtran -copy none %s > %s/temp.jpg"%(f, img_folder))
+		total_moz_size += os.path.getsize("%s/temp.jpg"%(img_folder))
+	commands.getstatusoutput("rm %s/temp.jpg"%(img_folder))
 	return total_std_size, total_opt_size, total_ari_size, total_pro_size, total_moz_size
 
-print "usage: python exp_fb.py [IMAGE FOLDER]"
 root = sys.argv[1]
 
 commands.getstatusoutput("rm %s/train -rf"%(root))
@@ -62,7 +62,7 @@ f_out = open("%s/exp.out"%(root), "w", 0)
 
 fs = glob.glob("%s/*.jpg"%(root)) + glob.glob("%s/*.jpeg"%(root))
 filter_out(fs)
-printf(f_out, "%d qualified images.")
+printf(f_out, "%d qualified images."%(len(fs)))
 
 for i in range(min(TRAIN_NUMBER, len(fs))):
 	commands.getstatusoutput("cp %s %s/train/"%(fs[i], root))
@@ -79,15 +79,15 @@ total_std_size = 0
 total_encoded_size = 0
 tfs = glob.glob("%s/test/*.jpg"%(root))
 for f in tfs:
-	c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran -encode %s/table %s %s/temp.jpg"%(root, root))
-	printf(f_out, c[1]) # comment later
+	c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran -encode %s/table %s %s/temp.jpg"%(root, f, root))
 	m = re.match("Total saving: (.*) bits\nOriginal filesize: (.*), encoded filesize: (.*), saving: (.*)\nTotal time elapsed : (.*) us", c[1])
 	jpg_std_size = int(m.group(2))
 	out_size = int(m.group(3))
 	saving_percent = float(m.group(4))
 	total_encoded_size += out_size
 	total_std_size += jpg_std_size
-	printf(f_out, "\t\t" + str(saving_percent)) 
+	printf(f_out, "\t\t" +str(f) + " : "+ str(saving_percent)) 
+commands.getstatusoutput("rm %s/temp.jpg"%(root))
 printf(f_out, "\t" + str(total_std_size) + " " + str(total_encoded_size) + " " + str((total_std_size-total_encoded_size)*1.0/total_std_size))
 printf(f_out, "our %d, std %d, opt %d, ari %d, pro %d, moz %d"%(total_encoded_size, std, opt, ari, pro, moz))
 f_out.close()
