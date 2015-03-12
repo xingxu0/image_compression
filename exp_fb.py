@@ -1,5 +1,4 @@
 import os, commands, re, sys, time, glob
-import matplotlib.pyplot as plt
 from pylab import *
 
 QP = 71
@@ -54,13 +53,12 @@ def get_candidates_size(img_folder):
 
 print "usage: python exp_fb.py [IMAGE FOLDER]"
 root = sys.argv[1]
-py = sys.argv[2]
 
 commands.getstatusoutput("rm %s/train -rf"%(root))
 commands.getstatusoutput("rm %s/test -rf"%(root))
 commands.getstatusoutput("mkdir %s/train"%(root))
 commands.getstatusoutput("mkdir %s/test"%(root))
-f_out = open(root+"/exp.out", "w", 0)
+f_out = open("%s/exp.out"%(root), "w", 0)
 
 fs = glob.glob("%s/*.jpg"%(root)) + glob.glob("%s/*.jpeg"%(root))
 filter_out(fs)
