@@ -57,6 +57,7 @@ root = sys.argv[1]
 
 commands.getstatusoutput("rm %s/train -rf"%(root))
 commands.getstatusoutput("rm %s/test -rf"%(root))
+commands.getstatusoutput("rm %s/table -rf"%(root))
 commands.getstatusoutput("mkdir %s/train"%(root))
 commands.getstatusoutput("mkdir %s/test"%(root))
 f_out = open(root+"/exp.out", "w", 0)
