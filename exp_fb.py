@@ -58,7 +58,7 @@ commands.getstatusoutput("rm %s/train -rf"%(root))
 commands.getstatusoutput("rm %s/test -rf"%(root))
 commands.getstatusoutput("mkdir %s/train"%(root))
 commands.getstatusoutput("mkdir %s/test"%(root))
-f_out = open(root+"/exp.out", "w", 0)
+f_out = open("%s/exp.out"%(root), "w", 0)
 
 fs = glob.glob("%s/*.jpg"%(root)) + glob.glob("%s/*.jpeg"%(root))
 filter_out(fs)
