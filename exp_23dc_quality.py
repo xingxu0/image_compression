@@ -2,7 +2,7 @@ import os, commands, re, sys, time
 import matplotlib.pyplot as plt
 from pylab import *
 
-folders = ['30', '40', '50', '60', '70', '80', '90', '100']
+folders = ['50','55', '60','65', '70','75', '80','85', '90', '95']
 
 
 def printf(f, s):
@@ -47,7 +47,7 @@ def get_candidates_size(img_folder, q):
 	return total_std_size, total_opt_size, total_ari_size, total_pro_size, total_moz_size
 			
 
-root = "exp_quality_" + str(int(time.time()))
+root = "exp_quality_1200_final_" + str(int(time.time()))
 os.system("mkdir %s"%(root))
 f_out = open(root+"/exp.out", "w", 0)
 

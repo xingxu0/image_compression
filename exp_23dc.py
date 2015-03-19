@@ -43,7 +43,7 @@ def get_candidates_size(img_folder):
 
 print "usage: python exp.py; python exp.py 0 if we don't want to calculate our size"
 
-root = "exp_filesize_" + str(int(time.time()))
+root = "exp_filesize_final_" + str(int(time.time()))
 os.system("mkdir %s"%(root))
 f_out = open(root+"/exp.out", "w", 0)
 
