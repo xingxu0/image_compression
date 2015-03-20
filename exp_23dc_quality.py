@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 from pylab import *
 
 folders = ['50','55', '60','65', '70','75', '80','85', '90', '95']
+folders = ['95']
 
 
 def printf(f, s):
