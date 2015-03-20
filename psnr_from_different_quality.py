@@ -13,15 +13,16 @@ def get_threshold_jpg(out_, threshold, block_file, base_file, quality):
 	c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran -inputcoef tmp_out.block %s %s"%(base_file, out_))
 
 reso = "600"
-fs = glob.glob("images/TESTIMAGES/RGB/RGB_R02_0600x0600/*.png")
+fs = glob.glob("images/raw/*.png")
 #reso = "1200"
 #fs = glob.glob("images/TESTIMAGES/RGB/RGB_OR_1200x1200/*.png")
-#fs = fs[:10]
+#fs = fs[:2]
 
-dest = range(40, 92, 2)
+dest = range(40, 93, 2)
 qs = range(60, 91)
 qs = [30,40,50,60,70,80,90]
 qs = range(60, 96, 6) + [100]
+qs = [100,90,86,80,70,60,50]
 print qs, dest
 
 root_folder = "psnr_transcoding"
@@ -80,7 +81,7 @@ for q in qs:
 		ssim /= len(fs)
 		size /= len(fs)
 		print q, d, ":", psnr, ssim, size
-		x[q].append(size)
+		x[q].append(size/1000)
 		y[q].append(psnr)
 		y2[q].append(ssim)
 
@@ -92,17 +93,23 @@ fig = plt.figure()
 ax = fig.add_subplot(111)
 leg = []
 for t in qs:
-	ax.plot(x[t], y[t], '-x')
+	#ax.plot(x[t], y[t], '-x')
 	if t != 100:
-		leg.append("QP="+str(t))
+		ax.plot(x[t], y[t], ':', lw=3)
+		leg.append("Changing Quality")
 	else:
-		leg.append("QP=raw_image")
-ax.set_xlabel("file size (B)")
+		ax.plot(x[t], y[t], '-k', lw=1)
+		leg.append("Raw Image")
+ax.set_xlabel("Filesize (KB)", fontsize=24)
 ax.grid()
-ax.set_ylabel("PSNR (dB)")
-ax.legend(leg, 4)
+ax.set_ylabel("PSNR (dB)", fontsize=24)
+#ax.legend(leg, 4)
+ax.legend(leg[:2], 4, fontsize=22, numpoints=1, ncol=1)
+
 #ax2.legend(leg, 4)
 tight_layout()
+plt.tick_params(axis='both', which='major', labelsize=22)
+plt.tick_params(axis='both', which='minor', labelsize=22)
 savefig("Q_psnr_transcoding_%s.png"%(reso))
 savefig("Q_psnr_transcoding_%s.eps"%(reso))
 
@@ -110,16 +117,20 @@ fig = plt.figure()
 ax = fig.add_subplot(111)
 leg = []
 for t in qs:
-	ax.plot(x[t], y2[t], '-x')
+	#ax.plot(x[t], y2[t], '-x')
 	if t != 100:
+		ax.plot(x[t], y2[t], ':', lw=3)
 		leg.append("QP="+str(t))
 	else:
-		leg.append("QP=raw_image")
-ax.set_xlabel("file size (B)")
+		ax.plot(x[t], y2[t], '-k', lw=1)
+		leg.append("Raw Image")
+ax.set_xlabel("Filesize (KB)", fontsize=24)
 ax.grid()
-ax.set_ylabel("SSIM")
-ax.legend(leg, 4)
+ax.set_ylabel("SSIM", fontsize=24)
+ax.legend(leg[:2], 4, fontsize=22, numpoints=1, ncol=1)
 #ax2.legend(leg, 4)
 tight_layout()
+plt.tick_params(axis='both', which='major', labelsize=22)
+plt.tick_params(axis='both', which='minor', labelsize=22)
 savefig("Q_ssim_transcoding_%s.png"%(reso))
 savefig("Q_ssim_transcoding_%s.eps"%(reso))
