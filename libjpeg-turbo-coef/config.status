@@ -629,7 +629,7 @@ echo 'BEGIN {' >"$ac_tmp/subs1.awk" &&
 cat >>"$ac_tmp/subs1.awk" <<\_ACAWK &&
 S["LTLIBOBJS"]=""
 S["LIBOBJS"]=""
-S["BUILD"]="20150318"
+S["BUILD"]="20150319"
 S["DEBARCH"]="amd64"
 S["RPM_CONFIG_ARGS"]=""
 S["RPMARCH"]="x86_64"
@@ -757,7 +757,7 @@ S["ECHO_C"]=""
 S["DEFS"]="-DHAVE_CONFIG_H"
 S["mandir"]="${datarootdir}/man"
 S["localedir"]="${datarootdir}/locale"
-S["libdir"]="${exec_prefix}/lib64"
+S["libdir"]="${exec_prefix}/lib"
 S["psdir"]="${docdir}"
 S["pdfdir"]="${docdir}"
 S["dvidir"]="${docdir}"
@@ -769,13 +769,13 @@ S["includedir"]="${prefix}/include"
 S["localstatedir"]="${prefix}/var"
 S["sharedstatedir"]="${prefix}/com"
 S["sysconfdir"]="${prefix}/etc"
-S["datadir"]="${prefix}"
-S["datarootdir"]="${prefix}"
+S["datadir"]="${datarootdir}"
+S["datarootdir"]="${prefix}/share"
 S["libexecdir"]="${exec_prefix}/libexec"
 S["sbindir"]="${exec_prefix}/sbin"
 S["bindir"]="${exec_prefix}/bin"
 S["program_transform_name"]="s,x,x,"
-S["prefix"]="/opt/libjpeg-turbo"
+S["prefix"]="/opt/libjpeg-turbo-lossy"
 S["exec_prefix"]="${prefix}"
 S["PACKAGE_URL"]=""
 S["PACKAGE_BUGREPORT"]=""
@@ -845,7 +845,6 @@ D["HAVE_INTTYPES_H"]=" 1"
 D["HAVE_STDINT_H"]=" 1"
 D["HAVE_UNISTD_H"]=" 1"
 D["HAVE_DLFCN_H"]=" 1"
-D["SIZEOF_LONG"]=" 8"
 D["STDC_HEADERS"]=" 1"
 D["HAVE_STDDEF_H"]=" 1"
 D["HAVE_STDLIB_H"]=" 1"
@@ -863,7 +862,7 @@ D["INLINE"]=" inline __attribute__((always_inline))"
 D["C_ARITH_CODING_SUPPORTED"]=" 1"
 D["D_ARITH_CODING_SUPPORTED"]=" 1"
 D["WITH_SIMD"]=" 1"
-D["BUILD"]=" \"20150318\""
+D["BUILD"]=" \"20150319\""
   for (key in D) D_is_set[key] = 1
   FS = ""
 }
@@ -1057,12 +1056,12 @@ case `eval "sed -n \"\$ac_sed_dataroot\" $ac_file_inputs"` in
   { $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: $ac_file_inputs seems to ignore the --datarootdir setting" >&5
 $as_echo "$as_me: WARNING: $ac_file_inputs seems to ignore the --datarootdir setting" >&2;}
   ac_datarootdir_hack='
-  s&@datadir@&${prefix}&g
+  s&@datadir@&${datarootdir}&g
   s&@docdir@&${datarootdir}/doc/${PACKAGE_TARNAME}&g
   s&@infodir@&${datarootdir}/info&g
   s&@localedir@&${datarootdir}/locale&g
   s&@mandir@&${datarootdir}/man&g
-  s&\${datarootdir}&${prefix}&g' ;;
+  s&\${datarootdir}&${prefix}/share&g' ;;
 esac
 ac_sed_extra="/^[	 ]*VPATH[	 ]*=[	 ]*/{
 h
