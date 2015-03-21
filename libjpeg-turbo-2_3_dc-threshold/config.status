@@ -629,7 +629,7 @@ echo 'BEGIN {' >"$ac_tmp/subs1.awk" &&
 cat >>"$ac_tmp/subs1.awk" <<\_ACAWK &&
 S["LTLIBOBJS"]=""
 S["LIBOBJS"]=""
-S["BUILD"]="20150319"
+S["BUILD"]="20150321"
 S["DEBARCH"]="amd64"
 S["RPM_CONFIG_ARGS"]=""
 S["RPMARCH"]="x86_64"
@@ -862,7 +862,7 @@ D["INLINE"]=" inline __attribute__((always_inline))"
 D["C_ARITH_CODING_SUPPORTED"]=" 1"
 D["D_ARITH_CODING_SUPPORTED"]=" 1"
 D["WITH_SIMD"]=" 1"
-D["BUILD"]=" \"20150319\""
+D["BUILD"]=" \"20150321\""
   for (key in D) D_is_set[key] = 1
   FS = ""
 }
