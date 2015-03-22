@@ -7,6 +7,7 @@ def get_ratio(a, b):
 	return (b-a)*1.0/b*100
 
 folders = ['100', '200', '300', '400', '600', '800', '1000', '1200']
+folders = ['200', '300', '400', '600', '800', '1000', '1200']
 
 our = []
 std = []
@@ -53,13 +54,13 @@ ax.plot(ari, "-d", ms=15)
 ax.plot(pro, "-s", ms=15)
 ax.plot(moz, "-p", ms=15)
 ax.set_ylim([0, 25])
-ax.set_xlim([-0.5, 7.5])
+ax.set_xlim([-0.5, 6.5])
 ax.legend(["NAME", "OPT", "ARI", "PRO", "MOZ"], fontsize=22, numpoints=1, ncol=3)
 ax.set_xlabel("Resolution (X by X)", fontsize=24)
 ax.set_ylabel("Compression (100%)", fontsize=24)
 plt.tick_params(axis='both', which='major', labelsize=22)
 plt.tick_params(axis='both', which='minor', labelsize=22)
-plt.xticks(range(len(folders)), folders, rotation='30')
+plt.xticks(range(len(folders)), folders)#, rotation='30')
 #plt.tick_params(axis='both', which='major', labelsize=30)
 #plt.tick_params(axis='both', which='minor', labelsize=30)
 plt.tight_layout()
