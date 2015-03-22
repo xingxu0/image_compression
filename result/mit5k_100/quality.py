@@ -56,6 +56,10 @@ print moz
 ress = ['320x240', '800x600', '1152x864', '1400x1050', '1600x1200', '2048x1536']
 qs = ['50','55','60','65','70','75','80','90','95']
 
+t_ress = []
+for x in ress:
+	t_ress.append(x[:x.find("x")])
+
 # fix q
 for q in qs:
 	our_ = []
@@ -77,19 +81,21 @@ for q in qs:
 	ax.plot(ari_, "-d", ms=15)
 	ax.plot(pro_, "-s", ms=15)
 	ax.plot(moz_, "-p", ms=15)
-	#ax.set_ylim([0, 25])
+	ax.set_ylim([0, 25])
 	#ax.set_xlim([-0.5, 6.5])
+	ax.set_xlim([-0.5, 5.5])
 	ax.legend(["NAME", "OPT", "ARI", "PRO", "MOZ"], fontsize=22, numpoints=1, ncol=3)
-	ax.set_xlabel("Resolution", fontsize=24)
+	ax.set_xlabel("Resolution (X by 0.75X)", fontsize=24)
 	ax.set_ylabel("Compression (100%)", fontsize=24)
 	plt.tick_params(axis='both', which='major', labelsize=22)
 	plt.tick_params(axis='both', which='minor', labelsize=22)
-	plt.xticks(range(len(ress)), ress, rotation='30')
+	plt.xticks(range(len(ress)), t_ress)#, rotation='30')
 	#plt.tick_params(axis='both', which='major', labelsize=30)
 	#plt.tick_params(axis='both', which='minor', labelsize=30)
 	plt.tight_layout()
 	#fig.savefig("filesize.eps", bbox_inches='tight')
 	fig.savefig("fivek_quality_%s.png"%(q), bbox_inches='tight')
+	fig.savefig("fivek_quality_%s.eps"%(q), bbox_inches='tight')
 	#fig.savefig("fivek_quality.eps", bbox_inches='tight')
 
 # fix q
@@ -113,7 +119,7 @@ for r in ress:
 	ax.plot(ari_, "-d", ms=15)
 	ax.plot(pro_, "-s", ms=15)
 	ax.plot(moz_, "-p", ms=15)
-	#ax.set_ylim([0, 25])
+	ax.set_ylim([0, 30])
 	#ax.set_xlim([-0.5, 6.5])
 	ax.legend(["NAME", "OPT", "ARI", "PRO", "MOZ"], fontsize=22, numpoints=1, ncol=3)
 	ax.set_xlabel("Quality", fontsize=24)
