@@ -1,7 +1,7 @@
 import os, commands, re, sys
 
 folders = ['100', '200', '300', '400', '600', '800', '1000', '1200']
-folders = ['1200']
+#folders = ['1200']
 
 x = []
 y_encoding = []
@@ -30,13 +30,13 @@ for f in folders:
 	for i in range(1, 101):#101):
 		#if i == 1 or i == 20:
 		#	continue
-		c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran -encode tbl_" + f + "_23dc" + " images/" + f + "_Q75/" + str(i) + ".jpg temp_our.jpg")
-		print c
+		c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran -encode tbl_1200_23dc" + " images/" + f + "_Q75/" + str(i) + ".jpg temp_our.jpg")
+		#print c
 		m = re.match("Total saving: (.*) bits\nOriginal filesize: (.*), encoded filesize: (.*), saving: (.*)\nTotal time elapsed : (.*) us", c[1])
 		our_encoding_time += int(m.group(5))
 
-		c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran -decode tbl_" + f + "_23dc" + " temp_our.jpg " + str(i) + "temp.jpg")
-		print c
+		c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran -decode tbl_1200_23dc" + " temp_our.jpg " + str(i) + "temp.jpg")
+		#print c
 		m = re.match("Total time elapsed : (.*) us", c[1])
 		our_decoding_time += int(m.group(1))
 
@@ -71,7 +71,7 @@ for f in folders:
 		pro_decoding_time += int(m.group(1))
 
 		c = commands.getstatusoutput("time -p /opt/mozjpeg/bin/jpegtran images/" + f + "_Q75/" + str(i) + ".jpg > temp_moz.jpg")
-		print c
+		#print c
 		m = re.match("real (.*)\nuser (.*)", c[1])
 		moz_encoding_time += int(float(m.group(1))*1000000)
 
@@ -79,13 +79,15 @@ for f in folders:
 		m = re.match("Total time elapsed : (.*) us", c[1])
 		moz_decoding_time += int(m.group(1))
 
-		c = commands.getstatusoutput("time -p ./packJPG images/" +f + "_Q75/" + str(i)+ ".jpg")
-		m = re.match("real (.*)\nuser (.*)", c[1])
-		pjg_encoding_time += int(float(m.gropu(1))*1000000)
+		c = commands.getstatusoutput("time -p ./packJPG images/" +f + "_Q75/" + str(i)+ ".jpg &>temppp")
+		m = re.match("(.*)real (.*)\nuser (.*)", c[1], re.DOTALL)
+		#print m.group(2)
+		pjg_encoding_time += int(float(m.group(2))*1000000)
 
-		c = commands.getstatusoutput("time -p ./packJPG images/" +f + "_Q75/" + str(i)+ ".pjg")
-		m = re.match("real (.*)\nuser (.*)", c[1])
-		pjg_decoding_time += int(float(m.gropu(1))*1000000)
+		c = commands.getstatusoutput("time -p ./packJPG images/" +f + "_Q75/" + str(i)+ ".pjg &>temppp")
+		m = re.match("(.*)real (.*)\nuser (.*)", c[1], re.DOTALL)
+		#print m.group(2)
+		pjg_decoding_time += int(float(m.group(2))*1000000)
 		commands.getstatusoutput("rm images/" + f + "_Q75/*.pjg")
 
 
