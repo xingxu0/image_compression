@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from pylab import *
 
 folders = ['50','55', '60','65', '70','75', '80','85', '90', '95']
-folders = ['95']
+#folders = ['95']
 
 
 def printf(f, s):
@@ -25,6 +25,7 @@ def get_candidates_size(img_folder, q):
 	total_ari_size = 0
 	total_pro_size = 0
 	total_moz_size = 0
+	total_pjg_size = 0
 
 	for i in range(1, 101):
 		c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran -outputcoef t_opt " + img_folder + "/" + str(i) + ".jpg temp.jpg")
@@ -41,11 +42,15 @@ def get_candidates_size(img_folder, q):
 
 		c = commands.getstatusoutput("time -p /opt/mozjpeg/bin/jpegtran " + img_folder + "/" + str(i) + ".jpg > temp.jpg")
 		total_moz_size += os.path.getsize("temp.jpg")
-		
+
+		c = commands.getstatusoutput("./packJPG " + img_folder + "/" + str(i) + ".jpg")
+		total_pjg_size += os.path.getsize(img_folder + "/" + str(i) + ".pjg")
+		os.system("rm " + img_folder + "/" + str(i) + ".pjg")
+
 		c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran -outputcoef t_moz temp.jpg temp2.jpg")
 		os.system("diff t_moz t_opt")
 
-	return total_std_size, total_opt_size, total_ari_size, total_pro_size, total_moz_size
+	return total_std_size, total_opt_size, total_ari_size, total_pro_size, total_moz_size, total_pjg_size
 			
 
 root = "exp_quality_1200_final_" + str(int(time.time()))
@@ -56,7 +61,7 @@ f_out = open(root+"/exp.out", "w", 0)
 for f in folders:
 	printf(f_out, f)
 	img_folder = "images/generate_1200x1200_%s"%(f)
-	std,opt,ari,pro,moz = get_candidates_size(img_folder, f)
+	std,opt,ari,pro,moz,pjg = get_candidates_size(img_folder, f)
 	overall_optimized_size = 0
 	overall_encoded_size = 0
 	if not (len(sys.argv) >= 2 and sys.argv[1]=="0"):
@@ -93,5 +98,5 @@ for f in folders:
 			overall_optimized_size += total_optimized_size
 			overall_encoded_size += total_encoded_size
 		printf(f_out, "\t" + str(overall_optimized_size) + " " + str(overall_encoded_size) + " " + str((overall_optimized_size-overall_encoded_size)*1.0/overall_optimized_size))
-	printf(f_out, "\t our %d, std %d, opt %d, ari %d, pro %d, moz %d"%(overall_encoded_size, std, opt, ari, pro, moz))
+	printf(f_out, "\t our %d, std %d, opt %d, ari %d, pro %d, moz %d, pjg %d"%(overall_encoded_size, std, opt, ari, pro, moz, pjg))
 f_out.close()
