@@ -25,6 +25,8 @@ for f in folders:
 	moz_decoding_time = 0
 	opt_encoding_time = 0
 	opt_decoding_time = 0
+	pjg_encoding_time = 0
+	pjg_decoding_time = 0
 	for i in range(1, 101):#101):
 		#if i == 1 or i == 20:
 		#	continue
@@ -77,6 +79,20 @@ for f in folders:
 		m = re.match("Total time elapsed : (.*) us", c[1])
 		moz_decoding_time += int(m.group(1))
 
+		c = commands.getstatusoutput("time -p ./packJPG images/" +f + "_Q75/" + str(i)+ ".jpg")
+		m = re.match("real (.*)\nuser (.*)", c[1])
+		pjg_encoding_time += int(float(m.gropu(1))*1000000)
+
+		c = commands.getstatusoutput("time -p ./packJPG images/" +f + "_Q75/" + str(i)+ ".pjg")
+		m = re.match("real (.*)\nuser (.*)", c[1])
+		pjg_decoding_time += int(float(m.gropu(1))*1000000)
+		commands.getstatusoutput("rm images/" + f + "_Q75/*.pjg")
+
+
+
+
+
+		
 
 	print f
 	print "Our:"
@@ -98,5 +114,9 @@ for f in folders:
 	print "Moz:"
 	print "total encoding time:", moz_encoding_time, "ms (", moz_encoding_time/100000.0, "ms per image)"
 	print "total decoding time:", moz_decoding_time, "ms (", moz_decoding_time/100000.0, "ms per image)"
+
+	print "Pjg:"
+	print "total encoding time:", pjg_encoding_time, "ms (", pjg_encoding_time/100000.0, "ms per image)"
+	print "total decoding time:", pjg_decoding_time, "ms (", pjg_decoding_time/100000.0, "ms per image)"
 
 	print "\n"
