@@ -53,14 +53,14 @@ def get_candidates_size(img_folder, q):
 	return total_std_size, total_opt_size, total_ari_size, total_pro_size, total_moz_size, total_pjg_size
 			
 
-root = "exp_quality_1200_final_" + str(int(time.time()))
+root = "exp_quality_600_final_" + str(int(time.time()))
 os.system("mkdir %s"%(root))
 f_out = open(root+"/exp.out", "w", 0)
 
 
 for f in folders:
 	printf(f_out, f)
-	img_folder = "images/generate_1200x1200_%s"%(f)
+	img_folder = "images/generate_600x600_%s"%(f)
 	std,opt,ari,pro,moz,pjg = get_candidates_size(img_folder, f)
 	overall_optimized_size = 0
 	overall_encoded_size = 0

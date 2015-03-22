@@ -23,6 +23,7 @@ def get_candidates_size(img_folder):
 	total_ari_size = 0
 	total_pro_size = 0
 	total_moz_size = 0
+	total_pjg_size = 0
 
 	for i in range(1, 101):
 		os.system("/opt/libjpeg-turbo/bin/jpegtran -outputcoef t " + img_folder + "/" + str(i) + ".jpg temp.jpg")
@@ -39,7 +40,12 @@ def get_candidates_size(img_folder):
 
 		c = commands.getstatusoutput("time -p /opt/mozjpeg/bin/jpegtran " + img_folder + "/" + str(i) + ".jpg > temp.jpg")
 		total_moz_size += os.path.getsize("temp.jpg")
-	return total_std_size, total_opt_size, total_ari_size, total_pro_size, total_moz_size
+
+		c = commands.getstatusoutput("./packJPG " + img_folder + "/" + str(i) + ".jpg")
+		total_pjg_size += os.path.getsize(img_folder + "/" + str(i) + ".pjg")
+		os.system("rm " + img_folder + "/" + str(i) + ".pjg")
+
+	return total_std_size, total_opt_size, total_ari_size, total_pro_size, total_moz_size, total_pjg_size
 
 print "usage: python exp.py; python exp.py 0 if we don't want to calculate our size"
 
@@ -51,7 +57,7 @@ f_out = open(root+"/exp.out", "w", 0)
 for f in folders:
 	printf(f_out, f)
 	img_folder = "images/%s_Q75"%(f)
-	std,opt,ari,pro,moz = get_candidates_size(img_folder)
+	std,opt,ari,pro,moz,pjg = get_candidates_size(img_folder)
 	overall_optimized_size = 0
 	overall_encoded_size = 0
 	if not (len(sys.argv) >= 2 and sys.argv[1]=="0"):
@@ -88,5 +94,5 @@ for f in folders:
 			overall_optimized_size += total_optimized_size
 			overall_encoded_size += total_encoded_size
 		printf(f_out, "\t" + str(overall_optimized_size) + " " + str(overall_encoded_size) + " " + str((overall_optimized_size-overall_encoded_size)*1.0/overall_optimized_size))
-	printf(f_out, "\t our %d, std %d, opt %d, ari %d, pro %d, moz %d"%(overall_encoded_size, std, opt, ari, pro, moz))
+	printf(f_out, "\t our %d, std %d, opt %d, ari %d, pro %d, moz %d, pjg %d"%(overall_encoded_size, std, opt, ari, pro, moz, pjg))
 f_out.close()
