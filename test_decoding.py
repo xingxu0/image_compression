@@ -27,7 +27,8 @@ for f in folders:
 	opt_decoding_time = 0
 	pjg_encoding_time = 0
 	pjg_decoding_time = 0
-	for i in range(1, 101):#101):
+	rsz_time = 0
+	for i in range(1, 101):
 		#if i == 1 or i == 20:
 		#	continue
 		c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran -encode tbl_1200_23dc" + " images/" + f + "_Q75/" + str(i) + ".jpg temp_our.jpg")
@@ -90,6 +91,10 @@ for f in folders:
 		pjg_decoding_time += int(float(m.group(2))*1000000)
 		commands.getstatusoutput("rm images/" + f + "_Q75/*.pjg")
 
+		c = commands.getstatusoutput("time -p convert -limit thread 1 -resize %dx%d images/"%(int(f)/2,int(f)/2) +f + "_Q75/" + str(i)+ ".jpg tempp.jpg")
+		m = re.match("(.*)real (.*)\nuser (.*)", c[1], re.DOTALL)
+		#print m.group(2)
+		rsz_time += int(float(m.group(2))*1000000)
 
 
 
@@ -120,5 +125,8 @@ for f in folders:
 	print "Pjg:"
 	print "total encoding time:", pjg_encoding_time, "ms (", pjg_encoding_time/100000.0, "ms per image)"
 	print "total decoding time:", pjg_decoding_time, "ms (", pjg_decoding_time/100000.0, "ms per image)"
+
+	print "Rsz:"
+	print "total rsz time:", rsz_time, "ms (", rsz_time/100000.0, "ms per image)"
 
 	print "\n"
