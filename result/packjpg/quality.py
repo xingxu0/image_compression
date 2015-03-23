@@ -41,8 +41,8 @@ while i < len(ls) and now_f < len(folders):
 		ari.append(get_ratio(int(m.group(4)), baseline))
 		pro.append(get_ratio(int(m.group(5)), baseline))
 		#moz.append(get_ratio(int(m.group(6)), baseline))
-		moz.append(1+get_ratio(int(m.group(6)), baseline))
-		pjg.append(1+get_ratio(int(m.group(7)), baseline))
+		moz.append(get_ratio(int(m.group(6)), baseline))
+		pjg.append(get_ratio(int(m.group(7)), baseline))
 		now_f += 1
 		break
 
@@ -65,7 +65,7 @@ ax.plot(ari, "-d", ms=15)
 ax.plot(pro, "-s", ms=15)
 ax.plot(moz, "-p", ms=15)
 ax.plot(pjg, "-+", ms=15)
-ax.set_ylim([0, 25])
+ax.set_ylim([0, 35])
 ax.set_xlim([-0.5, 6.5])
 ax.legend(["NAME", "OPT", "ARI", "PRO", "MOZ", "PJG"], fontsize=22, numpoints=1, ncol=3)
 ax.set_xlabel("Quality Parameter", fontsize=24)

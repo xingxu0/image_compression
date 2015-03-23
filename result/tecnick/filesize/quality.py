@@ -6,8 +6,8 @@ from pylab import *
 def get_ratio(a, b):
 	return (b-a)*1.0/b*100
 
-folders = ['100', '200', '300', '400', '600', '800', '1000', '1200']
-folders = ['200', '300', '400', '600', '800', '1000', '1200']
+folders = ['30','40','50','60','70','80','90']
+folders = ['50','55','60','65','70','75','80','90','95']
 
 our = []
 std = []
@@ -36,16 +36,25 @@ while i < len(ls) and now_f < len(folders):
 		
 		baseline = int(m.group(2))
 		our.append(get_ratio(int(m.group(1)), baseline))
-		#std.append(get_ratio(int(m.group(1)), int(m.group(2))))
+		#std.append(get_ratio(int(m.group(1)), baseline))
 		opt.append(get_ratio(int(m.group(3)), baseline))
 		ari.append(get_ratio(int(m.group(4)), baseline))
 		pro.append(get_ratio(int(m.group(5)), baseline))
+		#moz.append(get_ratio(int(m.group(6)), baseline))
 		moz.append(get_ratio(int(m.group(6)), baseline))
 		pjg.append(get_ratio(int(m.group(7)), baseline))
 		now_f += 1
 		break
 
+print our
+print opt
 print ari
+print pro
+print moz
+fig = plt.figure()
+grid()
+ax = fig.add_subplot(111)    # The big subplot
+
 fig = plt.figure()
 grid()
 ax = fig.add_subplot(111)    # The big subplot
@@ -55,23 +64,23 @@ ax.plot(opt, "-o", ms=15)
 ax.plot(ari, "-d", ms=15)
 ax.plot(pro, "-s", ms=15)
 ax.plot(moz, "-p", ms=15)
-ax.plot(pjg, "-p", ms=15)
-ax.set_ylim([0, 30])
+ax.plot(pjg, "-^", ms=15)
+ax.set_ylim([0, 35])
 ax.set_xlim([-0.5, 6.5])
 ax.legend(["NAME", "OPT", "ARI", "PRO", "MOZ", "PJG"], fontsize=22, numpoints=1, ncol=3)
-ax.set_xlabel("Resolution (X by X)", fontsize=24)
+ax.set_xlabel("Quality Parameter", fontsize=24)
 ax.set_ylabel("Compression (100%)", fontsize=24)
 plt.tick_params(axis='both', which='major', labelsize=22)
 plt.tick_params(axis='both', which='minor', labelsize=22)
-plt.xticks(range(len(folders)), folders)#, rotation='30')
+plt.xticks(range(len(folders)), folders)
 #plt.tick_params(axis='both', which='major', labelsize=30)
 #plt.tick_params(axis='both', which='minor', labelsize=30)
 plt.tight_layout()
 #fig.savefig("filesize.eps", bbox_inches='tight')
-fig.savefig("tecnick_filesize.png", bbox_inches='tight')
-fig.savefig("tecnick_filesize.eps", bbox_inches='tight')
+fig.savefig("tecnick_quality.png", bbox_inches='tight')
+fig.savefig("tecnick_quality.eps", bbox_inches='tight')
 
-f_out = open("f_10_b.csv", "w")
+f_out = open("f_10_a.csv", "w")
 i = 0
 for x in folders:
 	f_out.write(x+",")

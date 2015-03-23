@@ -15,7 +15,6 @@ opt = []
 ari = []
 pro = []
 moz = []
-pjg = []
 
 ls = open("exp.out").readlines()
 now_f = 0
@@ -32,7 +31,7 @@ while i < len(ls) and now_f < len(folders):
 			i += 1
 			continue
 		# our 297330, std 346633, opt 314927, ari 287861, pro 329301, moz 314797
-		m = re.match("\t our (.*), std (.*), opt (.*), ari (.*), pro (.*), moz (.*), pjg (.*)", l)
+		m = re.match("\t our (.*), std (.*), opt (.*), ari (.*), pro (.*), moz (.*)", l)
 		
 		baseline = int(m.group(2))
 		our.append(get_ratio(int(m.group(1)), baseline))
@@ -41,7 +40,6 @@ while i < len(ls) and now_f < len(folders):
 		ari.append(get_ratio(int(m.group(4)), baseline))
 		pro.append(get_ratio(int(m.group(5)), baseline))
 		moz.append(get_ratio(int(m.group(6)), baseline))
-		pjg.append(get_ratio(int(m.group(7)), baseline))
 		now_f += 1
 		break
 
@@ -55,10 +53,9 @@ ax.plot(opt, "-o", ms=15)
 ax.plot(ari, "-d", ms=15)
 ax.plot(pro, "-s", ms=15)
 ax.plot(moz, "-p", ms=15)
-ax.plot(pjg, "-p", ms=15)
-ax.set_ylim([0, 30])
+ax.set_ylim([0, 25])
 ax.set_xlim([-0.5, 6.5])
-ax.legend(["NAME", "OPT", "ARI", "PRO", "MOZ", "PJG"], fontsize=22, numpoints=1, ncol=3)
+ax.legend(["NAME", "OPT", "ARI", "PRO", "MOZ"], fontsize=22, numpoints=1, ncol=3)
 ax.set_xlabel("Resolution (X by X)", fontsize=24)
 ax.set_ylabel("Compression (100%)", fontsize=24)
 plt.tick_params(axis='both', which='major', labelsize=22)
@@ -70,17 +67,3 @@ plt.tight_layout()
 #fig.savefig("filesize.eps", bbox_inches='tight')
 fig.savefig("tecnick_filesize.png", bbox_inches='tight')
 fig.savefig("tecnick_filesize.eps", bbox_inches='tight')
-
-f_out = open("f_10_b.csv", "w")
-i = 0
-for x in folders:
-	f_out.write(x+",")
-	f_out.write(str(our[i])+",")
-	f_out.write(str(opt[i])+",")
-	f_out.write(str(ari[i])+",")
-	f_out.write(str(pro[i])+",")
-	f_out.write(str(moz[i])+",")
-	f_out.write(str(pjg[i])+",")
-	f_out.write("\n")
-	i+=1
-f_out.close()
