@@ -1,0 +1,230 @@
+50
+Our:
+total encoding time: 681167 ms ( 6.81167 ms per image) 0.304609413868
+total decoding time: 543252 ms ( 5.43252 ms per image) 0.28730563479
+Opt:
+total encoding time: 384967 ms ( 3.84967 ms per image) 0.158899624837
+total decoding time: 254937 ms ( 2.54937 ms per image) 0.14840682028
+Ari:
+total encoding time: 588949 ms ( 5.88949 ms per image) 0.253867567625
+total decoding time: 582560 ms ( 5.8256 ms per image) 0.262216891683
+Pro:
+total encoding time: 1599817 ms ( 15.99817 ms per image) 0.158899624837
+total decoding time: 450503 ms ( 4.50503 ms per image) 0.14840682028
+Moz:
+total encoding time: 3310000 ms ( 33.1 ms per image) 0.153930383116
+total decoding time: 411777 ms ( 4.11777 ms per image) 0.175530207058
+Pjg:
+total encoding time: 2500000 ms ( 25.0 ms per image) 0.279256154811
+total decoding time: 2630000 ms ( 26.3 ms per image) 0.287317649997
+Rsz:
+total rsz time: 3170000 ms ( 31.7 ms per image) 0.0278604443733
+
+
+55
+Our:
+total encoding time: 718610 ms ( 7.1861 ms per image) 0.306269480105
+total decoding time: 572576 ms ( 5.72576 ms per image) 0.289214823647
+Opt:
+total encoding time: 413047 ms ( 4.13047 ms per image) 0.13721675258
+total decoding time: 266446 ms ( 2.66446 ms per image) 0.191127920907
+Ari:
+total encoding time: 607487 ms ( 6.07487 ms per image) 0.251393562832
+total decoding time: 597680 ms ( 5.9768 ms per image) 0.272227114449
+Pro:
+total encoding time: 1611094 ms ( 16.11094 ms per image) 0.13721675258
+total decoding time: 450440 ms ( 4.5044 ms per image) 0.191127920907
+Moz:
+total encoding time: 3480000 ms ( 34.8 ms per image) 0.164321591442
+total decoding time: 419676 ms ( 4.19676 ms per image) 0.180683391724
+Pjg:
+total encoding time: 2620000 ms ( 26.2 ms per image) 0.288717185482
+total decoding time: 2760000 ms ( 27.6 ms per image) 0.283721332615
+Rsz:
+total rsz time: 3170000 ms ( 31.7 ms per image) 0.0278604443733
+
+
+60
+Our:
+total encoding time: 767061 ms ( 7.67061 ms per image) 0.316027917577
+total decoding time: 607907 ms ( 6.07907 ms per image) 0.291505851756
+Opt:
+total encoding time: 409022 ms ( 4.09022 ms per image) 0.126901889866
+total decoding time: 268782 ms ( 2.68782 ms per image) 0.174830258668
+Ari:
+total encoding time: 634418 ms ( 6.34418 ms per image) 0.262687983448
+total decoding time: 630508 ms ( 6.30508 ms per image) 0.282517462139
+Pro:
+total encoding time: 1651384 ms ( 16.51384 ms per image) 0.126901889866
+total decoding time: 455318 ms ( 4.55318 ms per image) 0.174830258668
+Moz:
+total encoding time: 3590000 ms ( 35.9 ms per image) 0.167270137003
+total decoding time: 430634 ms ( 4.30634 ms per image) 0.192541446608
+Pjg:
+total encoding time: 2770000 ms ( 27.7 ms per image) 0.3053904113
+total decoding time: 2900000 ms ( 29.0 ms per image) 0.296712065714
+Rsz:
+total rsz time: 3200000 ms ( 32.0 ms per image) 0.0216506350946
+
+
+65
+Our:
+total encoding time: 820402 ms ( 8.20402 ms per image) 0.316559944806
+total decoding time: 650706 ms ( 6.50706 ms per image) 0.29646578984
+Opt:
+total encoding time: 427885 ms ( 4.27885 ms per image) 0.130915716075
+total decoding time: 280974 ms ( 2.80974 ms per image) 0.156011389056
+Ari:
+total encoding time: 678742 ms ( 6.78742 ms per image) 0.248962624414
+total decoding time: 685766 ms ( 6.85766 ms per image) 0.284157468523
+Pro:
+total encoding time: 1670946 ms ( 16.70946 ms per image) 0.130915716075
+total decoding time: 466780 ms ( 4.6678 ms per image) 0.156011389056
+Moz:
+total encoding time: 3820000 ms ( 38.2 ms per image) 0.152148074206
+total decoding time: 436742 ms ( 4.36742 ms per image) 0.154481900959
+Pjg:
+total encoding time: 2950000 ms ( 29.5 ms per image) 0.298728513042
+total decoding time: 3140000 ms ( 31.4 ms per image) 0.301826159215
+Rsz:
+total rsz time: 3200000 ms ( 32.0 ms per image) 0.0216506350946
+
+
+70
+Our:
+total encoding time: 894054 ms ( 8.94054 ms per image) 0.320030839465
+total decoding time: 702596 ms ( 7.02596 ms per image) 0.299986473494
+Opt:
+total encoding time: 459166 ms ( 4.59166 ms per image) 0.153999003375
+total decoding time: 302723 ms ( 3.02723 ms per image) 0.216556397908
+Ari:
+total encoding time: 721479 ms ( 7.21479 ms per image) 0.270473390353
+total decoding time: 740124 ms ( 7.40124 ms per image) 0.278703304802
+Pro:
+total encoding time: 1697562 ms ( 16.97562 ms per image) 0.153999003375
+total decoding time: 496644 ms ( 4.96644 ms per image) 0.216556397908
+Moz:
+total encoding time: 3870000 ms ( 38.7 ms per image) 0.162606022972
+total decoding time: 468426 ms ( 4.68426 ms per image) 0.163755426648
+Pjg:
+total encoding time: 3160000 ms ( 31.6 ms per image) 0.304850495666
+total decoding time: 3360000 ms ( 33.6 ms per image) 0.305375127104
+Rsz:
+total rsz time: 3200000 ms ( 32.0 ms per image) 0.0216506350946
+
+
+75
+Our:
+total encoding time: 930367 ms ( 9.30367 ms per image) 0.422731050017
+total decoding time: 728304 ms ( 7.28304 ms per image) 0.399248321132
+Opt:
+total encoding time: 456393 ms ( 4.56393 ms per image) 0.201327539069
+total decoding time: 297977 ms ( 2.97977 ms per image) 0.174595966865
+Ari:
+total encoding time: 735645 ms ( 7.35645 ms per image) 0.35657007556
+total decoding time: 769199 ms ( 7.69199 ms per image) 0.375695740383
+Pro:
+total encoding time: 1714168 ms ( 17.14168 ms per image) 0.201327539069
+total decoding time: 491526 ms ( 4.91526 ms per image) 0.174595966865
+Moz:
+total encoding time: 3910000 ms ( 39.1 ms per image) 0.218636422232
+total decoding time: 492949 ms ( 4.92949 ms per image) 0.193895514988
+Pjg:
+total encoding time: 3260000 ms ( 32.6 ms per image) 0.400350819096
+total decoding time: 3450000 ms ( 34.5 ms per image) 0.41608087366
+Rsz:
+total rsz time: 3240000 ms ( 32.4 ms per image) 0.0230966505356
+
+
+80
+Our:
+total encoding time: 1085518 ms ( 10.85518 ms per image) 0.312600556529
+total decoding time: 858506 ms ( 8.58506 ms per image) 0.301533151956
+Opt:
+total encoding time: 472774 ms ( 4.72774 ms per image) 0.145322906794
+total decoding time: 315629 ms ( 3.15629 ms per image) 0.192194307856
+Ari:
+total encoding time: 853338 ms ( 8.53338 ms per image) 0.258075397929
+total decoding time: 886829 ms ( 8.86829 ms per image) 0.279566019906
+Pro:
+total encoding time: 1798775 ms ( 17.98775 ms per image) 0.145322906794
+total decoding time: 529285 ms ( 5.29285 ms per image) 0.192194307856
+Moz:
+total encoding time: 4360000 ms ( 43.6 ms per image) 0.172857281481
+total decoding time: 538773 ms ( 5.38773 ms per image) 0.158235841834
+Pjg:
+total encoding time: 3850000 ms ( 38.5 ms per image) 0.298622236855
+total decoding time: 4120000 ms ( 41.2 ms per image) 0.305555436541
+Rsz:
+total rsz time: 3230000 ms ( 32.3 ms per image) 0.0
+
+
+85
+Our:
+total encoding time: 1246747 ms ( 12.46747 ms per image) 0.299568501135
+total decoding time: 983714 ms ( 9.83714 ms per image) 0.28761246059
+Opt:
+total encoding time: 491236 ms ( 4.91236 ms per image) 0.137267723139
+total decoding time: 333725 ms ( 3.33725 ms per image) 0.150330486924
+Ari:
+total encoding time: 969503 ms ( 9.69503 ms per image) 0.264025690374
+total decoding time: 1017693 ms ( 10.17693 ms per image) 0.281398817617
+Pro:
+total encoding time: 1875248 ms ( 18.75248 ms per image) 0.137267723139
+total decoding time: 561167 ms ( 5.61167 ms per image) 0.150330486924
+Moz:
+total encoding time: 4660000 ms ( 46.6 ms per image) 0.164887319419
+total decoding time: 565301 ms ( 5.65301 ms per image) 0.159260510521
+Pjg:
+total encoding time: 4410000 ms ( 44.1 ms per image) 0.302260003682
+total decoding time: 4700000 ms ( 47.0 ms per image) 0.299040263546
+Rsz:
+total rsz time: 3230000 ms ( 32.3 ms per image) 0.0
+
+
+90
+Our:
+total encoding time: 1476653 ms ( 14.76653 ms per image) 0.273649483009
+total decoding time: 1181774 ms ( 11.81774 ms per image) 0.268718268485
+Opt:
+total encoding time: 553957 ms ( 5.53957 ms per image) 0.132274619387
+total decoding time: 369688 ms ( 3.69688 ms per image) 0.135627537748
+Ari:
+total encoding time: 1173634 ms ( 11.73634 ms per image) 0.263564575424
+total decoding time: 1229625 ms ( 12.29625 ms per image) 0.278598433347
+Pro:
+total encoding time: 2004939 ms ( 20.04939 ms per image) 0.132274619387
+total decoding time: 641712 ms ( 6.41712 ms per image) 0.135627537748
+Moz:
+total encoding time: 5100000 ms ( 51.0 ms per image) 0.153016572668
+total decoding time: 646248 ms ( 6.46248 ms per image) 0.182139267753
+Pjg:
+total encoding time: 5380000 ms ( 53.8 ms per image) 0.279268520789
+total decoding time: 5770000 ms ( 57.7 ms per image) 0.287308420437
+Rsz:
+total rsz time: 3250000 ms ( 32.5 ms per image) 0.0261085580746
+
+
+95
+Our:
+total encoding time: 1947597 ms ( 19.47597 ms per image) 0.225019308458
+total decoding time: 1596314 ms ( 15.96314 ms per image) 0.229045770228
+Opt:
+total encoding time: 672670 ms ( 6.7267 ms per image) 0.171955570769
+total decoding time: 447774 ms ( 4.47774 ms per image) 0.153489358173
+Ari:
+total encoding time: 1608681 ms ( 16.08681 ms per image) 0.254864000072
+total decoding time: 1719078 ms ( 17.19078 ms per image) 0.259975084954
+Pro:
+total encoding time: 2266126 ms ( 22.66126 ms per image) 0.171955570769
+total decoding time: 749099 ms ( 7.49099 ms per image) 0.153489358173
+Moz:
+total encoding time: 6130000 ms ( 61.3 ms per image) 0.15799412741
+total decoding time: 846858 ms ( 8.46858 ms per image) 0.194077608273
+Pjg:
+total encoding time: 7470000 ms ( 74.7 ms per image) 0.253150129126
+total decoding time: 8140000 ms ( 81.4 ms per image) 0.26170824846
+Rsz:
+total rsz time: 3290000 ms ( 32.9 ms per image) 0.0327365641771
+
+
