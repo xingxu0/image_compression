@@ -17,6 +17,7 @@ base_encode = 0
 base_decode = 0
 base_x = 0
 for f in folders:
+	t_size = 0
 	our_encoding_time = 0
 	ari_encoding_time = 0
 	pro_encoding_time = 0
@@ -43,9 +44,10 @@ for f in folders:
 	pjg_d = []
 	rsz_time = 0
 	rsz_e = []
-	for i in range(1, 20):
+	for i in range(1, 101):
 		#if i == 1 or i == 20:
 		#	continue
+		t_size += os.path.getsize("images/generate_1200x1200_"+ f +"/" + str(i) + ".jpg")
 		c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran -encode tbl_1200_23dc" + " images/generate_1200x1200_"+ f +"/" + str(i) + ".jpg temp_our.jpg")
 		# sample output: Total saving: 134751 bits\nOriginal filesize: 106207, encoded filesize: 89350, saving: 0.158718\nTotal time elapsed : 65678 us'
 		m = re.match("Total saving: (.*) bits\nOriginal filesize: (.*), encoded filesize: (.*), saving: (.*)\nTotal time elapsed : (.*) us", c[1])
@@ -119,7 +121,7 @@ for f in folders:
 		rsz_time += int(float(m.group(2))*1000000)
 		rsz_e.append(int(float(m.group(2))*1000000))
 
-	print f
+	print f, t_size
 	print "Our:"
 	print "total encoding time:", our_encoding_time, "ms (", our_encoding_time/100000.0, "ms per image)", np.std(our_e)/np.mean(our_e)
 	print "total decoding time:", our_decoding_time, "ms (", our_decoding_time/100000.0, "ms per image)", np.std(our_d)/np.mean(our_d)
