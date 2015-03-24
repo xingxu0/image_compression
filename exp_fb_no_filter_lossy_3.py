@@ -39,7 +39,7 @@ t_pro = 0
 t_moz = 0
 tfs = glob.glob("%s/test/*.jpg"%(root))
 for f in tfs:
-	c = commands.getstatusoutput("/opt/libjpeg-turbo-lossy/bin/jpegtran -encode %s/table %s 0.004 %s/temp.jpg"%(root, f, root))
+	c = commands.getstatusoutput("/opt/libjpeg-turbo-lossy/bin/jpegtran -encode %s/table 0.004 %s %s/temp.jpg"%(root, f, root))
 	m = re.match("Total saving: (.*) bits\nOriginal filesize: (.*), encoded filesize: (.*), saving: (.*)\nTotal time elapsed : (.*) us", c[1])
 	our = int(m.group(3))
 	t_our += our
