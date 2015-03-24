@@ -1,9 +1,6 @@
-
-
 import sys, os, heapq, glob, operator, pickle
 from operator import itemgetter
 from copy import *
-from pylab import *
 import lib_new as lib
 
 #if len(sys.argv) == 1:
