@@ -3,8 +3,18 @@ from mpl_toolkits.mplot3d import Axes3D
 import matplotlib.pyplot as plt
 from pylab import *
 
-enc = [47, 23, 40, 91, 209, 168]
-dec = [37, 15, 40.2, 26, 25, 178]
+ls = open("f_11_b.csv").readlines()
+com = []
+for l in ls:
+	if l.find("#")==-1:
+		temp = l.split(",")
+		tempp = []
+		for t in temp:
+			tempp.append(float(t))
+		com.append(tempp)
+enc = com[0][:6]
+dec = com[1]
+
 com = [15.42, 2.00, 9.7, 5.90, 6.9, 20.0]
 fig = plt.figure()
 grid()
@@ -24,7 +34,7 @@ ax.plot([enc[4]]+[dec[4]], [com[4]]+[com[4]], "-p", ms=15)
 ax.plot([enc[5]]+[dec[5]], [com[5]]+[com[5]], "-^", ms=15)
 ax.set_ylim([0, 30])
 #ax.set_xlim([-0.5, 6.5])
-ax.legend(["NAME", "OPT", "ARI", "PRO", "MOZ", "PJG"], fontsize=22, numpoints=1, ncol=3)
+ax.legend(["ROMP", "OPT", "ARI", "PRO", "MOZ", "PJG"], fontsize=22, numpoints=1, ncol=3)
 ax.set_xlabel("Complexity (ms)", fontsize=24)
 ax.set_ylabel("Compression (100%)", fontsize=24)
 plt.tick_params(axis='both', which='major', labelsize=22)
@@ -34,5 +44,5 @@ plt.tick_params(axis='both', which='minor', labelsize=22)
 #plt.tick_params(axis='both', which='minor', labelsize=30)
 plt.tight_layout()
 #fig.savefig("filesize.eps", bbox_inches='tight')
-fig.savefig("tecnick_tradeoff.png", bbox_inches='tight')
-fig.savefig("tecnick_tradeoff.eps", bbox_inches='tight')
+fig.savefig("tradeoff_2048.png", bbox_inches='tight')
+fig.savefig("tradeoff_2048.eps", bbox_inches='tight')

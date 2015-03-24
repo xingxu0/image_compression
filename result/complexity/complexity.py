@@ -11,13 +11,13 @@ for l in ls:
 		for t in temp:
 			tempp.append(float(t))
 		com.append(tempp)
+enc = com[0][:6]
+dec = com[1]
 
 fig = plt.figure()
 ax = fig.add_subplot(111)
 #enc = [47, 23, 40, 91, 209, 168]
 #dec = [37, 15, 40, 26, 25, 178]
-enc = com[0][:6]
-dec = com[1]
 x_enc = range(len(enc))
 x_dec = range(len(dec))
 for x in range(len(x_enc)):
