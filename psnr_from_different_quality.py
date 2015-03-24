@@ -23,7 +23,7 @@ qs = range(60, 91)
 qs = [30,40,50,60,70,80,90]
 qs = range(60, 96, 6) + [100]
 qs = [100,90,86,80,70,60,50]
-print qs, dest
+#print qs, dest
 
 root_folder = "psnr_transcoding"
 c = commands.getstatusoutput("rm %s -rf"%(root_folder))
@@ -51,7 +51,9 @@ for f in fs:
 	ind += 1
 
 for q in qs:
+	print q
 	for d in dest:
+		print "", d
 		if d > q:
 			continue
 		ind = 0
@@ -80,14 +82,14 @@ for q in qs:
 		psnr /= len(fs)
 		ssim /= len(fs)
 		size /= len(fs)
-		print q, d, ":", psnr, ssim, size
+		#print q, d, ":", psnr, ssim, size
 		x[q].append(size/1000)
 		y[q].append(psnr)
 		y2[q].append(ssim)
 
-print x
-print y
-print y2
+#print x
+#print y
+#print y2
 
 fig = plt.figure()
 ax = fig.add_subplot(111)
@@ -100,6 +102,13 @@ for t in qs:
 	else:
 		ax.plot(x[t], y[t], '-k', lw=1)
 		leg.append("Raw Image")
+	print "#",t
+	for tt in x[t]:
+		print tt,",",
+	print ""
+	for tt in y[t]:
+		print tt,",",
+	print ""	
 ax.set_xlabel("Filesize (KB)", fontsize=24)
 ax.grid()
 ax.set_ylabel("PSNR (dB)", fontsize=24)
