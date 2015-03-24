@@ -1,7 +1,7 @@
 import os, commands, re, sys, time, glob
 
 QP = 71
-TRAIN_NUMBER = 10
+TRAIN_NUMBER = 1000
 
 def printf(f, s):
 	f.write(s + "\n")

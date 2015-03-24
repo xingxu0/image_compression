@@ -82,7 +82,7 @@ for f in folders:
 			total_optimized_size = 0
 			total_encoded_size = 0
 			for j in range(i*10+1, i*10+10+1):
-				c = commands.getstatusoutput("/opt/libjpeg-turbo-lossy/bin/jpegtran -encode %s/tbl_train %s/img_test/%s.jpg temp.jpg"%(exp_folder, exp_folder, str(j)))
+				c = commands.getstatusoutput("/opt/libjpeg-turbo-lossy/bin/jpegtran -encode %s/tbl_train 0.003 %s/img_test/%s.jpg temp.jpg"%(exp_folder, exp_folder, str(j)))
 				printf(f_out, c[1])
 				printf(f_out_self, c[1])
 				m = re.match("Total saving: (.*) bits\nOriginal filesize: (.*), encoded filesize: (.*), saving: (.*)\nTotal time elapsed : (.*) us", c[1])

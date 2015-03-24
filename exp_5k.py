@@ -1,7 +1,7 @@
 import os, commands, re, sys, time, glob
 
 QP = 71
-TRAIN_NUMBER = 10
+TRAIN_NUMBER = 1000
 
 def get_quality(s):
 	c = commands.getstatusoutput("identify -verbose %s | grep Quality"%(s))
