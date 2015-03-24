@@ -1185,4 +1185,6 @@ extern signed char chro_huff_code[256];
 extern unsigned char lumi_quant[64];
 extern unsigned char chro_quant[64];
 
+float threshold;
+
 #endif /* JPEGLIB_H */

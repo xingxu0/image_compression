@@ -92,7 +92,7 @@ usage (void)
 #ifdef C_MULTISCAN_FILES_SUPPORTED
   fprintf(stderr, "  -scans file    Create multi-scan JPEG per script file\n");
 #endif
-  fprintf(stderr, "  -encode entropy_table_folder\n");
+  fprintf(stderr, "  -encode entropy_table_folder threshold\n");
   fprintf(stderr, "  -decode entropy_table_folder\n");
   fprintf(stderr, "  -outputcoef coef_file_name\n");
   exit(EXIT_FAILURE);
@@ -347,6 +347,11 @@ parse_switches (j_compress_ptr cinfo, int argc, char **argv,
       if (++argn >= argc)	/* advance to next argument */
         usage();
       table_folder = argv[argn];
+      if (++argn >= argc)	/* advance to next argument */
+        usage();
+      threshold = atof(argv[argn]);
+      printf("%f\n", threshold);
+       
       private_option = 1;
     } else if (keymatch(arg, "decode", 6)) {
       if (++argn >= argc)	/* advance to next argument */

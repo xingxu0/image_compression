@@ -577,7 +577,7 @@ void zerooff(JCOEF* b, signed char* huff_code, unsigned char* quant) {
             af_code = 0;
         }
 
-        if (diff >= 0.005*quant[p[i]]*quant[p[i]]) {
+        if (diff >= threshold*quant[p[i]]*quant[p[i]]) {
         	modified = TRUE;
             //printf("%d : %d\n", p[i], diff);
 			b[p[i]] = 0;
