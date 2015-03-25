@@ -736,7 +736,7 @@ PACKAGE_STRING='libjpeg-turbo 1.3.90'
 PACKAGE_BUGREPORT=''
 PACKAGE_URL=''
 
-ac_default_prefix=/opt/libjpeg-turbo-lossy
+ac_default_prefix=/opt/libjpeg-turbo-coef
 # Factoring default headers for most tests.
 ac_includes_default="\
 #include <stdio.h>

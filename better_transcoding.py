@@ -9,19 +9,18 @@ from pylab import *
 def get_threshold_jpg(in_, out_, threshold, quality):
 	global folder
 	base_file = "tmp_out_base.block"
-	c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran -outputcoef tmp.block %s %s"%(in_, base_file))
+	c = commands.getstatusoutput("/opt/libjpeg-turbo-coef/bin/jpegtran -outputcoef tmp.block %s %s"%(in_, base_file))
 	c = commands.getstatusoutput("python lossy_zerooff.py tmp.block tmp_out.block %s %s"%(str(threshold), str(quality)))
-	c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran -inputcoef tmp_out.block %s %s"%(base_file, out_))
+	c = commands.getstatusoutput("/opt/libjpeg-turbo-coef/bin/jpegtran -inputcoef tmp_out.block %s %s"%(base_file, out_))
 
 reso = "1200"
-fs = glob.glob("images/raw/*.png")
-fs = glob.glob("images/raw/1200/*.png")
 #reso = "1200"
-#fs = glob.glob("images/TESTIMAGES/RGB/RGB_OR_1200x1200/*.png")
-fs = fs[:20]
+fs = glob.glob("images/TESTIMAGES/RGB/RGB_OR_1200x1200/*.png")
+fs = fs[:51]
 
 dest = range(40, 90, 2)
 qs = [100,50, 60,70,80,86,90]
+#qs = [100,50]
 thre = [3.0/18/18, 2.0/18/18, 1.5/18/18, 1.0/18/18,1.0/18/18/2,1.0/18/18/3,1.0/18/18/5,1.0/18/18/8,]
 
 #qs = range(60, 96, 6) + [100]

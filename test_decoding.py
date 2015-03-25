@@ -1,8 +1,8 @@
 import os, commands, re, sys
 import numpy as np
 
-folders = ['100', '200', '300', '400', '600', '800', '1000', '1200']
-folders = ['1200']
+folders = ['200', '300', '400', '600', '800', '1000', '1200']
+#folders = ['1200']
 
 x = []
 y_encoding = []
@@ -51,7 +51,7 @@ for f in folders:
 		our_encoding_time += int(m.group(5))
 		our_e.append(int(m.group(5)))
 
-		c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran -decode tbl_1200_23dc" + " temp_our.jpg " + str(i) + "temp.jpg")
+		c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran -decode tbl_1200_23dc" + " temp_our.jpg " + str(i) + "temppppp.jpg")
 		#print c
 		m = re.match("Total time elapsed : (.*) us", c[1])
 		our_decoding_time += int(m.group(1))
@@ -60,14 +60,14 @@ for f in folders:
 		# sample output: Total saving: 134751 bits\nOriginal filesize: 106207, encoded filesize: 89350, saving: 0.158718\nTotal time elapsed : 65678 us'
 		#m = re.match("Total saving: (.*) bits\nOriginal filesize: (.*), encoded filesize: (.*), saving: (.*)\nTotal time elapsed : (.*) us", c[1])
 		#continue
-		#c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran -decode tbl_" + "600" + "_all_default" + " temp.jpg " + str(i) + "_out.jpg")
-		#c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran -decode ../image_compression_github/image_compression/tbl_" + f + "_q75" + " temp.jpg " + str(i) + "_out.jpg")
+		#c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran -decode tbl_" + "600" + "_all_default" + " temppppp.jpg " + str(i) + "_out.jpg")
+		#c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran -decode ../image_compression_github/image_compression/tbl_" + f + "_q75" + " temppppp.jpg " + str(i) + "_out.jpg")
 		c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran -arithmetic images/" + f + "_Q75/" + str(i) + ".jpg temp_ari.jpg")
 		m = re.match("Total time elapsed : (.*) us", c[1])
 		ari_encoding_time += int(m.group(1))
 		ari_e.append(int(m.group(1)))
 
-		c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran temp_ari.jpg temp.jpg")
+		c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran temp_ari.jpg temppppp.jpg")
 		m = re.match("Total time elapsed : (.*) us", c[1])
 		ari_decoding_time += int(m.group(1))
 		ari_d.append(int(m.group(1)))
@@ -77,7 +77,7 @@ for f in folders:
 		opt_encoding_time += int(m.group(1))
 		opt_e.append(int(m.group(1)))
 
-		c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran temp_opt.jpg temp.jpg")
+		c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran temp_opt.jpg temppppp.jpg")
 		m = re.match("Total time elapsed : (.*) us", c[1])
 		opt_decoding_time += int(m.group(1))
 		opt_d.append(int(m.group(1)))
@@ -87,7 +87,7 @@ for f in folders:
 		pro_encoding_time += int(m.group(1))
 		pro_e.append(int(m.group(1)))
 
-		c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran temp_ari.jpg temp.jpg")
+		c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran temp_ari.jpg temppppp.jpg")
 		m = re.match("Total time elapsed : (.*) us", c[1])
 		pro_decoding_time += int(m.group(1))
 		pro_d.append(int(m.group(1)))
@@ -98,7 +98,7 @@ for f in folders:
 		moz_encoding_time += int(float(m.group(1))*1000000)
 		moz_e.append(int(float(m.group(1))*1000000))
 
-		c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran temp_moz.jpg temp.jpg")
+		c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran temp_moz.jpg temppppp.jpg")
 		m = re.match("Total time elapsed : (.*) us", c[1])
 		moz_decoding_time += int(m.group(1))
 		moz_d.append(int(m.group(1)))

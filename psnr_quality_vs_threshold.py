@@ -8,24 +8,26 @@ from pylab import *
 
 def get_threshold_jpg(out_, threshold, block_file, base_file, quality):
 	global folder
-	c = commands.getstatusoutput("python lossy_zerooff.py %s tmp_out.block %s %s"%(block_file, str(threshold), str(quality)))
+	c = commands.getstatusoutput("python lossy_zerooff.py %s tmp_out.block_ %s %s"%(block_file, str(threshold), str(quality)))
 	print "(", c[1], 
-	c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran -inputcoef tmp_out.block %s %s"%(base_file, out_))
+	c = commands.getstatusoutput("/opt/libjpeg-turbo-coef/bin/jpegtran -inputcoef tmp_out.block_ %s %s"%(base_file, out_))
 
-reso = "600"
+#reso = "600"
 fs = glob.glob("images/TESTIMAGES/RGB/RGB_R02_0600x0600/*.png")
-#reso = "1200"
-#fs = glob.glob("images/TESTIMAGES/RGB/RGB_OR_1200x1200/*.png")
-#fs = fs[:1]
+reso = "1200"
+fs = glob.glob("images/TESTIMAGES/RGB/RGB_OR_1200x1200/*.png")
+fs = fs[:50]
 
 
 qs = range(60, 91)
 qs = [30,40,50,60,70,80,90]
 qs = range(70, 95, 5)
+qs = [55,60,65,70,75,80,85,90,95]
 print qs
 #qs = [30, 50, 70]
 #thre = [0,1.0/8/8/3,1.0/8/8/2,1.0/8/8,3.0/8/8] # 0 is for original (no thresholding)
 thre = [0,1.0/18/18/8, 1.0/18/18/5, 1.0/18/18/3,1.0/18/18,3.0/18/18] # 0 is for original (no thresholding)
+thre = [0, 0.001, 0.003, 0.005, 0.007, 0.012]
 #thre = [0,1.0/18/18/3,1.0/18/18,3.0/18/18, 5.0/18/18, 10.0/18/18] # 0 is for original (no thresholding)
 
 
@@ -41,11 +43,13 @@ x = {}
 y = {}
 y2 = {}
 s_r = {} # size reduction
+s_o = {} # size original
 for t in thre:
 	x[t] = []
 	y[t] = []
 	y2[t] = []
 	s_r[t] = []
+	s_o[t] = []
 
 for q in qs:
 	print ""
@@ -68,7 +72,7 @@ for q in qs:
 		#print " "
 		print ind,f,":","    ", 
 		c = commands.getstatusoutput("convert -sampling-factor 4:2:0 -quality " + str(q)  + " "  + f + " " + folder + "/" + str(ind) +".jpg")
-		c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran -outputcoef tmp.block %s %s"%(folder+"/"+str(ind)+".jpg", folder+"/"+str(ind)+"_std.jpg"))
+		c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran -outputcoef tmp.block_ %s %s"%(folder+"/"+str(ind)+".jpg", folder+"/"+str(ind)+"_std.jpg"))
 		c = commands.getstatusoutput("compare -metric PSNR " + f + " %s/%s.jpg tmp_diff.png"%(folder, str(ind)))
 		print "[psnr ",c[1], "]",
 		psnr[0] += float(c[1])
@@ -79,14 +83,14 @@ for q in qs:
 		for t in thre:
 			if t:
 				print t
-				get_threshold_jpg(folder+"/"+str(ind)+"_%d.jpg"%(t), t, "tmp.block", folder+"/"+str(ind)+"_std.jpg", q)
-				c = commands.getstatusoutput("compare -metric PSNR " + f + " %s/%s_%d.jpg tmp_diff.png"%(folder, str(ind), t))
+				get_threshold_jpg(folder+"/"+str(ind)+"_%f.jpg"%(t), t, "tmp.block_", folder+"/"+str(ind)+"_std.jpg", q)
+				c = commands.getstatusoutput("compare -metric PSNR " + f + " %s/%s_%f.jpg tmp_diff.png"%(folder, str(ind), t))
 				print "psnr ", c[1], 
 				psnr[t] += float(c[1])
-				c = commands.getstatusoutput("pyssim "  + f + " %s/%s_%d.jpg"%(folder, str(ind), t))
+				c = commands.getstatusoutput("pyssim "  + f + " %s/%s_%f.jpg"%(folder, str(ind), t))
 				print "ssim ", c[1],")",
 				ssim[t] += float(c[1])
-				size[t] += os.path.getsize("%s/%s_%d.jpg"%(folder, str(ind), t))
+				size[t] += os.path.getsize("%s/%s_%f.jpg"%(folder, str(ind), t))
 		print ""
 	
 	for t in thre:
@@ -94,6 +98,7 @@ for q in qs:
 		size[t] /= len(fs)
 		ssim[t] /= len(fs)
 		s_r[t].append(100*(1-size[t]*1.0/size[0]))
+		s_o[t].append(size[0])
 		x[t].append(size[t])
 		y[t].append(psnr[t])
 		y2[t].append(ssim[t])
@@ -101,6 +106,36 @@ print x
 print y
 print y2
 print s_r
+
+print "#",
+for q in qs:
+	print q,
+print ""
+
+for t in thre:
+	print t
+	print "image size,",
+	for tt in x[t]:
+		print tt,",",
+	print ""
+	print "psnr,",
+	for tt in y[t]:
+		print tt,",",
+	print ""
+	print "ssim,",
+	for tt in y2[t]:
+		print tt,",",
+	print ""
+	print "original_size,",
+	for tt in s_o[t]:
+		print tt,",",
+	print ""
+	print "size reduction,",
+	for tt in s_o[t]:
+		print tt,",",
+	print ""
+
+
 
 fig = plt.figure()
 gs = gridspec.GridSpec(2,1,height_ratios=[2,1])

@@ -350,7 +350,6 @@ parse_switches (j_compress_ptr cinfo, int argc, char **argv,
       if (++argn >= argc)	/* advance to next argument */
         usage();
       threshold = atof(argv[argn]);
-      printf("%f\n", threshold);
        
       private_option = 1;
     } else if (keymatch(arg, "decode", 6)) {
