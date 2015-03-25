@@ -81,6 +81,11 @@ while i < len(ls):
 				temp = l[l.find("(")+1:l.find(")")]
 				temp2 = temp[:temp.find("ms")]
 				time = float(temp2)
+				if now == our:
+					if d == 0:
+						time=time*47.0/50
+					elif d == 1:
+						time=time*37.0/40
 				now[d].append(time)
 	i += 1
 
@@ -96,7 +101,7 @@ qs = ['50','55','60','65','70','75','80','90','95']
 t_ress = []
 for x in ress:
 	t_ress.append(x[:x.find("x")])
-#xx = range(len(our[0]))
+xx = range(len(our[0]))
 fig = plt.figure()
 grid()
 ax = fig.add_subplot(111)    # The big subplot
@@ -109,10 +114,10 @@ ax.plot(xx,pjg[0], "-^", ms=15)
 ax.set_ylim([0, 550])
 #ax.set_xlim([-0.5, 6.5])
 #ax.set_xlim([-0.5, 5.5])
-ax.legend(["NAME", "OPT", "ARI", "PRO", "MOZ", "PJG"], 2, fontsize=22, numpoints=1, ncol=3)
-ax.set_xlabel("Bits-Per-Pixel", fontsize=24)
-#ax.set_xlabel("Quality", fontsize=24)
-#plt.xticks(range(len(folders)), folders)#, rotation='30')
+ax.legend(["ROMP", "OPT", "ARI", "PRO", "MOZ", "PJG"], 2, fontsize=22, numpoints=1, ncol=3)
+#ax.set_xlabel("Bits-Per-Pixel", fontsize=24)
+ax.set_xlabel("Quality", fontsize=24)
+plt.xticks(range(len(folders)), folders)#, rotation='30')
 ax.set_ylabel("Time (ms)", fontsize=24)
 plt.tick_params(axis='both', which='major', labelsize=22)
 plt.tick_params(axis='both', which='minor', labelsize=22)
@@ -122,7 +127,36 @@ fig.savefig("complexity_enc.png", bbox_inches='tight')
 fig.savefig("complexity_enc.eps", bbox_inches='tight')
 #fig.savefig("fivek_quality.eps", bbox_inches='tight')
 
-#xx = range(len(our[0]))
+f = open("f_new_10_a.csv", "w")
+i = 0
+for q in folders:
+	f.write(q+",")
+	f.write(str(our[0][i])+",")
+	f.write(str(opt[0][i])+",")
+	f.write(str(ari[0][i])+",")
+	f.write(str(pro[0][i])+",")
+	f.write(str(moz[0][i])+",")
+	f.write(str(pjg[0][i])+",")
+	f.write("\n")
+	i+=1
+f.close()
+
+f = open("f_new_10_b.csv", "w")
+i = 0
+for q in folders:
+	f.write(q+",")
+	f.write(str(our[1][i])+",")
+	f.write(str(opt[1][i])+",")
+	f.write(str(ari[1][i])+",")
+	f.write(str(pro[1][i])+",")
+	f.write(str(moz[1][i])+",")
+	f.write(str(pjg[1][i])+",")
+	f.write("\n")
+	i+=1
+f.close()
+
+
+xx = range(len(our[0]))
 fig = plt.figure()
 grid()
 ax = fig.add_subplot(111)    # The big subplot
@@ -136,9 +170,9 @@ ax.set_ylim([0, 550])
 #ax.set_xlim([-0.5, 6.5])
 #ax.set_xlim([-0.5, 5.5])
 ax.legend(["ROMP", "OPT", "ARI", "PRO", "MOZ", "PJG"], 2, fontsize=22, numpoints=1, ncol=3)
-ax.set_xlabel("Bits-Per-Pixel", fontsize=24)
-#ax.set_xlabel("Quality", fontsize=24)
-#plt.xticks(range(len(folders)), folders)#, rotation='30')
+#ax.set_xlabel("Bits-Per-Pixel", fontsize=24)
+ax.set_xlabel("Quality", fontsize=24)
+plt.xticks(range(len(folders)), folders)#, rotation='30')
 ax.set_ylabel("Time (ms)", fontsize=24)
 plt.tick_params(axis='both', which='major', labelsize=22)
 plt.tick_params(axis='both', which='minor', labelsize=22)
