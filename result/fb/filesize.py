@@ -59,6 +59,7 @@ for i in range(6):
 	x.append(i*1.0/10-0.29)
 	x.append(1+i*1.0/10-0.29)
 	ax.bar(x, p[i], width=0.08, edgecolor=ec[i], color='none',hatch=hatch[i])
+	print p[i]
 
 ax.set_ylim([0, 40])
 ax.set_xlim([-0.5, 1.5])
