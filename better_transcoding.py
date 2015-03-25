@@ -91,7 +91,7 @@ for q in qs:
 		#ssim /= len(fs)
 		size /= len(fs)*1000
 		#print q, d, ":", psnr, ssim, size
-		print q, d, ":", psnr, size
+		#print q, d, ":", psnr, size
 		x[q].append(size)
 		y[q].append(psnr)
 		#y2[q].append(ssim)
@@ -100,7 +100,9 @@ for q in qs:
 #get_threshold_jpg(folder+"/"+str(ind)+"_%d.jpg"%(t), t, "tmp.block", folder+"/"+str(ind)+"_std.jpg", q)
 #def get_threshold_jpg(in_, out_, threshold, quality):
 for q in qs:
+	print q
 	for d in [q]+thre:
+		print "\t",d
 	#for d in dest:
 		#if d > q:
 		#	continue
@@ -131,16 +133,16 @@ for q in qs:
 		psnr /= len(fs)
 		#ssim /= len(fs)
 		size /= len(fs)*1000
-		print q, d, ":", psnr, size
+		#print q, d, ":", psnr, size
 		x2[q].append(size)
 		y2[q].append(psnr)
 		#y2[q].append(ssim)
 
 
-print x
-print y
-print x2
-print y2
+#print x
+#print y
+#print x2
+#print y2
 
 fig = plt.figure()
 ax = fig.add_subplot(111)
@@ -149,11 +151,32 @@ for t in qs:
 	if t == 100:
 		ax.plot(x[t], y[t], '-k', lw=1)
 		leg.append("Raw Image")
+		print "#",t
+		for tt in x[t]:
+			print tt,",",
+		print ""
+		for tt in y[t]:
+			print tt,",",
+		print ""	
 	else:
 		ax.plot(x[t], y[t], ':r', lw=3)#, ms=15, markevery=3)
 		leg.append("Changing Quality")
+		print "#",t, "changing quality"
+		for tt in x[t]:
+			print tt,",",
+		print ""
+		for tt in y[t]:
+			print tt,",",
+		print ""			
 		ax.plot(x2[t], y2[t], '-b', dashes=[16,4,2,4],lw=3)#, ms=15, markevery=3)
 		leg.append("LOSSY")
+		print "#",t, "L-ROMP"
+		for tt in x2[t]:
+			print tt,",",
+		print ""
+		for tt in y2[t]:
+			print tt,",",
+		print ""					
 ax.set_xlabel("Filesize (KB)", fontsize=24)
 ax.grid()
 ax.set_ylabel("PSNR (dB)", fontsize=24)
