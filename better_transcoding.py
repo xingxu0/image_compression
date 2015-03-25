@@ -13,8 +13,9 @@ def get_threshold_jpg(in_, out_, threshold, quality):
 	c = commands.getstatusoutput("python lossy_zerooff.py tmp.block tmp_out.block %s %s"%(str(threshold), str(quality)))
 	c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran -inputcoef tmp_out.block %s %s"%(base_file, out_))
 
-reso = "600"
+reso = "1200"
 fs = glob.glob("images/raw/*.png")
+fs = glob.glob("images/raw/1200/*.png")
 #reso = "1200"
 #fs = glob.glob("images/TESTIMAGES/RGB/RGB_OR_1200x1200/*.png")
 fs = fs[:20]
