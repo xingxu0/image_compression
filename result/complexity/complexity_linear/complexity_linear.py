@@ -81,11 +81,6 @@ while i < len(ls):
 				temp = l[l.find("(")+1:l.find(")")]
 				temp2 = temp[:temp.find("ms")]
 				time = float(temp2)
-				if now == our:
-					if d == 0:
-						time=time*47.0/50
-					elif d == 1:
-						time=time*37.0/40
 				now[d].append(time)
 	i += 1
 
