@@ -4,7 +4,7 @@ from pylab import *
 
 folders = ['50','55', '60','65', '70','75', '80','85', '90', '95']
 folders = ['75','85','95']
-folders = ['95']
+#folders = ['95']
 
 
 def printf(f, s):
@@ -30,32 +30,32 @@ def get_candidates_size(img_folder, q):
 	total_pjg_size = 0
 
 	for i in range(1, 101):
-		c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran -outputcoef t_opt " + img_folder + "/" + str(i) + ".jpg temp.jpg")
-		total_std_size += os.path.getsize("temp.jpg")
+		c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran -outputcoef t_opt2 " + img_folder + "/" + str(i) + ".jpg temp___.jpg")
+		total_std_size += os.path.getsize("temp___.jpg")
 
-		c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran -optimize " + img_folder + "/" + str(i) + ".jpg temp.jpg")
-		total_opt_size += os.path.getsize("temp.jpg")
+		c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran -optimize " + img_folder + "/" + str(i) + ".jpg temp___.jpg")
+		total_opt_size += os.path.getsize("temp___.jpg")
 
-		c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran -arithmetic " + img_folder + "/" + str(i) + ".jpg temp.jpg")
-		total_ari_size += os.path.getsize("temp.jpg")
+		c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran -arithmetic " + img_folder + "/" + str(i) + ".jpg temp___.jpg")
+		total_ari_size += os.path.getsize("temp___.jpg")
 
-		c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran -progressive " + img_folder + "/" + str(i) + ".jpg temp.jpg")
-		total_pro_size += os.path.getsize("temp.jpg")
+		c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran -progressive " + img_folder + "/" + str(i) + ".jpg temp___.jpg")
+		total_pro_size += os.path.getsize("temp___.jpg")
 
-		c = commands.getstatusoutput("time -p /opt/mozjpeg/bin/jpegtran " + img_folder + "/" + str(i) + ".jpg > temp.jpg")
-		total_moz_size += os.path.getsize("temp.jpg")
+		c = commands.getstatusoutput("time -p /opt/mozjpeg/bin/jpegtran " + img_folder + "/" + str(i) + ".jpg > temp___.jpg")
+		total_moz_size += os.path.getsize("temp___.jpg")
 
 		c = commands.getstatusoutput("./packJPG " + img_folder + "/" + str(i) + ".jpg")
 		total_pjg_size += os.path.getsize(img_folder + "/" + str(i) + ".pjg")
 		os.system("rm " + img_folder + "/" + str(i) + ".pjg")
 
-		c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran -outputcoef t_moz temp.jpg temp2.jpg")
-		os.system("diff t_moz t_opt")
+		c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran -outputcoef t_moz2 temp___.jpg temp2.jpg")
+		os.system("diff t_moz2 t_opt2")
 
 	return total_std_size, total_opt_size, total_ari_size, total_pro_size, total_moz_size, total_pjg_size
 			
 
-root = "exp_quality_lossy_001_" + str(int(time.time()))
+root = "exp_quality_lossy_012_" + str(int(time.time()))
 os.system("mkdir %s"%(root))
 f_out = open(root+"/exp.out", "w", 0)
 
@@ -80,11 +80,11 @@ for f in folders:
 			if i > 0:
 				os.system("cp %s/img_train/max* %s/img_train/"%(root+"/exp_" + f + "_0", exp_folder))
 				os.system("cp %s/img_train/coef* %s/img_train/"%(root+"/exp_" + f + "_0", exp_folder))
-			os.system("python training_2_3_dc_zerooff.py %s/img_train %s/tbl_train 1 9 0.001"%(exp_folder, exp_folder))
+			os.system("python training_2_3_dc_zerooff_.py %s/img_train %s/tbl_train 1 9 0.012"%(exp_folder, exp_folder))
 			total_optimized_size = 0
 			total_encoded_size = 0
 			for j in range(1,101):
-				c = commands.getstatusoutput("/opt/libjpeg-turbo-lossy/bin/jpegtran -encode %s/tbl_train 0.001 %s/img_test/%s.jpg temp.jpg"%(exp_folder, exp_folder, str(j)))
+				c = commands.getstatusoutput("/opt/libjpeg-turbo-lossy/bin/jpegtran -encode %s/tbl_train 0.012 %s/img_test/%s.jpg temp___.jpg"%(exp_folder, exp_folder, str(j)))
 				printf(f_out, c[1])
 				printf(f_out_self, c[1])
 				m = re.match("Total saving: (.*) bits\nOriginal filesize: (.*), encoded filesize: (.*), saving: (.*)\nTotal time elapsed : (.*) us", c[1])

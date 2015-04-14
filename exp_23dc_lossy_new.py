@@ -3,8 +3,8 @@ import matplotlib.pyplot as plt
 from pylab import *
 
 folders = ['50','55', '60','65', '70','75', '80','85', '90', '95']
-folders = ['75','85','95']
-folders = ['95']
+folders = ['75']
+#folders = ['95']
 
 
 def printf(f, s):
@@ -12,13 +12,11 @@ def printf(f, s):
 	print s
 
 def copy_images(folder, f, s, e):
-	#for i in range(s, e+1):
-	for i in range(1,101):
+	for i in range(1, 101):
 		os.system("cp %s/%s.jpg %s/"%(f, str(i), folder))
 
 def copy_other_images(folder, f, s, e):
 	for i in range(1, 101):
-		#if i < s or i > e:
 		os.system("cp %s/%s.jpg %s/"%(f, str(i), folder))
 			
 def get_candidates_size(img_folder, q):
@@ -54,8 +52,9 @@ def get_candidates_size(img_folder, q):
 
 	return total_std_size, total_opt_size, total_ari_size, total_pro_size, total_moz_size, total_pjg_size
 			
+thre = float(sys.argv[1])
 
-root = "exp_quality_lossy_001_" + str(int(time.time()))
+root = "post_exp_quality_lossy_%d_"%(int(thre*1000)) + str(int(time.time()))
 os.system("mkdir %s"%(root))
 f_out = open(root+"/exp.out", "w", 0)
 
@@ -80,11 +79,11 @@ for f in folders:
 			if i > 0:
 				os.system("cp %s/img_train/max* %s/img_train/"%(root+"/exp_" + f + "_0", exp_folder))
 				os.system("cp %s/img_train/coef* %s/img_train/"%(root+"/exp_" + f + "_0", exp_folder))
-			os.system("python training_2_3_dc_zerooff.py %s/img_train %s/tbl_train 1 9 0.001"%(exp_folder, exp_folder))
+			os.system("python training_2_3_dc_zerooff.py %s/img_train %s/tbl_train 1 9 %f"%(exp_folder, exp_folder, thre))
 			total_optimized_size = 0
 			total_encoded_size = 0
-			for j in range(1,101):
-				c = commands.getstatusoutput("/opt/libjpeg-turbo-lossy/bin/jpegtran -encode %s/tbl_train 0.001 %s/img_test/%s.jpg temp.jpg"%(exp_folder, exp_folder, str(j)))
+			for j in range(1, 101):
+				c = commands.getstatusoutput("/opt/libjpeg-turbo-lossy/bin/jpegtran -encode %s/tbl_train 0.003 %s/img_test/%s.jpg temp.jpg"%(exp_folder, exp_folder, str(j)))
 				printf(f_out, c[1])
 				printf(f_out_self, c[1])
 				m = re.match("Total saving: (.*) bits\nOriginal filesize: (.*), encoded filesize: (.*), saving: (.*)\nTotal time elapsed : (.*) us", c[1])
@@ -99,7 +98,6 @@ for f in folders:
 			f_out_self.close()
 			overall_optimized_size += total_optimized_size
 			overall_encoded_size += total_encoded_size
-			os.system("rm %s/tbl_train -rf"%(exp_folder))
 		printf(f_out, "\t" + str(overall_optimized_size) + " " + str(overall_encoded_size) + " " + str((overall_optimized_size-overall_encoded_size)*1.0/overall_optimized_size))
 	printf(f_out, "\t our %d, std %d, opt %d, ari %d, pro %d, moz %d, pjg %d"%(overall_encoded_size, std, opt, ari, pro, moz, pjg))
 f_out.close()
