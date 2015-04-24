@@ -54,7 +54,7 @@ def get_candidates_size(img_folder, q):
 			
 thre = float(sys.argv[1])
 
-root = "post_exp_quality_lossy_%d_"%(int(thre*1000)) + str(int(time.time()))
+root = "post_exp_quality_" + str(int(time.time()))
 os.system("mkdir %s"%(root))
 f_out = open(root+"/exp.out", "w", 0)
 
@@ -79,11 +79,11 @@ for f in folders:
 			if i > 0:
 				os.system("cp %s/img_train/max* %s/img_train/"%(root+"/exp_" + f + "_0", exp_folder))
 				os.system("cp %s/img_train/coef* %s/img_train/"%(root+"/exp_" + f + "_0", exp_folder))
-			os.system("python training_2_3_dc_zerooff.py %s/img_train %s/tbl_train 1 9 %f"%(exp_folder, exp_folder, thre))
+			os.system("python training_2_3_dc.py %s/img_train %s/tbl_train"%(exp_folder, exp_folder))
 			total_optimized_size = 0
 			total_encoded_size = 0
 			for j in range(1, 101):
-				c = commands.getstatusoutput("/opt/libjpeg-turbo-lossy/bin/jpegtran -encode %s/tbl_train %f %s/img_test/%s.jpg temp.jpg"%(exp_folder, thre, exp_folder, str(j)))
+				c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran -encode %s/tbl_train %f %s/img_test/%s.jpg temp.jpg"%(exp_folder, thre, exp_folder, str(j)))
 				printf(f_out, c[1])
 				printf(f_out_self, c[1])
 				m = re.match("Total saving: (.*) bits\nOriginal filesize: (.*), encoded filesize: (.*), saving: (.*)\nTotal time elapsed : (.*) us", c[1])
