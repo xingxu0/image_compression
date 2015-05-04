@@ -59,7 +59,7 @@ def get_r_l(x, code):
 
 def get_a(b, p, ci):
 	A = 0
-	for i in range(1, 65):
+	for i in range(1, 64):
 		if b[i] and i!=p:
 			A += 2*pow(b[i]*quant[ci][jpeg_natural[i]], 2)
 	t = pow(b[p]*quant[ci][jpeg_natural[p]], 2)
