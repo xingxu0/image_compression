@@ -52,16 +52,16 @@ def get_candidates_size(img_folder, q):
 
 	return total_std_size, total_opt_size, total_ari_size, total_pro_size, total_moz_size, total_pjg_size
 			
-thre = float(sys.argv[1])
+folder = sys.argv[1]
 
-root = "post_exp_quality_" + str(int(time.time()))
+root = "post_exp_lromp_" + str(int(time.time()))
 os.system("mkdir %s"%(root))
 f_out = open(root+"/exp.out", "w", 0)
 
 
 for f in folders:
 	printf(f_out, f)
-	img_folder = "images/generate_1200x1200_%s"%(f)
+	img_folder = folder 
 	std,opt,ari,pro,moz,pjg = get_candidates_size(img_folder, f)
 	overall_optimized_size = 0
 	overall_encoded_size = 0
@@ -83,7 +83,7 @@ for f in folders:
 			total_optimized_size = 0
 			total_encoded_size = 0
 			for j in range(1, 101):
-				c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran -encode %s/tbl_train %f %s/img_test/%s.jpg temp.jpg"%(exp_folder, thre, exp_folder, str(j)))
+				c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran -encode %s/tbl_train %s/img_test/%s.jpg temp.jpg"%(exp_folder, exp_folder, str(j)))
 				printf(f_out, c[1])
 				printf(f_out_self, c[1])
 				m = re.match("Total saving: (.*) bits\nOriginal filesize: (.*), encoded filesize: (.*), saving: (.*)\nTotal time elapsed : (.*) us", c[1])
@@ -100,4 +100,5 @@ for f in folders:
 			overall_encoded_size += total_encoded_size
 		printf(f_out, "\t" + str(overall_optimized_size) + " " + str(overall_encoded_size) + " " + str((overall_optimized_size-overall_encoded_size)*1.0/overall_optimized_size))
 	printf(f_out, "\t our %d, std %d, opt %d, ari %d, pro %d, moz %d, pjg %d"%(overall_encoded_size, std, opt, ari, pro, moz, pjg))
+	break
 f_out.close()

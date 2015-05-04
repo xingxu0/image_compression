@@ -7,9 +7,11 @@ import matplotlib.gridspec as gridspec
 from pylab import *
 
 def get_threshold_jpg(out_, threshold, block_file, base_file, quality):
-	global folder
-	c = commands.getstatusoutput("python lossy_zerooff.py %s tmp_out.block_ %s %s"%(block_file, str(threshold), str(quality)))
-	cc = commands.getstatusoutput("/opt/libjpeg-turbo-coef/bin/jpegtran -inputcoef tmp_out.block_ %s %s"%(base_file, out_))
+	global folder, qs
+	c = commands.getstatusoutput("python lossy_zerooff.py %s tmp_out.block_%d %s %s"%(block_file, qs[0], str(threshold), str(quality)))
+	cc = commands.getstatusoutput("/opt/libjpeg-turbo-coef/bin/jpegtran -inputcoef tmp_out.block_%d %s tmp_out.block__%d"%(qs[0], base_file, qs[0]))
+	ccc = commands.getstatusoutput("jpegtran -optimize tmp_out.block__%d %s"%(qs[0], out_))
+	cccc = commands.getstatusoutput("rm tmp_out.block__%d"%(qs[0]))
 	return c[1]
 
 #reso = "600"
@@ -18,13 +20,16 @@ reso = "1200"
 fs = glob.glob("images/TESTIMAGES/RGB/RGB_OR_1200x1200/*.png")
 fs = fs[:100]
 
-qs = [80]
+
+
+qs = []
+qs.append(int(sys.argv[1]))
 qe = 75
 print qs, qe
 #qs = [30, 50, 70]
 #thre = [0,1.0/8/8/3,1.0/8/8/2,1.0/8/8,3.0/8/8] # 0 is for original (no thresholding)
 thre = [0,1.0/18/18/8, 1.0/18/18/5, 1.0/18/18/3,1.0/18/18,3.0/18/18] # 0 is for original (no thresholding)
-thre = [-1, 0, 0.0007, 0.0009, 0.001, 0.0015]#, 0.007, 0.012]
+thre = [-1, 0, 0.0015]#0.0001, 0.0003, 0.0005]#15]#005, 0.0001, 0.0005]#, 0.0009, 0.001, 0.0015]#, 0.007, 0.012]
 #thre = [0,1.0/18/18/3,1.0/18/18,3.0/18/18, 5.0/18/18, 10.0/18/18] # 0 is for original (no thresholding)
 
 
@@ -73,9 +78,11 @@ for q in qs:
 		#print " "
 		print ind,f,":","    ", 
 		c = commands.getstatusoutput("convert -sampling-factor 4:2:0 -quality " + str(q)  + " "  + f + " " + folder + "/" + str(ind) +".jpg")
-		c = commands.getstatusoutput("convert -sampling-factor 4:2:0 -quality " + str(qe)  + " " + folder + "/" + str(ind) +".jpg " + folder_qc+"/"+str(ind)+".jpg")
+		#c = commands.getstatusoutput("jpegtran -optimize %s %s; rm %s"%(folder + "/" + str(ind) +"_.jpg", folder + "/" + str(ind) +".jpg", folder + "/" + str(ind) +"_.jpg"))	
+		c = commands.getstatusoutput("convert -define jpeg:optimize-coding=on -sampling-factor 4:2:0 -quality " + str(qe)  + " " + folder + "/" + str(ind) +".jpg " + folder_qc+"/"+str(ind)+".jpg")
+		#c = commands.getstatusoutput("jpegtran -optimize %s %s; rm %s"%(folder_qc + "/" + str(ind) +"_.jpg", folder_qc + "/" + str(ind) +".jpg", folder_qc + "/" + str(ind) +"_.jpg"))	
 
-		c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran -outputcoef tmp.block_ %s %s"%(folder+"/"+str(ind)+".jpg", folder+"/"+str(ind)+"_std.jpg"))
+		c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran -outputcoef tmp.block_%d %s %s"%(qs[0], folder+"/"+str(ind)+".jpg", folder+"/"+str(ind)+"_std.jpg"))
 		c = commands.getstatusoutput("compare -metric PSNR " + f + " %s/%s.jpg tmp_diff.png"%(folder, str(ind)))
 		print "[psnr ", q, c[1], "]",
 		psnr[-1] += float(c[1])
@@ -91,7 +98,7 @@ for q in qs:
 		for t in thre:
 			if t>0:
 				folder_ = "%s/q_lromp_%s"%(root_folder, int(t*10000))
-				t_ = get_threshold_jpg(folder_+"/"+str(ind)+".jpg", t, "tmp.block_", folder+"/"+str(ind)+".jpg", q)
+				t_ = get_threshold_jpg(folder_+"/"+str(ind)+".jpg", t, "tmp.block_"+str(qs[0]), folder+"/"+str(ind)+".jpg", q)
 				c = commands.getstatusoutput("compare -metric PSNR " + f + " %s/%s.jpg tmp_diff.png"%(folder_, str(ind)))
 				print "[", t, ": psnr ", c[1], "(", t_, ")]",
 				psnr[t] += float(c[1])
@@ -133,6 +140,6 @@ for t in thre:
 		print tt,",",
 	print ""
 	print "size reduction,",
-	for tt in s_o[t]:
+	for tt in s_r[t]:
 		print tt,",",
 	print ""

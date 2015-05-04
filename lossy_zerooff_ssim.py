@@ -1,14 +1,13 @@
-
-
 import sys, os, heapq, glob, operator, pickle
 from operator import itemgetter
 from copy import *
-from pylab import *
 import lib_new as lib
 
 #if len(sys.argv) == 1:
 #	print "usage: python runsize.py size(600, 1200), component_number(0,1,2) start_learn_image(1-100), end_learn_image(1-100), end_test_image(1-100), dep. 1(0:DC, 1:avg_pre_coef, 2:avg_pre_block_coef, 3:pre_block_coef, r:last_block_eob, 5:pre_blocks_sign), dep. 2(0:DC, 1:avg_pre_coef, 2:avg_pre_block_coef, 3:pre_block_coef, 4:last_block_eob, 5:pre_blocks_sign)"
 #	exit()
+
+c2 = 58.522499999999994
 
 quant = {}
 quant["0"] = [16,  11,  10,  16,  24,  40,  51,  61,
@@ -58,12 +57,24 @@ def get_r_l(x, code):
 	else:
 		return "EOB" + l
 
+def get_a(b, p, ci):
+	A = 0
+	for i in range(1, 65):
+		if b[i] and i!=p:
+			A += 2*pow(b[i]*quant[ci][jpeg_natural[i]], 2)
+	t = pow(b[p]*quant[ci][jpeg_natural[p]], 2)
+	after_up = (A)*1.0/63+c2
+	after_down = (A + t)*1.0/63 + c2
+	return 1.0-after_up*1.0/after_down
+	
+
+
+
 def zero_off(b, b_o, code, ci, sf):
 	global thre
 	modified = 0
 	r = 0
 	pos = 1
-	t_var = 0
 
 	r_l = []
 	p = []
@@ -75,7 +86,6 @@ def zero_off(b, b_o, code, ci, sf):
 		p.append(i)
 		pos = i + 1
 		r = 0
-		t_var += quant[ci][jpeg_natural[i]]
 	if r > 0:
 		r_l.append(0)
 		p.append(-1)
@@ -112,7 +122,7 @@ def zero_off(b, b_o, code, ci, sf):
 			af_code = 0
 			diff = get_code(x,code)+1-get_code(0, code)
 		#if diff >= thre*pow((quant[ci][jpeg_natural[p[i]]]*sf+50)/100, 2):
-		if diff*1.0/t_var >= thre:#*pow(quant[ci][jpeg_natural[p[i]]], 2):
+		if diff >= thre*get_a(b_o, p[i], ci):#pow(quant[ci][jpeg_natural[p[i]]], 2):
 		#if diff >= thre:
 			if modified == 0:
 				#print " "

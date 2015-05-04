@@ -14,9 +14,9 @@ def get_threshold_jpg(out_, threshold, block_file, base_file, quality):
 
 reso = "600"
 fs = glob.glob("images/raw/*.png")
-#reso = "1200"
-#fs = glob.glob("images/TESTIMAGES/RGB/RGB_OR_1200x1200/*.png")
-#fs = fs[:2]
+reso = "1200"
+fs = glob.glob("images/TESTIMAGES/RGB/RGB_OR_1200x1200/*.png")
+fs = fs[:2]
 
 dest = range(40, 93, 2)
 qs = range(60, 91)
