@@ -16,26 +16,26 @@ def get_threshold_jpg(out_, threshold, block_file, base_file, quality):
 fs = glob.glob("images/TESTIMAGES/RGB/RGB_R02_0600x0600/*.png")
 reso = "1200"
 fs = glob.glob("images/TESTIMAGES/RGB/RGB_OR_1200x1200/*.png")
-fs = fs[:100]
+fs = fs[:101]
 
 
 qs = range(60, 91)
 qs = [30,40,50,60,70,80,90]
 qs = range(70, 95, 5)
-qs = [55,60,65,70,75,80,85,90,95]
-qs = [55, 65, 75, 85, 95]
+qs = [35,40,45,50,55,60,65,70,75]
 print qs
 #qs = [30, 50, 70]
 #thre = [0,1.0/8/8/3,1.0/8/8/2,1.0/8/8,3.0/8/8] # 0 is for original (no thresholding)
 thre = [0,1.0/18/18/8, 1.0/18/18/5, 1.0/18/18/3,1.0/18/18,3.0/18/18] # 0 is for original (no thresholding)
 thre = [0, 0.001, 0.003, 0.005, 0.007, 0.012]
 thre = [0, 50, 100,300,500,1000, 3000, 5000]
+thre = [0, 200, 300, 500, 1000, 2000]
 #thre = [0,1.0/18/18/3,1.0/18/18,3.0/18/18, 5.0/18/18, 10.0/18/18] # 0 is for original (no thresholding)
 
 
 print thre
 
-root_folder = "ssim_q_vs_t"
+root_folder = "ssim_q_vs_t2"
 c = commands.getstatusoutput("rm %s -rf"%(root_folder))
 c = commands.getstatusoutput("mkdir " + root_folder)
 
@@ -162,7 +162,7 @@ ax2.set_xlabel("Q")
 ax2.set_ylabel("Bits Saving (%)")
 ax2.set_xlim([min(qs)-3, max(qs)+3])
 tight_layout()
-savefig("SS_psnr_quality_vs_threshold_%s.png"%(reso))
+savefig("SS_psnr_quality_vs_threshold2_%s.png"%(reso))
 #savefig("SS_psnr_quality_vs_threshold_%s.eps"%(reso))
 
 fig = plt.figure()
@@ -188,5 +188,5 @@ ax2.set_xlabel("Q")
 ax2.set_ylabel("Bits Saving (%)")
 ax2.set_xlim([min(qs)-3, max(qs)+3])
 tight_layout()
-savefig("SS_ssim_quality_vs_threshold_%s.png"%(reso))
+savefig("SS_ssim_quality_vs_threshold2_%s.png"%(reso))
 #savefig("Q_ssim_quality_vs_threshold_%s.eps"%(reso))

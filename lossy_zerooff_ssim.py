@@ -122,18 +122,19 @@ def zero_off(b, b_o, code, ci, sf):
 			af_code = 0
 			diff = get_code(x,code)+1-get_code(0, code)
 		#if diff >= thre*pow((quant[ci][jpeg_natural[p[i]]]*sf+50)/100, 2):
-		if diff >= thre*get_a(b_o, p[i], ci):#pow(quant[ci][jpeg_natural[p[i]]], 2):
+		disto = get_a(b_o, p[i], ci)
+		if diff >= thre*disto:#pow(quant[ci][jpeg_natural[p[i]]], 2):
 		#if diff >= thre:
 			if modified == 0:
-				#print " "
-				#print " "
-				#modified = True
+				print " "
+				print " "
+				modified = True
 				pass
 			modified += 1
-			#print "comp", ci, ":"
-			#print b
-			#print b_o
-			#print "\t", p[i], ":", diff, "    before", be, " after ", af
+			print "comp", ci, ":"
+			print b
+			print b_o
+			print "\t", p[i], ":", diff, "    before", be, " after ", af, disto, diff*1.0/disto
 			b[p[i]] = 0
 			b_o[p[i]] = 0
 			
