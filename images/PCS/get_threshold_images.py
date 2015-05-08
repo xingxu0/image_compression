@@ -78,12 +78,13 @@ for q in qs:
 	fs = glob.glob("%s/*_orig*.jpg"%(q))
 	for f in fs:
 		s = f
+		f_ = f[f.find("/")+1:]
 		raw_file = s[s.find("/")+1:s.find("orig")+4] + ".bmp"
 		ind = s[s.find("/")+1:s.find("orig")+4] 
 		#print " "
 		print ind,f,":","    " 
 		#c = commands.getstatusoutput("convert -sampling-factor 4:2:0 -quality " + str(q)  + " "  + f + " " + folder + "/" + str(ind) +".jpg")
-		c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran -outputcoef tmp.block_ %s %s"%(f, folder+"/"+str(ind)+"_std.jpg"))
+		c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran -outputcoef tmp.block_ %s %s"%(f, folder+"/"+f_))
 		c = commands.getstatusoutput("compare -metric PSNR " + raw_file + " " + f + " tmp_diff.png")
 		print "[psnr ",c[1], "]",
 		psnr[ind][q][0] = float(c[1])
@@ -94,7 +95,7 @@ for q in qs:
 		for t in thre:
 			if t:
 				print t,
-				get_threshold_jpg(folder+"/"+str(ind)+"_%f.jpg"%(t), t, "tmp.block_", folder+"/"+str(ind)+"_std.jpg")
+				get_threshold_jpg(folder+"/"+str(ind)+"_%f.jpg"%(t), t, "tmp.block_", folder+"/"+f_)
 				c = commands.getstatusoutput("compare -metric PSNR " + raw_file + " %s/%s_%f.jpg tmp_diff.png"%(folder, str(ind), t))
 				print "psnr ", c[1], 
 				psnr[ind][q][t] = float(c[1])
