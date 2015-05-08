@@ -20,7 +20,7 @@ def get_threshold_jpg(out_, threshold, block_file, base_file):
 	c = commands.getstatusoutput("/opt/libjpeg-turbo-coef/bin/jpegtran -inputcoef tmp_out.block_ %s temp2.jpg"%(base_file))
 	c = commands.getstatusoutput("jpegtran -optimize temp2.jpg %s"%(out_))
 
-qs = ["bpp_0.25", ]#"bpp_0.5", "bpp_0.75", "bpp_1", "bpp_1.25", "bpp_1.5"]
+qs = ["bpp_0.25", "bpp_0.5", "bpp_0.75", "bpp_1", "bpp_1.25", "bpp_1.5"]
 print qs
 
 #qs = [30, 50, 70]
@@ -114,7 +114,7 @@ for f in glob.glob("./*.bmp"):
 	size_ = []
 	raw_file = s[s.find("/")+1:s.find("orig")+4] + ".bmp"
 	pix = get_pixels(ind+".bmp")
-	for q in range(q_min[ind]-3, q_max[ind]+4):
+	for q in range(q_min[ind]-2, q_max[ind]+3):
 		c = commands.getstatusoutput("convert -sampling-factor 4:2:0 -quality " + str(q)  + " "  + raw_file + " temp.jpg")
 		c = commands.getstatusoutput("compare -metric PSNR " + raw_file + " temp.jpg tmp_diff.png")
 		psnr_.append(float(c[1]))
