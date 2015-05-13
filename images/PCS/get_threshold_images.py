@@ -15,10 +15,10 @@ def get_pixels(f):
 
 def get_threshold_jpg(out_, threshold, block_file, base_file):
 	global folder
-	c = commands.getstatusoutput("python ../../lossy_zerooff.py %s tmp_out.block_ %s %s"%(block_file, str(threshold), str(75)))
+	c = commands.getstatusoutput("python ../../lossy_zerooff_ssim.py %s tmp_out.block__ %s %s"%(block_file, str(threshold), str(75)))
 	print "(", c[1], 
-	c = commands.getstatusoutput("/opt/libjpeg-turbo-coef/bin/jpegtran -inputcoef tmp_out.block_ %s temp2.jpg"%(base_file))
-	c = commands.getstatusoutput("jpegtran -optimize temp2.jpg %s"%(out_))
+	c = commands.getstatusoutput("/opt/libjpeg-turbo-coef/bin/jpegtran -inputcoef tmp_out.block__ %s temp3.jpg"%(base_file))
+	c = commands.getstatusoutput("jpegtran -optimize temp3.jpg %s"%(out_))
 
 qs = ["bpp_0.25", "bpp_0.5", "bpp_0.75", "bpp_1", "bpp_1.25", "bpp_1.5"]
 print qs
@@ -27,12 +27,13 @@ print qs
 #thre = [0,1.0/8/8/3,1.0/8/8/2,1.0/8/8,3.0/8/8] # 0 is for original (no thresholding)
 thre = [0,1.0/18/18/8, 1.0/18/18/5, 1.0/18/18/3,1.0/18/18,3.0/18/18] # 0 is for original (no thresholding)
 thre = [0, 0.012, 0.007, 0.003, 0.001]
+thre = [0, 200,300,500,1000,2000]
 #thre = [0,1.0/18/18/3,1.0/18/18,3.0/18/18, 5.0/18/18, 10.0/18/18] # 0 is for original (no thresholding)
 
 
 print thre
 
-root_folder = "psnr_q_vs_t"
+root_folder = "ssim_q_vs_t"
 c = commands.getstatusoutput("rm %s -rf"%(root_folder))
 c = commands.getstatusoutput("mkdir " + root_folder)
 
@@ -84,8 +85,8 @@ for q in qs:
 		#print " "
 		print ind,f,":","    " 
 		#c = commands.getstatusoutput("convert -sampling-factor 4:2:0 -quality " + str(q)  + " "  + f + " " + folder + "/" + str(ind) +".jpg")
-		c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran -outputcoef tmp.block_ %s %s"%(f, folder+"/"+f_))
-		c = commands.getstatusoutput("compare -metric PSNR " + raw_file + " " + f + " tmp_diff.png")
+		c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran -outputcoef tmp.block__ %s %s"%(f, folder+"/"+f_))
+		c = commands.getstatusoutput("compare -metric PSNR " + raw_file + " " + f + " tmp_diff_.png")
 		print "[psnr ",c[1], "]",
 		psnr[ind][q][0] = float(c[1])
 		c = commands.getstatusoutput("pyssim "  + raw_file + " " + f)
@@ -95,8 +96,8 @@ for q in qs:
 		for t in thre:
 			if t:
 				print t,
-				get_threshold_jpg(folder+"/"+str(ind)+"_%f.jpg"%(t), t, "tmp.block_", folder+"/"+f_)
-				c = commands.getstatusoutput("compare -metric PSNR " + raw_file + " %s/%s_%f.jpg tmp_diff.png"%(folder, str(ind), t))
+				get_threshold_jpg(folder+"/"+str(ind)+"_%f.jpg"%(t), t, "tmp.block__", folder+"/"+f_)
+				c = commands.getstatusoutput("compare -metric PSNR " + raw_file + " %s/%s_%f.jpg tmp_diff_.png"%(folder, str(ind), t))
 				print "psnr ", c[1], 
 				psnr[ind][q][t] = float(c[1])
 				c = commands.getstatusoutput("pyssim "  + raw_file + " %s/%s_%f.jpg"%(folder, str(ind), t))
@@ -116,12 +117,12 @@ for f in glob.glob("./*.bmp"):
 	raw_file = s[s.find("/")+1:s.find("orig")+4] + ".bmp"
 	pix = get_pixels(ind+".bmp")
 	for q in range(q_min[ind]-2, q_max[ind]+3):
-		c = commands.getstatusoutput("convert -sampling-factor 4:2:0 -quality " + str(q)  + " "  + raw_file + " temp.jpg")
-		c = commands.getstatusoutput("compare -metric PSNR " + raw_file + " temp.jpg tmp_diff.png")
+		c = commands.getstatusoutput("convert -sampling-factor 4:2:0 -quality " + str(q)  + " "  + raw_file + " temp_.jpg")
+		c = commands.getstatusoutput("compare -metric PSNR " + raw_file + " temp_.jpg tmp_diff_.png")
 		psnr_.append(float(c[1]))
-		c = commands.getstatusoutput("pyssim "  + raw_file + " temp.jpg")
+		c = commands.getstatusoutput("pyssim "  + raw_file + " temp_.jpg")
 		ssim_.append(float(c[1]))
-		size_.append(os.path.getsize("temp.jpg")*8.0/pix)
+		size_.append(os.path.getsize("temp_.jpg")*8.0/pix)
 
 	fig = plt.figure()
 	ax = fig.add_subplot(111)

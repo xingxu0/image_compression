@@ -86,6 +86,7 @@ for b in dest_bpp:
 					psnr = float(commands.getstatusoutput("compare -metric PSNR %s temp.jpg temp_diff.png"%(f))[1])
 					res[str(q)+"_"+str(t)] = psnr
 		sorted_x = sorted(res.items(), key=operator.itemgetter(1), reverse=True)
+		print sorted_x
 		t = sorted_x[0][0]
 		t__ = t.split("_")
 		q_ = int(t__[0])
@@ -93,4 +94,4 @@ for b in dest_bpp:
 		f_current = "all_qp/" + fname + "_q"+str(q_)+".block"
 		f_base = "all_qp/" + fname + "_q"+str(q_)+".base"
 		get_threshold_jpg("%s/%s.jpg"%("lromp_bpp_"+str(b), fname + "_q" + str(q_)+"_t"+str(t_)+".jpg" ), t_, f_current, f_base)
-		print "\t\t", fname, q_, t_, fz, desired_size, sorted_x[0][1]
+		print "\t\t", fname, q_, t_, desired_size, sorted_x[0][1]
