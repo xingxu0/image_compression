@@ -24,16 +24,9 @@ for b in dest_bpp:
 			print q,
 			os.system("convert -sampling-factor 4:2:0 -quality " + str(q)  + " "  + f + " temp.jpg")
 			fz = os.path.getsize("temp.jpg")
-			print "(", fz, ")",
+			print "(", fz, ")"
 			if fz < desired_size:
-				if desired_size - fz < last_q_size - desired_size:
-					print "[", q,"]"
-					os.system("cp temp.jpg %s/%s"%("bpp_"+str(b), fname + "_q" + str(q)+".jpg" ))
-				else:
-					print "[", q+1,"]"
-					os.system("cp temp2.jpg %s/%s"%("bpp_"+str(b), fname + "_q" + str(q+1)+".jpg" ))
+				print "[", q,"]"
+				os.system("cp temp.jpg %s/%s"%("strict_bpp_"+str(b), fname + "_q" + str(q)+".jpg" ))
 				break
-			else:
-				last_q_size = fz
-				os.system("cp temp.jpg temp2.jpg")
 		print ""

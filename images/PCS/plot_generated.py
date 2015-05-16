@@ -21,14 +21,18 @@ def get_threshold_jpg(out_, threshold, block_file, base_file):
 	c = commands.getstatusoutput("/opt/libjpeg-turbo-coef/bin/jpegtran -inputcoef tmp_out.block__ %s temp3.jpg"%(base_file))
 	c = commands.getstatusoutput("jpegtran -optimize temp3.jpg %s"%(out_))
 
-qs = ["bpp_0.25", "bpp_0.5", "bpp_0.75", "bpp_1", "bpp_1.25","bpp_1.5"]
+#qs = ["bpp_0.25", "bpp_0.5", "bpp_0.75", "bpp_1", "bpp_1.25","bpp_1.5"]
+qs = ["_0.25", "_0.5", "_0.75", "_1", "_1.25","_1.5"]
+
 dest_bpp = [0.25, 0.5, 0.75, 1, 1.25, 1.5]
 print qs
 
 q_min = {}
 q_max = {}
 
-ran = pickle.load(open("range.pcs"))
+#ran = pickle.load(open("range.pcs"))
+ran = pickle.load(open("range2_all.pcs"))
+
 for d in dest_bpp:
 	for f in glob.glob("./*.bmp"):
 		s = f
@@ -41,7 +45,7 @@ for d in dest_bpp:
 print q_min
 print q_max
 
-root_folder = "psnr_generated"
+root_folder = "psnr2_generated"
 os.system("rm %s -rf"%(root_folder))
 os.system("mkdir %s"%(root_folder))
 
@@ -75,7 +79,7 @@ for f in glob.glob("./*.bmp"):
 	ax.plot(size_, psnr_, "--k")
 	leg = ["from raw"]
 	for q in qs:
-		f_ = glob.glob("lromp_" + q + "/" + ind + "*.jpg")[0]
+		f_ = glob.glob("lromp2_bpp" + q + "/" + ind + "*.jpg")[0]
 		psnr__ = []
 		ssim__ = []
 		size__ = []
@@ -102,7 +106,7 @@ for f in glob.glob("./*.bmp"):
 	ax.plot(size_, ssim_, "--k")
 	leg = ["from raw"]
 	for q in qs:
-		f_ = glob.glob("lromp_" + q + "/" + ind + "*.jpg")[0]
+		f_ = glob.glob("lromp2_bpp" + q + "/" + ind + "*.jpg")[0]
 		psnr__ = []
 		ssim__ = []
 		size__ = []
