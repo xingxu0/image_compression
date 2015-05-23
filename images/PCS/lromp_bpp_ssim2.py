@@ -14,10 +14,11 @@ def get_threshold_jpg(out_, threshold, block_file, base_file):
 
 #dest_bpp = [0.25, 0.5, 0.75, 1, 1.25, 1.5]
 #dest_bpp = [0.75, 1]
-dest_bpp = [0.25, 0.5, 0.75, 1,  1.25, 1.5]
+dest_bpp = [0.75, 0.5, 0.25, 1,  1.25, 1.5]
+
 
 thre = [0.001,0.002,0.003,0.004,0.005,0.006,0.007,0.008,0.009,0.01,0.011,0.012]
-thre = [5, 10, 50,100,200,300,500]
+thre = [5, 10, 20, 30, 50,70, 90,100,130,150,170,200,230,250,270,300,500]
 
 fs = glob.glob("./*.bmp")
 
@@ -74,10 +75,13 @@ else:
 	print ran
 	pickle.dump(ran, open("range2_ssim_all.pcs", "wb"))
 
+check_folder = "lromp_bpp_ssim3_"
+
 for b in dest_bpp:
 	print b
-	os.system("rm %s -rf"%("lromp_bpp_ssim3_"+str(b)))
-	os.system("mkdir %s"%("lromp_bpp_ssim3_"+str(b)))
+	os.system("rm %s -rf"%("lromp_bpp_ssim4_"+str(b)))
+	os.system("mkdir %s"%("lromp_bpp_ssim4_"+str(b)))
+	os.system("mkdir %s/all"%("lromp_bpp_ssim4_"+str(b)))
 	for f in fs:
 		print "\t", f, ran[b][f][0], ran[b][f][1]
 		fname = f[f.find("/")+1:f.find("bmp") - 1]
@@ -88,13 +92,20 @@ for b in dest_bpp:
 			f_current = "all_qp/" + fname + "_q"+str(q)+".block"
 			f_base = "all_qp/" + fname + "_q"+str(q)+".base"
 			for t in thre:
-				get_threshold_jpg("tempp__ssim26.jpg", t, f_current, f_base)
+				if os.path.isfile("%s%s/all/%s.jpg"%(check_folder, str(b), fname+"_q"+str(q)+"_t"+str(t))):
+					os.system("cp %s%s/all/%s.jpg tempp__ssim26.jpg"%(check_folder, str(b), fname+"_q"+str(q)+"_t"+str(t)))
+				else:
+					get_threshold_jpg("tempp__ssim26.jpg", t, f_current, f_base)
 				fz = os.path.getsize("tempp__ssim26.jpg")
 				if fz < desired_size:
 					#psnr = float(commands.getstatusoutput("compare -metric PSNR %s tempp__ssim26.jpg tempp__ssim26_diff.png"%(f))[1])
 					#psnr = float(commands.getstatusoutput("pyssim "  + f + " tempp__ssim26.jpg")[1])
 					psnr = get_msssim.get_msssim(f, "tempp__ssim26.jpg")
+					print q,t,psnr
 					res[str(q)+"_"+str(t)] = psnr
+					os.system("cp tempp__ssim26.jpg %s/all/%s.jpg"%("lromp_bpp_ssim4_"+str(b), fname+"_q"+str(q)+"_t"+str(t)))
+				else:
+					break
 		sorted_x = sorted(res.items(), key=operator.itemgetter(1), reverse=True)
 		print sorted_x
 		t = sorted_x[0][0]
@@ -104,5 +115,5 @@ for b in dest_bpp:
 		t_ = int(t__[1])
 		f_current = "all_qp/" + fname + "_q"+str(q_)+".block"
 		f_base = "all_qp/" + fname + "_q"+str(q_)+".base"
-		get_threshold_jpg("%s/%s.jpg"%("lromp_bpp_ssim3_"+str(b), fname + "_q" + str(q_)+"_t"+str(t_)+".jpg" ), t_, f_current, f_base)
+		get_threshold_jpg("%s/%s.jpg"%("lromp_bpp_ssim4_"+str(b), fname + "_q" + str(q_)+"_t"+str(t_)+".jpg" ), t_, f_current, f_base)
 		print "\t\t", fname, q_, t_, desired_size, sorted_x[0][1]

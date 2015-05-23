@@ -14,13 +14,6 @@ def get_pixels(f):
 	return int(ss[0])*int(ss[1])
 
 
-def get_threshold_jpg(out_, threshold, block_file, base_file):
-	global folder
-	c = commands.getstatusoutput("python ../../lossy_zerooff_ssim.py %s tmp_out.block__ %s %s"%(block_file, str(threshold), str(75)))
-	print "(", c[1], 
-	c = commands.getstatusoutput("/opt/libjpeg-turbo-coef/bin/jpegtran -inputcoef tmp_out.block__ %s temp3.jpg"%(base_file))
-	c = commands.getstatusoutput("jpegtran -optimize temp3.jpg %s"%(out_))
-
 #qs = ["bpp_0.25", "bpp_0.5", "bpp_0.75", "bpp_1", "bpp_1.25","bpp_1.5"]
 qs = ["_0.25", "_0.5", "_0.75", "_1", "_1.25","_1.5"]
 
@@ -45,7 +38,7 @@ for d in dest_bpp:
 print q_min
 print q_max
 
-root_folder = "psnr2_generated"
+root_folder = "psnr4_generated"
 os.system("rm %s -rf"%(root_folder))
 os.system("mkdir %s"%(root_folder))
 
@@ -79,7 +72,7 @@ for f in glob.glob("./*.bmp"):
 	ax.plot(size_, psnr_, "--k")
 	leg = ["from raw"]
 	for q in qs:
-		f_ = glob.glob("lromp2_bpp" + q + "/" + ind + "*.jpg")[0]
+		f_ = glob.glob("lromp4_bpp" + q + "/" + ind + "*.jpg")[0]
 		psnr__ = []
 		ssim__ = []
 		size__ = []
@@ -106,7 +99,7 @@ for f in glob.glob("./*.bmp"):
 	ax.plot(size_, ssim_, "--k")
 	leg = ["from raw"]
 	for q in qs:
-		f_ = glob.glob("lromp2_bpp" + q + "/" + ind + "*.jpg")[0]
+		f_ = glob.glob("lromp4_bpp" + q + "/" + ind + "*.jpg")[0]
 		psnr__ = []
 		ssim__ = []
 		size__ = []
