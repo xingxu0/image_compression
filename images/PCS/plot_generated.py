@@ -38,7 +38,9 @@ for d in dest_bpp:
 print q_min
 print q_max
 
-root_folder = "psnr4_generated"
+#root_folder = "psnr4_generated"
+root_folder = "psnr2_generated_"
+
 os.system("rm %s -rf"%(root_folder))
 os.system("mkdir %s"%(root_folder))
 
@@ -46,7 +48,6 @@ os.system("mkdir %s"%(root_folder))
 for f in glob.glob("./*.bmp"):
 	s = f
 	ind = s[s.find("/")+1:s.find("orig")+4]
-	print ind
 	psnr_ = []
 	ssim_ = []
 	size_ = []
@@ -55,8 +56,8 @@ for f in glob.glob("./*.bmp"):
 	p_ = {}
 	s_ = {}
 	si_ = {}
+	la_s = ind+" & "
 	for q in range(q_min[ind]-3, q_max[ind]+3):
-		print q
 		c = commands.getstatusoutput("convert -sampling-factor 4:2:0 -quality " + str(q)  + " "  + raw_file + " temp_9.jpg")
 		c = commands.getstatusoutput("compare -metric PSNR " + raw_file + " temp_9.jpg tmp_diff_9.png")
 		psnr_.append(float(c[1]))
@@ -69,10 +70,10 @@ for f in glob.glob("./*.bmp"):
 
 	fig = plt.figure()
 	ax = fig.add_subplot(111)
-	ax.plot(size_, psnr_, "--k")
-	leg = ["from raw"]
+	ax.plot(size_, psnr_, "k", linewidth=1.0)
+	leg = ["Raw Image"]
 	for q in qs:
-		f_ = glob.glob("lromp4_bpp" + q + "/" + ind + "*.jpg")[0]
+		f_ = glob.glob("lromp2_bpp" + q + "/" + ind + "*.jpg")[0]
 		psnr__ = []
 		ssim__ = []
 		size__ = []
@@ -82,24 +83,32 @@ for f in glob.glob("./*.bmp"):
 		reg = re.match("(.*)/(.*)_q(.*)_t(.*)\.jpg\.jpg", f_)
 		q_ = int(reg.group(3))
 		psnr__.append(p_[q_])
+		la_s += str(p_[q_]) + " & " + str(q_) + " & " + str(reg.group(4)) + " & "
 		ssim__.append(s_[q_])
 		size__.append(si_[q_])
-		ax.plot(size__, psnr__, '-x')
-		leg.append("q:"+str(q_) + " t:"+str(reg.group(4)))
+		ax.plot(size__, psnr__, '-+', markevery=2, linewidth=3.0, ms=10, mew=3)
+		leg.append("Q="+str(q_) + r" $\tau$="+str(reg.group(4)))
+	print la_s
 
-	ax.set_xlabel("Bits-Per-Pixel")
+	ax.set_xlabel("Rate (bits-per-pixel)", fontsize=24)
 	ax.grid()
-	ax.set_ylabel("PSNR (dB)")
-	ax.legend(leg, 4)
+	ax.set_ylabel("PSNR (dB)", fontsize=24)
+	ax.legend(leg, 4, fontsize=20)
+
+	ax.tick_params(axis='both', which='major', labelsize=22)
+	ax.tick_params(axis='both', which='minor', labelsize=22)
+
 	tight_layout()
 	savefig("%s/psnr_%s.png"%(root_folder, ind))
+	savefig("%s/psnr_%s.eps"%(root_folder, ind))
+
 
 	fig = plt.figure()
 	ax = fig.add_subplot(111)
 	ax.plot(size_, ssim_, "--k")
 	leg = ["from raw"]
 	for q in qs:
-		f_ = glob.glob("lromp4_bpp" + q + "/" + ind + "*.jpg")[0]
+		f_ = glob.glob("lromp2_bpp" + q + "/" + ind + "*.jpg")[0]
 		psnr__ = []
 		ssim__ = []
 		size__ = []
