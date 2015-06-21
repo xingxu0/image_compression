@@ -60,7 +60,7 @@ for f in folders:
 	std,opt,ari,pro,moz,pjg = get_candidates_size(img_folder)
 	overall_optimized_size = 0
 	overall_encoded_size = 0
-	if not (len(sys.argv) >= 2 and sys.argv[1]=="0"):
+	if True:
 		for i in range(10):
 			printf(f_out, "\t" + str(i))
 			exp_folder = root+"/exp_" + f + "_" + str(i)
@@ -94,6 +94,7 @@ for f in folders:
 			overall_optimized_size += total_optimized_size
 			overall_encoded_size += total_encoded_size
 			break
+		os.system("rm -rf %s/tbl_train"%(exp_folder))
 		printf(f_out, "\t" + str(overall_optimized_size) + " " + str(overall_encoded_size) + " " + str((overall_optimized_size-overall_encoded_size)*1.0/overall_optimized_size))
 	printf(f_out, "\t our %d, std %d, opt %d, ari %d, pro %d, moz %d, pjg %d"%(overall_encoded_size, std, opt, ari, pro, moz, pjg))
 	break
