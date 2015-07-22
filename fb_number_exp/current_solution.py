@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from pylab import *
 
 fb_qp = 71
-save_thre = 0.2 # 20%
+save_thre = 0.33 # 20%
 
 image_folder = sys.argv[1]
 out_folder = sys.argv[2]

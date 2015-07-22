@@ -43,6 +43,7 @@ size[0] = s/i
 psnr[0] = p/i
 
 thre = [1,2,3,4,5,6,7,8,9,12]
+thre = [5,6,7,8,9,12]
 fs = glob.glob(out_folder + "/fb_%d/*.jpg"%(fb_qp))
 
 for t in thre:
@@ -60,7 +61,7 @@ for t in thre:
 		p += float(commands.getstatusoutput("compare -metric PSNR " + "%s/thres_%d/%d.jpg "%(out_folder, t, ind) + ori_file_map[ind] + " temp_diff.jpg")[1])
 	size[t] = s/len(fs)
 	psnr[t] = p/len(fs)
-	os.system("python exp_23dc_folder.py %s/thres_%d"%(out_folder, t))
+	os.system("python exp_23dc_folder_19.py %s/thres_%d"%(out_folder, t))
 print size
 print psnr
 

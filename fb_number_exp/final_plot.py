@@ -7,7 +7,7 @@ def get_size(ind, th):
 		a = 600
 	else:
 		a = 1200
-	p_ = "our_%d_new/thres_%d/romp/exp.out"%(a, th)
+	p_ = "our_%d_91/thres_%d/romp/exp.out"%(a, th)
 	output = commands.getstatusoutput("grep \"our\" %s"%(p_))[1]
 	size = int(re.match("\t our (.*), std(.*)", output).group(1))
 	return size/100

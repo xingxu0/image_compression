@@ -49,18 +49,19 @@ def get_candidates_size(img_folder):
 
 print "usage: python exp.py; python exp.py 0 if we don't want to calculate our size"
 
-root = "exp_folder_post_958580_" + str(int(time.time()))
+
+folder__ = sys.argv[1]
+root = folder__ + "/romp"
 os.system("mkdir %s"%(root))
 f_out = open(root+"/exp.out", "w", 0)
 
-folder__ = sys.argv[1]
 for f in folders:
 	printf(f_out, f)
 	img_folder = folder__
 	std,opt,ari,pro,moz,pjg = get_candidates_size(img_folder)
 	overall_optimized_size = 0
 	overall_encoded_size = 0
-	if not (len(sys.argv) >= 2 and sys.argv[1]=="0"):
+	if True:#not (len(sys.argv) >= 2 and sys.argv[1]=="0"):
 		for i in range(10):
 			printf(f_out, "\t" + str(i))
 			exp_folder = root+"/exp_" + f + "_" + str(i)
@@ -93,6 +94,7 @@ for f in folders:
 			f_out_self.close()
 			overall_optimized_size += total_optimized_size
 			overall_encoded_size += total_encoded_size
+			os.system("rm -rf %s/tbl_train"%(exp_folder))
 		printf(f_out, "\t" + str(overall_optimized_size) + " " + str(overall_encoded_size) + " " + str((overall_optimized_size-overall_encoded_size)*1.0/overall_optimized_size))
 	printf(f_out, "\t our %d, std %d, opt %d, ari %d, pro %d, moz %d, pjg %d"%(overall_encoded_size, std, opt, ari, pro, moz, pjg))
 	break

@@ -58,6 +58,7 @@ def get_r_l(x, code):
 def zero_off(b, b_o, code, ci, sf):
 	global thre
 	modified = 0
+	psnr = 0
 	r = 0
 	pos = 1
 
@@ -115,6 +116,7 @@ def zero_off(b, b_o, code, ci, sf):
 				#modified = True
 				pass
 			modified += 1
+			psnr += pow((quant[ci][jpeg_natural[p[i]]]*sf+50)/100, 2)
 			#print "comp", ci, ":"
 			#print b
 			#print b_o
@@ -130,7 +132,7 @@ def zero_off(b, b_o, code, ci, sf):
 				r_l[i] = af_code
 				p[i] = -1
 			i -= 1
-	return modified
+	return modified, psnr
 
 if len(sys.argv) != 5:
 	print "usage: python lossy_zerooff.py [INPUT.block] [OUTPUT.block] [GAIN BITS THRESHOLD] [QUALITY]"
@@ -149,6 +151,9 @@ l_in = open(in_).readlines()
 l_out = open(out_, "w")
 
 total_modified = 0
+peak_psnr = 0
+peak_modified = 0
+ret = ""
 for l in l_in:
 	s = l[:-2].split(" ")
 	b = []
@@ -167,10 +172,18 @@ for l in l_in:
 			b.append(lib.get_bits(abs(int(s[j]))))
 			b_o.append(int(s[j]))
 
-	total_modified += zero_off(b, b_o, code, s[0].split(":")[0], scale_factor)
+	_temp, _temp2 = zero_off(b, b_o, code, s[0].split(":")[0], scale_factor)
+	ret += str(_temp) + ":" + str(_temp2) + " "
+
+	total_modified += _temp
+	if peak_psnr < _temp2:
+		peak_psnr = _temp2
+		peak_modified = _temp
+
 	l_out.write(s[0] + " ")
 	for x in b_o:
 		l_out.write(str(x)+" ")
 	l_out.write("\n")
 l_out.close()
-print total_modified
+print total_modified, peak_psnr, peak_modified
+#print ret
