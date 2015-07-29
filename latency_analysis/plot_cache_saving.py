@@ -118,11 +118,11 @@ for i in range(len(hr)):
 		y2=cdf_y
 	#legend.append("%.3f"%(hr[i])+" "+ str(proc[i]))
 	legend.append("[%.3f,%.3f,%.3f]"%(hr[i][0], hr[i][1], hr[i][2])+" "+ str(proc[i]))
-
+'''
 l1 = []
 n = 1
 for i in range(len(x1)):
-	if y1[i] >= n/100.0:
+	if y1[i] >= n/1000.0:
 		l1.append(x1[i])
 		n += 1
 l1.append(x1[len(x1)-1])
@@ -130,28 +130,69 @@ l1.append(x1[len(x1)-1])
 l2 = []
 n = 1
 for i in range(len(x2)):
-	if y2[i] >= n/100.0:
+	if y2[i] >= n/1000.0:
 		l2.append(x2[i])
 		n += 1
 l2.append(x2[len(x2)-1])
 
 
 print len(l1), len(l2)
+print l1
+print l2
 print "delta:"
 xxx = []
 yyy = []
-for i in range(100):
-	xxx.append(i)
+for i in range(999):
+	xxx.append(i/1000.0)
+	print i
 	yyy.append(l1[i]-l2[i])
 
 print l1
 print l2
 print xxx
 print yyy
+'''
+xxx = []
+yyy = []
+last_j = 0
+last_i = 0
+for i in range(len(x1)):
+	if i>=1 and y1[i] - y1[last_i] <0.001:
+		continue
+	if i >1:
+		print y1[last_i], y2[last_j], j, x1[last_i]-x2[last_j]
+	if y1[i]>.99:
+		break
 
-ax2.plot(xxx,yyy, "-x")
-ax2.set_xlabel("Percentile (%)")
-ax2.set_ylabel("Latency reduction (MS)")
+	last_i = i
+	j = last_j
+	yyy.append(y1[i])
+	while j<len(y2) and y2[j] <= y1[i]:
+		j += 1
+	if j==len(y2):
+		xxx.append(x1[i] - x2[j-1])
+		last_j = j-1
+		continue
+	if j ==0:
+		xxx.append(x1[i]-x2[0])
+		last_j = 0
+		continue
+
+	if abs(y2[j] - y1[i]) > abs(y2[j-1] - y1[i]):
+		#	print ">",y2[j],y1[i],y2[j-1],y2[j]-y1[i],y2[j-1]-y1[i]
+		xxx.append(x1[i] - x2[j-1])
+		last_j = j-1
+	else:
+		#print "<",y2[j],y1[i],y2[j-1],y2[j]-y1[i],y2[j-1]-y1[i]
+		xxx.append(x1[i] - x2[j])
+		last_j = j
+
+
+print xxx
+
+ax2.plot(xxx,yyy, "-")
+ax2.set_ylabel("CDF")
+ax2.set_xlabel("Latency reduction (MS)")
 ax2.grid()
 
 
