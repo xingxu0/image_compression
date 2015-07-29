@@ -5,6 +5,17 @@ import matplotlib.pyplot as plt
 from pylab import *
 import numpy
 
+# hit ratio improvement for every 5% increment of cache size,
+# 50% extra cache increaese 3.6% hit ratio
+edge_cache_hr_5 = 0.36
+
+# 50% extra cache increaese 5.5% hit ratio
+origin_cache_hr = 0.55
+
+edge_current_hr = 0.58
+origin_current_hr = 0.32
+
+
 def pdf_cdf(b):
 	c = []
 	pre = 0
@@ -17,6 +28,8 @@ def get_cache(i):
 	global hr, proc, l, x_min, x_max
 	x = []
 	y = []
+	flag = True
+	t_ = 0.0
 	for a in range(x_min, x_max+1):
 		x.append(a + proc[i])
 		p = 0.0
@@ -24,6 +37,13 @@ def get_cache(i):
 			if a in l[ii]:
 				p += hr[i][ii]*l[ii][a]
 		y.append(p)
+		t_ += p
+		if flag and t_>=0.5:
+			print i, ":",hr[i],proc[i], p,a+proc[i]
+			flag = False
+
+
+	print t_
 	return x, y
 
 #OB_x = [1,3,5,7,10,30,50,70,100,300,500,700,1000,3000,5000,7000,10000,30000,50000,70000,100000,300000]
@@ -32,9 +52,12 @@ def get_cache(i):
 hr = [[1,0,0], [0,1,0],[0,0,1]]
 hr = [[0.1,0.3,0.6],[0.5,0.3,0.2]]
 hr = [[0.1,0.3,0.6],[0.1,0.3,0.6]]
-proc = [0, 50, 0]
+# edge cache: 1% higher : 58% -> 59%
+# origin cache: 1.8% higher : 31.67% -> 33.47%
+hr = [[0.580,0.133,0.287],[0.580,0.133,0.287], [0.590,0.137,0.273]]
+proc = [0,19.2,19.2] 
 
-fname = ["fb_cached.obj_pdf","fb_origin.obj_pdf","fb_notcached.obj_pdf"]
+fname = ["edge.obj_pdf","origin.obj_pdf","backend.obj_pdf"]
 for x in range(1, len(sys.argv)):
 	fname.append(sys.argv[x])
 
@@ -74,7 +97,7 @@ for i in range(len(hr)):
 #legend.append("Origin to Backend")
 ax.legend(legend, 4)
 ax.set_xscale("log")
-ax.set_yscale("log")
+#ax.set_yscale("log")
 
 savefig("plot_cache.png")
 plt.close("all")
