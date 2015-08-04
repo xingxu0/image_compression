@@ -94,8 +94,12 @@ for f in fname:
 	l.append({})
 	with open(f.split(".")[0] + ".obj_pdf", 'rb') as f_in:
 		x, y = pickle.load(f_in)
+		if f == fname[2]:
+			for ii in range(len(x)):
+				x[ii] += 300
 		print f, min(x), max(x)
 		print x[:10],y[:10]
+		print len(x), len(y)
 		x_min = min(x_min, min(x))
 		x_max = max(x_max, max(x))
 		for j in range(len(x)):
@@ -165,8 +169,8 @@ last_i = 0
 for i in range(len(x1)):
 	if i>=1 and y1[i] - y1[last_i] <0.001:
 		continue
-	#if i >1:
-	#	print y1[last_i], y2[last_j], j, x1[last_i]-x2[last_j]
+	if i >1:
+		print y1[last_i], y2[last_j], j, x1[last_i]-x2[last_j]
 	if y1[i]>.997:
 		break
 
@@ -184,11 +188,12 @@ for i in range(len(x1)):
 		last_j = 0
 		continue
 	t_inter = (y1[i]-y2[j-1])*1.0/(y2[j] - y2[j-1])
-	print y2[j-1], y1[i], y2[j], t_inter
+	print y2[j-1], y1[i], y2[j]
 	print x2[j-1], (x2[j-1]*t_inter + x2[j]*(1-t_inter)), x2[j] 
 	xxx.append(x1[i] - (x2[j-1]*t_inter + x2[j]*(1-t_inter)))
 	last_j = j-1
 	'''
+
 	if abs(y2[j] - y1[i]) > abs(y2[j-1] - y1[i]):
 		#	print ">",y2[j],y1[i],y2[j-1],y2[j]-y1[i],y2[j-1]-y1[i]
 		xxx.append(x1[i] - x2[j-1])
@@ -201,7 +206,6 @@ for i in range(len(x1)):
 
 
 print xxx
-print yyy
 
 ax2.plot(xxx,yyy, "-")
 ax2.set_ylabel("CDF")
@@ -215,5 +219,5 @@ ax.legend(legend, 2)
 ax.set_xscale("log")
 #ax.set_yscale("log")
 
-savefig("plot_cache_inter_%d_%d.png"%(int(saving), int(decoding)))
+savefig("plot_cache_bad_backend_%d_%d.png"%(int(saving), int(decoding)))
 plt.close("all")

@@ -5,6 +5,9 @@ import matplotlib.pyplot as plt
 from pylab import *
 import numpy
 
+# add how many MS to backend?
+bad_backend = 300
+
 # hit ratio improvement for every 1% increment of cache size,
 # 50% extra cache increaese 3.6% hit ratio
 edge_cache_hr = 0.0036/5
@@ -46,8 +49,15 @@ def get_cache(i):
 	print t_
 	return x, y
 
-saving = float(sys.argv[1])
-decoding = float(sys.argv[2])
+scheme_number = len(sys.argv) - 1
+schemes = []
+for i in range(scheme_number):
+	t = sys.argv[i + 1].split(",")
+	schemes.append(t)
+print schemes
+
+#saving = float(sys.argv[1])
+#decoding = float(sys.argv[2])
 
 #OB_x = [1,3,5,7,10,30,50,70,100,300,500,700,1000,3000,5000,7000,10000,30000,50000,70000,100000,300000]
 #OB_y = [0.0198586,0.137056,0.14988,0.16166,0.215622,0.875385,0.949121,0.969343,0.980389,0.991751,0.99376,0.994784,0.995669,0.998924,0.999957,0.999999,1,1,1,1,1,1] 
@@ -59,19 +69,27 @@ hr = [[0.1,0.3,0.6],[0.1,0.3,0.6]]
 # origin cache: 1.8% higher : 31.67% -> 33.47%
 hr = [[0.580,0.133,0.287],[0.580,0.133,0.287], [0.590,0.137,0.273]]
 proc = [0,19.2,19.2]
-hr =[]
 
+
+hr =[]
+proc = []
 cu = [edge_current_hr, (1-edge_current_hr)*origin_current_hr]
 cu.append(1-cu[0]-cu[1])
 hr.append(cu)
-hr.append(cu)
-t__1 = edge_current_hr + edge_cache_hr*saving
-t__2 = origin_current_hr + origin_cache_hr*saving
+proc.append(0)
+legend = ["Facebook"]
+for s in schemes:
+	legend.append(s[0]+": "+s[1]+" "+s[2])
+	saving = float(s[1])
+	t__1 = edge_current_hr + edge_cache_hr*saving
+	t__2 = origin_current_hr + origin_cache_hr*saving
+	cu = [t__1, (1-t__1)*t__2]
+	cu.append(1-cu[0]-cu[1])
+	hr.append(cu)
+	proc.append(float(s[2]))
 
-cu = [t__1, (1-t__1)*t__2]
-cu.append(1-cu[0]-cu[1])
-hr.append(cu)
-proc = [0, decoding, decoding]
+print "hr:",hr
+print "proc:",proc
 
 fname = ["edge.obj_pdf","origin.obj_pdf","backend.obj_pdf"]
 #for x in range(1, len(sys.argv)):
@@ -82,10 +100,10 @@ ax = fig.add_subplot(211)
 ax2 = fig.add_subplot(212)
 ax.set_ylabel("CDF")
 ax.set_xlabel("Latency (ms)")
-ax.set_title("Saving=%.3f, Decoding=%.3fMS"%(saving, decoding))
+#ax.set_title("Saving=%.3f, Decoding=%.3fMS"%(saving, decoding))
 ax.grid()
 #ax.set_xlim([0,300])
-legend = []
+#legend = []
 l = []
 i = 0
 x_min = 1000000
@@ -94,6 +112,9 @@ for f in fname:
 	l.append({})
 	with open(f.split(".")[0] + ".obj_pdf", 'rb') as f_in:
 		x, y = pickle.load(f_in)
+		if f == fname[2]:
+			for ii in range(len(x)):
+				x[ii] += bad_backend 
 		print f, min(x), max(x)
 		print x[:10],y[:10]
 		x_min = min(x_min, min(x))
@@ -106,6 +127,8 @@ for f in fname:
 x_min = int(x_min)
 x_max = int(x_max)
 print x_min, x_max
+x_all = {}
+y_all = {}
 for i in range(len(hr)):
 	x, y = get_cache(i)
 	cdf_y = pdf_cdf(y)
@@ -115,15 +138,22 @@ for i in range(len(hr)):
 			print "abcde", ii
 			t__ = ii
 			break
-	ax.plot(x[:t__], cdf_y[:t__])
+	if i > 0:
+		ax.plot(x[:t__], cdf_y[:t__])
+	else:
+		ax.plot(x[:t__], cdf_y[:t__], "-k")
+	x_all[i] = x
+	y_all[i] = cdf_y
+	'''
 	if i == 1:
 		x1=x
 		y1=cdf_y
 	elif i == 2:
 		x2=x
 		y2=cdf_y
+	'''
 	#legend.append("%.3f"%(hr[i])+" "+ str(proc[i]))
-	legend.append("[%.3f,%.3f,%.3f]"%(hr[i][0], hr[i][1], hr[i][2])+" "+ str(proc[i]))
+	#legend.append("[%.3f,%.3f,%.3f]"%(hr[i][0], hr[i][1], hr[i][2])+" "+ str(proc[i]))
 '''
 l1 = []
 n = 1
@@ -158,55 +188,60 @@ print l2
 print xxx
 print yyy
 '''
-xxx = []
-yyy = []
-last_j = 0
-last_i = 0
-for i in range(len(x1)):
-	if i>=1 and y1[i] - y1[last_i] <0.001:
-		continue
+
+legend2 = []
+for ii in range(1, len(x_all)):
+	x2 = x_all[0]
+	x1 = x_all[ii]
+	y2 = y_all[0]
+	y1 = y_all[ii]
+
+	xxx = []
+	yyy = []
+	last_j = 0
+	last_i = 0
+	for i in range(len(x1)):
+		if i>=1 and y1[i] - y1[last_i] <0.001:
+			continue
 	#if i >1:
 	#	print y1[last_i], y2[last_j], j, x1[last_i]-x2[last_j]
-	if y1[i]>.997:
-		break
+		if y1[i]>.99:
+			break
 
-	last_i = i
-	j = last_j
-	yyy.append(y1[i])
-	while j<len(y2) and y2[j] <= y1[i]:
-		j += 1
-	if j==len(y2):
-		xxx.append(x1[i] - x2[j-1])
+		last_i = i
+		j = last_j
+		yyy.append(y1[i])
+		while j<len(y2) and y2[j] <= y1[i]:
+			j += 1
+		if j==len(y2):
+			xxx.append(x1[i] - x2[j-1])
+			last_j = j-1
+			continue
+		if j ==0:
+			xxx.append(x1[i]-x2[0])
+			last_j = 0
+			continue
+		t_inter = (y1[i]-y2[j-1])*1.0/(y2[j] - y2[j-1])
+		#print y2[j-1], y1[i], y2[j], t_inter
+		#print x2[j-1], (x2[j-1]*t_inter + x2[j]*(1-t_inter)), x2[j] 
+		xxx.append(x1[i] - (x2[j-1]*t_inter + x2[j]*(1-t_inter)))
 		last_j = j-1
-		continue
-	if j ==0:
-		xxx.append(x1[i]-x2[0])
-		last_j = 0
-		continue
-	t_inter = (y1[i]-y2[j-1])*1.0/(y2[j] - y2[j-1])
-	print y2[j-1], y1[i], y2[j], t_inter
-	print x2[j-1], (x2[j-1]*t_inter + x2[j]*(1-t_inter)), x2[j] 
-	xxx.append(x1[i] - (x2[j-1]*t_inter + x2[j]*(1-t_inter)))
-	last_j = j-1
-	'''
-	if abs(y2[j] - y1[i]) > abs(y2[j-1] - y1[i]):
-		#	print ">",y2[j],y1[i],y2[j-1],y2[j]-y1[i],y2[j-1]-y1[i]
-		xxx.append(x1[i] - x2[j-1])
-		last_j = j-1
-	else:
-		#print "<",y2[j],y1[i],y2[j-1],y2[j]-y1[i],y2[j-1]-y1[i]
-		xxx.append(x1[i] - x2[j])
-		last_j = j
-	'''
-
-
-print xxx
-print yyy
-
-ax2.plot(xxx,yyy, "-")
+	
+	yyyy = []
+	# for reverse log_scale
+	for y in yyy:
+		yyyy.append(1-y)
+	ax2.plot(xxx,yyyy, "-")
+	legend2.append(schemes[ii-1][0]+"-Facebook")
 ax2.set_ylabel("CDF")
-ax2.set_xlabel("Latency reduction (MS)")
+#ax2.legend(legend2)
+ax2.set_xlabel("Additional Latency (MS)")
 ax2.grid()
+ax2.set_yscale("log")
+ax2.set_ylim(ax2.get_ylim()[::-1])
+ax2.set_yticks([1,0.1,0.01])
+ax2.set_yticklabels(["0","0.9","0.99"])
+
 
 
 #ax.plot(OB_x, OB_y)
@@ -215,5 +250,5 @@ ax.legend(legend, 2)
 ax.set_xscale("log")
 #ax.set_yscale("log")
 
-savefig("plot_cache_inter_%d_%d.png"%(int(saving), int(decoding)))
+savefig("plot_schemes.png")
 plt.close("all")
