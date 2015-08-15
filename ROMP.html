@@ -11,7 +11,7 @@
 	var my_url = 'http://68.181.99.224/fb_blockwise_ssim/blockwise_ssim_' + document.getElementById('thre1').value + '_' + document.getElementById('thre2').value/10 + '/' + document.getElementById('image_id').value + '.jpg'
     document.getElementById("myframe").src =my_url;
 console.log(my_url);
-	var size_url = 'http://68.181.99.224:9999/?ppp=' + 'blockwise_ssim_'+document.getElementById('thre1').value + '_' + document.getElementById('thre2').value/10 + '/' + document.getElementById('image_id').value + '.jpg'
+	var size_url = 'http://68.181.99.224:9999/?ppp=blockwise_ssim_'+document.getElementById('thre1').value + '_' + document.getElementById('thre2').value/10 + '/' + document.getElementById('image_id').value + '.jpg'
 	console.log(size_url);
 	document.getElementById("size_frame").src =size_url;
 }
@@ -32,11 +32,11 @@ console.log(my_url);
 	<br>
 	<br>
 	<b>Image Size and Saving Report:</b>
-	<iframe id="size_frame" name="size_frame"></iframe>
+	<iframe id="size_frame" name="size_frame" src="http://68.181.99.224:9999/?ppp=blockwise_ssim_2_10/25.jpg"></iframe>
 	</div>
     <br>
 	<div style="float:right;width:80%;">
-    <iframe id="myframe" name="myframe" width="100%" height="100%"></iframe>
+    <iframe id="myframe" name="myframe" width="100%" height="100%" src="http://68.181.99.224/fb_blockwise_ssim/blockwise_ssim_2_10/25.jpg"></iframe>
     </div>
     </body>
 	</html>
