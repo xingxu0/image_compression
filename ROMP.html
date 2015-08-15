@@ -1,0 +1,43 @@
+    <html>
+    <head><title>L-ROMP Comparison</title>
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    </head>
+    <body>
+<script>
+    function OnButton2()
+{
+	var my_url = 'http://68.181.99.224/fb_blockwise_ssim/blockwise_ssim_' + document.getElementById('thre1').value + '_' + document.getElementById('thre2').value/10 + '/' + document.getElementById('image_id').value + '.jpg'
+    document.getElementById("myframe").src =my_url;
+console.log(my_url);
+	var size_url = 'http://68.181.99.224:9999/?ppp=' + 'blockwise_ssim_'+document.getElementById('thre1').value + '_' + document.getElementById('thre2').value/10 + '/' + document.getElementById('image_id').value + '.jpg'
+	console.log(size_url);
+	document.getElementById("size_frame").src =size_url;
+}
+    </script>
+    <div style="float:left;width:20%;height:60%">
+    <form name ="Form0" action= "javascript:OnButton2()" method ="get">
+    <p><b>Image ID (1-100):</b>
+	<input type="text" id ="image_id" name="name" value="25" onchange="this.form.submit()"></p>
+	<br>
+	<b>Threshold1 (2-3):</b><br>
+	(Left end is more aggressive.)
+	<input type="range" name="thre1" id="thre1" value="2" min="2" max="3" data-show-value="true" onchange="this.form.submit()">
+	<br>
+	<b>Threshold2 (10%-100%):</b><br>
+	(Right end is more aggressive.)
+	<input type="range" name="thre2" id="thre2" value="100" min="10" max="100" step="10" data-show-value="true" onchange="this.form.submit()">
+    </form>
+	<br>
+	<br>
+	<b>Image Size (KB):</b>
+	<iframe id="size_frame" name="size_frame"></iframe>
+	</div>
+    <br>
+	<div style="float:right;width:80%;">
+    <iframe id="myframe" name="myframe" width="100%" height="100%"></iframe>
+    </div>
+    </body>
+	</html>
+

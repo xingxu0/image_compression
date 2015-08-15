@@ -25,3 +25,7 @@ print x
 with open("origin_to_backend" + ".obj_pdf", 'wb') as f_out:
 	pickle.dump((x,y), f_out)
 
+p = 0.0
+for i in range(0,10000):
+	p += y[i]
+print "p", p

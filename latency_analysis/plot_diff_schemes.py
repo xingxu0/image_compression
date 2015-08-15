@@ -6,6 +6,7 @@ from pylab import *
 import numpy
 
 # add how many MS to backend?
+bad_origin = 100
 bad_backend = 300
 
 # hit ratio improvement for every 1% increment of cache size,
@@ -115,6 +116,9 @@ for f in fname:
 		if f == fname[2]:
 			for ii in range(len(x)):
 				x[ii] += bad_backend 
+		if f == fname[1]:
+			for ii in range(len(x)):
+				x[ii] += bad_origin
 		print f, min(x), max(x)
 		print x[:10],y[:10]
 		x_min = min(x_min, min(x))
@@ -133,11 +137,15 @@ for i in range(len(hr)):
 	x, y = get_cache(i)
 	cdf_y = pdf_cdf(y)
 	t__ = 0
+	
 	for ii in range(len(x)):
-		if cdf_y[ii]>.997:
+		if cdf_y[ii]>=1:#.999:
 			print "abcde", ii
 			t__ = ii
 			break
+		else:
+			t__ = ii
+	
 	if i > 0:
 		ax.plot(x[:t__], cdf_y[:t__])
 	else:
@@ -232,6 +240,7 @@ for ii in range(1, len(x_all)):
 	for y in yyy:
 		yyyy.append(1-y)
 	ax2.plot(xxx,yyyy, "-")
+	#ax2.plot(xxx,yyy,"-")
 	legend2.append(schemes[ii-1][0]+"-Facebook")
 ax2.set_ylabel("CDF")
 #ax2.legend(legend2)

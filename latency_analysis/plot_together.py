@@ -25,7 +25,7 @@ ax = fig.add_subplot(111)
 ax.set_ylabel("CDF")
 ax.set_xlabel("Latency (ms)")
 ax.grid()
-#ax.set_xlim([0,300])
+ax.set_ylim([0,1.1])
 legend = []
 for f in fname:
 	with open(f.split(".")[0] + ".obj_pdf", 'rb') as f_in:
