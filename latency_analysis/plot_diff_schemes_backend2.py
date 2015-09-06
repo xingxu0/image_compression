@@ -6,7 +6,6 @@ from pylab import *
 import numpy
 
 # add how many MS to backend?
-bad_origin = 0
 bad_backend = 0
 
 # hit ratio improvement for every 1% increment of cache size,
@@ -34,12 +33,31 @@ def get_cache(i):
 	y = []
 	flag = True
 	t_ = 0.0
-	for a in range(x_min, x_max+1):
-		x.append(a + proc[i])
+	p_total = 0.0
+	perce_info = {}
+	for a in range(x_min, int(x_max+proc[i]+1)+1):
+		x.append(a)# + proc[i])
 		p = 0.0
+		tt = []
 		for ii in range(len(l)):
-			if a in l[ii]:
-				p += hr[i][ii]*l[ii][a]
+			if ii < 2:
+				if a in l[ii]:
+					p += hr[i][ii]*l[ii][a]
+					tt.append(hr[i][ii]*l[ii][a])
+				else:
+					tt.append(0)
+			else:
+				if a-int(proc[i]) in l[ii]:
+					p += hr[i][ii]*l[ii][a-int(proc[i])]
+					tt.append(hr[i][ii]*l[ii][a-int(proc[i])])
+				else:
+					tt.append(0)
+		if p:
+			for ii in range(len(tt)):
+				tt[ii] /= p
+		p_total += p
+		tt.append(p_total)
+		perce_info[a] = tt
 		y.append(p)
 		t_ += p
 		if flag and t_>=0.5:
@@ -48,7 +66,7 @@ def get_cache(i):
 
 
 	print t_
-	return x, y
+	return x, y, perce_info
 
 scheme_number = len(sys.argv) - 1
 schemes = []
@@ -82,10 +100,10 @@ legend = ["Facebook"]
 for s in schemes:
 	legend.append(s[0]+": "+s[1]+" "+s[2])
 	saving = float(s[1])
-	t__1 = edge_current_hr + edge_cache_hr*saving
-	t__2 = origin_current_hr + origin_cache_hr*saving
-	cu = [t__1, (1-t__1)*t__2]
-	cu.append(1-cu[0]-cu[1])
+	#t__1 = edge_current_hr + edge_cache_hr*saving
+	#t__2 = origin_current_hr + origin_cache_hr*saving
+	#cu = [t__1, (1-t__1)*t__2]
+	#cu.append(1-cu[0]-cu[1])
 	hr.append(cu)
 	proc.append(float(s[2]))
 
@@ -116,9 +134,6 @@ for f in fname:
 		if f == fname[2]:
 			for ii in range(len(x)):
 				x[ii] += bad_backend 
-		if f == fname[1]:
-			for ii in range(len(x)):
-				x[ii] += bad_origin
 		print f, min(x), max(x)
 		print x[:10],y[:10]
 		x_min = min(x_min, min(x))
@@ -133,19 +148,19 @@ x_max = int(x_max)
 print x_min, x_max
 x_all = {}
 y_all = {}
+perce_info_ = {}
 for i in range(len(hr)):
-	x, y = get_cache(i)
+	x, y, perce_info_[i] = get_cache(i)
+	print hr[i], max(x)
 	cdf_y = pdf_cdf(y)
 	t__ = 0
-	
 	for ii in range(len(x)):
-		if cdf_y[ii]>=1:#.999:
+		if cdf_y[ii]>=0.97:
 			print "abcde", ii
 			t__ = ii
 			break
 		else:
 			t__ = ii
-	
 	if i > 0:
 		ax.plot(x[:t__], cdf_y[:t__])
 	else:
@@ -209,12 +224,12 @@ for ii in range(1, len(x_all)):
 	last_j = 0
 	last_i = 0
 	for i in range(len(x1)):
-		if i>=1 and y1[i] - y1[last_i] <0.001:
-			continue
+		#if i>=1 and y1[i] - y1[last_i] <0.0001:
+		#	continue
 	#if i >1:
 	#	print y1[last_i], y2[last_j], j, x1[last_i]-x2[last_j]
-		if y1[i]>.99:
-			break
+		#if y1[i]>.99:
+		#	break
 
 		last_i = i
 		j = last_j
@@ -239,25 +254,67 @@ for ii in range(1, len(x_all)):
 	# for reverse log_scale
 	for y in yyy:
 		yyyy.append(1-y)
-	ax2.plot(xxx,yyyy, "-")
-	#ax2.plot(xxx,yyy,"-")
+	ax2.plot(xxx,yyy, "-")
 	legend2.append(schemes[ii-1][0]+"-Facebook")
-ax2.set_ylabel("Percentile")
+ax2.set_ylabel("CDF")
 #ax2.legend(legend2)
 ax2.set_xlabel("Additional Latency (MS)")
 ax2.grid()
-ax2.set_yscale("log")
-ax2.set_ylim(ax2.get_ylim()[::-1])
-ax2.set_yticks([1,0.1,0.01])
-ax2.set_yticklabels(["0","0.9","0.99"])
+#ax2.set_yscale("log")
+#ax2.set_ylim(ax2.get_ylim()[::-1])
+#ax2.set_yticks([1,0.1,0.01])
+#ax2.set_yticklabels(["0","0.9","0.99"])
 
 
 
 #ax.plot(OB_x, OB_y)
 #legend.append("Origin to Backend")
-ax.legend(legend, 2)
-ax.set_xscale("log")
+ax.legend(legend, 4)
+#ax.set_xscale("log")
 #ax.set_yscale("log")
+ax.set_title("entire_fetching_latency")
 
-savefig("plot_schemes.png")
+savefig("plot_schemes_backend.png")
+
+for j in range(len(hr)):
+	fig = plt.figure()
+	ax = fig.add_subplot(111)
+	co = ["r", "g", "b"]
+	x2 = []
+	y2 = []
+	for i in range(3):
+		x = []
+		y = []
+		for ii in perce_info_[j]:
+			y.append(ii)
+			t = 0.0
+			for iii in range(i+1):
+				t += perce_info_[j][ii][iii]
+		#x.append(t)
+			x.append(perce_info_[j][ii][i])
+			if i == 0:
+				y2.append(ii)
+				x2.append(perce_info_[j][ii][3])
+			if perce_info_[j][ii][3]>0.95:
+				break
+		ax.scatter(y, x, c = co[i], lw=0)
+		
+	ax2 = ax.twinx()
+	ax.set_xlim([0, max(y2)])
+	print y2, x2
+	ax2.plot(y2, x2, "-k")
+	ax.set_xlabel("Latency")
+	ax.set_ylabel("Percentage")
+	ax.set_ylim([0,1])
+	ax2.set_ylim([0,1])
+	ax2.set_ylabel("CDF")
+	ax.legend(["edge", "origin", "backend"], loc='upper center', bbox_to_anchor=(0.5, 1.05), ncol=3)
+	ax.grid()
+	if j > 0:	
+		savefig("plot_schemes_backend_perce_%s.png"%(schemes[j-1][0]))
+	else:
+		savefig("plot_schemes_backend_perce_%s.png"%("FB"))
+
+
+
 plt.close("all")

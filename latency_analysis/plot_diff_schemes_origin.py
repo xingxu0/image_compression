@@ -6,8 +6,7 @@ from pylab import *
 import numpy
 
 # add how many MS to backend?
-bad_origin = 0
-bad_backend = 0
+bad_backend = 300
 
 # hit ratio improvement for every 1% increment of cache size,
 # 50% extra cache increaese 3.6% hit ratio
@@ -34,12 +33,16 @@ def get_cache(i):
 	y = []
 	flag = True
 	t_ = 0.0
-	for a in range(x_min, x_max+1):
-		x.append(a + proc[i])
+	for a in range(x_min, int(x_max+proc[i]+1)+1):
+		x.append(a)# + proc[i])
 		p = 0.0
 		for ii in range(len(l)):
-			if a in l[ii]:
-				p += hr[i][ii]*l[ii][a]
+			if ii < 1:
+				if a in l[ii]:
+					p += hr[i][ii]*l[ii][a]
+			else:
+				if a-int(proc[i]) in l[ii]:
+					p += hr[i][ii]*l[ii][a-int(proc[i])]
 		y.append(p)
 		t_ += p
 		if flag and t_>=0.5:
@@ -82,12 +85,15 @@ legend = ["Facebook"]
 for s in schemes:
 	legend.append(s[0]+": "+s[1]+" "+s[2])
 	saving = float(s[1])
-	t__1 = edge_current_hr + edge_cache_hr*saving
+	t__1 = edge_current_hr# + edge_cache_hr*saving
 	t__2 = origin_current_hr + origin_cache_hr*saving
+	if saving==100:
+		t__2 = 1
 	cu = [t__1, (1-t__1)*t__2]
 	cu.append(1-cu[0]-cu[1])
 	hr.append(cu)
 	proc.append(float(s[2]))
+print cu
 
 print "hr:",hr
 print "proc:",proc
@@ -116,9 +122,6 @@ for f in fname:
 		if f == fname[2]:
 			for ii in range(len(x)):
 				x[ii] += bad_backend 
-		if f == fname[1]:
-			for ii in range(len(x)):
-				x[ii] += bad_origin
 		print f, min(x), max(x)
 		print x[:10],y[:10]
 		x_min = min(x_min, min(x))
@@ -137,15 +140,13 @@ for i in range(len(hr)):
 	x, y = get_cache(i)
 	cdf_y = pdf_cdf(y)
 	t__ = 0
-	
 	for ii in range(len(x)):
-		if cdf_y[ii]>=1:#.999:
+		if cdf_y[ii]>=1.0:
 			print "abcde", ii
 			t__ = ii
 			break
 		else:
 			t__ = ii
-	
 	if i > 0:
 		ax.plot(x[:t__], cdf_y[:t__])
 	else:
@@ -240,9 +241,8 @@ for ii in range(1, len(x_all)):
 	for y in yyy:
 		yyyy.append(1-y)
 	ax2.plot(xxx,yyyy, "-")
-	#ax2.plot(xxx,yyy,"-")
 	legend2.append(schemes[ii-1][0]+"-Facebook")
-ax2.set_ylabel("Percentile")
+ax2.set_ylabel("CDF")
 #ax2.legend(legend2)
 ax2.set_xlabel("Additional Latency (MS)")
 ax2.grid()
@@ -259,5 +259,5 @@ ax.legend(legend, 2)
 ax.set_xscale("log")
 #ax.set_yscale("log")
 
-savefig("plot_schemes.png")
+savefig("plot_schemes_origin.png")
 plt.close("all")

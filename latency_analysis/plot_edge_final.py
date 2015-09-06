@@ -4,6 +4,7 @@ import os, sys, glob, commands, pickle
 import matplotlib.pyplot as plt
 from pylab import *
 import numpy
+import matplotlib.gridspec as gridspec
 
 # add how many MS to backend?
 bad_origin = 0
@@ -80,7 +81,9 @@ hr.append(cu)
 proc.append(0)
 legend = ["Facebook"]
 for s in schemes:
-	legend.append(s[0]+": "+s[1]+" "+s[2])
+	#legend.append(s[0]+": "+s[1]+" "+s[2])
+	legend.append(s[0])
+
 	saving = float(s[1])
 	t__1 = edge_current_hr + edge_cache_hr*saving
 	t__2 = origin_current_hr + origin_cache_hr*saving
@@ -95,10 +98,15 @@ print "proc:",proc
 fname = ["edge.obj_pdf","origin.obj_pdf","backend.obj_pdf"]
 #for x in range(1, len(sys.argv)):
 #	fname.append(sys.argv[x])
-
 fig = plt.figure()
-ax = fig.add_subplot(211)
-ax2 = fig.add_subplot(212)
+
+gs = gridspec.GridSpec(1, 2,width_ratios=[2,1])
+
+ax = plt.subplot(gs[0])
+ax2 = plt.subplot(gs[1])
+
+#ax = fig.add_subplot(121)
+#ax2 = fig.add_subplot(122)
 ax.set_ylabel("CDF")
 ax.set_xlabel("Latency (ms)")
 #ax.set_title("Saving=%.3f, Decoding=%.3fMS"%(saving, decoding))
@@ -139,7 +147,7 @@ for i in range(len(hr)):
 	t__ = 0
 	
 	for ii in range(len(x)):
-		if cdf_y[ii]>=1:#.999:
+		if cdf_y[ii]>=1.0:#.999:
 			print "abcde", ii
 			t__ = ii
 			break
@@ -237,27 +245,35 @@ for ii in range(1, len(x_all)):
 	
 	yyyy = []
 	# for reverse log_scale
-	for y in yyy:
-		yyyy.append(1-y)
-	ax2.plot(xxx,yyyy, "-")
-	#ax2.plot(xxx,yyy,"-")
+	#for y in yyy:
+	#	yyyy.append(1-y)
+	#ax2.plot(xxx,yyyy, "-")
+	ax2.plot(xxx,yyy,"-")
 	legend2.append(schemes[ii-1][0]+"-Facebook")
-ax2.set_ylabel("Percentile")
+#ax2.set_ylabel("Percentile")
 #ax2.legend(legend2)
-ax2.set_xlabel("Additional Latency (MS)")
+ax2.set_xlabel("Additional Latency (ms)")
 ax2.grid()
-ax2.set_yscale("log")
-ax2.set_ylim(ax2.get_ylim()[::-1])
-ax2.set_yticks([1,0.1,0.01])
-ax2.set_yticklabels(["0","0.9","0.99"])
+#ax2.set_yscale("log")
+#ax2.set_ylim(ax2.get_ylim()[::-1])
+ax2.set_xlim([0,1.12*max(xxx)])
+ax.set_xlim([0,1800])
+
+ax2.set_yticklabels([])
+#ax2.set_yticklabels(["0","0.9","0.99"])
 
 
 
 #ax.plot(OB_x, OB_y)
 #legend.append("Origin to Backend")
-ax.legend(legend, 2)
-ax.set_xscale("log")
+#ax.legend(legend, 4)
+ax.legend(["W/o Re-Compression", "W/ Re-Compression"], 4)
+
+#ax.set_xscale("log")
 #ax.set_yscale("log")
 
-savefig("plot_schemes.png")
+savefig("plot_edge_final.png")
+savefig("plot_edge_final.eps")
+
+plt.tight_layout()
 plt.close("all")

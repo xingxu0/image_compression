@@ -6,8 +6,8 @@ from pylab import *
 import numpy
 
 # add how many MS to backend?
-bad_origin = 0
-bad_backend = 0
+bad_origin = 100
+bad_backend = 300
 
 # hit ratio improvement for every 1% increment of cache size,
 # 50% extra cache increaese 3.6% hit ratio
@@ -32,14 +32,23 @@ def get_cache(i):
 	global hr, proc, l, x_min, x_max
 	x = []
 	y = []
+	perce_info = {}
 	flag = True
 	t_ = 0.0
 	for a in range(x_min, x_max+1):
 		x.append(a + proc[i])
 		p = 0.0
+		tt = []
 		for ii in range(len(l)):
 			if a in l[ii]:
 				p += hr[i][ii]*l[ii][a]
+				tt.append(hr[i][ii]*l[ii][a])
+			else:
+				tt.append(0)
+		if p:
+			for ii in range(len(tt)):
+				tt[ii] /= p
+		perce_info[a] = tt
 		y.append(p)
 		t_ += p
 		if flag and t_>=0.5:
@@ -48,7 +57,7 @@ def get_cache(i):
 
 
 	print t_
-	return x, y
+	return x, y, perce_info
 
 scheme_number = len(sys.argv) - 1
 schemes = []
@@ -92,7 +101,7 @@ for s in schemes:
 print "hr:",hr
 print "proc:",proc
 
-fname = ["edge.obj_pdf","origin.obj_pdf","backend.obj_pdf"]
+fname = ["edge_1st.obj_pdf","origin_1st.obj_pdf","backend_1st.obj_pdf"]
 #for x in range(1, len(sys.argv)):
 #	fname.append(sys.argv[x])
 
@@ -134,7 +143,8 @@ print x_min, x_max
 x_all = {}
 y_all = {}
 for i in range(len(hr)):
-	x, y = get_cache(i)
+	x, y, perce_info = get_cache(i)
+	print "!!!",perce_info
 	cdf_y = pdf_cdf(y)
 	t__ = 0
 	
@@ -242,7 +252,7 @@ for ii in range(1, len(x_all)):
 	ax2.plot(xxx,yyyy, "-")
 	#ax2.plot(xxx,yyy,"-")
 	legend2.append(schemes[ii-1][0]+"-Facebook")
-ax2.set_ylabel("Percentile")
+ax2.set_ylabel("CDF")
 #ax2.legend(legend2)
 ax2.set_xlabel("Additional Latency (MS)")
 ax2.grid()
@@ -250,14 +260,20 @@ ax2.set_yscale("log")
 ax2.set_ylim(ax2.get_ylim()[::-1])
 ax2.set_yticks([1,0.1,0.01])
 ax2.set_yticklabels(["0","0.9","0.99"])
+ax.set_title("1st_byte_latency")
 
 
 
 #ax.plot(OB_x, OB_y)
 #legend.append("Origin to Backend")
-ax.legend(legend, 2)
-ax.set_xscale("log")
+ax.legend(legend, 4)
+#ax.set_xscale("log")
 #ax.set_yscale("log")
 
-savefig("plot_schemes.png")
+savefig("plot_schemes_1st.png")
+
+fig = plt.figure()
+ax = fig.add_subplot(111)
+
+
 plt.close("all")
