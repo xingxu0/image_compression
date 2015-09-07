@@ -8,7 +8,7 @@ import matplotlib.gridspec as gridspec
 
 # add how many MS to backend?
 bad_origin = 0
-bad_backend = 500
+bad_backend = 0
 
 # hit ratio improvement for every 1% increment of cache size,
 # 50% extra cache increaese 3.6% hit ratio
@@ -286,8 +286,8 @@ ax2.set_yticklabels([])
 
 #ax.plot(OB_x, OB_y)
 #legend.append("Origin to Backend")
-#ax.legend(legend, 4)
-ax.legend(["W/o Re-Compression", "W/ Re-Compression"], 4)
+ax.legend(legend, 4)
+#ax.legend(["W/o Re-Compression", "W/ Re-Compression"], 4)
 
 #ax.set_xscale("log")
 #ax.set_yscale("log")

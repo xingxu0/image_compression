@@ -28,13 +28,15 @@ ax.grid()
 ax.set_ylim([0,1.1])
 legend = []
 for f in fname:
-	with open(f.split(".")[0] + ".obj_pdf", 'rb') as f_in:
+	#with open(f.split(".")[0] + ".obj_pdf", 'rb') as f_in:
+	with open(f, 'rb') as f_in:
 		x, y = pickle.load(f_in)
 		legend.append(f.split(".")[0])
 	ax.plot(x, pdf_cdf(y))
 #ax.plot(OB_x, OB_y)
 #legend.append("Origin to Backend")
 ax.legend(legend, 4)
+ax.set_xlim([0, 1800])
 #ax.set_xscale("log")
 #ax.set_yscale("log")
 

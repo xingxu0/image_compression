@@ -8,7 +8,7 @@ import matplotlib.gridspec as gridspec
 
 # add how many MS to backend?
 bad_origin = 0
-bad_backend = 0
+bad_backend = 300
 
 # hit ratio improvement for every 1% increment of cache size,
 # 50% extra cache increaese 3.6% hit ratio
@@ -256,7 +256,7 @@ ax2.set_xlabel("Additional Latency (ms)")
 ax2.grid()
 #ax2.set_yscale("log")
 #ax2.set_ylim(ax2.get_ylim()[::-1])
-ax2.set_xlim([0,1.12*max(xxx)])
+ax2.set_xlim([-30,1.12*max(xxx)])
 ax.set_xlim([0,1800])
 
 ax2.set_yticklabels([])
