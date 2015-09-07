@@ -8,7 +8,7 @@ import matplotlib.gridspec as gridspec
 
 # add how many MS to backend?
 bad_origin = 0
-bad_backend = 0
+bad_backend = 500
 
 # hit ratio improvement for every 1% increment of cache size,
 # 50% extra cache increaese 3.6% hit ratio
@@ -21,7 +21,7 @@ edge_current_hr = 0.58
 origin_current_hr = 0.32
 
 measured_file_size = 100000
-tested_file_size = int(sys.argv[1])
+tested_file_size = int(sys.argv[len(sys.argv)-1])
 
 
 def pdf_cdf(b):
@@ -56,7 +56,7 @@ def get_cache(i):
 
 
 
-scheme_number = len(sys.argv) - 1
+scheme_number = len(sys.argv) - 2
 schemes = []
 for i in range(scheme_number):
 	t = sys.argv[i + 1].split(",")
@@ -100,12 +100,12 @@ for s in schemes:
 print "hr:",hr
 print "proc:",proc
 
-fname = ["edge_%d.obj_pdf"%(tested_file_size),"origin_%d.obj_pdf"%(tested_file_size),"backend_%d.obj_pdf"%(tested_file_size)]
+fname = ["edge_%d.obj_pdf_gen"%(tested_file_size),"origin_%d.obj_pdf_gen"%(tested_file_size),"backend_%d.obj_pdf_gen"%(tested_file_size)]
 for f in fname:
 	if os.path.isfile(f):
 		continue
 	s = f[:f.find("_")]
-	os.system("python estimate_latency.py %s_1st.obj_pdf %s_transfer.obj_pdf %s_%d.obj_pdf %f"%(s, s, s, tested_file_size, tested_file_size*1.0/measured_file_size))
+	os.system("python estimate_latency.py %s_1st.obj_pdf %s_transfer.obj_pdf %s_%d.obj_pdf_gen %f"%(s, s, s, tested_file_size, tested_file_size*1.0/measured_file_size))
 #for x in range(1, len(sys.argv)):
 #	fname.append(sys.argv[x])
 fig = plt.figure()
@@ -129,7 +129,7 @@ x_min = 1000000
 x_max = -1 
 for f in fname:
 	l.append({})
-	with open(f.split(".")[0] + ".obj_pdf", 'rb') as f_in:
+	with open(f.split(".")[0] + ".obj_pdf_gen", 'rb') as f_in:
 		x, y = pickle.load(f_in)
 		if f == fname[2]:
 			for ii in range(len(x)):
@@ -151,6 +151,7 @@ x_max = int(x_max)
 print x_min, x_max
 x_all = {}
 y_all = {}
+x_lim = -1
 for i in range(len(hr)):
 	x, y = get_cache(i)
 	cdf_y = pdf_cdf(y)
@@ -163,7 +164,11 @@ for i in range(len(hr)):
 			break
 		else:
 			t__ = ii
-	
+	for k in range(len(cdf_y)):
+		if cdf_y[k]>.98:
+			break
+	x_lim = max(x[k], x_lim)
+
 	if i > 0:
 		ax.plot(x[:t__], cdf_y[:t__])
 	else:
@@ -216,6 +221,8 @@ print yyy
 '''
 
 legend2 = []
+ax2_minx = 10000
+ax2_maxx = -1
 for ii in range(1, len(x_all)):
 	x2 = x_all[0]
 	x1 = x_all[ii]
@@ -260,14 +267,17 @@ for ii in range(1, len(x_all)):
 	#ax2.plot(xxx,yyyy, "-")
 	ax2.plot(xxx,yyy,"-")
 	legend2.append(schemes[ii-1][0]+"-Facebook")
+	ax2_minx = min(ax2_minx, min(xxx))
+	ax2_maxx = max(ax2_maxx, max(xxx))
 #ax2.set_ylabel("Percentile")
 #ax2.legend(legend2)
 ax2.set_xlabel("Additional Latency (ms)")
 ax2.grid()
 #ax2.set_yscale("log")
 #ax2.set_ylim(ax2.get_ylim()[::-1])
-ax2.set_xlim([0,1.12*max(xxx)])
-ax.set_xlim([0,1800])
+ax2.set_xlim([1.12*ax2_minx,1.12*ax2_maxx])
+
+ax.set_xlim([0,x_lim])
 
 ax2.set_yticklabels([])
 #ax2.set_yticklabels(["0","0.9","0.99"])

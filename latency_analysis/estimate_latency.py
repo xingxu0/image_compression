@@ -73,7 +73,7 @@ final_x = []
 final_y = []
 t_ = 0.0
 for i in range(len(final_x_)):
-	if final_x_[i] <= -100000000000000:
+	if final_x_[i] <= 0:
 		t_ += final_y_[i]
 	else:
 		t_ += final_y_[i]
