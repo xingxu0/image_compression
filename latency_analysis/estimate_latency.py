@@ -55,7 +55,7 @@ f4 = float(sys.argv[4])
 with open(f2, 'rb') as f_in:
 		x2, y2 = pickle.load(f_in)
 for i in range(len(x2)):
-	x2[i] *= f4
+	x2[i] = int(round(x2[i]*f4))
 
 with open(f1, 'rb') as f_in:
 		x1, y1 = pickle.load(f_in)

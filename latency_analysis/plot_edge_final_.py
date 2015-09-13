@@ -89,7 +89,7 @@ for s in schemes:
 	#legend.append(s[0]+": "+s[1]+" "+s[2])
 	legend.append(s[0])
 
-	saving = float(s[1])
+	saving = 10000.0/(100.0-float(s[1])) - 100.0
 	t__1 = edge_current_hr + edge_cache_hr*saving
 	t__2 = origin_current_hr + origin_cache_hr*saving
 	cu = [t__1, (1-t__1)*t__2]
@@ -100,12 +100,16 @@ for s in schemes:
 print "hr:",hr
 print "proc:",proc
 
-fname = ["edge_%d.obj_pdf_gen"%(tested_file_size),"origin_%d.obj_pdf_gen"%(tested_file_size),"backend_%d.obj_pdf_gen"%(tested_file_size)]
-for f in fname:
-	if os.path.isfile(f):
-		continue
-	s = f[:f.find("_")]
-	os.system("python estimate_latency.py %s_1st.obj_pdf %s_transfer.obj_pdf %s_%d.obj_pdf_gen %f"%(s, s, s, tested_file_size, tested_file_size*1.0/measured_file_size))
+t_schemes = [[0,0,0,0]] + schemes
+for ss in t_schemes:
+	l_s = (100-float(ss[3]))/100.0
+	print l_s, t_schemes.index(ss)
+	fname = ["edge_%d.obj_pdf_gen_%s"%(tested_file_size, str(ss[3])),"origin_%d.obj_pdf_gen_%s"%(tested_file_size, str(ss[3])),"backend_%d.obj_pdf_gen_%s"%(tested_file_size, str(ss[3]))]
+	for f in fname:
+		if os.path.isfile(f):
+			continue
+		s = f[:f.find("_")]
+		os.system("python estimate_latency.py %s_1st.obj_pdf %s_transfer.obj_pdf %s_%d.obj_pdf_gen_%s %f"%(s, s, s, tested_file_size, str(ss[3]),l_s* tested_file_size*1.0/measured_file_size))
 #for x in range(1, len(sys.argv)):
 #	fname.append(sys.argv[x])
 fig = plt.figure()
@@ -127,23 +131,23 @@ l = []
 i = 0
 x_min = 1000000
 x_max = -1 
-for f in fname:
-	l.append({})
-	with open(f.split(".")[0] + ".obj_pdf_gen", 'rb') as f_in:
-		x, y = pickle.load(f_in)
-		if f == fname[2]:
-			for ii in range(len(x)):
-				x[ii] += bad_backend 
-		if f == fname[1]:
-			for ii in range(len(x)):
-				x[ii] += bad_origin
-		print f, min(x), max(x)
-		print x[:10],y[:10]
-		x_min = min(x_min, min(x))
-		x_max = max(x_max, max(x))
-		for j in range(len(x)):
-			l[i][int(x[j])] = y[j]
-	i += 1
+#for f in fname:
+#	l.append({})
+#	with open(f.split(".")[0] + ".obj_pdf_gen", 'rb') as f_in:
+#		x, y = pickle.load(f_in)
+#		if f == fname[2]:
+#			for ii in range(len(x)):
+#				x[ii] += bad_backend 
+#		if f == fname[1]:
+#			for ii in range(len(x)):
+#				x[ii] += bad_origin
+#		print f, min(x), max(x)
+#		print x[:10],y[:10]
+#		x_min = min(x_min, min(x))
+#		x_max = max(x_max, max(x))
+#		for j in range(len(x)):
+#			l[i][int(x[j])] = y[j]
+#	i += 1
 		#legend.append(f.split(".")[0])
 	#ax.plot(x, pdf_cdf(y))
 x_min = int(x_min)
@@ -153,6 +157,31 @@ x_all = {}
 y_all = {}
 x_lim = -1
 for i in range(len(hr)):
+	print hr[i], i
+	l = []
+	i_ = 0
+	x_min = 1000000
+	x_max = -1 
+	for f in fname:
+		l.append({})
+		with open(f.split(".")[0] + ".obj_pdf_gen_%s"%(str(t_schemes[i][3])), 'rb') as f_in:
+			x, y = pickle.load(f_in)
+			if f == fname[2]:
+				for ii in range(len(x)):
+					x[ii] += bad_backend 
+			if f == fname[1]:
+				for ii in range(len(x)):
+					x[ii] += bad_origin
+			print f, min(x), max(x)
+			print x[:10],y[:10]
+			x_min = min(x_min, min(x))
+			x_max = max(x_max, max(x))
+			for j in range(len(x)):
+				l[i_][int(x[j])] = y[j]
+		i_ += 1
+	
+
+
 	x, y = get_cache(i)
 	cdf_y = pdf_cdf(y)
 	t__ = 0
@@ -292,8 +321,8 @@ ax.legend(legend, 4)
 #ax.set_xscale("log")
 #ax.set_yscale("log")
 
-savefig("plot_edge_final_%d.png"%(tested_file_size))
-savefig("plot_edge_final_%d.eps"%(tested_file_size))
+savefig("plot_edge_final_%d_.png"%(tested_file_size))
+savefig("plot_edge_final_%d_.eps"%(tested_file_size))
 
 plt.tight_layout()
 plt.close("all")
