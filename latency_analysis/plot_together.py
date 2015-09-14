@@ -25,7 +25,7 @@ ax = fig.add_subplot(111)
 ax.set_ylabel("CDF")
 ax.set_xlabel("Latency (ms)")
 ax.grid()
-ax.set_ylim([0,1.1])
+ax.set_ylim([0,1.0])
 legend = []
 for f in fname:
 	#with open(f.split(".")[0] + ".obj_pdf", 'rb') as f_in:
@@ -36,9 +36,10 @@ for f in fname:
 #ax.plot(OB_x, OB_y)
 #legend.append("Origin to Backend")
 ax.legend(legend, 4)
-#ax.set_xlim([0, 1800])
+ax.set_xlim([0, 1600])
 #ax.set_xscale("log")
 #ax.set_yscale("log")
+ax.plot([0,1000000],[0.5,0.5])
 
 savefig("plot_together.png")
 plt.close("all")

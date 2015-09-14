@@ -8,17 +8,24 @@ import matplotlib.gridspec as gridspec
 
 # add how many MS to backend?
 bad_origin = 0
-bad_backend = 0
+bad_backend = 1000
 
 # hit ratio improvement for every 1% increment of cache size,
 # 50% extra cache increaese 3.6% hit ratio
 edge_cache_hr = 0.0036/5
+edge_cache_hr = 1.6*0.0036/5
+
 
 # 50% extra cache increaese 5.5% hit ratio
 origin_cache_hr = 0.0055/5
+origin_cache_hr = 1.6*0.0055/5
 
-edge_current_hr = 0.58
+
+edge_current_hr = 0.58 
 origin_current_hr = 0.32
+edge_current_hr = 0.50 
+origin_current_hr = 0.25
+
 
 measured_file_size = 100000
 tested_file_size = int(sys.argv[len(sys.argv)-1])
@@ -199,7 +206,10 @@ for i in range(len(hr)):
 	x_lim = max(x[k], x_lim)
 
 	if i > 0:
-		ax.plot(x[:t__], cdf_y[:t__])
+		if t_schemes[i][0] == "L-ROMP-Same-Size":
+			ax.plot(x[:t__], cdf_y[:t__], "--b")
+		else:
+			ax.plot(x[:t__], cdf_y[:t__])
 	else:
 		ax.plot(x[:t__], cdf_y[:t__], "-k")
 	x_all[i] = x
@@ -294,7 +304,10 @@ for ii in range(1, len(x_all)):
 	#for y in yyy:
 	#	yyyy.append(1-y)
 	#ax2.plot(xxx,yyyy, "-")
-	ax2.plot(xxx,yyy,"-")
+	if t_schemes[ii][0] == "L-ROMP-Same-Size":
+		ax2.plot(xxx,yyy,"--b")
+	else:
+		ax2.plot(xxx,yyy,"-")
 	legend2.append(schemes[ii-1][0]+"-Facebook")
 	ax2_minx = min(ax2_minx, min(xxx))
 	ax2_maxx = max(ax2_maxx, max(xxx))
