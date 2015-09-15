@@ -624,7 +624,7 @@ main (int argc, char **argv)
   	int i = 0;
   	for (i=0; i<20; ++i)
   		saving += bits_saving[i];
-  		printf("Total saving: %ld bits\n", saving);
+  		printf("Lossy saving: %ld bits\n", lossy_saving);
 		// encoded_size = output_len;
 
 		printf("Original filesize: %ld, encoded filesize: %ld, saving: %f\n", input_len, output_len, input_len != 0 ? (input_len-output_len)*1.0/input_len : -1);

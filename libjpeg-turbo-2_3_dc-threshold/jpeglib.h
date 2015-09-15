@@ -1187,4 +1187,6 @@ extern unsigned char chro_quant[64];
 
 float threshold1, threshold2;
 
+int lossy_saving;
+
 #endif /* JPEGLIB_H */

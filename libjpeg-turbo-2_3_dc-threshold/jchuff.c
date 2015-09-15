@@ -581,6 +581,7 @@ void zerooff(JCOEF* b, signed char* huff_code, unsigned char* quant) {
 
         if (diff >= threshold1 && (1+modified)*1.0/total_non_zero<=threshold2) {
         	modified += 1;
+		lossy_saving += diff;
             //printf("%d : %d\n", p[i], diff);
 			b[p[i]] = 0;
 

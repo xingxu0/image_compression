@@ -728,6 +728,7 @@ void entropy_table_initialization(int private_option)
 
 	encode_bits = 0;
 	decode_bits = 0;
+	lossy_saving = 0;
 }
 
 /*
