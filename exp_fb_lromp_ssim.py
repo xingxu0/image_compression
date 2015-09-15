@@ -39,6 +39,7 @@ t_opt = 0
 t_ari = 0
 t_pro = 0
 t_moz = 0
+t_lossy = 0
 tfs = glob.glob("%s/test/*.jpg"%(root))
 for f in tfs:
 	c = commands.getstatusoutput("/opt/libjpeg-turbo-lossy/bin/jpegtran -encode %s/table %s %s  %s %s/temp.jpg"%(root, p1, p2, f, root))
@@ -46,6 +47,7 @@ for f in tfs:
 	lossy_saving = int(round(int(m.group(1))/8.0))
 	our = int(m.group(3))
 	t_our += our
+	t_lossy += lossy_saving
 
 	c = commands.getstatusoutput("/opt/libjpeg-turbo/bin/jpegtran -copy none %s %s/temp.jpg"%(f, root))
 	std = os.path.getsize("%s/temp.jpg"%(root))
@@ -70,5 +72,5 @@ for f in tfs:
 	printf(f_out, "\t\t" +str(f) + ": our %d, std %d, opt %d, ari %d, pro %d, moz %d"%(our, std, opt, ari, pro, moz))
 commands.getstatusoutput("rm %s/temp.jpg"%(root))
 #printf(f_out, "\t" + str(total_std_size) + " " + str(total_encoded_size) + " " + str((total_std_size-total_encoded_size)*1.0/total_std_size))
-printf(f_out, "our %d, std %d, opt %d, ari %d, pro %d, moz %d, lossyonly %d"%(t_our, t_std, t_opt, t_ari, t_pro, t_moz, t_opt-lossy_saving))
+printf(f_out, "our %d, std %d, opt %d, ari %d, pro %d, moz %d, lossyonly %d"%(t_our, t_std, t_opt, t_ari, t_pro, t_moz, t_opt-t_lossy))
 f_out.close()
