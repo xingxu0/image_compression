@@ -1,4 +1,4 @@
-import math, copy, glob, os, sys, pickle
+import math, copy, glob, os, sys, pickle, commands
 from heapq import heappush, heappop, heapify
 from collections import defaultdict
 from copy import *
@@ -1098,7 +1098,7 @@ def generate_blocks(folder):
 		sys.stdout.flush()
 		cmd = "/opt/libjpeg-turbo/bin/jpegtran -outputcoef temp.block " + f + " temp.out"
 		os.system(cmd)
-		os.system("python lossy_zerooff2_thres_quantized_output_ssim.py temp.block " + folder + "/" + name + ".block " + str(zerooff_thre1) + " 75 " + str(zerooff_thre2))
+		commands.getstatusoutput("python lossy_zerooff2_thres_quantized_output_ssim.py temp.block " + folder + "/" + name + ".block " + str(zerooff_thre1) + " 75 " + str(zerooff_thre2))
 		#os.system("python lossy_zerooff2_thres_quantized_output_ssim.py %s ttttmp_out.block_ %s %s %f"%(block_file, str(threshold), str(71),              _threshold))
 	os.system("rm temp.out")
 	os.system("rm temp.block")
