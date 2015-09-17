@@ -1,0 +1,2451 @@
+50
+50
+Total time elapsed : 235275 us
+Total time elapsed : 223842 us
+Total time elapsed : 245042 us
+Total time elapsed : 229591 us
+Total time elapsed : 234383 us
+Total time elapsed : 229843 us
+Total time elapsed : 235025 us
+Total time elapsed : 238843 us
+Total time elapsed : 219013 us
+Total time elapsed : 225343 us
+Total time elapsed : 222238 us
+Total time elapsed : 240514 us
+Total time elapsed : 230784 us
+Total time elapsed : 251654 us
+Total time elapsed : 233533 us
+Total time elapsed : 232389 us
+Total time elapsed : 231338 us
+Total time elapsed : 225072 us
+Total time elapsed : 231842 us
+Total time elapsed : 251215 us
+Total time elapsed : 228578 us
+Total time elapsed : 232724 us
+Total time elapsed : 236689 us
+Total time elapsed : 232544 us
+Total time elapsed : 230548 us
+Total time elapsed : 251517 us
+Total time elapsed : 226907 us
+Total time elapsed : 222071 us
+Total time elapsed : 225639 us
+Total time elapsed : 242354 us
+Total time elapsed : 228776 us
+Total time elapsed : 229212 us
+Total time elapsed : 221558 us
+Total time elapsed : 230898 us
+Total time elapsed : 222986 us
+Total time elapsed : 236220 us
+Total time elapsed : 223011 us
+Total time elapsed : 239548 us
+Total time elapsed : 230143 us
+Total time elapsed : 236016 us
+Total time elapsed : 225502 us
+Total time elapsed : 216662 us
+Total time elapsed : 224853 us
+Total time elapsed : 237865 us
+Total time elapsed : 226356 us
+Total time elapsed : 244052 us
+Total time elapsed : 242030 us
+Total time elapsed : 222243 us
+Total time elapsed : 233720 us
+Total time elapsed : 229716 us
+Total time elapsed : 238827 us
+Total time elapsed : 232448 us
+Total time elapsed : 230996 us
+Total time elapsed : 237427 us
+Total time elapsed : 228611 us
+Total time elapsed : 229420 us
+Total time elapsed : 229977 us
+Total time elapsed : 229385 us
+Total time elapsed : 231502 us
+Total time elapsed : 237789 us
+Total time elapsed : 234463 us
+Total time elapsed : 231271 us
+Total time elapsed : 232929 us
+Total time elapsed : 230846 us
+Total time elapsed : 227394 us
+Total time elapsed : 225748 us
+Total time elapsed : 266361 us
+Total time elapsed : 238996 us
+Total time elapsed : 236979 us
+Total time elapsed : 233695 us
+Total time elapsed : 233506 us
+Total time elapsed : 240007 us
+Total time elapsed : 237311 us
+Total time elapsed : 225049 us
+Total time elapsed : 221455 us
+Total time elapsed : 220269 us
+Total time elapsed : 227558 us
+Total time elapsed : 223661 us
+Total time elapsed : 231679 us
+Total time elapsed : 234810 us
+Total time elapsed : 231992 us
+Total time elapsed : 226274 us
+Total time elapsed : 231682 us
+Total time elapsed : 224746 us
+Total time elapsed : 229346 us
+Total time elapsed : 234613 us
+Total time elapsed : 221404 us
+Total time elapsed : 239230 us
+Total time elapsed : 236147 us
+Total time elapsed : 231951 us
+Total time elapsed : 235218 us
+Total time elapsed : 222851 us
+Total time elapsed : 220436 us
+Total time elapsed : 223810 us
+Total time elapsed : 217391 us
+Total time elapsed : 241648 us
+Total time elapsed : 219129 us
+Total time elapsed : 225563 us
+Total time elapsed : 231401 us
+Total time elapsed : 225957 us
+Component 0
+regenerating max_pos_values...
+calculating max_pos_value...
+[0, 7, 14, 20, 26, 33, 39, 44, 49, 55, 60, 65, 70, 75, 80, 84, 88, 92, 96, 100, 105, 108, 111, 114, 117, 121, 124, 127, 130, 132, 135, 138, 141, 144, 146, 149, 151, 153, 155, 157, 159, 161, 163, 165, 167, 168, 170, 172, 173, 174, 175, 176, 177, 179, 180, 181, 182, 183, 184, 185, 186, 187, 188, 189]
+regenerating coef_bins...
+calculating avg_coef_bins...
+regenerating max_pos_values...
+calculating max_pos_value...
+regenerating max_pos_values...
+calculating max_pos_value...
+	Training: 
+	1% 2% 3% 4% 5% 6% 7% 8% 9% 10% 11% 12% 13% 14% 15% 16% 17% 18% 19% 20% 21% 22% 23% 24% 25% 26% 27% 28% 29% 30% 31% 32% 33% 34% 35% 36% 37% 38% 39% 40% 41% 42% 43% 44% 45% 46% 47% 48% 49% 50% 51% 52% 53% 54% 55% 56% 57% 58% 59% 60% 61% 62% 63% 64% 65% 66% 67% 68% 69% 70% 71% 72% 73% 74% 75% 76% 77% 78% 79% 80% 81% 82% 83% 84% 85% 86% 87% 88% 89% 90% 91% 92% 93% 94% 95% 96% 97% 98% 99% 100% TRAIN SET:	dc symbol length:6301191	dc actual bits:4924006	run length bits:44443833	actual AC bits:20601447	total bits:76270477
+generating DC tables...
+generating AC tables...
+default table max: 15
+max length symbols: 17
+
+	Training DONE
+Component 1
+[0, 5, 10, 14, 18, 22, 25, 29, 32, 34, 35, 36, 38, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90]
+regenerating coef_bins...
+calculating avg_coef_bins...
+	Training: 
+	1% 2% 3% 4% 5% 6% 7% 8% 9% 10% 11% 12% 13% 14% 15% 16% 17% 18% 19% 20% 21% 22% 23% 24% 25% 26% 27% 28% 29% 30% 31% 32% 33% 34% 35% 36% 37% 38% 39% 40% 41% 42% 43% 44% 45% 46% 47% 48% 49% 50% 51% 52% 53% 54% 55% 56% 57% 58% 59% 60% 61% 62% 63% 64% 65% 66% 67% 68% 69% 70% 71% 72% 73% 74% 75% 76% 77% 78% 79% 80% 81% 82% 83% 84% 85% 86% 87% 88% 89% 90% 91% 92% 93% 94% 95% 96% 97% 98% 99% 100% TRAIN SET:	dc symbol length:1229206	dc actual bits:564217	run length bits:3023624	actual AC bits:749265	total bits:5566312
+generating DC tables...
+generating AC tables...
+default table max: 14
+max length symbols: 16
+
+	Training DONE
+Component 2
+[0, 5, 10, 14, 18, 22, 25, 28, 31, 34, 35, 37, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90]
+regenerating coef_bins...
+calculating avg_coef_bins...
+	Training: 
+	1% 2% 3% 4% 5% 6% 7% 8% 9% 10% 11% 12% 13% 14% 15% 16% 17% 18% 19% 20% 21% 22% 23% 24% 25% 26% 27% 28% 29% 30% 31% 32% 33% 34% 35% 36% 37% 38% 39% 40% 41% 42% 43% 44% 45% 46% 47% 48% 49% 50% 51% 52% 53% 54% 55% 56% 57% 58% 59% 60% 61% 62% 63% 64% 65% 66% 67% 68% 69% 70% 71% 72% 73% 74% 75% 76% 77% 78% 79% 80% 81% 82% 83% 84% 85% 86% 87% 88% 89% 90% 91% 92% 93% 94% 95% 96% 97% 98% 99% 100% TRAIN SET:	dc symbol length:1212548	dc actual bits:502296	run length bits:2697816	actual AC bits:608964	total bits:5021624
+generating DC tables...
+generating AC tables...
+default table max: 14
+max length symbols: 16
+
+	Training DONE
+100 qualified images.
+		images/generate_1200x1200_50/test/2.jpg: our 149675, std 205080, opt 202555, ari 188382, pro 198472, moz 196324
+		images/generate_1200x1200_50/test/33.jpg: our 74097, std 107523, opt 103058, ari 88037, pro 99316, moz 96291
+		images/generate_1200x1200_50/test/71.jpg: our 95729, std 135031, opt 128094, ari 119010, pro 130250, moz 122987
+		images/generate_1200x1200_50/test/25.jpg: our 102540, std 143389, opt 139499, ari 129809, pro 137488, moz 134942
+		images/generate_1200x1200_50/test/17.jpg: our 58478, std 82178, opt 76260, ari 68102, pro 77338, moz 74426
+		images/generate_1200x1200_50/test/54.jpg: our 53959, std 79775, opt 73818, ari 67304, pro 73302, moz 70209
+		images/generate_1200x1200_50/test/74.jpg: our 61679, std 90264, opt 85626, ari 75432, pro 82622, moz 79764
+		images/generate_1200x1200_50/test/46.jpg: our 84644, std 120586, opt 116030, ari 107056, pro 115002, moz 111904
+		images/generate_1200x1200_50/test/73.jpg: our 63247, std 90044, opt 81049, ari 75465, pro 81568, moz 77823
+		images/generate_1200x1200_50/test/22.jpg: our 81974, std 118306, opt 114009, ari 102574, pro 111763, moz 109386
+		images/generate_1200x1200_50/test/82.jpg: our 25214, std 43053, opt 31042, ari 24824, pro 32418, moz 27927
+		images/generate_1200x1200_50/test/10.jpg: our 36723, std 58778, opt 49035, ari 38490, pro 48010, moz 44460
+		images/generate_1200x1200_50/test/69.jpg: our 100700, std 138744, opt 136194, ari 127996, pro 135585, moz 132872
+		images/generate_1200x1200_50/test/64.jpg: our 65282, std 93151, opt 86302, ari 78004, pro 88754, moz 84829
+		images/generate_1200x1200_50/test/51.jpg: our 68882, std 98734, opt 94620, ari 84849, pro 92709, moz 90035
+		images/generate_1200x1200_50/test/87.jpg: our 106666, std 140814, opt 137922, ari 127964, pro 138035, moz 135006
+		images/generate_1200x1200_50/test/59.jpg: our 113155, std 151340, opt 149378, ari 141628, pro 148211, moz 146402
+		images/generate_1200x1200_50/test/60.jpg: our 82523, std 118306, opt 114289, ari 100576, pro 112059, moz 108859
+		images/generate_1200x1200_50/test/16.jpg: our 118769, std 159263, opt 157058, ari 150770, pro 156292, moz 154336
+		images/generate_1200x1200_50/test/83.jpg: our 99370, std 138145, opt 133335, ari 124635, pro 133197, moz 131508
+		images/generate_1200x1200_50/test/57.jpg: our 47143, std 68669, opt 61994, ari 57129, pro 62618, moz 58777
+		images/generate_1200x1200_50/test/94.jpg: our 118024, std 162348, opt 158814, ari 141111, pro 157673, moz 155081
+		images/generate_1200x1200_50/test/29.jpg: our 121107, std 168416, opt 164453, ari 150921, pro 162420, moz 159873
+		images/generate_1200x1200_50/test/63.jpg: our 80691, std 113746, opt 108343, ari 97106, pro 108262, moz 104979
+		images/generate_1200x1200_50/test/78.jpg: our 66717, std 97014, opt 91336, ari 80538, pro 90279, moz 86713
+		images/generate_1200x1200_50/test/35.jpg: our 125703, std 169494, opt 167411, ari 154799, pro 165238, moz 163083
+		images/generate_1200x1200_50/test/49.jpg: our 55281, std 77566, opt 70927, ari 63955, pro 72229, moz 68908
+		images/generate_1200x1200_50/test/19.jpg: our 136911, std 191049, opt 188567, ari 171515, pro 184998, moz 182264
+		images/generate_1200x1200_50/test/15.jpg: our 117691, std 163303, opt 160621, ari 147010, pro 158165, moz 156516
+		images/generate_1200x1200_50/test/52.jpg: our 91539, std 125586, opt 122667, ari 116383, pro 122840, moz 120340
+		images/generate_1200x1200_50/test/91.jpg: our 165175, std 231300, opt 228446, ari 207738, pro 223044, moz 220128
+		images/generate_1200x1200_50/test/9.jpg: our 99308, std 143129, opt 139427, ari 117660, pro 134971, moz 131804
+		images/generate_1200x1200_50/test/72.jpg: our 140989, std 201080, opt 197981, ari 174612, pro 191749, moz 188766
+		images/generate_1200x1200_50/test/28.jpg: our 70569, std 103017, opt 98800, ari 82841, pro 94038, moz 90744
+		images/generate_1200x1200_50/test/38.jpg: our 127938, std 184693, opt 181326, ari 159114, pro 174643, moz 171768
+		images/generate_1200x1200_50/test/1.jpg: our 78613, std 114048, opt 106956, ari 89249, pro 108618, moz 102293
+		images/generate_1200x1200_50/test/26.jpg: our 129329, std 177687, opt 175404, ari 163880, pro 174436, moz 171964
+		images/generate_1200x1200_50/test/97.jpg: our 110992, std 155717, opt 153334, ari 140442, pro 149323, moz 146790
+		images/generate_1200x1200_50/test/30.jpg: our 127148, std 181067, opt 174522, ari 156690, pro 170583, moz 168534
+		images/generate_1200x1200_50/test/37.jpg: our 65902, std 95242, opt 90155, ari 80144, pro 88613, moz 85054
+		images/generate_1200x1200_50/test/43.jpg: our 136692, std 188110, opt 185123, ari 172328, pro 182193, moz 179003
+		images/generate_1200x1200_50/test/89.jpg: our 78293, std 113611, opt 108963, ari 96190, pro 104339, moz 101235
+		images/generate_1200x1200_50/test/90.jpg: our 75547, std 107489, opt 104381, ari 91891, pro 100867, moz 98117
+		images/generate_1200x1200_50/test/47.jpg: our 58089, std 84737, opt 77818, ari 70798, pro 77914, moz 74245
+		images/generate_1200x1200_50/test/12.jpg: our 109162, std 154112, opt 149490, ari 139345, pro 148211, moz 145105
+		images/generate_1200x1200_50/test/23.jpg: our 66407, std 95215, opt 84464, ari 78741, pro 85548, moz 83071
+		images/generate_1200x1200_50/test/56.jpg: our 91499, std 125502, opt 122310, ari 110266, pro 120824, moz 119103
+		images/generate_1200x1200_50/test/98.jpg: our 38006, std 59222, opt 50726, ari 45377, pro 51040, moz 47724
+		images/generate_1200x1200_50/test/36.jpg: our 90320, std 128855, opt 125241, ari 114859, pro 122162, moz 119948
+		images/generate_1200x1200_50/test/3.jpg: our 137111, std 194581, opt 192321, ari 173283, pro 185105, moz 182712
+		images/generate_1200x1200_50/test/76.jpg: our 66365, std 91510, opt 86181, ari 80816, pro 88348, moz 84997
+		images/generate_1200x1200_50/test/11.jpg: our 93827, std 136289, opt 132874, ari 119364, pro 126397, moz 124043
+		images/generate_1200x1200_50/test/24.jpg: our 52102, std 76308, opt 70554, ari 62001, pro 69251, moz 65906
+		images/generate_1200x1200_50/test/42.jpg: our 58603, std 88345, opt 81489, ari 69845, pro 79684, moz 76234
+		images/generate_1200x1200_50/test/96.jpg: our 185402, std 253906, opt 251312, ari 232056, pro 244101, moz 242008
+		images/generate_1200x1200_50/test/6.jpg: our 69523, std 97072, opt 93083, ari 86193, pro 92198, moz 89031
+		images/generate_1200x1200_50/test/75.jpg: our 65936, std 90785, opt 85697, ari 79620, pro 86689, moz 83868
+		images/generate_1200x1200_50/test/86.jpg: our 86723, std 118674, opt 114876, ari 110225, pro 115165, moz 112990
+		images/generate_1200x1200_50/test/93.jpg: our 89604, std 124626, opt 119528, ari 112696, pro 119738, moz 118370
+		images/generate_1200x1200_50/test/67.jpg: our 51544, std 75285, opt 66909, ari 62295, pro 68479, moz 66044
+		images/generate_1200x1200_50/test/58.jpg: our 57548, std 79978, opt 74018, ari 69802, pro 76081, moz 73310
+		images/generate_1200x1200_50/test/77.jpg: our 104967, std 147297, opt 143773, ari 132588, pro 142123, moz 139817
+		images/generate_1200x1200_50/test/100.jpg: our 51396, std 71385, opt 65764, ari 59067, pro 66001, moz 63531
+		images/generate_1200x1200_50/test/92.jpg: our 164249, std 228000, opt 225469, ari 201768, pro 218409, moz 217207
+		images/generate_1200x1200_50/test/32.jpg: our 85433, std 123910, opt 120708, ari 104970, pro 115210, moz 112844
+		images/generate_1200x1200_50/test/5.jpg: our 140997, std 198851, opt 194121, ari 175520, pro 189349, moz 187160
+		images/generate_1200x1200_50/test/48.jpg: our 31478, std 50402, opt 40818, ari 34387, pro 41133, moz 37030
+		images/generate_1200x1200_50/test/81.jpg: our 66108, std 93241, opt 86859, ari 80227, pro 89481, moz 85929
+		images/generate_1200x1200_50/test/41.jpg: our 95334, std 139736, opt 135640, ari 120279, pro 129597, moz 127117
+		images/generate_1200x1200_50/test/80.jpg: our 146152, std 206455, opt 203048, ari 178837, pro 197044, moz 194568
+		images/generate_1200x1200_50/test/99.jpg: our 54822, std 80562, opt 72680, ari 63695, pro 72148, moz 68150
+		images/generate_1200x1200_50/test/39.jpg: our 74778, std 107202, opt 102216, ari 92165, pro 101239, moz 98712
+		images/generate_1200x1200_50/test/84.jpg: our 163302, std 224928, opt 222301, ari 200976, pro 217692, moz 215354
+		images/generate_1200x1200_50/test/27.jpg: our 100660, std 144772, opt 140155, ari 123621, pro 137725, moz 135190
+		images/generate_1200x1200_50/test/61.jpg: our 89278, std 124611, opt 118111, ari 110146, pro 117842, moz 116246
+		images/generate_1200x1200_50/test/79.jpg: our 102837, std 142519, opt 139208, ari 130106, pro 138909, moz 135166
+		images/generate_1200x1200_50/test/14.jpg: our 169421, std 234867, opt 232676, ari 214254, pro 225496, moz 223858
+		images/generate_1200x1200_50/test/65.jpg: our 104862, std 148091, opt 139724, ari 126639, pro 140033, moz 134752
+		images/generate_1200x1200_50/test/66.jpg: our 75386, std 108295, opt 101989, ari 91926, pro 101423, moz 97817
+		images/generate_1200x1200_50/test/8.jpg: our 148819, std 210120, opt 206439, ari 185490, pro 201163, moz 199543
+		images/generate_1200x1200_50/test/4.jpg: our 49717, std 74351, opt 66522, ari 59629, pro 65828, moz 63278
+		images/generate_1200x1200_50/test/7.jpg: our 110362, std 149131, opt 147385, ari 139059, pro 146730, moz 144277
+		images/generate_1200x1200_50/test/50.jpg: our 87187, std 119987, opt 116620, ari 111183, pro 116359, moz 114198
+		images/generate_1200x1200_50/test/20.jpg: our 27333, std 46170, opt 36042, ari 28496, pro 36319, moz 32313
+		images/generate_1200x1200_50/test/95.jpg: our 66190, std 95861, opt 91645, ari 80726, pro 88449, moz 86167
+		images/generate_1200x1200_50/test/21.jpg: our 90130, std 131871, opt 127822, ari 110254, pro 122482, moz 119838
+		images/generate_1200x1200_50/test/70.jpg: our 155723, std 220221, opt 217533, ari 192448, pro 207801, moz 205351
+		images/generate_1200x1200_50/test/68.jpg: our 97139, std 139218, opt 133905, ari 117943, pro 132743, moz 129827
+		images/generate_1200x1200_50/test/45.jpg: our 29622, std 48768, opt 39263, ari 31615, pro 38808, moz 34564
+		images/generate_1200x1200_50/test/62.jpg: our 78079, std 104582, opt 101133, ari 96367, pro 102816, moz 99707
+		images/generate_1200x1200_50/test/55.jpg: our 109055, std 153495, opt 151332, ari 133873, pro 147160, moz 144183
+		images/generate_1200x1200_50/test/13.jpg: our 98682, std 139457, opt 135702, ari 120036, pro 131742, moz 128758
+		images/generate_1200x1200_50/test/34.jpg: our 107654, std 147875, opt 144593, ari 134459, pro 143764, moz 140873
+		images/generate_1200x1200_50/test/44.jpg: our 120770, std 169137, opt 165375, ari 148753, pro 162720, moz 159775
+		images/generate_1200x1200_50/test/88.jpg: our 102270, std 143439, opt 139956, ari 131079, pro 138768, moz 136439
+		images/generate_1200x1200_50/test/40.jpg: our 60141, std 89865, opt 83620, ari 68728, pro 81170, moz 77117
+		images/generate_1200x1200_50/test/18.jpg: our 30645, std 48387, opt 38855, ari 35081, pro 39337, moz 36205
+		images/generate_1200x1200_50/test/31.jpg: our 80355, std 111372, opt 108488, ari 100382, pro 107449, moz 104621
+		images/generate_1200x1200_50/test/53.jpg: our 103444, std 146495, opt 143291, ari 123651, pro 137388, moz 134607
+		images/generate_1200x1200_50/test/85.jpg: our 87552, std 118276, opt 114247, ari 106463, pro 115238, moz 112454
+our 9140708, std 12904089, opt 12423043, ari 11248621, pro 12236553, moz 11946276, lossyonly 10475236
+55
+Total time elapsed : 224790 us
+Total time elapsed : 226323 us
+Total time elapsed : 228605 us
+Total time elapsed : 219568 us
+Total time elapsed : 240226 us
+Total time elapsed : 229593 us
+Total time elapsed : 240943 us
+Total time elapsed : 240632 us
+Total time elapsed : 228857 us
+Total time elapsed : 241619 us
+Total time elapsed : 234056 us
+Total time elapsed : 224198 us
+Total time elapsed : 243242 us
+Total time elapsed : 237740 us
+Total time elapsed : 238825 us
+Total time elapsed : 229804 us
+Total time elapsed : 230303 us
+Total time elapsed : 232515 us
+Total time elapsed : 231354 us
+Total time elapsed : 221911 us
+Total time elapsed : 229721 us
+Total time elapsed : 236636 us
+Total time elapsed : 230728 us
+Total time elapsed : 224574 us
+Total time elapsed : 224549 us
+Total time elapsed : 241439 us
+Total time elapsed : 231434 us
+Total time elapsed : 236129 us
+Total time elapsed : 246554 us
+Total time elapsed : 222830 us
+Total time elapsed : 232351 us
+Total time elapsed : 230845 us
+Total time elapsed : 228917 us
+Total time elapsed : 237244 us
+Total time elapsed : 242558 us
+Total time elapsed : 238556 us
+Total time elapsed : 235158 us
+Total time elapsed : 228757 us
+Total time elapsed : 226567 us
+Total time elapsed : 229990 us
+Total time elapsed : 231673 us
+Total time elapsed : 231969 us
+Total time elapsed : 227761 us
+Total time elapsed : 228707 us
+Total time elapsed : 223078 us
+Total time elapsed : 222783 us
+Total time elapsed : 228026 us
+Total time elapsed : 233474 us
+Total time elapsed : 231236 us
+Total time elapsed : 240001 us
+Total time elapsed : 229266 us
+Total time elapsed : 223276 us
+Total time elapsed : 233521 us
+Total time elapsed : 219150 us
+Total time elapsed : 228794 us
+Total time elapsed : 222119 us
+Total time elapsed : 241680 us
+Total time elapsed : 228074 us
+Total time elapsed : 241227 us
+Total time elapsed : 234013 us
+Total time elapsed : 233472 us
+Total time elapsed : 228460 us
+Total time elapsed : 219190 us
+Total time elapsed : 229370 us
+Total time elapsed : 238703 us
+Total time elapsed : 222296 us
+Total time elapsed : 219107 us
+Total time elapsed : 235891 us
+Total time elapsed : 238623 us
+Total time elapsed : 230194 us
+Total time elapsed : 230283 us
+Total time elapsed : 234864 us
+Total time elapsed : 258829 us
+Total time elapsed : 236363 us
+Total time elapsed : 242001 us
+Total time elapsed : 222960 us
+Total time elapsed : 231507 us
+Total time elapsed : 241856 us
+Total time elapsed : 227033 us
+Total time elapsed : 231373 us
+Total time elapsed : 223035 us
+Total time elapsed : 228766 us
+Total time elapsed : 226508 us
+Total time elapsed : 239630 us
+Total time elapsed : 238546 us
+Total time elapsed : 232582 us
+Total time elapsed : 228243 us
+Total time elapsed : 238307 us
+Total time elapsed : 221264 us
+Total time elapsed : 223667 us
+Total time elapsed : 235821 us
+Total time elapsed : 248328 us
+Total time elapsed : 225189 us
+Total time elapsed : 233310 us
+Total time elapsed : 253443 us
+Total time elapsed : 239821 us
+Total time elapsed : 234460 us
+Total time elapsed : 232646 us
+Total time elapsed : 223028 us
+Total time elapsed : 239902 us
+Component 0
+regenerating max_pos_values...
+calculating max_pos_value...
+[0, 7, 14, 20, 26, 33, 39, 44, 50, 56, 61, 66, 71, 76, 81, 85, 89, 93, 97, 101, 106, 109, 112, 115, 119, 123, 126, 130, 133, 135, 138, 141, 144, 147, 149, 152, 154, 156, 158, 160, 162, 164, 166, 168, 170, 171, 173, 175, 176, 177, 178, 179, 180, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192]
+regenerating coef_bins...
+calculating avg_coef_bins...
+regenerating max_pos_values...
+calculating max_pos_value...
+regenerating max_pos_values...
+calculating max_pos_value...
+	Training: 
+	1% 2% 3% 4% 5% 6% 7% 8% 9% 10% 11% 12% 13% 14% 15% 16% 17% 18% 19% 20% 21% 22% 23% 24% 25% 26% 27% 28% 29% 30% 31% 32% 33% 34% 35% 36% 37% 38% 39% 40% 41% 42% 43% 44% 45% 46% 47% 48% 49% 50% 51% 52% 53% 54% 55% 56% 57% 58% 59% 60% 61% 62% 63% 64% 65% 66% 67% 68% 69% 70% 71% 72% 73% 74% 75% 76% 77% 78% 79% 80% 81% 82% 83% 84% 85% 86% 87% 88% 89% 90% 91% 92% 93% 94% 95% 96% 97% 98% 99% 100% TRAIN SET:	dc symbol length:6380618	dc actual bits:5208995	run length bits:46902161	actual AC bits:22360604	total bits:80852378
+generating DC tables...
+generating AC tables...
+default table max: 14
+max length symbols: 16
+
+	Training DONE
+Component 1
+[0, 5, 10, 14, 18, 22, 25, 29, 33, 36, 37, 39, 41, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93]
+regenerating coef_bins...
+calculating avg_coef_bins...
+	Training: 
+	1% 2% 3% 4% 5% 6% 7% 8% 9% 10% 11% 12% 13% 14% 15% 16% 17% 18% 19% 20% 21% 22% 23% 24% 25% 26% 27% 28% 29% 30% 31% 32% 33% 34% 35% 36% 37% 38% 39% 40% 41% 42% 43% 44% 45% 46% 47% 48% 49% 50% 51% 52% 53% 54% 55% 56% 57% 58% 59% 60% 61% 62% 63% 64% 65% 66% 67% 68% 69% 70% 71% 72% 73% 74% 75% 76% 77% 78% 79% 80% 81% 82% 83% 84% 85% 86% 87% 88% 89% 90% 91% 92% 93% 94% 95% 96% 97% 98% 99% 100% TRAIN SET:	dc symbol length:1247825	dc actual bits:609459	run length bits:3235890	actual AC bits:847020	total bits:5940194
+generating DC tables...
+generating AC tables...
+default table max: 15
+max length symbols: 16
+
+	Training DONE
+Component 2
+[0, 5, 10, 14, 19, 23, 26, 29, 33, 36, 37, 39, 41, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93]
+regenerating coef_bins...
+calculating avg_coef_bins...
+	Training: 
+	1% 2% 3% 4% 5% 6% 7% 8% 9% 10% 11% 12% 13% 14% 15% 16% 17% 18% 19% 20% 21% 22% 23% 24% 25% 26% 27% 28% 29% 30% 31% 32% 33% 34% 35% 36% 37% 38% 39% 40% 41% 42% 43% 44% 45% 46% 47% 48% 49% 50% 51% 52% 53% 54% 55% 56% 57% 58% 59% 60% 61% 62% 63% 64% 65% 66% 67% 68% 69% 70% 71% 72% 73% 74% 75% 76% 77% 78% 79% 80% 81% 82% 83% 84% 85% 86% 87% 88% 89% 90% 91% 92% 93% 94% 95% 96% 97% 98% 99% 100% TRAIN SET:	dc symbol length:1227799	dc actual bits:545732	run length bits:2888417	actual AC bits:691564	total bits:5353512
+generating DC tables...
+generating AC tables...
+default table max: 14
+max length symbols: 16
+
+	Training DONE
+100 qualified images.
+		images/generate_1200x1200_55/test/2.jpg: our 158884, std 217769, opt 215239, ari 200092, pro 210222, moz 208210
+		images/generate_1200x1200_55/test/33.jpg: our 79087, std 113881, opt 109989, ari 94282, pro 106129, moz 103028
+		images/generate_1200x1200_55/test/71.jpg: our 101596, std 142933, opt 136055, ari 126974, pro 138209, moz 130908
+		images/generate_1200x1200_55/test/25.jpg: our 109458, std 152523, opt 149103, ari 138980, pro 146501, moz 144039
+		images/generate_1200x1200_55/test/17.jpg: our 62358, std 87152, opt 81774, ari 73087, pro 82471, moz 79907
+		images/generate_1200x1200_55/test/54.jpg: our 58317, std 85278, opt 79661, ari 73709, pro 79284, moz 76285
+		images/generate_1200x1200_55/test/74.jpg: our 65394, std 95241, opt 91030, ari 80443, pro 87508, moz 84875
+		images/generate_1200x1200_55/test/46.jpg: our 90341, std 128021, opt 123772, ari 114653, pro 122491, moz 119488
+		images/generate_1200x1200_55/test/73.jpg: our 69273, std 98911, opt 89768, ari 83489, pro 89991, moz 86348
+		images/generate_1200x1200_55/test/22.jpg: our 87688, std 125564, opt 121642, ari 110209, pro 119413, moz 116987
+		images/generate_1200x1200_55/test/82.jpg: our 27570, std 45602, opt 33949, ari 27667, pro 35273, moz 30763
+		images/generate_1200x1200_55/test/10.jpg: our 39294, std 62222, opt 52850, ari 41842, pro 51521, moz 48028
+		images/generate_1200x1200_55/test/69.jpg: our 107511, std 147476, opt 145342, ari 136816, pro 144117, moz 141593
+		images/generate_1200x1200_55/test/64.jpg: our 69686, std 98563, opt 92114, ari 83731, pro 94399, moz 90824
+		images/generate_1200x1200_55/test/51.jpg: our 73762, std 105336, opt 101749, ari 91502, pro 99445, moz 96670
+		images/generate_1200x1200_55/test/87.jpg: our 113044, std 149332, opt 146602, ari 136151, pro 146148, moz 143726
+		images/generate_1200x1200_55/test/59.jpg: our 119932, std 160429, opt 158545, ari 150457, pro 156838, moz 155141
+		images/generate_1200x1200_55/test/60.jpg: our 87534, std 124773, opt 121206, ari 106897, pro 118672, moz 115424
+		images/generate_1200x1200_55/test/16.jpg: our 126007, std 168653, opt 166667, ari 159955, pro 165361, moz 163418
+		images/generate_1200x1200_55/test/83.jpg: our 106290, std 147430, opt 142997, ari 133789, pro 142511, moz 140818
+		images/generate_1200x1200_55/test/57.jpg: our 50451, std 72655, opt 66345, ari 61550, pro 66923, moz 63172
+		images/generate_1200x1200_55/test/94.jpg: our 125338, std 172036, opt 168755, ari 150544, pro 167399, moz 164915
+		images/generate_1200x1200_55/test/29.jpg: our 129239, std 179153, opt 175785, ari 161257, pro 172994, moz 170424
+		images/generate_1200x1200_55/test/63.jpg: our 85398, std 120083, opt 114887, ari 103379, pro 114422, moz 111299
+		images/generate_1200x1200_55/test/78.jpg: our 70958, std 102299, opt 97074, ari 86028, pro 95918, moz 92207
+		images/generate_1200x1200_55/test/35.jpg: our 133296, std 179630, opt 177798, ari 164256, pro 174643, moz 172611
+		images/generate_1200x1200_55/test/49.jpg: our 59063, std 82104, opt 75975, ari 68849, pro 77222, moz 74142
+		images/generate_1200x1200_55/test/19.jpg: our 145944, std 203379, opt 201154, ari 182886, pro 196771, moz 194254
+		images/generate_1200x1200_55/test/15.jpg: our 125565, std 174027, opt 171753, ari 157013, pro 168654, moz 166930
+		images/generate_1200x1200_55/test/52.jpg: our 97712, std 133761, opt 131301, ari 124562, pro 131100, moz 128525
+		images/generate_1200x1200_55/test/91.jpg: our 176077, std 246148, opt 243297, ari 221450, pro 237086, moz 234028
+		images/generate_1200x1200_55/test/9.jpg: our 105669, std 151332, opt 148243, ari 125315, pro 143355, moz 140028
+		images/generate_1200x1200_55/test/72.jpg: our 150703, std 213919, opt 210718, ari 186627, pro 204318, moz 201454
+		images/generate_1200x1200_55/test/28.jpg: our 74868, std 108554, opt 104724, ari 88376, pro 99812, moz 96422
+		images/generate_1200x1200_55/test/38.jpg: our 136877, std 196602, opt 193475, ari 170462, pro 186218, moz 183404
+		images/generate_1200x1200_55/test/1.jpg: our 83311, std 119832, opt 113015, ari 95217, pro 114659, moz 108712
+		images/generate_1200x1200_55/test/26.jpg: our 137825, std 188722, opt 186659, ari 174579, pro 185083, moz 182498
+		images/generate_1200x1200_55/test/97.jpg: our 117975, std 165308, opt 163285, ari 149955, pro 158640, moz 156149
+		images/generate_1200x1200_55/test/30.jpg: our 136047, std 193317, opt 186995, ari 167971, pro 182875, moz 180735
+		images/generate_1200x1200_55/test/37.jpg: our 70068, std 100598, opt 95886, ari 85412, pro 93924, moz 90415
+		images/generate_1200x1200_55/test/43.jpg: our 145464, std 200320, opt 197182, ari 183694, pro 193766, moz 190435
+		images/generate_1200x1200_55/test/89.jpg: our 82910, std 119688, opt 115329, ari 102206, pro 110268, moz 107262
+		images/generate_1200x1200_55/test/90.jpg: our 80068, std 113506, opt 110658, ari 97743, pro 106959, moz 104062
+		images/generate_1200x1200_55/test/47.jpg: our 62489, std 90308, opt 83796, ari 76618, pro 83806, moz 80057
+		images/generate_1200x1200_55/test/12.jpg: our 116663, std 163470, opt 159116, ari 149113, pro 157716, moz 154338
+		images/generate_1200x1200_55/test/23.jpg: our 72305, std 103893, opt 93222, ari 86622, pro 93986, moz 91603
+		images/generate_1200x1200_55/test/56.jpg: our 97602, std 133484, opt 130903, ari 117933, pro 128862, moz 127210
+		images/generate_1200x1200_55/test/98.jpg: our 41435, std 63396, opt 55081, ari 50159, pro 55613, moz 52420
+		images/generate_1200x1200_55/test/36.jpg: our 96174, std 136604, opt 133188, ari 122835, pro 130117, moz 127333
+		images/generate_1200x1200_55/test/3.jpg: our 145936, std 206566, opt 204534, ari 184710, pro 196560, moz 194342
+		images/generate_1200x1200_55/test/76.jpg: our 70754, std 96755, opt 91746, ari 86462, pro 93760, moz 90463
+		images/generate_1200x1200_55/test/11.jpg: our 99825, std 144334, opt 141350, ari 127227, pro 134038, moz 131994
+		images/generate_1200x1200_55/test/24.jpg: our 54957, std 80029, opt 74564, ari 65805, pro 73188, moz 69711
+		images/generate_1200x1200_55/test/42.jpg: our 62602, std 93486, opt 87297, ari 75054, pro 85144, moz 81790
+		images/generate_1200x1200_55/test/96.jpg: our 196720, std 268771, opt 266203, ari 245862, pro 257592, moz 255803
+		images/generate_1200x1200_55/test/6.jpg: our 73644, std 102142, opt 98507, ari 91740, pro 97416, moz 94274
+		images/generate_1200x1200_55/test/75.jpg: our 71048, std 97514, opt 92925, ari 86195, pro 93398, moz 90626
+		images/generate_1200x1200_55/test/86.jpg: our 92674, std 126754, opt 123278, ari 118513, pro 123276, moz 120969
+		images/generate_1200x1200_55/test/93.jpg: our 95926, std 133085, opt 128434, ari 121209, pro 128180, moz 127181
+		images/generate_1200x1200_55/test/67.jpg: our 55666, std 80878, opt 72666, ari 68014, pro 73907, moz 71900
+		images/generate_1200x1200_55/test/58.jpg: our 61422, std 84651, opt 79154, ari 74849, pro 80980, moz 78358
+		images/generate_1200x1200_55/test/77.jpg: our 112581, std 157542, opt 154521, ari 142539, pro 152130, moz 149932
+		images/generate_1200x1200_55/test/100.jpg: our 54645, std 75338, opt 70210, ari 63246, pro 70244, moz 67902
+		images/generate_1200x1200_55/test/92.jpg: our 174875, std 242305, opt 239939, ari 214901, pro 232164, moz 231060
+		images/generate_1200x1200_55/test/32.jpg: our 90726, std 131103, opt 128250, ari 111864, pro 122555, moz 120066
+		images/generate_1200x1200_55/test/5.jpg: our 150679, std 211684, opt 207353, ari 187447, pro 201813, moz 199746
+		images/generate_1200x1200_55/test/48.jpg: our 33958, std 53219, opt 44078, ari 37767, pro 44464, moz 40409
+		images/generate_1200x1200_55/test/81.jpg: our 70350, std 98401, opt 92476, ari 85868, pro 95058, moz 91656
+		images/generate_1200x1200_55/test/41.jpg: our 101782, std 148687, opt 144952, ari 129006, pro 138086, moz 136005
+		images/generate_1200x1200_55/test/80.jpg: our 155856, std 219546, opt 216449, ari 191330, pro 209381, moz 207229
+		images/generate_1200x1200_55/test/99.jpg: our 58121, std 84566, opt 76952, ari 67972, pro 76309, moz 72350
+		images/generate_1200x1200_55/test/39.jpg: our 80196, std 114192, opt 109593, ari 99282, pro 108468, moz 105908
+		images/generate_1200x1200_55/test/84.jpg: our 173530, std 238438, opt 235823, ari 213910, pro 230701, moz 228534
+		images/generate_1200x1200_55/test/27.jpg: our 107496, std 153767, opt 149759, ari 132261, pro 146752, moz 144190
+		images/generate_1200x1200_55/test/61.jpg: our 95846, std 133497, opt 127395, ari 118663, pro 126570, moz 125083
+		images/generate_1200x1200_55/test/79.jpg: our 109571, std 151534, opt 148614, ari 139234, pro 147777, moz 144103
+		images/generate_1200x1200_55/test/14.jpg: our 180290, std 250261, opt 248068, ari 228536, pro 239815, moz 238372
+		images/generate_1200x1200_55/test/65.jpg: our 111236, std 156402, opt 148506, ari 134935, pro 148332, moz 143325
+		images/generate_1200x1200_55/test/66.jpg: our 80447, std 114492, opt 108461, ari 98417, pro 107833, moz 104243
+		images/generate_1200x1200_55/test/8.jpg: our 158824, std 223283, opt 220120, ari 197900, pro 214432, moz 212685
+		images/generate_1200x1200_55/test/4.jpg: our 53336, std 79281, opt 71885, ari 64642, pro 70888, moz 68402
+		images/generate_1200x1200_55/test/7.jpg: our 117062, std 158083, opt 156378, ari 147693, pro 155423, moz 152957
+		images/generate_1200x1200_55/test/50.jpg: our 92900, std 127574, opt 124590, ari 118982, pro 123937, moz 121795
+		images/generate_1200x1200_55/test/20.jpg: our 29250, std 48632, opt 38824, ari 31784, pro 39181, moz 35563
+		images/generate_1200x1200_55/test/95.jpg: our 70816, std 101658, opt 97973, ari 86882, pro 94619, moz 92398
+		images/generate_1200x1200_55/test/21.jpg: our 95999, std 139539, opt 135957, ari 117852, pro 130473, moz 127864
+		images/generate_1200x1200_55/test/70.jpg: our 166026, std 234089, opt 231583, ari 205185, pro 220853, moz 218575
+		images/generate_1200x1200_55/test/68.jpg: our 103734, std 147507, opt 142880, ari 126419, pro 141407, moz 138532
+		images/generate_1200x1200_55/test/45.jpg: our 31228, std 50772, opt 41668, ari 33860, pro 40743, moz 36617
+		images/generate_1200x1200_55/test/62.jpg: our 83171, std 111084, opt 108066, ari 102915, pro 109375, moz 106195
+		images/generate_1200x1200_55/test/55.jpg: our 115864, std 162638, opt 161005, ari 142448, pro 156092, moz 153230
+		images/generate_1200x1200_55/test/13.jpg: our 105221, std 147836, opt 144511, ari 128367, pro 140213, moz 137244
+		images/generate_1200x1200_55/test/34.jpg: our 114980, std 157813, opt 154842, ari 144016, pro 153278, moz 150529
+		images/generate_1200x1200_55/test/44.jpg: our 129111, std 179805, opt 176729, ari 159080, pro 173480, moz 170270
+		images/generate_1200x1200_55/test/88.jpg: our 109291, std 152688, opt 149604, ari 140240, pro 147911, moz 145699
+		images/generate_1200x1200_55/test/40.jpg: our 64042, std 94749, opt 89060, ari 73579, pro 86175, moz 82234
+		images/generate_1200x1200_55/test/18.jpg: our 33222, std 51194, opt 42159, ari 38420, pro 42608, moz 39534
+		images/generate_1200x1200_55/test/31.jpg: our 85723, std 118322, opt 115829, ari 107479, pro 114381, moz 111540
+		images/generate_1200x1200_55/test/53.jpg: our 108992, std 154122, opt 151167, ari 130640, pro 144600, moz 141772
+		images/generate_1200x1200_55/test/85.jpg: our 93426, std 126105, opt 122325, ari 114104, pro 123028, moz 120134
+our 9746097, std 13701930, opt 13254865, ari 12032641, pro 13028601, moz 12744817, lossyonly 11172233
+60
+Total time elapsed : 224608 us
+Total time elapsed : 227933 us
+Total time elapsed : 224707 us
+Total time elapsed : 219853 us
+Total time elapsed : 243615 us
+Total time elapsed : 237202 us
+Total time elapsed : 233023 us
+Total time elapsed : 236193 us
+Total time elapsed : 246185 us
+Total time elapsed : 224942 us
+Total time elapsed : 263498 us
+Total time elapsed : 241053 us
+Total time elapsed : 226523 us
+Total time elapsed : 225289 us
+Total time elapsed : 224699 us
+Total time elapsed : 226655 us
+Total time elapsed : 226586 us
+Total time elapsed : 220919 us
+Total time elapsed : 251378 us
+Total time elapsed : 236778 us
+Total time elapsed : 245213 us
+Total time elapsed : 222528 us
+Total time elapsed : 230389 us
+Total time elapsed : 227292 us
+Total time elapsed : 234443 us
+Total time elapsed : 240501 us
+Total time elapsed : 241160 us
+Total time elapsed : 221332 us
+Total time elapsed : 226311 us
+Total time elapsed : 229861 us
+Total time elapsed : 220649 us
+Total time elapsed : 227254 us
+Total time elapsed : 232074 us
+Total time elapsed : 244527 us
+Total time elapsed : 238015 us
+Total time elapsed : 239008 us
+Total time elapsed : 220706 us
+Total time elapsed : 229050 us
+Total time elapsed : 227103 us
+Total time elapsed : 230324 us
+Total time elapsed : 226859 us
+Total time elapsed : 229093 us
+Total time elapsed : 238677 us
+Total time elapsed : 237916 us
+Total time elapsed : 219258 us
+Total time elapsed : 230600 us
+Total time elapsed : 231397 us
+Total time elapsed : 219219 us
+Total time elapsed : 230201 us
+Total time elapsed : 226802 us
+Total time elapsed : 246475 us
+Total time elapsed : 239675 us
+Total time elapsed : 237303 us
+Total time elapsed : 230161 us
+Total time elapsed : 240789 us
+Total time elapsed : 231922 us
+Total time elapsed : 225638 us
+Total time elapsed : 231660 us
+Total time elapsed : 243640 us
+Total time elapsed : 221753 us
+Total time elapsed : 232752 us
+Total time elapsed : 216374 us
+Total time elapsed : 230107 us
+Total time elapsed : 221725 us
+Total time elapsed : 236023 us
+Total time elapsed : 229332 us
+Total time elapsed : 231474 us
+Total time elapsed : 231568 us
+Total time elapsed : 224397 us
+Total time elapsed : 235702 us
+Total time elapsed : 219872 us
+Total time elapsed : 248641 us
+Total time elapsed : 221673 us
+Total time elapsed : 225969 us
+Total time elapsed : 218383 us
+Total time elapsed : 233812 us
+Total time elapsed : 226421 us
+Total time elapsed : 226630 us
+Total time elapsed : 232646 us
+Total time elapsed : 239704 us
+Total time elapsed : 218006 us
+Total time elapsed : 218534 us
+Total time elapsed : 229984 us
+Total time elapsed : 234335 us
+Total time elapsed : 221487 us
+Total time elapsed : 219339 us
+Total time elapsed : 229743 us
+Total time elapsed : 237445 us
+Total time elapsed : 223223 us
+Total time elapsed : 222795 us
+Total time elapsed : 244654 us
+Total time elapsed : 238314 us
+Total time elapsed : 223921 us
+Total time elapsed : 234574 us
+Total time elapsed : 229048 us
+Total time elapsed : 238476 us
+Total time elapsed : 229773 us
+Total time elapsed : 227252 us
+Total time elapsed : 232278 us
+Total time elapsed : 236988 us
+Component 0
+regenerating max_pos_values...
+calculating max_pos_value...
+[0, 7, 14, 20, 26, 33, 39, 45, 51, 57, 63, 68, 73, 78, 83, 88, 92, 96, 100, 104, 109, 112, 116, 120, 124, 128, 131, 135, 138, 141, 144, 147, 150, 153, 155, 158, 160, 162, 164, 166, 168, 170, 173, 175, 177, 179, 181, 183, 185, 187, 189, 190, 191, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203]
+regenerating coef_bins...
+calculating avg_coef_bins...
+regenerating max_pos_values...
+calculating max_pos_value...
+regenerating max_pos_values...
+calculating max_pos_value...
+	Training: 
+	1% 2% 3% 4% 5% 6% 7% 8% 9% 10% 11% 12% 13% 14% 15% 16% 17% 18% 19% 20% 21% 22% 23% 24% 25% 26% 27% 28% 29% 30% 31% 32% 33% 34% 35% 36% 37% 38% 39% 40% 41% 42% 43% 44% 45% 46% 47% 48% 49% 50% 51% 52% 53% 54% 55% 56% 57% 58% 59% 60% 61% 62% 63% 64% 65% 66% 67% 68% 69% 70% 71% 72% 73% 74% 75% 76% 77% 78% 79% 80% 81% 82% 83% 84% 85% 86% 87% 88% 89% 90% 91% 92% 93% 94% 95% 96% 97% 98% 99% 100% TRAIN SET:	dc symbol length:6426758	dc actual bits:5368773	run length bits:50132545	actual AC bits:24724961	total bits:86653037
+generating DC tables...
+generating AC tables...
+default table max: 14
+max length symbols: 16
+
+	Training DONE
+Component 1
+[0, 5, 10, 14, 18, 22, 25, 29, 33, 36, 37, 39, 41, 43, 44, 45, 46, 47, 48, 49, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94]
+regenerating coef_bins...
+calculating avg_coef_bins...
+	Training: 
+	1% 2% 3% 4% 5% 6% 7% 8% 9% 10% 11% 12% 13% 14% 15% 16% 17% 18% 19% 20% 21% 22% 23% 24% 25% 26% 27% 28% 29% 30% 31% 32% 33% 34% 35% 36% 37% 38% 39% 40% 41% 42% 43% 44% 45% 46% 47% 48% 49% 50% 51% 52% 53% 54% 55% 56% 57% 58% 59% 60% 61% 62% 63% 64% 65% 66% 67% 68% 69% 70% 71% 72% 73% 74% 75% 76% 77% 78% 79% 80% 81% 82% 83% 84% 85% 86% 87% 88% 89% 90% 91% 92% 93% 94% 95% 96% 97% 98% 99% 100% TRAIN SET:	dc symbol length:1258853	dc actual bits:634349	run length bits:3484105	actual AC bits:972853	total bits:6350160
+generating DC tables...
+generating AC tables...
+default table max: 14
+max length symbols: 16
+
+	Training DONE
+Component 2
+[0, 5, 10, 14, 19, 23, 26, 30, 34, 37, 38, 40, 42, 44, 45, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95]
+regenerating coef_bins...
+calculating avg_coef_bins...
+	Training: 
+	1% 2% 3% 4% 5% 6% 7% 8% 9% 10% 11% 12% 13% 14% 15% 16% 17% 18% 19% 20% 21% 22% 23% 24% 25% 26% 27% 28% 29% 30% 31% 32% 33% 34% 35% 36% 37% 38% 39% 40% 41% 42% 43% 44% 45% 46% 47% 48% 49% 50% 51% 52% 53% 54% 55% 56% 57% 58% 59% 60% 61% 62% 63% 64% 65% 66% 67% 68% 69% 70% 71% 72% 73% 74% 75% 76% 77% 78% 79% 80% 81% 82% 83% 84% 85% 86% 87% 88% 89% 90% 91% 92% 93% 94% 95% 96% 97% 98% 99% 100% TRAIN SET:	dc symbol length:1237216	dc actual bits:568905	run length bits:3117935	actual AC bits:799322	total bits:5723378
+generating DC tables...
+generating AC tables...
+default table max: 14
+max length symbols: 16
+
+	Training DONE
+100 qualified images.
+		images/generate_1200x1200_60/test/2.jpg: our 170073, std 233223, opt 230541, ari 214408, pro 224307, moz 222733
+		images/generate_1200x1200_60/test/33.jpg: our 85252, std 121867, opt 118276, ari 102358, pro 114398, moz 111408
+		images/generate_1200x1200_60/test/71.jpg: our 108999, std 153091, opt 146039, ari 136768, pro 148369, moz 140943
+		images/generate_1200x1200_60/test/25.jpg: our 118184, std 164223, opt 161215, ari 150221, pro 157797, moz 155651
+		images/generate_1200x1200_60/test/17.jpg: our 67066, std 93448, opt 88688, ari 79279, pro 89070, moz 86678
+		images/generate_1200x1200_60/test/54.jpg: our 64295, std 92918, opt 87569, ari 82069, pro 87014, moz 84106
+		images/generate_1200x1200_60/test/74.jpg: our 69895, std 101268, opt 97665, ari 86586, pro 93522, moz 91051
+		images/generate_1200x1200_60/test/46.jpg: our 97503, std 137444, opt 133378, ari 124184, pro 131849, moz 128984
+		images/generate_1200x1200_60/test/73.jpg: our 76983, std 110136, opt 100971, ari 93396, pro 100792, moz 97303
+		images/generate_1200x1200_60/test/22.jpg: our 94816, std 134839, opt 131315, ari 119917, pro 129044, moz 126624
+		images/generate_1200x1200_60/test/82.jpg: our 30524, std 49115, opt 37784, ari 31279, pro 39075, moz 34565
+		images/generate_1200x1200_60/test/10.jpg: our 42514, std 66550, opt 57582, ari 46001, pro 55986, moz 52504
+		images/generate_1200x1200_60/test/69.jpg: our 115758, std 158503, opt 156498, ari 147745, pro 154774, moz 152347
+		images/generate_1200x1200_60/test/64.jpg: our 75283, std 105803, opt 99905, ari 91189, pro 101931, moz 98712
+		images/generate_1200x1200_60/test/51.jpg: our 79821, std 113764, opt 110507, ari 99690, pro 107655, moz 105041
+		images/generate_1200x1200_60/test/87.jpg: our 121031, std 160153, opt 157562, ari 146155, pro 156484, moz 154009
+		images/generate_1200x1200_60/test/59.jpg: our 128032, std 171284, opt 169671, ari 160948, pro 167283, moz 165679
+		images/generate_1200x1200_60/test/60.jpg: our 93685, std 132830, opt 129565, ari 114771, pro 126699, moz 123389
+		images/generate_1200x1200_60/test/16.jpg: our 134436, std 179954, opt 178140, ari 171057, pro 176290, moz 174174
+		images/generate_1200x1200_60/test/83.jpg: our 114850, std 158911, opt 154966, ari 144782, pro 154126, moz 152463
+		images/generate_1200x1200_60/test/57.jpg: our 54502, std 77585, opt 71532, ari 67033, pro 72198, moz 68476
+		images/generate_1200x1200_60/test/94.jpg: our 134115, std 183881, opt 180861, ari 161850, pro 179036, moz 176854
+		images/generate_1200x1200_60/test/29.jpg: our 139159, std 192424, opt 189529, ari 173671, pro 186313, moz 183323
+		images/generate_1200x1200_60/test/63.jpg: our 91115, std 127792, opt 122973, ari 110965, pro 122033, moz 119017
+		images/generate_1200x1200_60/test/78.jpg: our 76070, std 108883, opt 104064, ari 92820, pro 102732, moz 98944
+		images/generate_1200x1200_60/test/35.jpg: our 142482, std 192052, opt 190010, ari 175857, pro 186360, moz 184464
+		images/generate_1200x1200_60/test/49.jpg: our 63537, std 87849, opt 82237, ari 74968, pro 83433, moz 80984
+		images/generate_1200x1200_60/test/19.jpg: our 156768, std 218096, opt 215955, ari 196811, pro 210773, moz 208231
+		images/generate_1200x1200_60/test/15.jpg: our 135291, std 187372, opt 185409, ari 169404, pro 181589, moz 180054
+		images/generate_1200x1200_60/test/52.jpg: our 105249, std 143791, opt 141563, ari 134664, pro 141008, moz 138471
+		images/generate_1200x1200_60/test/91.jpg: our 189408, std 264159, opt 261377, ari 238099, pro 253805, moz 250815
+		images/generate_1200x1200_60/test/9.jpg: our 113413, std 161500, opt 158890, ari 134400, pro 153554, moz 150120
+		images/generate_1200x1200_60/test/72.jpg: our 162672, std 230259, opt 227191, ari 201660, pro 220046, moz 216929
+		images/generate_1200x1200_60/test/28.jpg: our 80076, std 115397, opt 111944, ari 95154, pro 106804, moz 103451
+		images/generate_1200x1200_60/test/38.jpg: our 147680, std 211164, opt 208386, ari 184452, pro 200389, moz 197645
+		images/generate_1200x1200_60/test/1.jpg: our 89197, std 127428, opt 120913, ari 102559, pro 122554, moz 116781
+		images/generate_1200x1200_60/test/26.jpg: our 147986, std 202135, opt 200270, ari 187753, pro 198008, moz 195615
+		images/generate_1200x1200_60/test/97.jpg: our 126631, std 177072, opt 175177, ari 161706, pro 169905, moz 167625
+		images/generate_1200x1200_60/test/30.jpg: our 146643, std 208312, opt 202508, ari 181774, pro 197837, moz 195097
+		images/generate_1200x1200_60/test/37.jpg: our 75136, std 107242, opt 102852, ari 91982, pro 100631, moz 97123
+		images/generate_1200x1200_60/test/43.jpg: our 155998, std 214906, opt 211836, ari 197358, pro 207556, moz 204169
+		images/generate_1200x1200_60/test/89.jpg: our 88479, std 126959, opt 122706, ari 109225, pro 117319, moz 114434
+		images/generate_1200x1200_60/test/90.jpg: our 85617, std 120998, opt 118511, ari 105056, pro 114201, moz 111526
+		images/generate_1200x1200_60/test/47.jpg: our 68238, std 98168, opt 92241, ari 84661, pro 91688, moz 88005
+		images/generate_1200x1200_60/test/12.jpg: our 126218, std 175714, opt 171723, ari 161790, pro 169577, moz 166271
+		images/generate_1200x1200_60/test/23.jpg: our 79915, std 114762, opt 104080, ari 96214, pro 104427, moz 102251
+		images/generate_1200x1200_60/test/56.jpg: our 104715, std 143079, opt 140808, ari 127106, pro 138362, moz 136891
+		images/generate_1200x1200_60/test/98.jpg: our 46393, std 69602, opt 61405, ari 56882, pro 61854, moz 58819
+		images/generate_1200x1200_60/test/36.jpg: our 103238, std 145937, opt 142767, ari 132451, pro 139513, moz 136871
+		images/generate_1200x1200_60/test/3.jpg: our 156511, std 221281, opt 219545, ari 198559, pro 210531, moz 208402
+		images/generate_1200x1200_60/test/76.jpg: our 75928, std 103354, opt 98779, ari 93458, pro 100528, moz 97220
+		images/generate_1200x1200_60/test/11.jpg: our 107099, std 154275, opt 151783, ari 136861, pro 143424, moz 141464
+		images/generate_1200x1200_60/test/24.jpg: our 58346, std 84498, opt 79323, ari 70287, pro 77626, moz 74116
+		images/generate_1200x1200_60/test/42.jpg: our 67527, std 99911, opt 94073, ari 81508, pro 91869, moz 88588
+		images/generate_1200x1200_60/test/96.jpg: our 210191, std 287003, opt 284310, ari 262560, pro 273987, moz 272689
+		images/generate_1200x1200_60/test/6.jpg: our 78825, std 108610, opt 105264, ari 98680, pro 103907, moz 101030
+		images/generate_1200x1200_60/test/75.jpg: our 77405, std 106316, opt 102195, ari 94538, pro 101912, moz 99258
+		images/generate_1200x1200_60/test/86.jpg: our 100073, std 137083, opt 133842, ari 128560, pro 133291, moz 131104
+		images/generate_1200x1200_60/test/93.jpg: our 103951, std 143935, opt 139919, ari 131868, pro 138855, moz 137772
+		images/generate_1200x1200_60/test/67.jpg: our 61069, std 88494, opt 80342, ari 75464, pro 81570, moz 79384
+		images/generate_1200x1200_60/test/58.jpg: our 66057, std 90563, opt 85561, ari 81057, pro 87227, moz 84681
+		images/generate_1200x1200_60/test/77.jpg: our 121740, std 170198, opt 167802, ari 154494, pro 164438, moz 162285
+		images/generate_1200x1200_60/test/100.jpg: our 58274, std 80158, opt 75569, ari 68312, pro 75360, moz 73046
+		images/generate_1200x1200_60/test/92.jpg: our 187447, std 259580, opt 257190, ari 230561, pro 248216, moz 247133
+		images/generate_1200x1200_60/test/32.jpg: our 97134, std 139882, opt 137298, ari 120315, pro 130911, moz 128714
+		images/generate_1200x1200_60/test/5.jpg: our 162497, std 227407, opt 223442, ari 202188, pro 216934, moz 214850
+		images/generate_1200x1200_60/test/48.jpg: our 36976, std 56921, opt 47955, ari 41786, pro 48594, moz 44489
+		images/generate_1200x1200_60/test/81.jpg: our 75563, std 105035, opt 99525, ari 92850, pro 101956, moz 98941
+		images/generate_1200x1200_60/test/41.jpg: our 109651, std 159402, opt 156183, ari 139442, pro 148463, moz 146230
+		images/generate_1200x1200_60/test/80.jpg: our 167879, std 235808, opt 232916, ari 206315, pro 224899, moz 222829
+		images/generate_1200x1200_60/test/99.jpg: our 62299, std 89749, opt 82440, ari 73625, pro 81838, moz 77969
+		images/generate_1200x1200_60/test/39.jpg: our 87117, std 123272, opt 119074, ari 108109, pro 117715, moz 115167
+		images/generate_1200x1200_60/test/84.jpg: our 185805, std 255272, opt 252620, ari 229456, pro 246820, moz 244351
+		images/generate_1200x1200_60/test/27.jpg: our 115930, std 165138, opt 161504, ari 142897, pro 158451, moz 155726
+		images/generate_1200x1200_60/test/61.jpg: our 103967, std 144544, opt 139113, ari 129075, pro 137652, moz 136430
+		images/generate_1200x1200_60/test/79.jpg: our 117834, std 162737, opt 160238, ari 150193, pro 158747, moz 155221
+		images/generate_1200x1200_60/test/14.jpg: our 193437, std 268692, opt 266490, ari 245732, pro 256910, moz 255631
+		images/generate_1200x1200_60/test/65.jpg: our 119165, std 167309, opt 159334, ari 145249, pro 158891, moz 154015
+		images/generate_1200x1200_60/test/66.jpg: our 86593, std 122086, opt 116393, ari 106361, pro 115686, moz 112248
+		images/generate_1200x1200_60/test/8.jpg: our 171286, std 239564, opt 237025, ari 213092, pro 230285, moz 228528
+		images/generate_1200x1200_60/test/4.jpg: our 57772, std 85335, opt 78474, ari 70617, pro 77046, moz 74555
+		images/generate_1200x1200_60/test/7.jpg: our 125295, std 168983, opt 167531, ari 158242, pro 166029, moz 163592
+		images/generate_1200x1200_60/test/50.jpg: our 99876, std 137255, opt 134579, ari 128454, pro 133409, moz 131388
+		images/generate_1200x1200_60/test/20.jpg: our 31861, std 52015, opt 42445, ari 35984, pro 43363, moz 39426
+		images/generate_1200x1200_60/test/95.jpg: our 76270, std 108702, opt 105443, ari 94483, pro 101927, moz 99845
+		images/generate_1200x1200_60/test/21.jpg: our 103484, std 149423, opt 146429, ari 127403, pro 140490, moz 138018
+		images/generate_1200x1200_60/test/70.jpg: our 178545, std 250863, opt 248693, ari 220660, pro 236766, moz 234551
+		images/generate_1200x1200_60/test/68.jpg: our 111890, std 158151, opt 154236, ari 136617, pro 152668, moz 149590
+		images/generate_1200x1200_60/test/45.jpg: our 33103, std 53256, opt 44544, ari 36379, pro 43476, moz 39197
+		images/generate_1200x1200_60/test/62.jpg: our 89343, std 119395, opt 116680, ari 111237, pro 117770, moz 114540
+		images/generate_1200x1200_60/test/55.jpg: our 124171, std 173722, opt 172479, ari 152673, pro 166989, moz 163830
+		images/generate_1200x1200_60/test/13.jpg: our 113231, std 158545, opt 155662, ari 138795, pro 150942, moz 148088
+		images/generate_1200x1200_60/test/34.jpg: our 124051, std 170551, opt 167847, ari 156068, pro 165203, moz 162541
+		images/generate_1200x1200_60/test/44.jpg: our 139016, std 192912, opt 190284, ari 171324, pro 186593, moz 183322
+		images/generate_1200x1200_60/test/88.jpg: our 117805, std 164103, opt 161514, ari 151371, pro 159159, moz 157065
+		images/generate_1200x1200_60/test/40.jpg: our 68720, std 100979, opt 95873, ari 79294, pro 92773, moz 88719
+		images/generate_1200x1200_60/test/18.jpg: our 36045, std 54594, opt 45918, ari 42505, pro 46405, moz 43493
+		images/generate_1200x1200_60/test/31.jpg: our 92153, std 126749, opt 124476, ari 115920, pro 122779, moz 119910
+		images/generate_1200x1200_60/test/53.jpg: our 115794, std 163491, opt 160548, ari 139292, pro 153444, moz 150559
+		images/generate_1200x1200_60/test/85.jpg: our 100586, std 135957, opt 132395, ari 123423, pro 132585, moz 129820
+our 10487528, std 14696900, opt 14280652, ari 12995321, pro 14007279, moz 13729180, lossyonly 12029311
+65
+Total time elapsed : 244571 us
+Total time elapsed : 243525 us
+Total time elapsed : 239272 us
+Total time elapsed : 228228 us
+Total time elapsed : 236712 us
+Total time elapsed : 222239 us
+Total time elapsed : 226286 us
+Total time elapsed : 237400 us
+Total time elapsed : 230217 us
+Total time elapsed : 248460 us
+Total time elapsed : 234994 us
+Total time elapsed : 243181 us
+Total time elapsed : 236169 us
+Total time elapsed : 244096 us
+Total time elapsed : 226322 us
+Total time elapsed : 243528 us
+Total time elapsed : 236963 us
+Total time elapsed : 223867 us
+Total time elapsed : 238841 us
+Total time elapsed : 231209 us
+Total time elapsed : 241031 us
+Total time elapsed : 232173 us
+Total time elapsed : 230029 us
+Total time elapsed : 239839 us
+Total time elapsed : 246246 us
+Total time elapsed : 239026 us
+Total time elapsed : 231134 us
+Total time elapsed : 242135 us
+Total time elapsed : 231412 us
+Total time elapsed : 240061 us
+Total time elapsed : 231737 us
+Total time elapsed : 235340 us
+Total time elapsed : 223240 us
+Total time elapsed : 238980 us
+Total time elapsed : 242392 us
+Total time elapsed : 234202 us
+Total time elapsed : 227937 us
+Total time elapsed : 229950 us
+Total time elapsed : 224902 us
+Total time elapsed : 239242 us
+Total time elapsed : 237629 us
+Total time elapsed : 235295 us
+Total time elapsed : 225153 us
+Total time elapsed : 235632 us
+Total time elapsed : 222144 us
+Total time elapsed : 235930 us
+Total time elapsed : 221905 us
+Total time elapsed : 221703 us
+Total time elapsed : 227498 us
+Total time elapsed : 226391 us
+Total time elapsed : 223962 us
+Total time elapsed : 224244 us
+Total time elapsed : 235996 us
+Total time elapsed : 234451 us
+Total time elapsed : 232271 us
+Total time elapsed : 235810 us
+Total time elapsed : 223004 us
+Total time elapsed : 226891 us
+Total time elapsed : 232450 us
+Total time elapsed : 234789 us
+Total time elapsed : 226232 us
+Total time elapsed : 241779 us
+Total time elapsed : 222371 us
+Total time elapsed : 224945 us
+Total time elapsed : 224253 us
+Total time elapsed : 230326 us
+Total time elapsed : 227724 us
+Total time elapsed : 229690 us
+Total time elapsed : 232041 us
+Total time elapsed : 239913 us
+Total time elapsed : 228425 us
+Total time elapsed : 252031 us
+Total time elapsed : 223287 us
+Total time elapsed : 220779 us
+Total time elapsed : 229711 us
+Total time elapsed : 234928 us
+Total time elapsed : 240356 us
+Total time elapsed : 222026 us
+Total time elapsed : 221781 us
+Total time elapsed : 237592 us
+Total time elapsed : 219840 us
+Total time elapsed : 219218 us
+Total time elapsed : 241069 us
+Total time elapsed : 236589 us
+Total time elapsed : 238285 us
+Total time elapsed : 229136 us
+Total time elapsed : 225549 us
+Total time elapsed : 226636 us
+Total time elapsed : 225574 us
+Total time elapsed : 230046 us
+Total time elapsed : 255752 us
+Total time elapsed : 252856 us
+Total time elapsed : 241966 us
+Total time elapsed : 221742 us
+Total time elapsed : 221530 us
+Total time elapsed : 244471 us
+Total time elapsed : 247112 us
+Total time elapsed : 232335 us
+Total time elapsed : 226576 us
+Total time elapsed : 232102 us
+Component 0
+regenerating max_pos_values...
+calculating max_pos_value...
+[0, 7, 14, 21, 28, 35, 41, 47, 53, 59, 65, 70, 75, 80, 85, 90, 95, 99, 104, 109, 114, 118, 122, 126, 130, 134, 137, 141, 144, 147, 150, 153, 156, 159, 161, 164, 166, 168, 171, 173, 175, 177, 180, 182, 184, 186, 188, 190, 192, 194, 196, 197, 198, 200, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211]
+regenerating coef_bins...
+calculating avg_coef_bins...
+regenerating max_pos_values...
+calculating max_pos_value...
+regenerating max_pos_values...
+calculating max_pos_value...
+	Training: 
+	1% 2% 3% 4% 5% 6% 7% 8% 9% 10% 11% 12% 13% 14% 15% 16% 17% 18% 19% 20% 21% 22% 23% 24% 25% 26% 27% 28% 29% 30% 31% 32% 33% 34% 35% 36% 37% 38% 39% 40% 41% 42% 43% 44% 45% 46% 47% 48% 49% 50% 51% 52% 53% 54% 55% 56% 57% 58% 59% 60% 61% 62% 63% 64% 65% 66% 67% 68% 69% 70% 71% 72% 73% 74% 75% 76% 77% 78% 79% 80% 81% 82% 83% 84% 85% 86% 87% 88% 89% 90% 91% 92% 93% 94% 95% 96% 97% 98% 99% 100% TRAIN SET:	dc symbol length:6541426	dc actual bits:5740046	run length bits:54272233	actual AC bits:27736411	total bits:94290116
+generating DC tables...
+generating AC tables...
+default table max: 14
+max length symbols: 17
+
+	Training DONE
+Component 1
+[0, 5, 10, 14, 18, 23, 26, 30, 34, 37, 39, 41, 43, 45, 47, 48, 49, 50, 51, 52, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97]
+regenerating coef_bins...
+calculating avg_coef_bins...
+	Training: 
+	1% 2% 3% 4% 5% 6% 7% 8% 9% 10% 11% 12% 13% 14% 15% 16% 17% 18% 19% 20% 21% 22% 23% 24% 25% 26% 27% 28% 29% 30% 31% 32% 33% 34% 35% 36% 37% 38% 39% 40% 41% 42% 43% 44% 45% 46% 47% 48% 49% 50% 51% 52% 53% 54% 55% 56% 57% 58% 59% 60% 61% 62% 63% 64% 65% 66% 67% 68% 69% 70% 71% 72% 73% 74% 75% 76% 77% 78% 79% 80% 81% 82% 83% 84% 85% 86% 87% 88% 89% 90% 91% 92% 93% 94% 95% 96% 97% 98% 99% 100% TRAIN SET:	dc symbol length:1285865	dc actual bits:695375	run length bits:3752919	actual AC bits:1088421	total bits:6822580
+generating DC tables...
+generating AC tables...
+default table max: 14
+max length symbols: 16
+
+	Training DONE
+Component 2
+[0, 5, 11, 15, 20, 25, 28, 32, 36, 39, 41, 43, 46, 48, 50, 52, 53, 54, 56, 57, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102]
+regenerating coef_bins...
+calculating avg_coef_bins...
+	Training: 
+	1% 2% 3% 4% 5% 6% 7% 8% 9% 10% 11% 12% 13% 14% 15% 16% 17% 18% 19% 20% 21% 22% 23% 24% 25% 26% 27% 28% 29% 30% 31% 32% 33% 34% 35% 36% 37% 38% 39% 40% 41% 42% 43% 44% 45% 46% 47% 48% 49% 50% 51% 52% 53% 54% 55% 56% 57% 58% 59% 60% 61% 62% 63% 64% 65% 66% 67% 68% 69% 70% 71% 72% 73% 74% 75% 76% 77% 78% 79% 80% 81% 82% 83% 84% 85% 86% 87% 88% 89% 90% 91% 92% 93% 94% 95% 96% 97% 98% 99% 100% TRAIN SET:	dc symbol length:1260064	dc actual bits:626176	run length bits:3359535	actual AC bits:895707	total bits:6141482
+generating DC tables...
+generating AC tables...
+default table max: 14
+max length symbols: 16
+
+	Training DONE
+100 qualified images.
+		images/generate_1200x1200_65/test/2.jpg: our 183747, std 252774, opt 250013, ari 231896, pro 242275, moz 240848
+		images/generate_1200x1200_65/test/33.jpg: our 93510, std 132580, opt 129496, ari 112911, pro 125038, moz 122311
+		images/generate_1200x1200_65/test/71.jpg: our 118269, std 165529, opt 158497, ari 148944, pro 160332, moz 153473
+		images/generate_1200x1200_65/test/25.jpg: our 128761, std 178837, opt 176464, ari 163882, pro 171820, moz 169732
+		images/generate_1200x1200_65/test/17.jpg: our 73246, std 101584, opt 97701, ari 87370, pro 97468, moz 95509
+		images/generate_1200x1200_65/test/54.jpg: our 72295, std 103305, opt 98287, ari 92829, pro 96588, moz 94068
+		images/generate_1200x1200_65/test/74.jpg: our 75572, std 109043, opt 106083, ari 94418, pro 101402, moz 98970
+		images/generate_1200x1200_65/test/46.jpg: our 106455, std 149457, opt 145606, ari 136165, pro 143729, moz 141525
+		images/generate_1200x1200_65/test/73.jpg: our 86879, std 124385, opt 115161, ari 105662, pro 114314, moz 111185
+		images/generate_1200x1200_65/test/22.jpg: our 104271, std 147151, opt 144288, ari 132514, pro 141345, moz 138983
+		images/generate_1200x1200_65/test/82.jpg: our 35130, std 54470, opt 43716, ari 36737, pro 44463, moz 40019
+		images/generate_1200x1200_65/test/10.jpg: our 46709, std 72230, opt 63907, ari 51489, pro 61895, moz 58465
+		images/generate_1200x1200_65/test/69.jpg: our 126023, std 172394, opt 170611, ari 161133, pro 168043, moz 165828
+		images/generate_1200x1200_65/test/64.jpg: our 82532, std 115004, opt 109581, ari 100581, pro 111478, moz 108398
+		images/generate_1200x1200_65/test/51.jpg: our 87877, std 125030, opt 122119, ari 110557, pro 118648, moz 116168
+		images/generate_1200x1200_65/test/87.jpg: our 130625, std 173409, opt 170990, ari 158370, pro 169002, moz 166440
+		images/generate_1200x1200_65/test/59.jpg: our 138193, std 185220, opt 183435, ari 173907, pro 180253, moz 178921
+		images/generate_1200x1200_65/test/60.jpg: our 101420, std 142664, opt 139648, ari 124403, pro 136447, moz 133222
+		images/generate_1200x1200_65/test/16.jpg: our 145340, std 194566, opt 192487, ari 184814, pro 190042, moz 188151
+		images/generate_1200x1200_65/test/83.jpg: our 125250, std 172977, opt 169847, ari 158316, pro 168019, moz 166521
+		images/generate_1200x1200_65/test/57.jpg: our 60210, std 84678, opt 78983, ari 74709, pro 79644, moz 76079
+		images/generate_1200x1200_65/test/94.jpg: our 144974, std 198488, opt 195654, ari 176062, pro 193222, moz 190824
+		images/generate_1200x1200_65/test/29.jpg: our 151388, std 208931, opt 206127, ari 188938, pro 202190, moz 198995
+		images/generate_1200x1200_65/test/63.jpg: our 98326, std 137442, opt 132648, ari 120491, pro 131806, moz 128842
+		images/generate_1200x1200_65/test/78.jpg: our 82739, std 117289, opt 112878, ari 101516, pro 111506, moz 107823
+		images/generate_1200x1200_65/test/35.jpg: our 153874, std 207746, opt 205570, ari 189898, pro 200768, moz 199323
+		images/generate_1200x1200_65/test/49.jpg: our 69497, std 95672, opt 90958, ari 82879, pro 91703, moz 89038
+		images/generate_1200x1200_65/test/19.jpg: our 170228, std 236983, opt 234559, ari 213724, pro 228527, moz 225982
+		images/generate_1200x1200_65/test/15.jpg: our 147246, std 204031, opt 202129, ari 184479, pro 197594, moz 196136
+		images/generate_1200x1200_65/test/52.jpg: our 114702, std 156685, opt 154815, ari 147113, pro 153582, moz 150969
+		images/generate_1200x1200_65/test/91.jpg: our 205786, std 286439, opt 283589, ari 258490, pro 274665, moz 271602
+		images/generate_1200x1200_65/test/9.jpg: our 123244, std 174512, opt 172262, ari 146155, pro 166298, moz 162804
+		images/generate_1200x1200_65/test/72.jpg: our 177216, std 249949, opt 247365, ari 219621, pro 238771, moz 235845
+		images/generate_1200x1200_65/test/28.jpg: our 86966, std 124471, opt 121354, ari 104353, pro 116050, moz 113134
+		images/generate_1200x1200_65/test/38.jpg: our 161111, std 229219, opt 227084, ari 201450, pro 217795, moz 215338
+		images/generate_1200x1200_65/test/1.jpg: our 96562, std 136631, opt 130764, ari 111985, pro 132104, moz 126805
+		images/generate_1200x1200_65/test/26.jpg: our 160823, std 219280, opt 217271, ari 204345, pro 214414, moz 211942
+		images/generate_1200x1200_65/test/97.jpg: our 137534, std 191896, opt 190364, ari 176386, pro 184327, moz 182083
+		images/generate_1200x1200_65/test/30.jpg: our 159969, std 226604, opt 221668, ari 198401, pro 216031, moz 212891
+		images/generate_1200x1200_65/test/37.jpg: our 81477, std 115591, opt 111536, ari 99719, pro 108681, moz 105282
+		images/generate_1200x1200_65/test/43.jpg: our 169252, std 233462, opt 230202, ari 214204, pro 224657, moz 221397
+		images/generate_1200x1200_65/test/89.jpg: our 95577, std 136227, opt 132266, ari 118297, pro 126338, moz 123496
+		images/generate_1200x1200_65/test/90.jpg: our 92645, std 130484, opt 128223, ari 113972, pro 123359, moz 120669
+		images/generate_1200x1200_65/test/47.jpg: our 75770, std 108228, opt 102843, ari 94653, pro 101967, moz 98045
+		images/generate_1200x1200_65/test/12.jpg: our 138358, std 191338, opt 187590, ari 177235, pro 184126, moz 180937
+		images/generate_1200x1200_65/test/23.jpg: our 89536, std 128512, opt 118296, ari 108312, pro 117696, moz 115689
+		images/generate_1200x1200_65/test/56.jpg: our 113795, std 155413, opt 153606, ari 138592, pro 150379, moz 148959
+		images/generate_1200x1200_65/test/98.jpg: our 53116, std 78257, opt 70278, ari 65629, pro 70048, moz 67273
+		images/generate_1200x1200_65/test/36.jpg: our 112534, std 158343, opt 155379, ari 145316, pro 152163, moz 149485
+		images/generate_1200x1200_65/test/3.jpg: our 169897, std 239557, opt 238192, ari 215801, pro 227632, moz 225924
+		images/generate_1200x1200_65/test/76.jpg: our 82566, std 112065, opt 108130, ari 102387, pro 109424, moz 106135
+		images/generate_1200x1200_65/test/11.jpg: our 116124, std 166704, opt 164686, ari 148822, pro 155076, moz 153409
+		images/generate_1200x1200_65/test/24.jpg: our 62671, std 90237, opt 85598, ari 75874, pro 83109, moz 79935
+		images/generate_1200x1200_65/test/42.jpg: our 74043, std 108261, opt 102892, ari 89934, pro 100685, moz 97544
+		images/generate_1200x1200_65/test/96.jpg: our 226968, std 309599, opt 306814, ari 282871, pro 294329, moz 292984
+		images/generate_1200x1200_65/test/6.jpg: our 85633, std 117190, opt 114027, ari 107817, pro 112539, moz 109957
+		images/generate_1200x1200_65/test/75.jpg: our 85335, std 117630, opt 113922, ari 105088, pro 112852, moz 110336
+		images/generate_1200x1200_65/test/86.jpg: our 109507, std 150237, opt 147335, ari 141221, pro 146196, moz 143847
+		images/generate_1200x1200_65/test/93.jpg: our 113697, std 157154, opt 153808, ari 144845, pro 152164, moz 151155
+		images/generate_1200x1200_65/test/67.jpg: our 67994, std 98202, opt 90488, ari 85054, pro 91219, moz 89108
+		images/generate_1200x1200_65/test/58.jpg: our 72174, std 98570, opt 94235, ari 89244, pro 95424, moz 92974
+		images/generate_1200x1200_65/test/77.jpg: our 133212, std 186177, opt 184281, ari 169363, pro 179878, moz 177784
+		images/generate_1200x1200_65/test/100.jpg: our 63359, std 86977, opt 82949, ari 75163, pro 82720, moz 80263
+		images/generate_1200x1200_65/test/92.jpg: our 202978, std 281016, opt 278470, ari 249609, pro 268004, moz 267100
+		images/generate_1200x1200_65/test/32.jpg: our 105339, std 151188, opt 148922, ari 131257, pro 142446, moz 140176
+		images/generate_1200x1200_65/test/5.jpg: our 177047, std 246972, opt 243410, ari 220193, pro 235469, moz 233732
+		images/generate_1200x1200_65/test/48.jpg: our 41704, std 62702, opt 54038, ari 47919, pro 54624, moz 50619
+		images/generate_1200x1200_65/test/81.jpg: our 82601, std 113684, opt 109099, ari 102464, pro 111026, moz 108039
+		images/generate_1200x1200_65/test/41.jpg: our 119809, std 173165, opt 170622, ari 152858, pro 162021, moz 159869
+		images/generate_1200x1200_65/test/80.jpg: our 182390, std 255762, opt 253474, ari 224436, pro 243486, moz 241774
+		images/generate_1200x1200_65/test/99.jpg: our 68189, std 96875, opt 90134, ari 81110, pro 89423, moz 85469
+		images/generate_1200x1200_65/test/39.jpg: our 95757, std 134654, opt 130982, ari 119197, pro 128920, moz 126651
+		images/generate_1200x1200_65/test/84.jpg: our 200801, std 275920, opt 273281, ari 248195, pro 266353, moz 263766
+		images/generate_1200x1200_65/test/27.jpg: our 126437, std 179173, opt 176025, ari 156035, pro 172516, moz 169708
+		images/generate_1200x1200_65/test/61.jpg: our 114044, std 158270, opt 153822, ari 141837, pro 151318, moz 150096
+		images/generate_1200x1200_65/test/79.jpg: our 128218, std 176929, opt 174876, ari 163692, pro 172401, moz 168946
+		images/generate_1200x1200_65/test/14.jpg: our 209796, std 291649, opt 289298, ari 266585, pro 277960, moz 276701
+		images/generate_1200x1200_65/test/65.jpg: our 128794, std 180190, opt 172365, ari 157706, pro 171464, moz 166557
+		images/generate_1200x1200_65/test/66.jpg: our 94426, std 131824, opt 126500, ari 116360, pro 125598, moz 122511
+		images/generate_1200x1200_65/test/8.jpg: our 186714, std 259873, opt 257530, ari 231244, pro 249610, moz 247759
+		images/generate_1200x1200_65/test/4.jpg: our 63474, std 93212, opt 87221, ari 78594, pro 85377, moz 83076
+		images/generate_1200x1200_65/test/7.jpg: our 135802, std 183026, opt 181731, ari 171166, pro 179364, moz 177207
+		images/generate_1200x1200_65/test/50.jpg: our 108697, std 149406, opt 147334, ari 140341, pro 145166, moz 143366
+		images/generate_1200x1200_65/test/20.jpg: our 36594, std 57654, opt 48519, ari 42973, pro 49965, moz 45719
+		images/generate_1200x1200_65/test/95.jpg: our 83753, std 118572, opt 115703, ari 104636, pro 111944, moz 110065
+		images/generate_1200x1200_65/test/21.jpg: our 113218, std 162158, opt 159809, ari 139654, pro 153203, moz 150917
+		images/generate_1200x1200_65/test/70.jpg: our 194179, std 271806, opt 269952, ari 239691, pro 256696, moz 254638
+		images/generate_1200x1200_65/test/68.jpg: our 122307, std 171333, opt 168335, ari 149502, pro 166403, moz 163296
+		images/generate_1200x1200_65/test/45.jpg: our 35675, std 56562, opt 48257, ari 39939, pro 46749, moz 42693
+		images/generate_1200x1200_65/test/62.jpg: our 97176, std 130005, opt 127426, ari 121485, pro 128099, moz 124971
+		images/generate_1200x1200_65/test/55.jpg: our 134560, std 187771, opt 186408, ari 165304, pro 180208, moz 177252
+		images/generate_1200x1200_65/test/13.jpg: our 123459, std 171976, opt 169565, ari 151672, pro 164114, moz 161471
+		images/generate_1200x1200_65/test/34.jpg: our 135326, std 186431, opt 183872, ari 170854, pro 180064, moz 177670
+		images/generate_1200x1200_65/test/44.jpg: our 151395, std 209182, opt 206853, ari 186564, pro 202505, moz 199266
+		images/generate_1200x1200_65/test/88.jpg: our 128490, std 178625, opt 176428, ari 165286, pro 173073, moz 171166
+		images/generate_1200x1200_65/test/40.jpg: our 74665, std 108825, opt 104322, ari 86672, pro 100769, moz 96723
+		images/generate_1200x1200_65/test/18.jpg: our 40615, std 59970, opt 51660, ari 48527, pro 52357, moz 49696
+		images/generate_1200x1200_65/test/31.jpg: our 100157, std 137942, opt 135841, ari 126606, pro 133795, moz 131036
+		images/generate_1200x1200_65/test/53.jpg: our 124355, std 175574, opt 172240, ari 149985, pro 164685, moz 162052
+		images/generate_1200x1200_65/test/85.jpg: our 109388, std 148311, opt 145198, ari 134944, pro 144465, moz 141501
+our 11428068, std 15962157, opt 15581077, ari 14202398, pro 15237899, moz 14971033, lossyonly 13134339
+70
+Total time elapsed : 226786 us
+Total time elapsed : 228473 us
+Total time elapsed : 240446 us
+Total time elapsed : 237203 us
+Total time elapsed : 246540 us
+Total time elapsed : 241569 us
+Total time elapsed : 238161 us
+Total time elapsed : 243525 us
+Total time elapsed : 247424 us
+Total time elapsed : 229402 us
+Total time elapsed : 231517 us
+Total time elapsed : 237127 us
+Total time elapsed : 237533 us
+Total time elapsed : 238028 us
+Total time elapsed : 226106 us
+Total time elapsed : 236489 us
+Total time elapsed : 232086 us
+Total time elapsed : 225931 us
+Total time elapsed : 246972 us
+Total time elapsed : 230072 us
+Total time elapsed : 237092 us
+Total time elapsed : 241922 us
+Total time elapsed : 236782 us
+Total time elapsed : 231375 us
+Total time elapsed : 235100 us
+Total time elapsed : 244670 us
+Total time elapsed : 237062 us
+Total time elapsed : 228873 us
+Total time elapsed : 235117 us
+Total time elapsed : 232344 us
+Total time elapsed : 220935 us
+Total time elapsed : 237668 us
+Total time elapsed : 230795 us
+Total time elapsed : 247143 us
+Total time elapsed : 234521 us
+Total time elapsed : 240250 us
+Total time elapsed : 218230 us
+Total time elapsed : 230009 us
+Total time elapsed : 225130 us
+Total time elapsed : 223556 us
+Total time elapsed : 239040 us
+Total time elapsed : 232365 us
+Total time elapsed : 229892 us
+Total time elapsed : 236454 us
+Total time elapsed : 241479 us
+Total time elapsed : 234637 us
+Total time elapsed : 236180 us
+Total time elapsed : 237050 us
+Total time elapsed : 219765 us
+Total time elapsed : 237389 us
+Total time elapsed : 247646 us
+Total time elapsed : 236176 us
+Total time elapsed : 247726 us
+Total time elapsed : 223336 us
+Total time elapsed : 236499 us
+Total time elapsed : 246355 us
+Total time elapsed : 240095 us
+Total time elapsed : 230714 us
+Total time elapsed : 228507 us
+Total time elapsed : 232704 us
+Total time elapsed : 237871 us
+Total time elapsed : 242778 us
+Total time elapsed : 253433 us
+Total time elapsed : 220044 us
+Total time elapsed : 232866 us
+Total time elapsed : 233495 us
+Total time elapsed : 242771 us
+Total time elapsed : 242831 us
+Total time elapsed : 232619 us
+Total time elapsed : 239399 us
+Total time elapsed : 243291 us
+Total time elapsed : 239438 us
+Total time elapsed : 244433 us
+Total time elapsed : 230037 us
+Total time elapsed : 237985 us
+Total time elapsed : 223127 us
+Total time elapsed : 225511 us
+Total time elapsed : 234597 us
+Total time elapsed : 235619 us
+Total time elapsed : 235991 us
+Total time elapsed : 222216 us
+Total time elapsed : 236366 us
+Total time elapsed : 242509 us
+Total time elapsed : 254383 us
+Total time elapsed : 221700 us
+Total time elapsed : 218672 us
+Total time elapsed : 245247 us
+Total time elapsed : 226600 us
+Total time elapsed : 229210 us
+Total time elapsed : 234751 us
+Total time elapsed : 232163 us
+Total time elapsed : 232149 us
+Total time elapsed : 224928 us
+Total time elapsed : 229397 us
+Total time elapsed : 224428 us
+Total time elapsed : 239041 us
+Total time elapsed : 226705 us
+Total time elapsed : 237100 us
+Total time elapsed : 232579 us
+Total time elapsed : 233318 us
+Component 0
+regenerating max_pos_values...
+calculating max_pos_value...
+[0, 7, 14, 21, 28, 35, 41, 47, 53, 60, 66, 72, 78, 83, 89, 94, 99, 104, 109, 114, 119, 123, 127, 131, 135, 139, 142, 146, 149, 152, 155, 158, 161, 164, 167, 170, 172, 175, 178, 181, 183, 185, 188, 191, 193, 195, 197, 199, 201, 203, 205, 207, 209, 211, 213, 214, 215, 217, 218, 219, 221, 222, 223, 224]
+regenerating coef_bins...
+calculating avg_coef_bins...
+regenerating max_pos_values...
+calculating max_pos_value...
+regenerating max_pos_values...
+calculating max_pos_value...
+	Training: 
+	1% 2% 3% 4% 5% 6% 7% 8% 9% 10% 11% 12% 13% 14% 15% 16% 17% 18% 19% 20% 21% 22% 23% 24% 25% 26% 27% 28% 29% 30% 31% 32% 33% 34% 35% 36% 37% 38% 39% 40% 41% 42% 43% 44% 45% 46% 47% 48% 49% 50% 51% 52% 53% 54% 55% 56% 57% 58% 59% 60% 61% 62% 63% 64% 65% 66% 67% 68% 69% 70% 71% 72% 73% 74% 75% 76% 77% 78% 79% 80% 81% 82% 83% 84% 85% 86% 87% 88% 89% 90% 91% 92% 93% 94% 95% 96% 97% 98% 99% 100% TRAIN SET:	dc symbol length:6613874	dc actual bits:5958242	run length bits:59395292	actual AC bits:31425843	total bits:103393251
+generating DC tables...
+generating AC tables...
+default table max: 14
+max length symbols: 17
+
+	Training DONE
+Component 1
+[0, 6, 12, 17, 22, 27, 30, 34, 38, 41, 43, 45, 47, 49, 51, 53, 54, 55, 57, 59, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104]
+regenerating coef_bins...
+calculating avg_coef_bins...
+	Training: 
+	1% 2% 3% 4% 5% 6% 7% 8% 9% 10% 11% 12% 13% 14% 15% 16% 17% 18% 19% 20% 21% 22% 23% 24% 25% 26% 27% 28% 29% 30% 31% 32% 33% 34% 35% 36% 37% 38% 39% 40% 41% 42% 43% 44% 45% 46% 47% 48% 49% 50% 51% 52% 53% 54% 55% 56% 57% 58% 59% 60% 61% 62% 63% 64% 65% 66% 67% 68% 69% 70% 71% 72% 73% 74% 75% 76% 77% 78% 79% 80% 81% 82% 83% 84% 85% 86% 87% 88% 89% 90% 91% 92% 93% 94% 95% 96% 97% 98% 99% 100% TRAIN SET:	dc symbol length:1322310	dc actual bits:770297	run length bits:4139006	actual AC bits:1290841	total bits:7522454
+generating DC tables...
+generating AC tables...
+default table max: 14
+max length symbols: 16
+
+	Training DONE
+Component 2
+[0, 6, 12, 17, 22, 27, 31, 35, 39, 42, 44, 46, 49, 51, 53, 55, 56, 58, 60, 62, 64, 66, 67, 68, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109]
+regenerating coef_bins...
+calculating avg_coef_bins...
+	Training: 
+	1% 2% 3% 4% 5% 6% 7% 8% 9% 10% 11% 12% 13% 14% 15% 16% 17% 18% 19% 20% 21% 22% 23% 24% 25% 26% 27% 28% 29% 30% 31% 32% 33% 34% 35% 36% 37% 38% 39% 40% 41% 42% 43% 44% 45% 46% 47% 48% 49% 50% 51% 52% 53% 54% 55% 56% 57% 58% 59% 60% 61% 62% 63% 64% 65% 66% 67% 68% 69% 70% 71% 72% 73% 74% 75% 76% 77% 78% 79% 80% 81% 82% 83% 84% 85% 86% 87% 88% 89% 90% 91% 92% 93% 94% 95% 96% 97% 98% 99% 100% TRAIN SET:	dc symbol length:1291193	dc actual bits:698118	run length bits:3721844	actual AC bits:1071372	total bits:6782527
+generating DC tables...
+generating AC tables...
+default table max: 14
+max length symbols: 16
+
+	Training DONE
+100 qualified images.
+		images/generate_1200x1200_70/test/2.jpg: our 200537, std 276255, opt 273366, ari 253309, pro 263325, moz 262494
+		images/generate_1200x1200_70/test/33.jpg: our 104238, std 146196, opt 143887, ari 126176, pro 138279, moz 135604
+		images/generate_1200x1200_70/test/71.jpg: our 129915, std 181930, opt 174551, ari 164396, pro 175701, moz 169347
+		images/generate_1200x1200_70/test/25.jpg: our 141795, std 196678, opt 194812, ari 180853, pro 188922, moz 186933
+		images/generate_1200x1200_70/test/17.jpg: our 80613, std 111494, opt 108259, ari 97068, pro 107490, moz 105399
+		images/generate_1200x1200_70/test/54.jpg: our 82179, std 117219, opt 112002, ari 106381, pro 108968, moz 106520
+		images/generate_1200x1200_70/test/74.jpg: our 82621, std 118431, opt 115801, ari 103995, pro 110585, moz 108468
+		images/generate_1200x1200_70/test/46.jpg: our 117563, std 164200, opt 160616, ari 151075, pro 157887, moz 155756
+		images/generate_1200x1200_70/test/73.jpg: our 99007, std 141798, opt 132655, ari 120677, pro 130702, moz 127496
+		images/generate_1200x1200_70/test/22.jpg: our 116011, std 162409, opt 160400, ari 148032, pro 156042, moz 153837
+		images/generate_1200x1200_70/test/82.jpg: our 40630, std 61330, opt 50891, ari 43564, pro 51418, moz 46966
+		images/generate_1200x1200_70/test/10.jpg: our 51753, std 79019, opt 71412, ari 57890, pro 68758, moz 65391
+		images/generate_1200x1200_70/test/69.jpg: our 138720, std 189464, opt 187892, ari 177765, pro 184220, moz 182293
+		images/generate_1200x1200_70/test/64.jpg: our 91567, std 126994, opt 121820, ari 112374, pro 123243, moz 120289
+		images/generate_1200x1200_70/test/51.jpg: our 97892, std 139088, opt 136324, ari 123956, pro 132234, moz 129840
+		images/generate_1200x1200_70/test/87.jpg: our 142619, std 190069, opt 187477, ari 173544, pro 184675, moz 181991
+		images/generate_1200x1200_70/test/59.jpg: our 150511, std 201767, opt 199957, ari 189789, pro 195595, moz 194666
+		images/generate_1200x1200_70/test/60.jpg: our 110835, std 154819, opt 152177, ari 136298, pro 148297, moz 145328
+		images/generate_1200x1200_70/test/16.jpg: our 158116, std 211663, opt 209463, ari 201141, pro 205955, moz 204401
+		images/generate_1200x1200_70/test/83.jpg: our 138044, std 190473, opt 188169, ari 174906, pro 185195, moz 183757
+		images/generate_1200x1200_70/test/57.jpg: our 67120, std 93288, opt 88018, ari 84078, pro 88277, moz 85011
+		images/generate_1200x1200_70/test/94.jpg: our 158781, std 216746, opt 214203, ari 193417, pro 210784, moz 208323
+		images/generate_1200x1200_70/test/29.jpg: our 166524, std 228870, opt 226378, ari 207548, pro 221488, moz 218230
+		images/generate_1200x1200_70/test/63.jpg: our 107403, std 149580, opt 144935, ari 132386, pro 143697, moz 141432
+		images/generate_1200x1200_70/test/78.jpg: our 90796, std 127552, opt 123479, ari 112187, pro 121784, moz 118353
+		images/generate_1200x1200_70/test/35.jpg: our 167471, std 226275, opt 224111, ari 206977, pro 217626, moz 216459
+		images/generate_1200x1200_70/test/49.jpg: our 76779, std 105337, opt 101413, ari 92533, pro 101711, moz 98829
+		images/generate_1200x1200_70/test/19.jpg: our 186824, std 259568, opt 257229, ari 234515, pro 249289, moz 247233
+		images/generate_1200x1200_70/test/15.jpg: our 161733, std 224200, opt 222418, ari 203102, pro 216738, moz 215378
+		images/generate_1200x1200_70/test/52.jpg: our 126165, std 172214, opt 170696, ari 162329, pro 168552, moz 166022
+		images/generate_1200x1200_70/test/91.jpg: our 226065, std 313694, opt 310898, ari 283652, pro 299124, moz 296794
+		images/generate_1200x1200_70/test/9.jpg: our 135473, std 190263, opt 188425, ari 160607, pro 181679, moz 178052
+		images/generate_1200x1200_70/test/72.jpg: our 195611, std 274778, opt 272905, ari 242219, pro 261817, moz 259233
+		images/generate_1200x1200_70/test/28.jpg: our 96041, std 135890, opt 133175, ari 115840, pro 127595, moz 124836
+		images/generate_1200x1200_70/test/38.jpg: our 177846, std 251950, opt 250171, ari 222566, pro 239096, moz 237271
+		images/generate_1200x1200_70/test/1.jpg: our 105745, std 148167, opt 142681, ari 123301, pro 143964, moz 138616
+		images/generate_1200x1200_70/test/26.jpg: our 176522, std 240290, opt 238448, ari 224704, pro 234134, moz 231679
+		images/generate_1200x1200_70/test/97.jpg: our 150992, std 210083, opt 208771, ari 194415, pro 201713, moz 199736
+		images/generate_1200x1200_70/test/30.jpg: our 176572, std 249152, opt 245077, ari 219123, pro 238307, moz 235156
+		images/generate_1200x1200_70/test/37.jpg: our 89224, std 125990, opt 122267, ari 109687, pro 118749, moz 115485
+		images/generate_1200x1200_70/test/43.jpg: our 185344, std 256130, opt 252714, ari 235047, pro 245148, moz 242406
+		images/generate_1200x1200_70/test/89.jpg: our 104182, std 147222, opt 143499, ari 129173, pro 136943, moz 134369
+		images/generate_1200x1200_70/test/90.jpg: our 100918, std 141701, opt 139676, ari 124702, pro 133774, moz 131405
+		images/generate_1200x1200_70/test/47.jpg: our 85039, std 121412, opt 116280, ari 107291, pro 114542, moz 110810
+		images/generate_1200x1200_70/test/12.jpg: our 152964, std 210814, opt 207380, ari 196391, pro 201736, moz 199440
+		images/generate_1200x1200_70/test/23.jpg: our 101355, std 145513, opt 135603, ari 123624, pro 134024, moz 132159
+		images/generate_1200x1200_70/test/56.jpg: our 124741, std 170124, opt 168612, ari 152360, pro 164617, moz 163250
+		images/generate_1200x1200_70/test/98.jpg: our 61273, std 89695, opt 81893, ari 76623, pro 80197, moz 77809
+		images/generate_1200x1200_70/test/36.jpg: our 124436, std 173608, opt 171020, ari 161031, pro 167119, moz 164791
+		images/generate_1200x1200_70/test/3.jpg: our 186611, std 261872, opt 260568, ari 236848, pro 248804, moz 247429
+		images/generate_1200x1200_70/test/76.jpg: our 90614, std 122714, opt 119094, ari 113305, pro 119820, moz 116674
+		images/generate_1200x1200_70/test/11.jpg: our 127296, std 181817, opt 180098, ari 163377, pro 169717, moz 168029
+		images/generate_1200x1200_70/test/24.jpg: our 67963, std 97098, opt 92978, ari 82781, pro 89803, moz 86684
+		images/generate_1200x1200_70/test/42.jpg: our 81844, std 118437, opt 113540, ari 100073, pro 111096, moz 108041
+		images/generate_1200x1200_70/test/96.jpg: our 247330, std 337062, opt 334169, ari 307851, pro 319127, moz 317879
+		images/generate_1200x1200_70/test/6.jpg: our 94008, std 127599, opt 124748, ari 119119, pro 122912, moz 120639
+		images/generate_1200x1200_70/test/75.jpg: our 95437, std 132364, opt 128667, ari 118520, pro 126703, moz 124340
+		images/generate_1200x1200_70/test/86.jpg: our 121002, std 166294, opt 163794, ari 156815, pro 161296, moz 159448
+		images/generate_1200x1200_70/test/93.jpg: our 126022, std 173855, opt 171169, ari 161307, pro 168632, moz 167620
+		images/generate_1200x1200_70/test/67.jpg: our 76525, std 110486, opt 103136, ari 97069, pro 103435, moz 101345
+		images/generate_1200x1200_70/test/58.jpg: our 79416, std 108040, opt 104545, ari 99121, pro 104992, moz 102806
+		images/generate_1200x1200_70/test/77.jpg: our 147459, std 205672, opt 204094, ari 187699, pro 198278, moz 196766
+		images/generate_1200x1200_70/test/100.jpg: our 69426, std 95222, opt 91566, ari 83544, pro 91328, moz 88825
+		images/generate_1200x1200_70/test/92.jpg: our 222001, std 307143, opt 304503, ari 272905, pro 291895, moz 290946
+		images/generate_1200x1200_70/test/32.jpg: our 115786, std 165175, opt 163138, ari 145156, pro 156193, moz 154302
+		images/generate_1200x1200_70/test/5.jpg: our 195065, std 270943, opt 267845, ari 242134, pro 257541, moz 256370
+		images/generate_1200x1200_70/test/48.jpg: our 47511, std 69913, opt 61526, ari 55561, pro 62048, moz 57943
+		images/generate_1200x1200_70/test/81.jpg: our 91621, std 124945, opt 120778, ari 114650, pro 122443, moz 119676
+		images/generate_1200x1200_70/test/41.jpg: our 132398, std 189908, opt 187830, ari 169221, pro 178123, moz 176093
+		images/generate_1200x1200_70/test/80.jpg: our 200351, std 280454, opt 278327, ari 246913, pro 266888, moz 265105
+		images/generate_1200x1200_70/test/99.jpg: our 75475, std 105664, opt 99399, ari 90538, pro 98465, moz 94659
+		images/generate_1200x1200_70/test/39.jpg: our 106458, std 148924, opt 145903, ari 132886, pro 142763, moz 141024
+		images/generate_1200x1200_70/test/84.jpg: our 219352, std 300897, opt 298040, ari 270985, pro 289323, moz 287163
+		images/generate_1200x1200_70/test/27.jpg: our 139334, std 196489, opt 193763, ari 172492, pro 189878, moz 187013
+		images/generate_1200x1200_70/test/61.jpg: our 126300, std 174995, opt 171172, ari 157581, pro 167907, moz 166682
+		images/generate_1200x1200_70/test/79.jpg: our 140956, std 194312, opt 193064, ari 180145, pro 189184, moz 185883
+		images/generate_1200x1200_70/test/14.jpg: our 229929, std 319797, opt 317486, ari 292434, pro 303635, moz 302364
+		images/generate_1200x1200_70/test/65.jpg: our 141072, std 196579, opt 188820, ari 173048, pro 187494, moz 182428
+		images/generate_1200x1200_70/test/66.jpg: our 103829, std 143752, opt 138895, ari 128565, pro 137431, moz 134659
+		images/generate_1200x1200_70/test/8.jpg: our 205668, std 284673, opt 282703, ari 253979, pro 272920, moz 271396
+		images/generate_1200x1200_70/test/4.jpg: our 70708, std 103036, opt 97997, ari 88551, pro 95502, moz 93444
+		images/generate_1200x1200_70/test/7.jpg: our 148331, std 199648, opt 198376, ari 187135, pro 195009, moz 193307
+		images/generate_1200x1200_70/test/50.jpg: our 119471, std 164171, opt 162558, ari 154984, pro 159528, moz 157958
+		images/generate_1200x1200_70/test/20.jpg: our 43635, std 66423, opt 57048, ari 52322, pro 58183, moz 54330
+		images/generate_1200x1200_70/test/95.jpg: our 93054, std 130779, opt 128274, ari 117239, pro 123742, moz 122180
+		images/generate_1200x1200_70/test/21.jpg: our 125635, std 178258, opt 176106, ari 154954, pro 168783, moz 166515
+		images/generate_1200x1200_70/test/70.jpg: our 213253, std 297436, opt 295630, ari 262917, pro 280322, moz 278305
+		images/generate_1200x1200_70/test/68.jpg: our 135170, std 187845, opt 185385, ari 165433, pro 183601, moz 180228
+		images/generate_1200x1200_70/test/45.jpg: our 38813, std 60550, opt 52572, ari 44146, pro 51026, moz 47089
+		images/generate_1200x1200_70/test/62.jpg: our 106506, std 142939, opt 140625, ari 134066, pro 140356, moz 137485
+		images/generate_1200x1200_70/test/55.jpg: our 147159, std 204442, opt 202915, ari 180548, pro 195741, moz 192865
+		images/generate_1200x1200_70/test/13.jpg: our 136506, std 189083, opt 187204, ari 167770, pro 180527, moz 178040
+		images/generate_1200x1200_70/test/34.jpg: our 149223, std 206087, opt 203641, ari 188980, pro 198112, moz 196198
+		images/generate_1200x1200_70/test/44.jpg: our 166500, std 229315, opt 227060, ari 204869, pro 222052, moz 218702
+		images/generate_1200x1200_70/test/88.jpg: our 141580, std 196240, opt 194594, ari 182359, pro 189926, moz 188422
+		images/generate_1200x1200_70/test/40.jpg: our 82196, std 118669, opt 114771, ari 95965, pro 110816, moz 107007
+		images/generate_1200x1200_70/test/18.jpg: our 45976, std 66608, opt 58613, ari 55923, pro 59315, moz 56771
+		images/generate_1200x1200_70/test/31.jpg: our 110045, std 151560, opt 149672, ari 139749, pro 146788, moz 144216
+		images/generate_1200x1200_70/test/53.jpg: our 135017, std 190189, opt 186543, ari 163683, pro 177825, moz 175630
+		images/generate_1200x1200_70/test/85.jpg: our 120102, std 163343, opt 160407, ari 149009, pro 158631, moz 155850
+our 12588044, std 17521118, opt 17169655, ari 15691841, pro 16727574, moz 16480116, lossyonly 14474629
+75
+Total time elapsed : 236780 us
+Total time elapsed : 240807 us
+Total time elapsed : 235633 us
+Total time elapsed : 229388 us
+Total time elapsed : 233881 us
+Total time elapsed : 232701 us
+Total time elapsed : 236757 us
+Total time elapsed : 246836 us
+Total time elapsed : 219214 us
+Total time elapsed : 226194 us
+Total time elapsed : 224009 us
+Total time elapsed : 228327 us
+Total time elapsed : 228204 us
+Total time elapsed : 242123 us
+Total time elapsed : 231056 us
+Total time elapsed : 231085 us
+Total time elapsed : 250325 us
+Total time elapsed : 232011 us
+Total time elapsed : 227060 us
+Total time elapsed : 232606 us
+Total time elapsed : 248318 us
+Total time elapsed : 234480 us
+Total time elapsed : 222487 us
+Total time elapsed : 228804 us
+Total time elapsed : 238170 us
+Total time elapsed : 238905 us
+Total time elapsed : 236922 us
+Total time elapsed : 242113 us
+Total time elapsed : 225686 us
+Total time elapsed : 251106 us
+Total time elapsed : 226520 us
+Total time elapsed : 227532 us
+Total time elapsed : 222489 us
+Total time elapsed : 227312 us
+Total time elapsed : 231552 us
+Total time elapsed : 233770 us
+Total time elapsed : 242939 us
+Total time elapsed : 243351 us
+Total time elapsed : 233417 us
+Total time elapsed : 233961 us
+Total time elapsed : 219921 us
+Total time elapsed : 236254 us
+Total time elapsed : 236717 us
+Total time elapsed : 238016 us
+Total time elapsed : 227041 us
+Total time elapsed : 225047 us
+Total time elapsed : 228567 us
+Total time elapsed : 225705 us
+Total time elapsed : 222628 us
+Total time elapsed : 225112 us
+Total time elapsed : 237493 us
+Total time elapsed : 232040 us
+Total time elapsed : 223198 us
+Total time elapsed : 225998 us
+Total time elapsed : 240347 us
+Total time elapsed : 240727 us
+Total time elapsed : 245091 us
+Total time elapsed : 230183 us
+Total time elapsed : 235360 us
+Total time elapsed : 234299 us
+Total time elapsed : 235742 us
+Total time elapsed : 227396 us
+Total time elapsed : 243980 us
+Total time elapsed : 244591 us
+Total time elapsed : 236380 us
+Total time elapsed : 227639 us
+Total time elapsed : 232070 us
+Total time elapsed : 234282 us
+Total time elapsed : 227992 us
+Total time elapsed : 230395 us
+Total time elapsed : 230289 us
+Total time elapsed : 246619 us
+Total time elapsed : 236560 us
+Total time elapsed : 225334 us
+Total time elapsed : 219486 us
+Total time elapsed : 234304 us
+Total time elapsed : 230346 us
+Total time elapsed : 222931 us
+Total time elapsed : 233053 us
+Total time elapsed : 226777 us
+Total time elapsed : 244173 us
+Total time elapsed : 235587 us
+Total time elapsed : 230858 us
+Total time elapsed : 241861 us
+Total time elapsed : 246522 us
+Total time elapsed : 245448 us
+Total time elapsed : 240380 us
+Total time elapsed : 229568 us
+Total time elapsed : 230986 us
+Total time elapsed : 239475 us
+Total time elapsed : 222959 us
+Total time elapsed : 221257 us
+Total time elapsed : 235599 us
+Total time elapsed : 227611 us
+Total time elapsed : 228849 us
+Total time elapsed : 243370 us
+Total time elapsed : 229025 us
+Total time elapsed : 228438 us
+Total time elapsed : 234796 us
+Total time elapsed : 224871 us
+Component 0
+regenerating max_pos_values...
+calculating max_pos_value...
+[0, 8, 16, 23, 30, 38, 45, 51, 57, 64, 70, 76, 82, 88, 94, 99, 104, 109, 114, 119, 125, 129, 133, 137, 141, 146, 149, 153, 157, 160, 163, 166, 169, 173, 176, 179, 181, 184, 187, 190, 193, 196, 199, 202, 205, 207, 209, 211, 213, 215, 217, 219, 221, 223, 225, 226, 227, 229, 231, 232, 234, 235, 236, 237]
+regenerating coef_bins...
+calculating avg_coef_bins...
+regenerating max_pos_values...
+calculating max_pos_value...
+regenerating max_pos_values...
+calculating max_pos_value...
+	Training: 
+	1% 2% 3% 4% 5% 6% 7% 8% 9% 10% 11% 12% 13% 14% 15% 16% 17% 18% 19% 20% 21% 22% 23% 24% 25% 26% 27% 28% 29% 30% 31% 32% 33% 34% 35% 36% 37% 38% 39% 40% 41% 42% 43% 44% 45% 46% 47% 48% 49% 50% 51% 52% 53% 54% 55% 56% 57% 58% 59% 60% 61% 62% 63% 64% 65% 66% 67% 68% 69% 70% 71% 72% 73% 74% 75% 76% 77% 78% 79% 80% 81% 82% 83% 84% 85% 86% 87% 88% 89% 90% 91% 92% 93% 94% 95% 96% 97% 98% 99% 100% TRAIN SET:	dc symbol length:6798534	dc actual bits:6482471	run length bits:65365568	actual AC bits:35672038	total bits:114318611
+generating DC tables...
+generating AC tables...
+default table max: 14
+max length symbols: 16
+
+	Training DONE
+Component 1
+[0, 6, 12, 17, 22, 27, 31, 35, 39, 42, 44, 46, 49, 51, 53, 55, 56, 58, 60, 62, 64, 65, 66, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108]
+regenerating coef_bins...
+calculating avg_coef_bins...
+	Training: 
+	1% 2% 3% 4% 5% 6% 7% 8% 9% 10% 11% 12% 13% 14% 15% 16% 17% 18% 19% 20% 21% 22% 23% 24% 25% 26% 27% 28% 29% 30% 31% 32% 33% 34% 35% 36% 37% 38% 39% 40% 41% 42% 43% 44% 45% 46% 47% 48% 49% 50% 51% 52% 53% 54% 55% 56% 57% 58% 59% 60% 61% 62% 63% 64% 65% 66% 67% 68% 69% 70% 71% 72% 73% 74% 75% 76% 77% 78% 79% 80% 81% 82% 83% 84% 85% 86% 87% 88% 89% 90% 91% 92% 93% 94% 95% 96% 97% 98% 99% 100% TRAIN SET:	dc symbol length:1345660	dc actual bits:815943	run length bits:4671141	actual AC bits:1566155	total bits:8398899
+generating DC tables...
+generating AC tables...
+default table max: 14
+max length symbols: 16
+
+	Training DONE
+Component 2
+[0, 6, 12, 17, 22, 27, 31, 35, 39, 43, 45, 47, 50, 52, 54, 56, 57, 59, 61, 63, 65, 67, 69, 71, 73, 74, 75, 76, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113]
+regenerating coef_bins...
+calculating avg_coef_bins...
+	Training: 
+	1% 2% 3% 4% 5% 6% 7% 8% 9% 10% 11% 12% 13% 14% 15% 16% 17% 18% 19% 20% 21% 22% 23% 24% 25% 26% 27% 28% 29% 30% 31% 32% 33% 34% 35% 36% 37% 38% 39% 40% 41% 42% 43% 44% 45% 46% 47% 48% 49% 50% 51% 52% 53% 54% 55% 56% 57% 58% 59% 60% 61% 62% 63% 64% 65% 66% 67% 68% 69% 70% 71% 72% 73% 74% 75% 76% 77% 78% 79% 80% 81% 82% 83% 84% 85% 86% 87% 88% 89% 90% 91% 92% 93% 94% 95% 96% 97% 98% 99% 100% TRAIN SET:	dc symbol length:1311165	dc actual bits:741637	run length bits:4224892	actual AC bits:1311787	total bits:7589481
+generating DC tables...
+generating AC tables...
+default table max: 14
+max length symbols: 16
+
+	Training DONE
+100 qualified images.
+		images/generate_1200x1200_75/test/2.jpg: our 155923, std 214709, opt 213105, ari 199603, pro 208491, moz 205508
+		images/generate_1200x1200_75/test/33.jpg: our 107397, std 150652, opt 148101, ari 130426, pro 142043, moz 139612
+		images/generate_1200x1200_75/test/71.jpg: our 116872, std 163031, opt 161173, ari 142321, pro 153973, moz 151647
+		images/generate_1200x1200_75/test/25.jpg: our 117001, std 161979, opt 157013, ari 137035, pro 157973, moz 152777
+		images/generate_1200x1200_75/test/17.jpg: our 220109, std 304175, opt 300723, ari 278180, pro 288243, moz 287479
+		images/generate_1200x1200_75/test/54.jpg: our 147265, std 207570, opt 203289, ari 180190, pro 193727, moz 191659
+		images/generate_1200x1200_75/test/74.jpg: our 84634, std 117185, opt 111021, ari 102586, pro 110057, moz 106239
+		images/generate_1200x1200_75/test/46.jpg: our 174943, std 238742, opt 235759, ari 214040, pro 231136, moz 228479
+		images/generate_1200x1200_75/test/73.jpg: our 104699, std 147060, opt 144937, ari 133405, pro 139046, moz 137613
+		images/generate_1200x1200_75/test/22.jpg: our 100275, std 135727, opt 132454, ari 126341, pro 132239, moz 129248
+		images/generate_1200x1200_75/test/82.jpg: our 77364, std 106207, opt 102932, ari 94468, pro 102558, moz 99699
+		images/generate_1200x1200_75/test/10.jpg: our 121790, std 167988, opt 166303, ari 155485, pro 162317, moz 160151
+		images/generate_1200x1200_75/test/69.jpg: our 128461, std 182908, opt 181225, ari 162511, pro 173001, moz 171442
+		images/generate_1200x1200_75/test/64.jpg: our 183295, std 248636, opt 246077, ari 227032, pro 237659, moz 236843
+		images/generate_1200x1200_75/test/51.jpg: our 216448, std 304181, opt 302160, ari 268775, pro 288596, moz 286445
+		images/generate_1200x1200_75/test/87.jpg: our 115614, std 158694, opt 154395, ari 143890, pro 152251, moz 149574
+		images/generate_1200x1200_75/test/59.jpg: our 183695, std 252359, opt 250371, ari 225950, pro 243577, moz 240464
+		images/generate_1200x1200_75/test/60.jpg: our 104345, std 141159, opt 138346, ari 133467, pro 135749, moz 133773
+		images/generate_1200x1200_75/test/16.jpg: our 90799, std 129988, opt 126705, ari 106461, pro 122156, moz 118455
+		images/generate_1200x1200_75/test/83.jpg: our 79945, std 115559, opt 111224, ari 101380, pro 108572, moz 106891
+		images/generate_1200x1200_75/test/57.jpg: our 195010, std 265619, opt 263741, ari 248625, pro 257247, moz 255671
+		images/generate_1200x1200_75/test/94.jpg: our 138855, std 192735, opt 190433, ari 180461, pro 185030, moz 182966
+		images/generate_1200x1200_75/test/29.jpg: our 118556, std 164614, opt 160128, ari 147243, pro 158522, moz 156428
+		images/generate_1200x1200_75/test/63.jpg: our 94081, std 135078, opt 129546, ari 123215, pro 124639, moz 122922
+		images/generate_1200x1200_75/test/78.jpg: our 88472, std 120311, opt 117501, ari 111399, pro 117059, moz 114978
+		images/generate_1200x1200_75/test/35.jpg: our 153215, std 210946, opt 209217, ari 194110, pro 204881, moz 203234
+		images/generate_1200x1200_75/test/49.jpg: our 75946, std 104844, opt 100111, ari 96200, pro 99651, moz 96395
+		images/generate_1200x1200_75/test/19.jpg: our 110679, std 155141, opt 153616, ari 137288, pro 146246, moz 144169
+		images/generate_1200x1200_75/test/15.jpg: our 100717, std 140506, opt 136911, ari 125591, pro 134797, moz 131390
+		images/generate_1200x1200_75/test/52.jpg: our 89737, std 123921, opt 121295, ari 109099, pro 120002, moz 117799
+		images/generate_1200x1200_75/test/91.jpg: our 139692, std 190908, opt 189623, ari 180389, pro 186263, moz 183868
+		images/generate_1200x1200_75/test/9.jpg: our 118087, std 159106, opt 156723, ari 149412, pro 155286, moz 152521
+		images/generate_1200x1200_75/test/72.jpg: our 196527, std 275898, opt 272397, ari 243452, pro 263991, moz 260455
+		images/generate_1200x1200_75/test/28.jpg: our 227229, std 313984, opt 311806, ari 280209, pro 300007, moz 298598
+		images/generate_1200x1200_75/test/38.jpg: our 253395, std 353280, opt 350828, ari 322543, pro 333627, moz 332432
+		images/generate_1200x1200_75/test/1.jpg: our 71720, std 104778, opt 96471, ari 90898, pro 93872, moz 91880
+		images/generate_1200x1200_75/test/26.jpg: our 144076, std 200614, opt 193619, ari 182712, pro 193475, moz 187217
+		images/generate_1200x1200_75/test/97.jpg: our 87245, std 125661, opt 118629, ari 112070, pro 118098, moz 116281
+		images/generate_1200x1200_75/test/30.jpg: our 107790, std 150534, opt 146844, ari 134680, pro 143513, moz 141569
+		images/generate_1200x1200_75/test/37.jpg: our 205900, std 286310, opt 284251, ari 258773, pro 273813, moz 272089
+		images/generate_1200x1200_75/test/43.jpg: our 110389, std 156871, opt 154245, ari 140563, pro 148771, moz 146862
+		images/generate_1200x1200_75/test/89.jpg: our 169963, std 234497, opt 231224, ari 219217, pro 223116, moz 221270
+		images/generate_1200x1200_75/test/90.jpg: our 150242, std 207514, opt 205498, ari 184281, pro 203166, moz 199466
+		images/generate_1200x1200_75/test/47.jpg: our 167066, std 232236, opt 231035, ari 216205, pro 222481, moz 221366
+		images/generate_1200x1200_75/test/12.jpg: our 197794, std 278597, opt 277053, ari 247580, pro 263898, moz 262139
+		images/generate_1200x1200_75/test/23.jpg: our 98289, std 137918, opt 134550, ari 120912, pro 130026, moz 127057
+		images/generate_1200x1200_75/test/56.jpg: our 270236, std 369178, opt 365866, ari 336585, pro 346996, moz 346387
+		images/generate_1200x1200_75/test/98.jpg: our 134920, std 186064, opt 183914, ari 175509, pro 179919, moz 178214
+		images/generate_1200x1200_75/test/36.jpg: our 206470, std 288623, opt 287309, ari 262305, pro 273842, moz 272313
+		images/generate_1200x1200_75/test/3.jpg: our 153389, std 209654, opt 208248, ari 197152, pro 203059, moz 201570
+		images/generate_1200x1200_75/test/76.jpg: our 91353, std 130931, opt 126444, ari 112582, pro 123835, moz 120750
+		images/generate_1200x1200_75/test/11.jpg: our 156929, std 217988, opt 216337, ari 200924, pro 209087, moz 207078
+		images/generate_1200x1200_75/test/24.jpg: our 57887, std 87280, opt 80409, ari 65671, pro 77116, moz 73770
+		images/generate_1200x1200_75/test/42.jpg: our 114505, std 160327, opt 156998, ari 142139, pro 149754, moz 147404
+		images/generate_1200x1200_75/test/96.jpg: our 133015, std 181789, opt 179157, ari 165779, pro 175533, moz 172870
+		images/generate_1200x1200_75/test/6.jpg: our 91411, std 130143, opt 127777, ari 116095, pro 122193, moz 120428
+		images/generate_1200x1200_75/test/75.jpg: our 130969, std 182292, opt 179031, ari 168811, pro 175249, moz 173015
+		images/generate_1200x1200_75/test/86.jpg: our 215607, std 299417, opt 296723, ari 267692, pro 283737, moz 282644
+		images/generate_1200x1200_75/test/93.jpg: our 235540, std 327656, opt 326138, ari 290104, pro 307536, moz 305538
+		images/generate_1200x1200_75/test/67.jpg: our 137900, std 187750, opt 186306, ari 168769, pro 181508, moz 180054
+		images/generate_1200x1200_75/test/58.jpg: our 85899, std 117769, opt 114265, ari 104592, pro 114209, moz 110484
+		images/generate_1200x1200_75/test/77.jpg: our 74285, std 105399, opt 101735, ari 91059, pro 97716, moz 94886
+		images/generate_1200x1200_75/test/100.jpg: our 96659, std 138269, opt 133453, ari 123397, pro 130370, moz 127214
+		images/generate_1200x1200_75/test/92.jpg: our 149543, std 208734, opt 207202, ari 177368, pro 199469, moz 196127
+		images/generate_1200x1200_75/test/32.jpg: our 55178, std 79875, opt 71715, ari 65917, pro 71809, moz 67793
+		images/generate_1200x1200_75/test/5.jpg: our 204183, std 282822, opt 278962, ari 259206, pro 269260, moz 266868
+		images/generate_1200x1200_75/test/48.jpg: our 130051, std 181539, opt 180194, ari 166947, pro 173727, moz 171906
+		images/generate_1200x1200_75/test/81.jpg: our 240443, std 330230, opt 326949, ari 297670, pro 316261, moz 314479
+		images/generate_1200x1200_75/test/41.jpg: our 102752, std 142147, opt 137311, ari 127216, pro 137738, moz 134743
+		images/generate_1200x1200_75/test/80.jpg: our 102652, std 139631, opt 135837, ari 130018, pro 136731, moz 133953
+		images/generate_1200x1200_75/test/99.jpg: our 47780, std 71154, opt 60664, ari 53142, pro 60887, moz 57144
+		images/generate_1200x1200_75/test/39.jpg: our 164352, std 229243, opt 227857, ari 209501, pro 220146, moz 219039
+		images/generate_1200x1200_75/test/84.jpg: our 154742, std 217007, opt 214834, ari 191983, pro 210363, moz 207474
+		images/generate_1200x1200_75/test/27.jpg: our 115254, std 165038, opt 155835, ari 141627, pro 152854, moz 151170
+		images/generate_1200x1200_75/test/61.jpg: our 43099, std 65824, opt 58284, ari 50117, pro 56874, moz 53089
+		images/generate_1200x1200_75/test/79.jpg: our 140683, std 194032, opt 191998, ari 180810, pro 188263, moz 187258
+		images/generate_1200x1200_75/test/14.jpg: our 184031, std 252594, opt 249940, ari 229349, pro 243407, moz 240348
+		images/generate_1200x1200_75/test/65.jpg: our 165476, std 229454, opt 226804, ari 210087, pro 219582, moz 217602
+		images/generate_1200x1200_75/test/66.jpg: our 53363, std 76126, opt 68388, ari 66156, pro 69008, moz 66654
+		images/generate_1200x1200_75/test/8.jpg: our 156660, std 216951, opt 215571, ari 202083, pro 209663, moz 208465
+		images/generate_1200x1200_75/test/4.jpg: our 140292, std 198095, opt 196354, ari 173613, pro 187306, moz 185469
+		images/generate_1200x1200_75/test/7.jpg: our 152277, std 210275, opt 208678, ari 187698, pro 200392, moz 198122
+		images/generate_1200x1200_75/test/50.jpg: our 113622, std 162824, opt 153631, ari 138858, pro 150287, moz 147134
+		images/generate_1200x1200_75/test/20.jpg: our 162629, std 219176, opt 217850, ari 205324, pro 213032, moz 211487
+		images/generate_1200x1200_75/test/95.jpg: our 53438, std 79492, opt 69543, ari 65341, pro 69671, moz 66211
+		images/generate_1200x1200_75/test/21.jpg: our 249029, std 345900, opt 343085, ari 313010, pro 327907, moz 325959
+		images/generate_1200x1200_75/test/70.jpg: our 121990, std 169342, opt 167150, ari 150405, pro 162419, moz 159491
+		images/generate_1200x1200_75/test/68.jpg: our 140557, std 194610, opt 191579, ari 175588, pro 187042, moz 185812
+		images/generate_1200x1200_75/test/45.jpg: our 178767, std 248480, opt 246734, ari 224992, pro 239289, moz 238208
+		images/generate_1200x1200_75/test/62.jpg: our 164784, std 221627, opt 219547, ari 208089, pro 213655, moz 212831
+		images/generate_1200x1200_75/test/55.jpg: our 147510, std 210379, opt 208798, ari 188970, pro 197581, moz 196285
+		images/generate_1200x1200_75/test/13.jpg: our 161672, std 224081, opt 222521, ari 198166, pro 213697, moz 211004
+		images/generate_1200x1200_75/test/34.jpg: our 132204, std 181949, opt 180559, ari 172408, pro 176462, moz 175251
+		images/generate_1200x1200_75/test/44.jpg: our 155404, std 215342, opt 208013, ari 191126, pro 205731, moz 200729
+		images/generate_1200x1200_75/test/88.jpg: our 140805, std 200244, opt 198684, ari 181437, pro 187446, moz 185744
+		images/generate_1200x1200_75/test/40.jpg: our 156723, std 210354, opt 207820, ari 191622, pro 202947, moz 200508
+		images/generate_1200x1200_75/test/18.jpg: our 221134, std 309404, opt 307160, ari 273195, pro 293842, moz 291890
+		images/generate_1200x1200_75/test/31.jpg: our 119285, std 166311, opt 163996, ari 149474, pro 159566, moz 157948
+		images/generate_1200x1200_75/test/53.jpg: our 172999, std 231895, opt 229308, ari 220198, pro 224493, moz 223036
+		images/generate_1200x1200_75/test/85.jpg: our 244085, std 338166, opt 335402, ari 299994, pro 319916, moz 319100
+our 13967968, std 19411806, opt 19079475, ari 17478543, pro 18505223, moz 18275970, lossyonly 16074853
+80
+Total time elapsed : 235901 us
+Total time elapsed : 250381 us
+Total time elapsed : 247053 us
+Total time elapsed : 240832 us
+Total time elapsed : 242041 us
+Total time elapsed : 237392 us
+Total time elapsed : 234158 us
+Total time elapsed : 248808 us
+Total time elapsed : 234786 us
+Total time elapsed : 222180 us
+Total time elapsed : 238560 us
+Total time elapsed : 252585 us
+Total time elapsed : 235607 us
+Total time elapsed : 238962 us
+Total time elapsed : 242168 us
+Total time elapsed : 230072 us
+Total time elapsed : 247328 us
+Total time elapsed : 228486 us
+Total time elapsed : 242875 us
+Total time elapsed : 227769 us
+Total time elapsed : 240618 us
+Total time elapsed : 235436 us
+Total time elapsed : 233426 us
+Total time elapsed : 219087 us
+Total time elapsed : 228773 us
+Total time elapsed : 243272 us
+Total time elapsed : 232917 us
+Total time elapsed : 238142 us
+Total time elapsed : 233510 us
+Total time elapsed : 255765 us
+Total time elapsed : 224700 us
+Total time elapsed : 236722 us
+Total time elapsed : 222035 us
+Total time elapsed : 236978 us
+Total time elapsed : 233515 us
+Total time elapsed : 225573 us
+Total time elapsed : 241649 us
+Total time elapsed : 253011 us
+Total time elapsed : 229878 us
+Total time elapsed : 223281 us
+Total time elapsed : 244294 us
+Total time elapsed : 234921 us
+Total time elapsed : 243990 us
+Total time elapsed : 245847 us
+Total time elapsed : 224267 us
+Total time elapsed : 238732 us
+Total time elapsed : 235882 us
+Total time elapsed : 233574 us
+Total time elapsed : 236303 us
+Total time elapsed : 231603 us
+Total time elapsed : 234229 us
+Total time elapsed : 243134 us
+Total time elapsed : 235905 us
+Total time elapsed : 237589 us
+Total time elapsed : 236406 us
+Total time elapsed : 243727 us
+Total time elapsed : 232097 us
+Total time elapsed : 234556 us
+Total time elapsed : 239319 us
+Total time elapsed : 244613 us
+Total time elapsed : 233515 us
+Total time elapsed : 227008 us
+Total time elapsed : 242580 us
+Total time elapsed : 233932 us
+Total time elapsed : 240420 us
+Total time elapsed : 234094 us
+Total time elapsed : 232434 us
+Total time elapsed : 229819 us
+Total time elapsed : 239654 us
+Total time elapsed : 249498 us
+Total time elapsed : 251150 us
+Total time elapsed : 239058 us
+Total time elapsed : 233607 us
+Total time elapsed : 232649 us
+Total time elapsed : 233727 us
+Total time elapsed : 239775 us
+Total time elapsed : 243079 us
+Total time elapsed : 235222 us
+Total time elapsed : 227719 us
+Total time elapsed : 238477 us
+Total time elapsed : 230405 us
+Total time elapsed : 230875 us
+Total time elapsed : 226664 us
+Total time elapsed : 243370 us
+Total time elapsed : 237627 us
+Total time elapsed : 245552 us
+Total time elapsed : 233939 us
+Total time elapsed : 235889 us
+Total time elapsed : 232558 us
+Total time elapsed : 235476 us
+Total time elapsed : 250919 us
+Total time elapsed : 228884 us
+Total time elapsed : 227410 us
+Total time elapsed : 229595 us
+Total time elapsed : 239472 us
+Total time elapsed : 254588 us
+Total time elapsed : 240178 us
+Total time elapsed : 219752 us
+Total time elapsed : 221690 us
+Total time elapsed : 235638 us
+Component 0
+regenerating max_pos_values...
+calculating max_pos_value...
+[0, 8, 16, 23, 30, 38, 45, 52, 59, 66, 73, 79, 85, 91, 97, 102, 107, 112, 117, 122, 128, 132, 137, 142, 147, 152, 156, 161, 165, 168, 172, 176, 180, 184, 187, 191, 194, 197, 200, 203, 206, 209, 213, 216, 219, 221, 224, 227, 229, 231, 233, 235, 237, 240, 242, 244, 245, 247, 249, 250, 252, 254, 255, 257]
+regenerating coef_bins...
+calculating avg_coef_bins...
+regenerating max_pos_values...
+calculating max_pos_value...
+regenerating max_pos_values...
+calculating max_pos_value...
+	Training: 
+	1% 2% 3% 4% 5% 6% 7% 8% 9% 10% 11% 12% 13% 14% 15% 16% 17% 18% 19% 20% 21% 22% 23% 24% 25% 26% 27% 28% 29% 30% 31% 32% 33% 34% 35% 36% 37% 38% 39% 40% 41% 42% 43% 44% 45% 46% 47% 48% 49% 50% 51% 52% 53% 54% 55% 56% 57% 58% 59% 60% 61% 62% 63% 64% 65% 66% 67% 68% 69% 70% 71% 72% 73% 74% 75% 76% 77% 78% 79% 80% 81% 82% 83% 84% 85% 86% 87% 88% 89% 90% 91% 92% 93% 94% 95% 96% 97% 98% 99% 100% TRAIN SET:	dc symbol length:7074101	dc actual bits:7187280	run length bits:74326549	actual AC bits:42229893	total bits:130817823
+generating DC tables...
+generating AC tables...
+default table max: 14
+max length symbols: 17
+
+	Training DONE
+Component 1
+[0, 6, 12, 17, 22, 27, 31, 36, 41, 45, 47, 50, 53, 56, 58, 60, 62, 64, 66, 68, 70, 72, 74, 76, 78, 80, 82, 83, 84, 85, 87, 88, 90, 91, 92, 94, 95, 96, 98, 99, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124]
+regenerating coef_bins...
+calculating avg_coef_bins...
+	Training: 
+	1% 2% 3% 4% 5% 6% 7% 8% 9% 10% 11% 12% 13% 14% 15% 16% 17% 18% 19% 20% 21% 22% 23% 24% 25% 26% 27% 28% 29% 30% 31% 32% 33% 34% 35% 36% 37% 38% 39% 40% 41% 42% 43% 44% 45% 46% 47% 48% 49% 50% 51% 52% 53% 54% 55% 56% 57% 58% 59% 60% 61% 62% 63% 64% 65% 66% 67% 68% 69% 70% 71% 72% 73% 74% 75% 76% 77% 78% 79% 80% 81% 82% 83% 84% 85% 86% 87% 88% 89% 90% 91% 92% 93% 94% 95% 96% 97% 98% 99% 100% TRAIN SET:	dc symbol length:1408167	dc actual bits:931216	run length bits:5445994	actual AC bits:1978840	total bits:9764217
+generating DC tables...
+generating AC tables...
+default table max: 14
+max length symbols: 16
+
+	Training DONE
+Component 2
+[0, 6, 12, 17, 23, 28, 32, 37, 42, 46, 48, 51, 54, 57, 59, 61, 63, 65, 67, 69, 71, 73, 75, 77, 79, 81, 83, 85, 87, 88, 90, 91, 93, 94, 96, 97, 98, 99, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126]
+regenerating coef_bins...
+calculating avg_coef_bins...
+	Training: 
+	1% 2% 3% 4% 5% 6% 7% 8% 9% 10% 11% 12% 13% 14% 15% 16% 17% 18% 19% 20% 21% 22% 23% 24% 25% 26% 27% 28% 29% 30% 31% 32% 33% 34% 35% 36% 37% 38% 39% 40% 41% 42% 43% 44% 45% 46% 47% 48% 49% 50% 51% 52% 53% 54% 55% 56% 57% 58% 59% 60% 61% 62% 63% 64% 65% 66% 67% 68% 69% 70% 71% 72% 73% 74% 75% 76% 77% 78% 79% 80% 81% 82% 83% 84% 85% 86% 87% 88% 89% 90% 91% 92% 93% 94% 95% 96% 97% 98% 99% 100% TRAIN SET:	dc symbol length:1365204	dc actual bits:850771	run length bits:4965856	actual AC bits:1675317	total bits:8857148
+generating DC tables...
+generating AC tables...
+default table max: 14
+max length symbols: 16
+
+	Training DONE
+100 qualified images.
+		images/generate_1200x1200_80/test/2.jpg: our 249034, std 345502, opt 341105, ari 315020, pro 324792, moz 323372
+		images/generate_1200x1200_80/test/33.jpg: our 135706, std 189043, opt 187503, ari 166463, pro 177387, moz 175614
+		images/generate_1200x1200_80/test/71.jpg: our 164475, std 227889, opt 221481, ari 209712, pro 219390, moz 213075
+		images/generate_1200x1200_80/test/25.jpg: our 179336, std 248699, opt 247103, ari 229835, pro 238018, moz 235998
+		images/generate_1200x1200_80/test/17.jpg: our 103644, std 142792, opt 140700, ari 126993, pro 138671, moz 136489
+		images/generate_1200x1200_80/test/54.jpg: our 111638, std 161190, opt 155137, ari 147237, pro 148389, moz 147013
+		images/generate_1200x1200_80/test/74.jpg: our 105010, std 148310, opt 145852, ari 134691, pro 140055, moz 138232
+		images/generate_1200x1200_80/test/46.jpg: our 151041, std 209444, opt 206639, ari 195468, pro 200886, moz 199291
+		images/generate_1200x1200_80/test/73.jpg: our 133984, std 191411, opt 183304, ari 164396, pro 178029, moz 174616
+		images/generate_1200x1200_80/test/22.jpg: our 150787, std 210089, opt 209110, ari 194885, pro 200252, moz 198733
+		images/generate_1200x1200_80/test/82.jpg: our 58485, std 86016, opt 75868, ari 67557, pro 75833, moz 72110
+		images/generate_1200x1200_80/test/10.jpg: our 66906, std 99201, opt 93883, ari 76989, pro 89264, moz 85841
+		images/generate_1200x1200_80/test/69.jpg: our 175164, std 239588, opt 238003, ari 225253, pro 230531, moz 229137
+		images/generate_1200x1200_80/test/64.jpg: our 119489, std 164763, opt 160555, ari 148758, pro 159061, moz 156212
+		images/generate_1200x1200_80/test/51.jpg: our 129047, std 183284, opt 180864, ari 164929, pro 173163, moz 171661
+		images/generate_1200x1200_80/test/87.jpg: our 177244, std 239826, opt 236509, ari 217814, pro 229180, moz 227176
+		images/generate_1200x1200_80/test/59.jpg: our 186032, std 250898, opt 248149, ari 235025, pro 240144, moz 239198
+		images/generate_1200x1200_80/test/60.jpg: our 138894, std 191352, opt 189299, ari 171983, pro 183505, moz 180804
+		images/generate_1200x1200_80/test/16.jpg: our 195070, std 262123, opt 258790, ari 248337, pro 251795, moz 250398
+		images/generate_1200x1200_80/test/83.jpg: our 175484, std 241291, opt 239467, ari 222434, pro 234029, moz 232210
+		images/generate_1200x1200_80/test/57.jpg: our 89265, std 123000, opt 118515, ari 114714, pro 117074, moz 114185
+		images/generate_1200x1200_80/test/94.jpg: our 199161, std 271432, opt 268170, ari 244288, pro 260822, moz 258549
+		images/generate_1200x1200_80/test/29.jpg: our 209981, std 287562, opt 284671, ari 261209, pro 275326, moz 272802
+		images/generate_1200x1200_80/test/63.jpg: our 135590, std 187384, opt 182818, ari 169260, pro 180313, moz 178219
+		images/generate_1200x1200_80/test/78.jpg: our 115678, std 159923, opt 156909, ari 145358, pro 153922, moz 150565
+		images/generate_1200x1200_80/test/35.jpg: our 206937, std 281831, opt 278475, ari 256771, pro 267212, moz 266157
+		images/generate_1200x1200_80/test/49.jpg: our 99562, std 136453, opt 133613, ari 122555, pro 132898, moz 128701
+		images/generate_1200x1200_80/test/19.jpg: our 234648, std 326809, opt 324404, ari 295352, pro 310724, moz 309230
+		images/generate_1200x1200_80/test/15.jpg: our 204359, std 284830, opt 282797, ari 257474, pro 272664, moz 271794
+		images/generate_1200x1200_80/test/52.jpg: our 159978, std 218799, opt 217494, ari 206625, pro 212495, moz 210221
+		images/generate_1200x1200_80/test/91.jpg: our 283543, std 393599, opt 390219, ari 356165, pro 370013, moz 368159
+		images/generate_1200x1200_80/test/9.jpg: our 170802, std 237126, opt 235836, ari 203036, pro 225677, moz 222733
+		images/generate_1200x1200_80/test/72.jpg: our 247068, std 347301, opt 345153, ari 307993, pro 327215, moz 324830
+		images/generate_1200x1200_80/test/28.jpg: our 124647, std 173680, opt 170892, ari 152605, pro 163383, moz 161010
+		images/generate_1200x1200_80/test/38.jpg: our 227236, std 317736, opt 316520, ari 284795, pro 300109, moz 297684
+		images/generate_1200x1200_80/test/1.jpg: our 133912, std 182466, opt 178159, ari 158121, pro 178481, moz 173281
+		images/generate_1200x1200_80/test/26.jpg: our 222211, std 303221, opt 300948, ari 283836, pro 291170, moz 289582
+		images/generate_1200x1200_80/test/97.jpg: our 191426, std 265478, opt 263903, ari 248428, pro 252786, moz 251317
+		images/generate_1200x1200_80/test/30.jpg: our 226295, std 316624, opt 313234, ari 280213, pro 301973, moz 298478
+		images/generate_1200x1200_80/test/37.jpg: our 111449, std 155721, opt 152652, ari 137277, pro 146485, moz 143627
+		images/generate_1200x1200_80/test/43.jpg: our 232016, std 322644, opt 317843, ari 294925, pro 304509, moz 302377
+		images/generate_1200x1200_80/test/89.jpg: our 130157, std 179956, opt 176645, ari 161729, pro 169028, moz 166894
+		images/generate_1200x1200_80/test/90.jpg: our 125347, std 175324, opt 173973, ari 156325, pro 164813, moz 162797
+		images/generate_1200x1200_80/test/47.jpg: our 114087, std 162852, opt 158520, ari 146898, pro 153473, moz 150524
+		images/generate_1200x1200_80/test/12.jpg: our 195232, std 269311, opt 265472, ari 252307, pro 255084, moz 253962
+		images/generate_1200x1200_80/test/23.jpg: our 135548, std 193093, opt 185602, ari 168145, pro 180655, moz 179102
+		images/generate_1200x1200_80/test/56.jpg: our 157425, std 213774, opt 212264, ari 192807, pro 206436, moz 204837
+		images/generate_1200x1200_80/test/98.jpg: our 86713, std 126562, opt 118071, ari 110989, pro 114541, moz 113011
+		images/generate_1200x1200_80/test/36.jpg: our 160123, std 221602, opt 219244, ari 208557, pro 211395, moz 209813
+		images/generate_1200x1200_80/test/3.jpg: our 235723, std 328002, opt 326495, ari 299990, pro 309920, moz 307968
+		images/generate_1200x1200_80/test/76.jpg: our 114489, std 155265, opt 152307, ari 145834, pro 150743, moz 148080
+		images/generate_1200x1200_80/test/11.jpg: our 161169, std 227591, opt 226451, ari 208605, pro 213792, moz 211759
+		images/generate_1200x1200_80/test/24.jpg: our 83932, std 118203, opt 114832, ari 104370, pro 110276, moz 107720
+		images/generate_1200x1200_80/test/42.jpg: our 105606, std 149349, opt 145675, ari 130990, pro 142155, moz 138851
+		images/generate_1200x1200_80/test/96.jpg: our 304044, std 417098, opt 411464, ari 378936, pro 388517, moz 387753
+		images/generate_1200x1200_80/test/6.jpg: our 119853, std 162007, opt 159302, ari 154958, pro 155020, moz 153451
+		images/generate_1200x1200_80/test/75.jpg: our 125807, std 176596, opt 172893, ari 157841, pro 167965, moz 165982
+		images/generate_1200x1200_80/test/86.jpg: our 155420, std 214656, opt 212772, ari 202553, pro 206782, moz 205242
+		images/generate_1200x1200_80/test/93.jpg: our 162469, std 224105, opt 222848, ari 209555, pro 217069, moz 216053
+		images/generate_1200x1200_80/test/67.jpg: our 103519, std 147933, opt 141708, ari 134130, pro 140325, moz 138676
+		images/generate_1200x1200_80/test/58.jpg: our 101890, std 138482, opt 136340, ari 129505, pro 135090, moz 133015
+		images/generate_1200x1200_80/test/77.jpg: our 188985, std 263214, opt 261904, ari 240613, pro 252057, moz 250895
+		images/generate_1200x1200_80/test/100.jpg: our 89594, std 123097, opt 120650, ari 110904, pro 119606, moz 116385
+		images/generate_1200x1200_80/test/92.jpg: our 276632, std 383804, opt 380385, ari 340136, pro 360557, moz 359408
+		images/generate_1200x1200_80/test/32.jpg: our 148254, std 209923, opt 208315, ari 188825, pro 198335, moz 196667
+		images/generate_1200x1200_80/test/5.jpg: our 246258, std 341491, opt 338542, ari 305529, pro 322191, moz 321039
+		images/generate_1200x1200_80/test/48.jpg: our 66860, std 95608, opt 88110, ari 81764, pro 87812, moz 84607
+		images/generate_1200x1200_80/test/81.jpg: our 119266, std 161923, opt 158406, ari 152453, pro 157541, moz 155163
+		images/generate_1200x1200_80/test/41.jpg: our 170568, std 241012, opt 239930, ari 218496, pro 226200, moz 224782
+		images/generate_1200x1200_80/test/80.jpg: our 251855, std 350792, opt 348624, ari 311566, pro 332245, moz 329697
+		images/generate_1200x1200_80/test/99.jpg: our 98582, std 134852, opt 128905, ari 120675, pro 127178, moz 123686
+		images/generate_1200x1200_80/test/39.jpg: our 138273, std 192190, opt 190665, ari 174081, pro 184130, moz 182680
+		images/generate_1200x1200_80/test/84.jpg: our 271858, std 373701, opt 369865, ari 336558, pro 355090, moz 353350
+		images/generate_1200x1200_80/test/27.jpg: our 177592, std 247433, opt 245693, ari 220703, pro 239308, moz 236246
+		images/generate_1200x1200_80/test/61.jpg: our 161246, std 222557, opt 220542, ari 201630, pro 214629, moz 213123
+		images/generate_1200x1200_80/test/79.jpg: our 177772, std 244411, opt 242630, ari 227619, pro 236003, moz 233451
+		images/generate_1200x1200_80/test/14.jpg: our 288317, std 402566, opt 399247, ari 366970, pro 377195, moz 376041
+		images/generate_1200x1200_80/test/65.jpg: our 176060, std 242335, opt 235522, ari 217350, pro 231915, moz 226769
+		images/generate_1200x1200_80/test/66.jpg: our 133094, std 180849, opt 177331, ari 166387, pro 173938, moz 171552
+		images/generate_1200x1200_80/test/8.jpg: our 259067, std 357769, opt 355729, ari 319138, pro 339531, moz 338594
+		images/generate_1200x1200_80/test/4.jpg: our 94207, std 134490, opt 131105, ari 120974, pro 127827, moz 126089
+		images/generate_1200x1200_80/test/7.jpg: our 183984, std 248298, opt 246113, ari 232122, pro 239542, moz 238329
+		images/generate_1200x1200_80/test/50.jpg: our 151508, std 208450, opt 207329, ari 197825, pro 201733, moz 200506
+		images/generate_1200x1200_80/test/20.jpg: our 67187, std 99972, opt 89259, ari 84820, pro 87490, moz 84712
+		images/generate_1200x1200_80/test/95.jpg: our 121726, std 171553, opt 169793, ari 157191, pro 161697, moz 160273
+		images/generate_1200x1200_80/test/21.jpg: our 162318, std 228570, opt 227290, ari 202038, pro 214805, moz 213395
+		images/generate_1200x1200_80/test/70.jpg: our 268522, std 372175, opt 370600, ari 330305, pro 347417, moz 344858
+		images/generate_1200x1200_80/test/68.jpg: our 172683, std 236623, opt 234773, ari 211959, pro 231091, moz 227661
+		images/generate_1200x1200_80/test/45.jpg: our 50152, std 74292, opt 67449, ari 60050, pro 66611, moz 62993
+		images/generate_1200x1200_80/test/62.jpg: our 135062, std 183117, opt 180595, ari 171888, pro 177439, moz 174847
+		images/generate_1200x1200_80/test/55.jpg: our 183055, std 253968, opt 252136, ari 224720, pro 240695, moz 238394
+		images/generate_1200x1200_80/test/13.jpg: our 175839, std 242169, opt 240020, ari 217026, pro 229435, moz 227186
+		images/generate_1200x1200_80/test/34.jpg: our 189410, std 263954, opt 260996, ari 241122, pro 251171, moz 249344
+		images/generate_1200x1200_80/test/44.jpg: our 209138, std 286130, opt 284027, ari 256942, pro 274620, moz 271704
+		images/generate_1200x1200_80/test/88.jpg: our 179205, std 247776, opt 246231, ari 231270, pro 238764, moz 237501
+		images/generate_1200x1200_80/test/40.jpg: our 103714, std 146667, opt 144297, ari 122197, pro 139023, moz 135322
+		images/generate_1200x1200_80/test/18.jpg: our 64859, std 91054, opt 84166, ari 81730, pro 84149, moz 81981
+		images/generate_1200x1200_80/test/31.jpg: our 139472, std 192345, opt 191071, ari 178578, pro 184979, moz 182780
+		images/generate_1200x1200_80/test/53.jpg: our 166583, std 234144, opt 228611, ari 205582, pro 217990, moz 215728
+		images/generate_1200x1200_80/test/85.jpg: our 152069, std 208730, opt 206426, ari 190190, pro 200722, moz 197990
+our 16021613, std 22222095, opt 21898706, ari 20119729, pro 21123365, moz 20901899, lossyonly 18484327
+85
+Total time elapsed : 232678 us
+Total time elapsed : 250837 us
+Total time elapsed : 249735 us
+Total time elapsed : 239463 us
+Total time elapsed : 245780 us
+Total time elapsed : 232685 us
+Total time elapsed : 228745 us
+Total time elapsed : 242185 us
+Total time elapsed : 234039 us
+Total time elapsed : 226619 us
+Total time elapsed : 227859 us
+Total time elapsed : 229666 us
+Total time elapsed : 233733 us
+Total time elapsed : 251381 us
+Total time elapsed : 238573 us
+Total time elapsed : 245263 us
+Total time elapsed : 240408 us
+Total time elapsed : 236443 us
+Total time elapsed : 248058 us
+Total time elapsed : 236324 us
+Total time elapsed : 239775 us
+Total time elapsed : 231853 us
+Total time elapsed : 241697 us
+Total time elapsed : 238392 us
+Total time elapsed : 245267 us
+Total time elapsed : 247309 us
+Total time elapsed : 247813 us
+Total time elapsed : 230657 us
+Total time elapsed : 243126 us
+Total time elapsed : 245044 us
+Total time elapsed : 227314 us
+Total time elapsed : 229152 us
+Total time elapsed : 248438 us
+Total time elapsed : 237000 us
+Total time elapsed : 242188 us
+Total time elapsed : 233256 us
+Total time elapsed : 232427 us
+Total time elapsed : 250398 us
+Total time elapsed : 235446 us
+Total time elapsed : 226129 us
+Total time elapsed : 239705 us
+Total time elapsed : 230461 us
+Total time elapsed : 242765 us
+Total time elapsed : 249113 us
+Total time elapsed : 229323 us
+Total time elapsed : 244445 us
+Total time elapsed : 245327 us
+Total time elapsed : 236345 us
+Total time elapsed : 230989 us
+Total time elapsed : 238787 us
+Total time elapsed : 241267 us
+Total time elapsed : 245745 us
+Total time elapsed : 234026 us
+Total time elapsed : 226332 us
+Total time elapsed : 239620 us
+Total time elapsed : 236005 us
+Total time elapsed : 232752 us
+Total time elapsed : 238548 us
+Total time elapsed : 231321 us
+Total time elapsed : 241621 us
+Total time elapsed : 243065 us
+Total time elapsed : 231890 us
+Total time elapsed : 226305 us
+Total time elapsed : 229818 us
+Total time elapsed : 229923 us
+Total time elapsed : 244881 us
+Total time elapsed : 240845 us
+Total time elapsed : 237315 us
+Total time elapsed : 245614 us
+Total time elapsed : 233525 us
+Total time elapsed : 237204 us
+Total time elapsed : 236469 us
+Total time elapsed : 241693 us
+Total time elapsed : 232435 us
+Total time elapsed : 228915 us
+Total time elapsed : 225667 us
+Total time elapsed : 230949 us
+Total time elapsed : 233085 us
+Total time elapsed : 234350 us
+Total time elapsed : 238965 us
+Total time elapsed : 234147 us
+Total time elapsed : 232475 us
+Total time elapsed : 244215 us
+Total time elapsed : 247620 us
+Total time elapsed : 242859 us
+Total time elapsed : 238373 us
+Total time elapsed : 237246 us
+Total time elapsed : 244703 us
+Total time elapsed : 226026 us
+Total time elapsed : 239852 us
+Total time elapsed : 236836 us
+Total time elapsed : 238066 us
+Total time elapsed : 237769 us
+Total time elapsed : 236590 us
+Total time elapsed : 237242 us
+Total time elapsed : 256618 us
+Total time elapsed : 236577 us
+Total time elapsed : 226295 us
+Total time elapsed : 221595 us
+Total time elapsed : 231790 us
+Component 0
+regenerating max_pos_values...
+calculating max_pos_value...
+[0, 9, 17, 25, 33, 41, 48, 55, 62, 70, 77, 84, 91, 97, 104, 110, 116, 122, 128, 134, 140, 145, 150, 155, 160, 165, 169, 174, 178, 182, 186, 190, 194, 198, 202, 206, 209, 213, 217, 221, 224, 227, 231, 235, 238, 241, 244, 247, 250, 253, 256, 258, 260, 263, 266, 268, 270, 272, 274, 276, 278, 280, 282, 284]
+regenerating coef_bins...
+calculating avg_coef_bins...
+regenerating max_pos_values...
+calculating max_pos_value...
+regenerating max_pos_values...
+calculating max_pos_value...
+	Training: 
+	1% 2% 3% 4% 5% 6% 7% 8% 9% 10% 11% 12% 13% 14% 15% 16% 17% 18% 19% 20% 21% 22% 23% 24% 25% 26% 27% 28% 29% 30% 31% 32% 33% 34% 35% 36% 37% 38% 39% 40% 41% 42% 43% 44% 45% 46% 47% 48% 49% 50% 51% 52% 53% 54% 55% 56% 57% 58% 59% 60% 61% 62% 63% 64% 65% 66% 67% 68% 69% 70% 71% 72% 73% 74% 75% 76% 77% 78% 79% 80% 81% 82% 83% 84% 85% 86% 87% 88% 89% 90% 91% 92% 93% 94% 95% 96% 97% 98% 99% 100% TRAIN SET:	dc symbol length:7270181	dc actual bits:7649724	run length bits:87809386	actual AC bits:52041987	total bits:154771278
+generating DC tables...
+generating AC tables...
+default table max: 14
+max length symbols: 17
+
+	Training DONE
+Component 1
+[0, 7, 14, 20, 26, 32, 36, 41, 46, 50, 53, 56, 59, 62, 65, 67, 69, 71, 73, 75, 78, 80, 82, 84, 86, 88, 90, 92, 94, 95, 97, 99, 101, 103, 105, 107, 109, 111, 113, 115, 117, 118, 119, 120, 121, 122, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141]
+regenerating coef_bins...
+calculating avg_coef_bins...
+	Training: 
+	1% 2% 3% 4% 5% 6% 7% 8% 9% 10% 11% 12% 13% 14% 15% 16% 17% 18% 19% 20% 21% 22% 23% 24% 25% 26% 27% 28% 29% 30% 31% 32% 33% 34% 35% 36% 37% 38% 39% 40% 41% 42% 43% 44% 45% 46% 47% 48% 49% 50% 51% 52% 53% 54% 55% 56% 57% 58% 59% 60% 61% 62% 63% 64% 65% 66% 67% 68% 69% 70% 71% 72% 73% 74% 75% 76% 77% 78% 79% 80% 81% 82% 83% 84% 85% 86% 87% 88% 89% 90% 91% 92% 93% 94% 95% 96% 97% 98% 99% 100% TRAIN SET:	dc symbol length:1507639	dc actual bits:1099040	run length bits:6593033	actual AC bits:2643152	total bits:11842864
+generating DC tables...
+generating AC tables...
+default table max: 15
+max length symbols: 16
+
+	Training DONE
+Component 2
+[0, 7, 14, 20, 26, 32, 37, 42, 47, 51, 54, 57, 61, 64, 67, 70, 72, 74, 76, 78, 81, 83, 85, 87, 89, 91, 93, 95, 97, 99, 101, 103, 105, 107, 109, 111, 113, 114, 116, 118, 119, 120, 121, 122, 123, 125, 126, 128, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 144, 145]
+regenerating coef_bins...
+calculating avg_coef_bins...
+	Training: 
+	1% 2% 3% 4% 5% 6% 7% 8% 9% 10% 11% 12% 13% 14% 15% 16% 17% 18% 19% 20% 21% 22% 23% 24% 25% 26% 27% 28% 29% 30% 31% 32% 33% 34% 35% 36% 37% 38% 39% 40% 41% 42% 43% 44% 45% 46% 47% 48% 49% 50% 51% 52% 53% 54% 55% 56% 57% 58% 59% 60% 61% 62% 63% 64% 65% 66% 67% 68% 69% 70% 71% 72% 73% 74% 75% 76% 77% 78% 79% 80% 81% 82% 83% 84% 85% 86% 87% 88% 89% 90% 91% 92% 93% 94% 95% 96% 97% 98% 99% 100% TRAIN SET:	dc symbol length:1452898	dc actual bits:1011824	run length bits:6063135	actual AC bits:2271779	total bits:10799636
+generating DC tables...
+generating AC tables...
+default table max: 14
+max length symbols: 16
+
+	Training DONE
+100 qualified images.
+		images/generate_1200x1200_85/test/2.jpg: our 289749, std 403914, opt 397249, ari 366305, pro 375547, moz 374697
+		images/generate_1200x1200_85/test/33.jpg: our 162866, std 228213, opt 226466, ari 201615, pro 212163, moz 210963
+		images/generate_1200x1200_85/test/71.jpg: our 194280, std 270097, opt 263524, ari 249251, pro 258839, moz 252526
+		images/generate_1200x1200_85/test/25.jpg: our 211153, std 293052, opt 291235, ari 270952, pro 279178, moz 276791
+		images/generate_1200x1200_85/test/17.jpg: our 123632, std 170314, opt 168649, ari 152701, pro 164779, moz 162783
+		images/generate_1200x1200_85/test/54.jpg: our 138132, std 200846, opt 194121, ari 182828, pro 184226, moz 183284
+		images/generate_1200x1200_85/test/74.jpg: our 125390, std 175208, opt 172789, ari 162242, pro 165809, moz 164527
+		images/generate_1200x1200_85/test/46.jpg: our 179733, std 248935, opt 246429, ari 233439, pro 237590, moz 236026
+		images/generate_1200x1200_85/test/73.jpg: our 162744, std 233340, opt 226613, ari 201945, pro 218714, moz 215564
+		images/generate_1200x1200_85/test/22.jpg: our 180923, std 252902, opt 251892, ari 234928, pro 238697, moz 238013
+		images/generate_1200x1200_85/test/82.jpg: our 75038, std 111154, opt 101278, ari 90237, pro 100321, moz 96588
+		images/generate_1200x1200_85/test/10.jpg: our 79987, std 116888, opt 112920, ari 93479, pro 106681, moz 103546
+		images/generate_1200x1200_85/test/69.jpg: our 205806, std 282448, opt 280454, ari 264897, pro 269577, moz 268477
+		images/generate_1200x1200_85/test/64.jpg: our 143965, std 199573, opt 195431, ari 180819, pro 191862, moz 189507
+		images/generate_1200x1200_85/test/51.jpg: our 156429, std 223498, opt 220594, ari 201003, pro 209687, moz 208440
+		images/generate_1200x1200_85/test/87.jpg: our 207075, std 282538, opt 278317, ari 255241, pro 267148, moz 265895
+		images/generate_1200x1200_85/test/59.jpg: our 215394, std 292141, opt 287962, ari 272761, pro 276495, moz 275607
+		images/generate_1200x1200_85/test/60.jpg: our 163644, std 224232, opt 221905, ari 203779, pro 214087, moz 211950
+		images/generate_1200x1200_85/test/16.jpg: our 225832, std 304265, opt 299099, ari 287351, pro 289190, moz 288126
+		images/generate_1200x1200_85/test/83.jpg: our 207815, std 285754, opt 283658, ari 263030, pro 275625, moz 273749
+		images/generate_1200x1200_85/test/57.jpg: our 108749, std 151556, opt 146587, ari 142289, pro 143456, moz 141136
+		images/generate_1200x1200_85/test/94.jpg: our 233661, std 318507, opt 313748, ari 286895, pro 303153, moz 301270
+		images/generate_1200x1200_85/test/29.jpg: our 247112, std 338170, opt 334824, ari 306329, pro 320584, moz 318654
+		images/generate_1200x1200_85/test/63.jpg: our 160466, std 222097, opt 217186, ari 201818, pro 212189, moz 210242
+		images/generate_1200x1200_85/test/78.jpg: our 137984, std 189810, opt 187372, ari 175130, pro 182088, moz 179271
+		images/generate_1200x1200_85/test/35.jpg: our 239656, std 328463, opt 323148, ari 297816, pro 307983, moz 307155
+		images/generate_1200x1200_85/test/49.jpg: our 119961, std 165517, opt 162950, ari 149392, pro 160001, moz 156629
+		images/generate_1200x1200_85/test/19.jpg: our 275467, std 384932, opt 381511, ari 347385, pro 362529, moz 361224
+		images/generate_1200x1200_85/test/15.jpg: our 241221, std 337120, opt 334816, ari 303702, pro 319625, moz 318953
+		images/generate_1200x1200_85/test/52.jpg: our 188646, std 259126, opt 257608, ari 244405, pro 249446, moz 248016
+		images/generate_1200x1200_85/test/91.jpg: our 332225, std 459765, opt 455070, ari 415838, pro 428083, moz 426345
+		images/generate_1200x1200_85/test/9.jpg: our 201910, std 280018, opt 277975, ari 240503, pro 264285, moz 261511
+		images/generate_1200x1200_85/test/72.jpg: our 291297, std 409011, opt 406632, ari 363289, pro 381556, moz 379508
+		images/generate_1200x1200_85/test/28.jpg: our 150082, std 210275, opt 206943, ari 186071, pro 194989, moz 193442
+		images/generate_1200x1200_85/test/38.jpg: our 269701, std 373419, opt 371738, ari 336492, pro 350410, moz 347845
+		images/generate_1200x1200_85/test/1.jpg: our 158276, std 214762, opt 211052, ari 189271, pro 209450, moz 204321
+		images/generate_1200x1200_85/test/26.jpg: our 260318, std 355848, opt 352563, ari 332513, pro 338061, moz 337509
+		images/generate_1200x1200_85/test/97.jpg: our 226508, std 313605, opt 311062, ari 294257, pro 296021, moz 295280
+		images/generate_1200x1200_85/test/30.jpg: our 268560, std 375006, opt 371223, ari 332171, pro 354505, moz 350900
+		images/generate_1200x1200_85/test/37.jpg: our 130317, std 181684, opt 179339, ari 160604, pro 170253, moz 167717
+		images/generate_1200x1200_85/test/43.jpg: our 271386, std 379103, opt 373000, ari 345273, pro 354313, moz 352119
+		images/generate_1200x1200_85/test/89.jpg: our 153154, std 208366, opt 205038, ari 190436, pro 196084, moz 194442
+		images/generate_1200x1200_85/test/90.jpg: our 146078, std 204701, opt 202631, ari 183271, pro 191041, moz 189139
+		images/generate_1200x1200_85/test/47.jpg: our 140686, std 200678, opt 197053, ari 181302, pro 189089, moz 186204
+		images/generate_1200x1200_85/test/12.jpg: our 231733, std 319890, opt 315374, ari 299368, pro 301086, moz 300116
+		images/generate_1200x1200_85/test/23.jpg: our 165572, std 237882, opt 231022, ari 209493, pro 224358, moz 222895
+		images/generate_1200x1200_85/test/56.jpg: our 184914, std 251781, opt 250222, ari 227074, pro 240976, moz 240116
+		images/generate_1200x1200_85/test/98.jpg: our 109669, std 160340, opt 151852, ari 141271, pro 145918, moz 144761
+		images/generate_1200x1200_85/test/36.jpg: our 190643, std 263925, opt 261058, ari 249226, pro 249731, moz 248366
+		images/generate_1200x1200_85/test/3.jpg: our 278155, std 384133, opt 381398, ari 353027, pro 359927, moz 358434
+		images/generate_1200x1200_85/test/76.jpg: our 135277, std 184280, opt 181336, ari 173933, pro 177949, moz 175700
+		images/generate_1200x1200_85/test/11.jpg: our 191947, std 267087, opt 265862, ari 248211, pro 250273, moz 248746
+		images/generate_1200x1200_85/test/24.jpg: our 99129, std 137712, opt 134268, ari 125663, pro 129559, moz 127469
+		images/generate_1200x1200_85/test/42.jpg: our 126563, std 177575, opt 174574, ari 158596, pro 169254, moz 166680
+		images/generate_1200x1200_85/test/96.jpg: our 351421, std 484000, opt 474142, ari 437196, pro 444870, moz 444179
+		images/generate_1200x1200_85/test/6.jpg: our 142611, std 194048, opt 191094, ari 186413, pro 184186, moz 183042
+		images/generate_1200x1200_85/test/75.jpg: our 151771, std 214975, opt 211635, ari 191687, pro 203026, moz 201220
+		images/generate_1200x1200_85/test/86.jpg: our 184785, std 256901, opt 255165, ari 241190, pro 245488, moz 244291
+		images/generate_1200x1200_85/test/93.jpg: our 194495, std 268731, opt 267524, ari 250994, pro 258922, moz 258512
+		images/generate_1200x1200_85/test/67.jpg: our 128161, std 183369, opt 178160, ari 167997, pro 174701, moz 173150
+		images/generate_1200x1200_85/test/58.jpg: our 121448, std 165723, opt 163919, ari 156156, pro 160918, moz 159289
+		images/generate_1200x1200_85/test/77.jpg: our 223944, std 311716, opt 310333, ari 284542, pro 296847, moz 295857
+		images/generate_1200x1200_85/test/100.jpg: our 108068, std 149967, opt 147356, ari 136105, pro 144373, moz 141380
+		images/generate_1200x1200_85/test/92.jpg: our 322906, std 448473, opt 442951, ari 396020, pro 416814, moz 415504
+		images/generate_1200x1200_85/test/32.jpg: our 177123, std 250733, opt 248312, ari 226982, pro 234579, moz 233232
+		images/generate_1200x1200_85/test/5.jpg: our 289487, std 400204, opt 397131, ari 357593, pro 374505, moz 373485
+		images/generate_1200x1200_85/test/48.jpg: our 84831, std 121724, opt 114293, ari 106849, pro 113004, moz 109899
+		images/generate_1200x1200_85/test/81.jpg: our 143005, std 195958, opt 192183, ari 185123, pro 188919, moz 186913
+		images/generate_1200x1200_85/test/41.jpg: our 204299, std 285579, opt 284414, ari 261033, pro 266631, moz 265220
+		images/generate_1200x1200_85/test/80.jpg: our 295847, std 409638, opt 406487, ari 364872, pro 386406, moz 383791
+		images/generate_1200x1200_85/test/99.jpg: our 119049, std 163924, opt 158017, ari 148278, pro 154198, moz 150717
+		images/generate_1200x1200_85/test/39.jpg: our 165717, std 230744, opt 229256, ari 209927, pro 220346, moz 218923
+		images/generate_1200x1200_85/test/84.jpg: our 316639, std 436525, opt 430651, ari 392040, pro 410790, moz 409343
+		images/generate_1200x1200_85/test/27.jpg: our 210307, std 292543, opt 290827, ari 261662, pro 281043, moz 278454
+		images/generate_1200x1200_85/test/61.jpg: our 190634, std 262988, opt 261000, ari 238542, pro 253638, moz 252274
+		images/generate_1200x1200_85/test/79.jpg: our 208980, std 287587, opt 285386, ari 267549, pro 275825, moz 273557
+		images/generate_1200x1200_85/test/14.jpg: our 337736, std 472013, opt 466649, ari 428809, pro 437928, moz 436160
+		images/generate_1200x1200_85/test/65.jpg: our 206294, std 283451, opt 275585, ari 255212, pro 270542, moz 265009
+		images/generate_1200x1200_85/test/66.jpg: our 158485, std 214372, opt 211482, ari 199203, pro 205826, moz 203812
+		images/generate_1200x1200_85/test/8.jpg: our 304485, std 420476, opt 418020, ari 373856, pro 395134, moz 394516
+		images/generate_1200x1200_85/test/4.jpg: our 115793, std 164234, opt 161944, ari 150513, pro 156502, moz 155050
+		images/generate_1200x1200_85/test/7.jpg: our 213993, std 289696, opt 286957, ari 269947, pro 276802, moz 275570
+		images/generate_1200x1200_85/test/50.jpg: our 179053, std 246754, opt 245420, ari 234181, pro 237556, moz 236396
+		images/generate_1200x1200_85/test/20.jpg: our 88405, std 133609, opt 121047, ari 114452, pro 117406, moz 115746
+		images/generate_1200x1200_85/test/95.jpg: our 147117, std 208775, opt 206323, ari 192571, pro 195116, moz 194124
+		images/generate_1200x1200_85/test/21.jpg: our 194187, std 274461, opt 272976, ari 243425, pro 255376, moz 254200
+		images/generate_1200x1200_85/test/70.jpg: our 315405, std 436409, opt 432419, ari 387051, pro 403671, moz 401298
+		images/generate_1200x1200_85/test/68.jpg: our 204553, std 279731, opt 278282, ari 251963, pro 271387, moz 268330
+		images/generate_1200x1200_85/test/45.jpg: our 62726, std 89210, opt 83094, ari 76675, pro 82281, moz 78964
+		images/generate_1200x1200_85/test/62.jpg: our 159334, std 218455, opt 216133, ari 204336, pro 209361, moz 207589
+		images/generate_1200x1200_85/test/55.jpg: our 213732, std 296145, opt 294011, ari 262377, pro 278381, moz 276176
+		images/generate_1200x1200_85/test/13.jpg: our 210138, std 290428, opt 287830, ari 260052, pro 273019, moz 271007
+		images/generate_1200x1200_85/test/34.jpg: our 223739, std 314694, opt 311284, ari 286272, pro 296671, moz 295153
+		images/generate_1200x1200_85/test/44.jpg: our 245485, std 335785, opt 333540, ari 301596, pro 319834, moz 317029
+		images/generate_1200x1200_85/test/88.jpg: our 211222, std 292153, opt 290336, ari 272755, pro 279672, moz 278552
+		images/generate_1200x1200_85/test/40.jpg: our 122772, std 172059, opt 170462, ari 145303, pro 163447, moz 160441
+		images/generate_1200x1200_85/test/18.jpg: our 81841, std 115842, opt 109052, ari 105913, pro 107459, moz 105485
+		images/generate_1200x1200_85/test/31.jpg: our 164466, std 228206, opt 227147, ari 212077, pro 217869, moz 215781
+		images/generate_1200x1200_85/test/53.jpg: our 194705, std 274040, opt 266219, ari 242731, pro 252601, moz 250784
+		images/generate_1200x1200_85/test/85.jpg: our 178885, std 247503, opt 244442, ari 224693, pro 235635, moz 233607
+our 18986689, std 26360007, opt 25999510, ari 23925830, pro 24893945, moz 24702185, lossyonly 21958211
+90
+Total time elapsed : 233282 us
+Total time elapsed : 254989 us
+Total time elapsed : 248976 us
+Total time elapsed : 235300 us
+Total time elapsed : 246295 us
+Total time elapsed : 240014 us
+Total time elapsed : 245450 us
+Total time elapsed : 253744 us
+Total time elapsed : 239752 us
+Total time elapsed : 231982 us
+Total time elapsed : 249817 us
+Total time elapsed : 232801 us
+Total time elapsed : 250943 us
+Total time elapsed : 260385 us
+Total time elapsed : 251683 us
+Total time elapsed : 248567 us
+Total time elapsed : 226285 us
+Total time elapsed : 241164 us
+Total time elapsed : 246676 us
+Total time elapsed : 240932 us
+Total time elapsed : 253186 us
+Total time elapsed : 243212 us
+Total time elapsed : 234015 us
+Total time elapsed : 240935 us
+Total time elapsed : 236618 us
+Total time elapsed : 237379 us
+Total time elapsed : 245038 us
+Total time elapsed : 240100 us
+Total time elapsed : 236929 us
+Total time elapsed : 243790 us
+Total time elapsed : 253678 us
+Total time elapsed : 230043 us
+Total time elapsed : 231041 us
+Total time elapsed : 236920 us
+Total time elapsed : 241800 us
+Total time elapsed : 243933 us
+Total time elapsed : 231393 us
+Total time elapsed : 240438 us
+Total time elapsed : 240701 us
+Total time elapsed : 241200 us
+Total time elapsed : 243512 us
+Total time elapsed : 228744 us
+Total time elapsed : 240953 us
+Total time elapsed : 251221 us
+Total time elapsed : 222154 us
+Total time elapsed : 245565 us
+Total time elapsed : 233231 us
+Total time elapsed : 233371 us
+Total time elapsed : 226498 us
+Total time elapsed : 246978 us
+Total time elapsed : 241271 us
+Total time elapsed : 233849 us
+Total time elapsed : 241404 us
+Total time elapsed : 234249 us
+Total time elapsed : 238200 us
+Total time elapsed : 239136 us
+Total time elapsed : 233230 us
+Total time elapsed : 243528 us
+Total time elapsed : 244621 us
+Total time elapsed : 249953 us
+Total time elapsed : 247203 us
+Total time elapsed : 239079 us
+Total time elapsed : 234889 us
+Total time elapsed : 234165 us
+Total time elapsed : 230223 us
+Total time elapsed : 239742 us
+Total time elapsed : 242682 us
+Total time elapsed : 235489 us
+Total time elapsed : 242554 us
+Total time elapsed : 257495 us
+Total time elapsed : 235480 us
+Total time elapsed : 243143 us
+Total time elapsed : 231253 us
+Total time elapsed : 244646 us
+Total time elapsed : 242323 us
+Total time elapsed : 254657 us
+Total time elapsed : 236438 us
+Total time elapsed : 227944 us
+Total time elapsed : 233892 us
+Total time elapsed : 244610 us
+Total time elapsed : 238327 us
+Total time elapsed : 241145 us
+Total time elapsed : 237268 us
+Total time elapsed : 254060 us
+Total time elapsed : 249530 us
+Total time elapsed : 253762 us
+Total time elapsed : 242756 us
+Total time elapsed : 244633 us
+Total time elapsed : 243801 us
+Total time elapsed : 238941 us
+Total time elapsed : 244897 us
+Total time elapsed : 249621 us
+Total time elapsed : 254169 us
+Total time elapsed : 237559 us
+Total time elapsed : 238411 us
+Total time elapsed : 243204 us
+Total time elapsed : 253133 us
+Total time elapsed : 228826 us
+Total time elapsed : 241608 us
+Total time elapsed : 234777 us
+Component 0
+regenerating max_pos_values...
+calculating max_pos_value...
+[0, 9, 18, 26, 35, 44, 52, 60, 68, 76, 83, 90, 97, 104, 111, 117, 123, 129, 136, 142, 149, 154, 160, 166, 172, 178, 183, 189, 194, 198, 203, 208, 213, 218, 222, 227, 231, 235, 239, 243, 247, 251, 256, 260, 264, 267, 271, 275, 278, 281, 284, 287, 290, 294, 297, 299, 301, 304, 307, 309, 312, 314, 316, 318]
+regenerating coef_bins...
+calculating avg_coef_bins...
+regenerating max_pos_values...
+calculating max_pos_value...
+regenerating max_pos_values...
+calculating max_pos_value...
+	Training: 
+	1% 2% 3% 4% 5% 6% 7% 8% 9% 10% 11% 12% 13% 14% 15% 16% 17% 18% 19% 20% 21% 22% 23% 24% 25% 26% 27% 28% 29% 30% 31% 32% 33% 34% 35% 36% 37% 38% 39% 40% 41% 42% 43% 44% 45% 46% 47% 48% 49% 50% 51% 52% 53% 54% 55% 56% 57% 58% 59% 60% 61% 62% 63% 64% 65% 66% 67% 68% 69% 70% 71% 72% 73% 74% 75% 76% 77% 78% 79% 80% 81% 82% 83% 84% 85% 86% 87% 88% 89% 90% 91% 92% 93% 94% 95% 96% 97% 98% 99% 100% TRAIN SET:	dc symbol length:7907535	dc actual bits:9004622	run length bits:111881637	actual AC bits:69750220	total bits:198544014
+generating DC tables...
+generating AC tables...
+default table max: 14
+max length symbols: 16
+
+	Training DONE
+Component 1
+[0, 7, 14, 20, 26, 32, 37, 43, 49, 54, 57, 60, 64, 68, 71, 74, 77, 80, 83, 86, 89, 91, 94, 97, 99, 101, 103, 105, 107, 109, 111, 113, 115, 117, 119, 122, 124, 126, 128, 130, 132, 134, 136, 138, 140, 142, 144, 146, 148, 150, 152, 153, 155, 157, 159, 160, 161, 163, 164, 165, 166, 167, 168, 169]
+regenerating coef_bins...
+calculating avg_coef_bins...
+	Training: 
+	1% 2% 3% 4% 5% 6% 7% 8% 9% 10% 11% 12% 13% 14% 15% 16% 17% 18% 19% 20% 21% 22% 23% 24% 25% 26% 27% 28% 29% 30% 31% 32% 33% 34% 35% 36% 37% 38% 39% 40% 41% 42% 43% 44% 45% 46% 47% 48% 49% 50% 51% 52% 53% 54% 55% 56% 57% 58% 59% 60% 61% 62% 63% 64% 65% 66% 67% 68% 69% 70% 71% 72% 73% 74% 75% 76% 77% 78% 79% 80% 81% 82% 83% 84% 85% 86% 87% 88% 89% 90% 91% 92% 93% 94% 95% 96% 97% 98% 99% 100% TRAIN SET:	dc symbol length:1692940	dc actual bits:1381253	run length bits:8580678	actual AC bits:3624742	total bits:15279613
+generating DC tables...
+generating AC tables...
+default table max: 15
+max length symbols: 16
+
+	Training DONE
+Component 2
+[0, 7, 14, 20, 27, 33, 38, 44, 50, 55, 58, 62, 66, 70, 73, 76, 78, 81, 84, 87, 90, 93, 96, 99, 102, 105, 108, 110, 113, 115, 117, 119, 122, 124, 127, 129, 131, 133, 135, 137, 139, 141, 143, 145, 147, 149, 151, 153, 155, 157, 158, 159, 161, 163, 164, 165, 166, 168, 169, 170, 171, 172, 173, 174]
+regenerating coef_bins...
+calculating avg_coef_bins...
+	Training: 
+	1% 2% 3% 4% 5% 6% 7% 8% 9% 10% 11% 12% 13% 14% 15% 16% 17% 18% 19% 20% 21% 22% 23% 24% 25% 26% 27% 28% 29% 30% 31% 32% 33% 34% 35% 36% 37% 38% 39% 40% 41% 42% 43% 44% 45% 46% 47% 48% 49% 50% 51% 52% 53% 54% 55% 56% 57% 58% 59% 60% 61% 62% 63% 64% 65% 66% 67% 68% 69% 70% 71% 72% 73% 74% 75% 76% 77% 78% 79% 80% 81% 82% 83% 84% 85% 86% 87% 88% 89% 90% 91% 92% 93% 94% 95% 96% 97% 98% 99% 100% TRAIN SET:	dc symbol length:1620826	dc actual bits:1286361	run length bits:7946207	actual AC bits:3149782	total bits:14003176
+generating DC tables...
+generating AC tables...
+default table max: 15
+max length symbols: 16
+
+	Training DONE
+100 qualified images.
+		images/generate_1200x1200_90/test/2.jpg: our 359017, std 506745, opt 492727, ari 453381, pro 461989, moz 460911
+		images/generate_1200x1200_90/test/33.jpg: our 210580, std 298359, opt 295258, ari 261734, pro 274723, moz 273593
+		images/generate_1200x1200_90/test/71.jpg: our 245744, std 344764, opt 336184, ari 316665, pro 325745, moz 320729
+		images/generate_1200x1200_90/test/25.jpg: our 266375, std 370632, opt 367018, ari 339771, pro 348886, moz 346439
+		images/generate_1200x1200_90/test/17.jpg: our 159816, std 222000, opt 220237, ari 198310, pro 211873, moz 211052
+		images/generate_1200x1200_90/test/54.jpg: our 186019, std 271787, opt 264059, ari 245965, pro 249229, moz 248503
+		images/generate_1200x1200_90/test/74.jpg: our 163316, std 228527, opt 225346, ari 213388, pro 213965, moz 212959
+		images/generate_1200x1200_90/test/46.jpg: our 229700, std 320605, opt 316094, ari 298909, pro 303013, moz 301758
+		images/generate_1200x1200_90/test/73.jpg: our 214845, std 310066, opt 304426, ari 269391, pro 293419, moz 288220
+		images/generate_1200x1200_90/test/22.jpg: our 233559, std 329476, opt 327252, ari 303199, pro 307779, moz 307213
+		images/generate_1200x1200_90/test/82.jpg: our 105689, std 157291, opt 148343, ari 130992, pro 144644, moz 141397
+		images/generate_1200x1200_90/test/10.jpg: our 103201, std 148949, opt 146664, ari 122238, pro 137639, moz 134903
+		images/generate_1200x1200_90/test/69.jpg: our 258228, std 357664, opt 353719, ari 331471, pro 336718, moz 335757
+		images/generate_1200x1200_90/test/64.jpg: our 186833, std 261710, opt 256975, ari 235822, pro 249116, moz 246829
+		images/generate_1200x1200_90/test/51.jpg: our 205344, std 297313, opt 293281, ari 265130, pro 276541, moz 275455
+		images/generate_1200x1200_90/test/87.jpg: our 259211, std 360535, opt 351524, ari 320718, pro 333993, moz 332602
+		images/generate_1200x1200_90/test/59.jpg: our 265121, std 365372, opt 355947, ari 336143, pro 339363, moz 338219
+		images/generate_1200x1200_90/test/60.jpg: our 207920, std 284983, opt 279895, ari 259878, pro 268287, moz 266851
+		images/generate_1200x1200_90/test/16.jpg: our 277090, std 379147, opt 368051, ari 352689, pro 353280, moz 351861
+		images/generate_1200x1200_90/test/83.jpg: our 263126, std 362599, opt 359163, ari 330803, pro 344481, moz 343354
+		images/generate_1200x1200_90/test/57.jpg: our 144012, std 204730, opt 199471, ari 190487, pro 192588, moz 190494
+		images/generate_1200x1200_90/test/94.jpg: our 291493, std 400982, opt 391772, ari 359073, pro 374606, moz 373191
+		images/generate_1200x1200_90/test/29.jpg: our 309427, std 427244, opt 421444, ari 381767, pro 397403, moz 396716
+		images/generate_1200x1200_90/test/63.jpg: our 203761, std 284206, opt 277498, ari 257394, pro 267825, moz 267094
+		images/generate_1200x1200_90/test/78.jpg: our 177819, std 244857, opt 241891, ari 226579, pro 232312, moz 230448
+		images/generate_1200x1200_90/test/35.jpg: our 294667, std 409824, opt 398668, ari 366201, pro 376724, moz 375847
+		images/generate_1200x1200_90/test/49.jpg: our 156612, std 219887, opt 216965, ari 197265, pro 209574, moz 206682
+		images/generate_1200x1200_90/test/19.jpg: our 345285, std 488942, opt 480233, ari 436252, pro 452222, moz 450913
+		images/generate_1200x1200_90/test/15.jpg: our 304493, std 431619, opt 426630, ari 383865, pro 402743, moz 401916
+		images/generate_1200x1200_90/test/52.jpg: our 237877, std 330461, opt 327272, ari 307404, pro 313410, moz 311973
+		images/generate_1200x1200_90/test/91.jpg: our 412990, std 572603, opt 560126, ari 514423, pro 523894, moz 521423
+		images/generate_1200x1200_90/test/9.jpg: our 254953, std 356531, opt 351460, ari 304621, pro 330942, moz 329255
+		images/generate_1200x1200_90/test/72.jpg: our 367208, std 514554, opt 507344, ari 455052, pro 473462, moz 471908
+		images/generate_1200x1200_90/test/28.jpg: our 194102, std 277295, opt 272007, ari 243992, pro 254244, moz 253015
+		images/generate_1200x1200_90/test/38.jpg: our 341394, std 467491, opt 462238, ari 421394, pro 434408, moz 431098
+		images/generate_1200x1200_90/test/1.jpg: our 199440, std 273346, opt 268056, ari 242988, pro 262311, moz 257815
+		images/generate_1200x1200_90/test/26.jpg: our 325185, std 447720, opt 439390, ari 413936, pro 417891, moz 417427
+		images/generate_1200x1200_90/test/97.jpg: our 287112, std 397414, opt 391605, ari 370756, pro 370126, moz 369344
+		images/generate_1200x1200_90/test/30.jpg: our 341099, std 478390, opt 472516, ari 420863, pro 444953, moz 441882
+		images/generate_1200x1200_90/test/37.jpg: our 162067, std 227379, opt 223891, ari 199632, pro 210532, moz 208463
+		images/generate_1200x1200_90/test/43.jpg: our 338875, std 479308, opt 467650, ari 430784, pro 440249, moz 438334
+		images/generate_1200x1200_90/test/89.jpg: our 194631, std 262123, opt 256461, ari 241436, pro 244496, moz 243375
+		images/generate_1200x1200_90/test/90.jpg: our 181146, std 257210, opt 252834, ari 229248, pro 236708, moz 234902
+		images/generate_1200x1200_90/test/47.jpg: our 186663, std 266514, opt 263101, ari 240001, pro 250829, moz 247832
+		images/generate_1200x1200_90/test/12.jpg: our 293360, std 406687, opt 399711, ari 377579, pro 378411, moz 377665
+		images/generate_1200x1200_90/test/23.jpg: our 221176, std 321800, opt 316079, ari 284133, pro 304073, moz 301546
+		images/generate_1200x1200_90/test/56.jpg: our 230911, std 318837, opt 315429, ari 284254, pro 300302, moz 299446
+		images/generate_1200x1200_90/test/98.jpg: our 149460, std 218755, opt 212019, ari 193082, pro 201710, moz 200562
+		images/generate_1200x1200_90/test/36.jpg: our 243744, std 339403, opt 334158, ari 317470, pro 317521, moz 316699
+		images/generate_1200x1200_90/test/3.jpg: our 350254, std 481746, opt 473931, ari 441408, pro 444795, moz 442593
+		images/generate_1200x1200_90/test/76.jpg: our 172366, std 237481, opt 233573, ari 223434, pro 226691, moz 225015
+		images/generate_1200x1200_90/test/11.jpg: our 246192, std 339160, opt 335280, ari 317039, pro 313952, moz 312146
+		images/generate_1200x1200_90/test/24.jpg: our 129670, std 178541, opt 173978, ari 167370, pro 166590, moz 165251
+		images/generate_1200x1200_90/test/42.jpg: our 164335, std 229802, opt 227392, ari 207354, pro 218412, moz 216557
+		images/generate_1200x1200_90/test/96.jpg: our 429981, std 598201, opt 578206, ari 534042, pro 539806, moz 538748
+		images/generate_1200x1200_90/test/6.jpg: our 182588, std 252942, opt 248292, ari 240298, pro 236571, moz 235303
+		images/generate_1200x1200_90/test/75.jpg: our 197409, std 285056, opt 281114, ari 251868, pro 267195, moz 265453
+		images/generate_1200x1200_90/test/86.jpg: our 234213, std 330920, opt 328337, ari 306252, pro 312419, moz 311243
+		images/generate_1200x1200_90/test/93.jpg: our 249025, std 347748, opt 345558, ari 321758, pro 330430, moz 330125
+		images/generate_1200x1200_90/test/67.jpg: our 172676, std 248672, opt 244415, ari 227952, pro 236585, moz 234971
+		images/generate_1200x1200_90/test/58.jpg: our 156205, std 216821, opt 215104, ari 202595, pro 208326, moz 207142
+		images/generate_1200x1200_90/test/77.jpg: our 283495, std 395770, opt 392846, ari 358088, pro 373654, moz 371932
+		images/generate_1200x1200_90/test/100.jpg: our 142765, std 202785, opt 199234, ari 182392, pro 192177, moz 189478
+		images/generate_1200x1200_90/test/92.jpg: our 400909, std 561388, opt 547506, ari 490633, pro 512989, moz 510999
+		images/generate_1200x1200_90/test/32.jpg: our 227755, std 325032, opt 319749, ari 293227, pro 300023, moz 299080
+		images/generate_1200x1200_90/test/5.jpg: our 361808, std 500973, opt 493067, ari 443865, pro 460848, moz 460528
+		images/generate_1200x1200_90/test/48.jpg: our 117574, std 171002, opt 163788, ari 150559, pro 159474, moz 156687
+		images/generate_1200x1200_90/test/81.jpg: our 184970, std 257405, opt 252931, ari 240647, pro 244466, moz 243437
+		images/generate_1200x1200_90/test/41.jpg: our 262763, std 363625, opt 360573, ari 333362, pro 336722, moz 335409
+		images/generate_1200x1200_90/test/80.jpg: our 370498, std 508016, opt 500411, ari 452796, pro 473765, moz 469961
+		images/generate_1200x1200_90/test/99.jpg: our 156855, std 219123, opt 212630, ari 197766, pro 204794, moz 201328
+		images/generate_1200x1200_90/test/39.jpg: our 212577, std 299613, opt 297628, ari 270960, pro 283930, moz 282438
+		images/generate_1200x1200_90/test/84.jpg: our 392328, std 548139, opt 534511, ari 485665, pro 505451, moz 504055
+		images/generate_1200x1200_90/test/27.jpg: our 266972, std 371299, opt 367986, ari 330777, pro 351480, moz 349202
+		images/generate_1200x1200_90/test/61.jpg: our 242769, std 334480, opt 331567, ari 300885, pro 318365, moz 316741
+		images/generate_1200x1200_90/test/79.jpg: our 262438, std 363239, opt 359539, ari 334430, pro 343115, moz 340957
+		images/generate_1200x1200_90/test/14.jpg: our 422002, std 592152, opt 579615, ari 532388, pro 540563, moz 537923
+		images/generate_1200x1200_90/test/65.jpg: our 257819, std 354466, opt 343843, ari 318789, pro 334241, moz 329376
+		images/generate_1200x1200_90/test/66.jpg: our 202803, std 276236, opt 271941, ari 256961, pro 262763, moz 260835
+		images/generate_1200x1200_90/test/8.jpg: our 380839, std 529463, opt 521662, ari 465956, pro 488802, moz 488237
+		images/generate_1200x1200_90/test/4.jpg: our 154831, std 220832, opt 218437, ari 202477, pro 208644, moz 207647
+		images/generate_1200x1200_90/test/7.jpg: our 264230, std 362588, opt 355339, ari 332830, pro 340249, moz 338918
+		images/generate_1200x1200_90/test/50.jpg: our 226372, std 315107, opt 312466, ari 296031, pro 299389, moz 298225
+		images/generate_1200x1200_90/test/20.jpg: our 127813, std 192575, opt 179329, ari 165337, pro 171797, moz 170673
+		images/generate_1200x1200_90/test/95.jpg: our 192101, std 276056, opt 272421, ari 253050, pro 256194, moz 255306
+		images/generate_1200x1200_90/test/21.jpg: our 249676, std 355618, opt 352248, ari 314030, pro 327177, moz 326400
+		images/generate_1200x1200_90/test/70.jpg: our 395175, std 547366, opt 536978, ari 481942, pro 499004, moz 495695
+		images/generate_1200x1200_90/test/68.jpg: our 259877, std 356725, opt 354415, ari 320766, pro 341308, moz 339142
+		images/generate_1200x1200_90/test/45.jpg: our 88454, std 123043, opt 117531, ari 110092, pro 113567, moz 111399
+		images/generate_1200x1200_90/test/62.jpg: our 201365, std 282471, opt 277901, ari 259628, pro 265828, moz 264148
+		images/generate_1200x1200_90/test/55.jpg: our 267010, std 372145, opt 365893, ari 327948, pro 343907, moz 342195
+		images/generate_1200x1200_90/test/13.jpg: our 268451, std 373564, opt 368964, ari 331888, pro 347417, moz 345227
+		images/generate_1200x1200_90/test/34.jpg: our 283978, std 408228, opt 401657, ari 365857, pro 378968, moz 377238
+		images/generate_1200x1200_90/test/44.jpg: our 306714, std 422117, opt 416667, ari 376670, pro 395269, moz 393108
+		images/generate_1200x1200_90/test/88.jpg: our 265691, std 370074, opt 366474, ari 341926, pro 349556, moz 348669
+		images/generate_1200x1200_90/test/40.jpg: our 156202, std 217492, opt 216067, ari 185674, pro 205133, moz 202246
+		images/generate_1200x1200_90/test/18.jpg: our 114187, std 164448, opt 157837, ari 150408, pro 153018, moz 151462
+		images/generate_1200x1200_90/test/31.jpg: our 208618, std 293703, opt 290761, ari 270402, pro 277087, moz 275023
+		images/generate_1200x1200_90/test/53.jpg: our 243213, std 347443, opt 333783, ari 306775, pro 313838, moz 312665
+		images/generate_1200x1200_90/test/85.jpg: our 225124, std 316762, opt 311665, ari 283691, pro 296650, moz 294468
+our 24125631, std 33744289, opt 33153122, ari 30437466, pro 31464546, moz 31288874, lossyonly 28071709
+95
+Total time elapsed : 239679 us
+Total time elapsed : 250629 us
+Total time elapsed : 246758 us
+Total time elapsed : 248042 us
+Total time elapsed : 257676 us
+Total time elapsed : 239422 us
+Total time elapsed : 241294 us
+Total time elapsed : 245513 us
+Total time elapsed : 250840 us
+Total time elapsed : 242987 us
+Total time elapsed : 244504 us
+Total time elapsed : 256238 us
+Total time elapsed : 251814 us
+Total time elapsed : 255266 us
+Total time elapsed : 254275 us
+Total time elapsed : 251182 us
+Total time elapsed : 246527 us
+Total time elapsed : 240858 us
+Total time elapsed : 254965 us
+Total time elapsed : 249284 us
+Total time elapsed : 247345 us
+Total time elapsed : 254132 us
+Total time elapsed : 242678 us
+Total time elapsed : 236673 us
+Total time elapsed : 249908 us
+Total time elapsed : 248653 us
+Total time elapsed : 253022 us
+Total time elapsed : 238675 us
+Total time elapsed : 249397 us
+Total time elapsed : 259715 us
+Total time elapsed : 241970 us
+Total time elapsed : 239044 us
+Total time elapsed : 237194 us
+Total time elapsed : 250389 us
+Total time elapsed : 247692 us
+Total time elapsed : 238289 us
+Total time elapsed : 241674 us
+Total time elapsed : 253890 us
+Total time elapsed : 250438 us
+Total time elapsed : 238136 us
+Total time elapsed : 241800 us
+Total time elapsed : 242286 us
+Total time elapsed : 261248 us
+Total time elapsed : 252882 us
+Total time elapsed : 233020 us
+Total time elapsed : 252630 us
+Total time elapsed : 247511 us
+Total time elapsed : 244735 us
+Total time elapsed : 250844 us
+Total time elapsed : 245082 us
+Total time elapsed : 242109 us
+Total time elapsed : 236608 us
+Total time elapsed : 240169 us
+Total time elapsed : 242105 us
+Total time elapsed : 242544 us
+Total time elapsed : 242881 us
+Total time elapsed : 236516 us
+Total time elapsed : 244083 us
+Total time elapsed : 246793 us
+Total time elapsed : 237999 us
+Total time elapsed : 246332 us
+Total time elapsed : 245078 us
+Total time elapsed : 247722 us
+Total time elapsed : 244230 us
+Total time elapsed : 251715 us
+Total time elapsed : 240312 us
+Total time elapsed : 249694 us
+Total time elapsed : 252684 us
+Total time elapsed : 258089 us
+Total time elapsed : 251431 us
+Total time elapsed : 256214 us
+Total time elapsed : 270155 us
+Total time elapsed : 249848 us
+Total time elapsed : 244393 us
+Total time elapsed : 247540 us
+Total time elapsed : 230500 us
+Total time elapsed : 252413 us
+Total time elapsed : 243693 us
+Total time elapsed : 249176 us
+Total time elapsed : 246617 us
+Total time elapsed : 240508 us
+Total time elapsed : 243080 us
+Total time elapsed : 256001 us
+Total time elapsed : 256398 us
+Total time elapsed : 239084 us
+Total time elapsed : 245618 us
+Total time elapsed : 251904 us
+Total time elapsed : 248726 us
+Total time elapsed : 244088 us
+Total time elapsed : 236737 us
+Total time elapsed : 257714 us
+Total time elapsed : 252842 us
+Total time elapsed : 237532 us
+Total time elapsed : 249980 us
+Total time elapsed : 245230 us
+Total time elapsed : 258965 us
+Total time elapsed : 241698 us
+Total time elapsed : 230566 us
+Total time elapsed : 243191 us
+Total time elapsed : 237337 us
+Component 0
+regenerating max_pos_values...
+calculating max_pos_value...
+[0, 10, 20, 30, 40, 50, 59, 68, 77, 87, 95, 103, 111, 119, 127, 134, 141, 149, 157, 164, 172, 178, 184, 190, 197, 204, 210, 217, 223, 228, 234, 240, 246, 252, 257, 263, 268, 273, 278, 283, 288, 293, 298, 303, 308, 312, 317, 321, 325, 329, 333, 337, 341, 346, 350, 353, 356, 360, 364, 367, 371, 374, 377, 380]
+regenerating coef_bins...
+calculating avg_coef_bins...
+regenerating max_pos_values...
+calculating max_pos_value...
+regenerating max_pos_values...
+calculating max_pos_value...
+	Training: 
+	1% 2% 3% 4% 5% 6% 7% 8% 9% 10% 11% 12% 13% 14% 15% 16% 17% 18% 19% 20% 21% 22% 23% 24% 25% 26% 27% 28% 29% 30% 31% 32% 33% 34% 35% 36% 37% 38% 39% 40% 41% 42% 43% 44% 45% 46% 47% 48% 49% 50% 51% 52% 53% 54% 55% 56% 57% 58% 59% 60% 61% 62% 63% 64% 65% 66% 67% 68% 69% 70% 71% 72% 73% 74% 75% 76% 77% 78% 79% 80% 81% 82% 83% 84% 85% 86% 87% 88% 89% 90% 91% 92% 93% 94% 95% 96% 97% 98% 99% 100% TRAIN SET:	dc symbol length:8504416	dc actual bits:10130682	run length bits:164297440	actual AC bits:110851029	total bits:293783567
+generating DC tables...
+generating AC tables...
+default table max: 14
+max length symbols: 17
+
+	Training DONE
+Component 1
+[0, 8, 16, 23, 30, 38, 44, 51, 57, 62, 66, 70, 75, 79, 83, 87, 90, 94, 98, 102, 106, 109, 112, 116, 119, 122, 125, 128, 131, 134, 137, 140, 143, 146, 149, 152, 155, 158, 161, 164, 167, 170, 173, 176, 178, 181, 184, 187, 190, 193, 196, 198, 200, 202, 205, 207, 209, 211, 213, 215, 217, 219, 221, 222]
+regenerating coef_bins...
+calculating avg_coef_bins...
+	Training: 
+	1% 2% 3% 4% 5% 6% 7% 8% 9% 10% 11% 12% 13% 14% 15% 16% 17% 18% 19% 20% 21% 22% 23% 24% 25% 26% 27% 28% 29% 30% 31% 32% 33% 34% 35% 36% 37% 38% 39% 40% 41% 42% 43% 44% 45% 46% 47% 48% 49% 50% 51% 52% 53% 54% 55% 56% 57% 58% 59% 60% 61% 62% 63% 64% 65% 66% 67% 68% 69% 70% 71% 72% 73% 74% 75% 76% 77% 78% 79% 80% 81% 82% 83% 84% 85% 86% 87% 88% 89% 90% 91% 92% 93% 94% 95% 96% 97% 98% 99% 100% TRAIN SET:	dc symbol length:1870227	dc actual bits:1626637	run length bits:13872795	actual AC bits:6487725	total bits:23857384
+generating DC tables...
+generating AC tables...
+default table max: 14
+max length symbols: 16
+
+	Training DONE
+Component 2
+[0, 8, 16, 23, 31, 39, 45, 51, 57, 63, 67, 71, 76, 80, 84, 88, 91, 95, 99, 103, 107, 111, 115, 119, 123, 126, 129, 132, 136, 139, 142, 145, 148, 151, 154, 157, 160, 163, 166, 169, 172, 175, 178, 180, 183, 186, 189, 192, 194, 197, 199, 201, 204, 207, 209, 211, 213, 216, 218, 220, 222, 224, 226, 228]
+regenerating coef_bins...
+calculating avg_coef_bins...
+	Training: 
+	1% 2% 3% 4% 5% 6% 7% 8% 9% 10% 11% 12% 13% 14% 15% 16% 17% 18% 19% 20% 21% 22% 23% 24% 25% 26% 27% 28% 29% 30% 31% 32% 33% 34% 35% 36% 37% 38% 39% 40% 41% 42% 43% 44% 45% 46% 47% 48% 49% 50% 51% 52% 53% 54% 55% 56% 57% 58% 59% 60% 61% 62% 63% 64% 65% 66% 67% 68% 69% 70% 71% 72% 73% 74% 75% 76% 77% 78% 79% 80% 81% 82% 83% 84% 85% 86% 87% 88% 89% 90% 91% 92% 93% 94% 95% 96% 97% 98% 99% 100% TRAIN SET:	dc symbol length:1786206	dc actual bits:1526562	run length bits:12940800	actual AC bits:5795313	total bits:22048881
+generating DC tables...
+generating AC tables...
+default table max: 14
+max length symbols: 16
+
+	Training DONE
+100 qualified images.
+		images/generate_1200x1200_95/test/2.jpg: our 506211, std 728793, opt 693937, ari 639460, pro 644571, moz 640607
+		images/generate_1200x1200_95/test/33.jpg: our 312679, std 452163, opt 444065, ari 392511, pro 413767, moz 408240
+		images/generate_1200x1200_95/test/71.jpg: our 360482, std 526143, opt 507462, ari 470648, pro 483495, moz 478365
+		images/generate_1200x1200_95/test/25.jpg: our 383736, std 538911, opt 524765, ari 485930, pro 495597, moz 491572
+		images/generate_1200x1200_95/test/17.jpg: our 241037, std 344728, opt 339406, ari 304025, pro 321923, moz 320619
+		images/generate_1200x1200_95/test/54.jpg: our 294817, std 442943, opt 433871, ari 394365, pro 410285, moz 403380
+		images/generate_1200x1200_95/test/74.jpg: our 247680, std 354596, opt 347024, ari 327244, pro 325920, moz 324529
+		images/generate_1200x1200_95/test/46.jpg: our 335943, std 474072, opt 464405, ari 433916, pro 439176, moz 435403
+		images/generate_1200x1200_95/test/73.jpg: our 337385, std 501996, opt 492719, ari 429791, pro 464190, moz 458316
+		images/generate_1200x1200_95/test/22.jpg: our 345233, std 495029, opt 487290, ari 447588, pro 457306, moz 452178
+		images/generate_1200x1200_95/test/82.jpg: our 175558, std 262409, opt 255812, ari 225064, pro 249372, moz 243738
+		images/generate_1200x1200_95/test/10.jpg: our 154041, std 220226, opt 218410, ari 184503, pro 203817, moz 200737
+		images/generate_1200x1200_95/test/69.jpg: our 368818, std 519939, opt 506290, ari 471175, pro 478373, moz 475376
+		images/generate_1200x1200_95/test/64.jpg: our 282271, std 406349, opt 399068, ari 359786, pro 381404, moz 378256
+		images/generate_1200x1200_95/test/51.jpg: our 317270, std 472737, opt 464507, ari 415074, pro 434255, moz 429769
+		images/generate_1200x1200_95/test/87.jpg: our 374922, std 548959, opt 526765, ari 474122, pro 490334, moz 488522
+		images/generate_1200x1200_95/test/59.jpg: our 369859, std 523453, opt 500202, ari 469050, pro 470054, moz 467791
+		images/generate_1200x1200_95/test/60.jpg: our 302143, std 423647, opt 411104, ari 381224, pro 388762, moz 386726
+		images/generate_1200x1200_95/test/16.jpg: our 385103, std 541476, opt 513227, ari 488485, pro 486063, moz 483872
+		images/generate_1200x1200_95/test/83.jpg: our 381353, std 533352, opt 522059, ari 476638, pro 491941, moz 490983
+		images/generate_1200x1200_95/test/57.jpg: our 222865, std 323324, opt 317674, ari 296116, pro 305061, moz 300751
+		images/generate_1200x1200_95/test/94.jpg: our 413179, std 582127, opt 557298, ari 510647, pro 526293, moz 524364
+		images/generate_1200x1200_95/test/29.jpg: our 439839, std 622821, opt 602620, ari 543791, pro 560918, moz 558501
+		images/generate_1200x1200_95/test/63.jpg: our 298502, std 421625, opt 408690, ari 375617, pro 389970, moz 388305
+		images/generate_1200x1200_95/test/78.jpg: our 262855, std 369157, opt 361759, ari 336864, pro 343741, moz 341001
+		images/generate_1200x1200_95/test/35.jpg: our 411914, std 584963, opt 556675, ari 511037, pro 521008, moz 518565
+		images/generate_1200x1200_95/test/49.jpg: our 235262, std 338294, opt 334138, ari 300041, pro 318323, moz 314894
+		images/generate_1200x1200_95/test/19.jpg: our 495719, std 717029, opt 691440, ari 628534, pro 643830, moz 639961
+		images/generate_1200x1200_95/test/15.jpg: our 442526, std 643460, opt 625087, ari 560872, pro 581362, moz 579064
+		images/generate_1200x1200_95/test/52.jpg: our 343117, std 484338, opt 472727, ari 440781, pro 448445, moz 445983
+		images/generate_1200x1200_95/test/91.jpg: our 582431, std 811345, opt 776039, ari 718236, pro 720932, moz 713331
+		images/generate_1200x1200_95/test/9.jpg: our 365186, std 524985, opt 509314, ari 444486, pro 474955, moz 470593
+		images/generate_1200x1200_95/test/72.jpg: our 525628, std 732736, opt 708259, ari 642141, pro 658573, moz 651311
+		images/generate_1200x1200_95/test/28.jpg: our 289020, std 424567, opt 414314, ari 369252, pro 386321, moz 381772
+		images/generate_1200x1200_95/test/38.jpg: our 488363, std 663532, opt 643245, ari 592482, pro 605182, moz 596768
+		images/generate_1200x1200_95/test/1.jpg: our 288594, std 406629, opt 394822, ari 358772, pro 378990, moz 375309
+		images/generate_1200x1200_95/test/26.jpg: our 462251, std 644869, opt 620625, ari 582857, pro 584437, moz 581043
+		images/generate_1200x1200_95/test/97.jpg: our 413277, std 573431, opt 556351, ari 527753, pro 522511, moz 518615
+		images/generate_1200x1200_95/test/30.jpg: our 494696, std 705408, opt 686575, ari 612785, pro 635475, moz 629497
+		images/generate_1200x1200_95/test/37.jpg: our 229368, std 330307, opt 320907, ari 284858, pro 297331, moz 294915
+		images/generate_1200x1200_95/test/43.jpg: our 483963, std 700852, opt 672227, ari 617354, pro 625956, moz 621524
+		images/generate_1200x1200_95/test/89.jpg: our 281906, std 387217, opt 373606, ari 354475, pro 352755, moz 350575
+		images/generate_1200x1200_95/test/90.jpg: our 257241, std 372559, opt 360249, ari 328919, pro 334776, moz 331821
+		images/generate_1200x1200_95/test/47.jpg: our 289014, std 414965, opt 410950, ari 371638, pro 391878, moz 385158
+		images/generate_1200x1200_95/test/12.jpg: our 424766, std 599095, opt 582770, ari 544520, pro 548851, moz 542551
+		images/generate_1200x1200_95/test/23.jpg: our 348079, std 507117, opt 503333, ari 448362, pro 470412, moz 468115
+		images/generate_1200x1200_95/test/56.jpg: our 330956, std 469873, opt 456341, ari 409180, pro 428919, moz 427326
+		images/generate_1200x1200_95/test/98.jpg: our 237772, std 348957, opt 344750, ari 308742, pro 331028, moz 325426
+		images/generate_1200x1200_95/test/36.jpg: our 353907, std 498198, opt 486493, ari 456801, pro 459290, moz 455454
+		images/generate_1200x1200_95/test/3.jpg: our 497897, std 686836, opt 661371, ari 619654, pro 617137, moz 611092
+		images/generate_1200x1200_95/test/76.jpg: our 252642, std 354433, opt 346164, ari 326480, pro 331445, moz 328812
+		images/generate_1200x1200_95/test/11.jpg: our 359456, std 496220, opt 483096, ari 459159, pro 449496, moz 445434
+		images/generate_1200x1200_95/test/24.jpg: our 198929, std 282853, opt 274060, ari 263530, pro 258255, moz 256568
+		images/generate_1200x1200_95/test/42.jpg: our 246741, std 349994, opt 344812, ari 314217, pro 328240, moz 324903
+		images/generate_1200x1200_95/test/96.jpg: our 591811, std 838573, opt 789382, ari 733644, pro 731406, moz 725748
+		images/generate_1200x1200_95/test/6.jpg: our 269338, std 381255, opt 372044, ari 353122, pro 352386, moz 349689
+		images/generate_1200x1200_95/test/75.jpg: our 305357, std 456216, opt 448712, ari 397057, pro 420754, moz 417562
+		images/generate_1200x1200_95/test/86.jpg: our 346218, std 504478, opt 494513, ari 453663, pro 464933, moz 462678
+		images/generate_1200x1200_95/test/93.jpg: our 370375, std 530510, opt 522350, ari 479268, pro 490397, moz 488992
+		images/generate_1200x1200_95/test/67.jpg: our 275513, std 410316, opt 404993, ari 367973, pro 385148, moz 382876
+		images/generate_1200x1200_95/test/58.jpg: our 233764, std 331643, opt 327960, ari 303835, pro 313351, moz 311840
+		images/generate_1200x1200_95/test/77.jpg: our 413272, std 582123, opt 569233, ari 518132, pro 536673, moz 532575
+		images/generate_1200x1200_95/test/100.jpg: our 218571, std 319977, opt 314500, ari 284077, pro 298526, moz 295794
+		images/generate_1200x1200_95/test/92.jpg: our 565525, std 808306, opt 769331, ari 694922, pro 714387, moz 707897
+		images/generate_1200x1200_95/test/32.jpg: our 336058, std 484387, opt 471591, ari 431877, pro 439908, moz 436111
+		images/generate_1200x1200_95/test/5.jpg: our 512875, std 713807, opt 686967, ari 624333, pro 637464, moz 633236
+		images/generate_1200x1200_95/test/48.jpg: our 188311, std 277351, opt 272649, ari 245230, pro 264510, moz 258766
+		images/generate_1200x1200_95/test/81.jpg: our 276567, std 396647, opt 388940, ari 360656, pro 371156, moz 369187
+		images/generate_1200x1200_95/test/41.jpg: our 384629, std 530016, opt 518782, ari 484252, pro 482818, moz 477435
+		images/generate_1200x1200_95/test/80.jpg: our 525064, std 718217, opt 690871, ari 633215, pro 651998, moz 645086
+		images/generate_1200x1200_95/test/99.jpg: our 240203, std 348569, opt 338710, ari 309745, pro 324238, moz 318768
+		images/generate_1200x1200_95/test/39.jpg: our 314598, std 448413, opt 443024, ari 401069, pro 419639, moz 415206
+		images/generate_1200x1200_95/test/84.jpg: our 551119, std 793089, opt 756445, ari 686739, pro 705055, moz 700433
+		images/generate_1200x1200_95/test/27.jpg: our 385828, std 541229, opt 527895, ari 476298, pro 497564, moz 494743
+		images/generate_1200x1200_95/test/61.jpg: our 354582, std 501146, opt 492233, ari 440973, pro 461683, moz 459726
+		images/generate_1200x1200_95/test/79.jpg: our 375094, std 528095, opt 512591, ari 475328, pro 485034, moz 482158
+		images/generate_1200x1200_95/test/14.jpg: our 598648, std 848627, opt 811699, ari 749533, pro 751966, moz 745237
+		images/generate_1200x1200_95/test/65.jpg: our 366013, std 511813, opt 488914, ari 451887, pro 470242, moz 465020
+		images/generate_1200x1200_95/test/66.jpg: our 299656, std 416839, opt 407881, ari 381896, pro 388194, moz 385339
+		images/generate_1200x1200_95/test/8.jpg: our 542650, std 770194, opt 740118, ari 666455, pro 686677, moz 682422
+		images/generate_1200x1200_95/test/4.jpg: our 242141, std 353686, opt 350166, ari 319310, pro 329389, moz 329023
+		images/generate_1200x1200_95/test/7.jpg: our 370342, std 521343, opt 499913, ari 466520, pro 473062, moz 470981
+		images/generate_1200x1200_95/test/50.jpg: our 328964, std 466294, opt 456297, ari 428455, pro 433157, moz 430254
+		images/generate_1200x1200_95/test/20.jpg: our 219728, std 338306, opt 324576, ari 291488, pro 313201, moz 309034
+		images/generate_1200x1200_95/test/95.jpg: our 291181, std 423019, opt 416492, ari 382945, pro 390967, moz 385939
+		images/generate_1200x1200_95/test/21.jpg: our 367425, std 527621, opt 516538, ari 462866, pro 480811, moz 474981
+		images/generate_1200x1200_95/test/70.jpg: our 559042, std 778700, opt 746092, ari 676174, pro 693969, moz 683159
+		images/generate_1200x1200_95/test/68.jpg: our 376322, std 525758, opt 514640, ari 467086, pro 488505, moz 485213
+		images/generate_1200x1200_95/test/45.jpg: our 148023, std 211808, opt 205737, ari 189813, pro 196227, moz 194564
+		images/generate_1200x1200_95/test/62.jpg: our 294234, std 422282, opt 412238, ari 378408, pro 389730, moz 387150
+		images/generate_1200x1200_95/test/55.jpg: our 379718, std 541954, opt 522033, ari 473115, pro 484769, moz 481774
+		images/generate_1200x1200_95/test/13.jpg: our 393338, std 557862, opt 543790, ari 488442, pro 510183, moz 503489
+		images/generate_1200x1200_95/test/34.jpg: our 418752, std 617303, opt 600518, ari 542582, pro 557713, moz 555033
+		images/generate_1200x1200_95/test/44.jpg: our 436211, std 619116, opt 597081, ari 541092, pro 559294, moz 555582
+		images/generate_1200x1200_95/test/88.jpg: our 381902, std 537033, opt 522499, ari 486782, pro 494426, moz 492131
+		images/generate_1200x1200_95/test/40.jpg: our 227012, std 322962, opt 316996, ari 275426, pro 298520, moz 295666
+		images/generate_1200x1200_95/test/18.jpg: our 188309, std 277227, opt 271741, ari 252600, pro 260639, moz 257574
+		images/generate_1200x1200_95/test/31.jpg: our 307489, std 441342, opt 431813, ari 399160, pro 407627, moz 404166
+		images/generate_1200x1200_95/test/53.jpg: our 346868, std 509246, opt 480479, ari 440708, pro 448192, moz 445489
+		images/generate_1200x1200_95/test/85.jpg: our 329358, std 477793, opt 464833, ari 418336, pro 435547, moz 432776
+our 35192400, std 50148528, opt 48667969, ari 44518039, pro 45754736, moz 45376783, lossyonly 41318744
