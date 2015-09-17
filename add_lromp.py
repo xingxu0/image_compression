@@ -2,7 +2,7 @@ import os
 
 folder = []
 #for i in range(50, 100, 5):
-for i in range(200, 1400, 200):
+for i in [300]:#range(200, 1400, 200):
 	folder.append(i)
 print folder
 #exit()
