@@ -64,6 +64,8 @@
 /* # undef __CHAR_UNSIGNED__ */
 #endif
 
+#define TWO_FILE_COMMANDLINE
+
 /* Define to empty if `const' does not conform to ANSI C. */
 /* #undef const */
 

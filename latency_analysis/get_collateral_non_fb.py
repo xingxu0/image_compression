@@ -12,13 +12,13 @@ bad_backend = 0
 
 # hit ratio improvement for every 1% increment of cache size,
 # 50% extra cache increaese 3.6% hit ratio
-edge_cache_hr = 0.0036/5
+edge_cache_hr = 1.6*0.0036/5
 
 # 50% extra cache increaese 5.5% hit ratio
-origin_cache_hr = 0.0055/5
+origin_cache_hr = 1.6*0.0055/5
 
-edge_current_hr = 0.58
-origin_current_hr = 0.32
+edge_current_hr = 0.50
+origin_current_hr = 0.25
 
 measured_file_size = 100000
 
@@ -94,7 +94,8 @@ for s in c_r:
 	backend_r = 1 - edge_r - origin_r
 	if c_r.index(s) == 0:
 		base = [edge_r, origin_r, backend_r]
-	print "\tedge hr", edge_r, "\torigin hr", t__2, "(0.58, 0.32)"
+	print "\tedge hr", edge_r, "\torigin hr", t__2, "(0.50, 0.25)"
+
 	print "\tedge   ", edge_r, get_r(edge_r, base[0])
 
 	print "\tbackend request reduction"

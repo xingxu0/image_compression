@@ -4,6 +4,15 @@
 import os, pickle, time, sys
 from multiprocessing.pool import ThreadPool
 
+def pdf_cdf(b):
+	c = []
+	pre = 0
+	for x in b:
+		pre += x
+		c.append(pre)
+	return c
+
+
 def worker(a,b):
 	global x1, x2, y1, y2
 	x = []
@@ -48,6 +57,15 @@ def log_result(result):
 	final_x += result[0]
 	final_y += result[1]
 
+def get_close_y(y, y_):
+	close_i = 0
+	close = 100000000000000000000
+	for i in range(len(y)):
+		if abs(y[i] - y_) < close:
+			close = abs(y[i] - y_)
+			close_i = i
+	return close_i
+
 f1 = sys.argv[1]
 f2 = sys.argv[2]
 f3 = sys.argv[3]
@@ -79,6 +97,8 @@ with open(f1, 'rb') as f_in:
 print min(x1), max(x1), sum(y1)
 print min(x2), max(x2), sum(y2)
 
+y1_cdf = pdf_cdf(y1)
+
 
 final_x_, final_y_ = worker(-1+int(min(x1))+int(min(x2)),1+int(max(x1))+int(max(x2)))
 
@@ -89,14 +109,15 @@ final_x_, final_y_ = worker(-1+int(min(x1))+int(min(x2)),1+int(max(x1))+int(max(
 final_x = []
 final_y = []
 t_ = 0.0
+final_y_cdf = pdf_cdf(final_y_)
 for i in range(len(final_x_)):
-	if final_x_[i] <= 0:
-		t_ += final_y_[i]
+	t_ = final_y_cdf[i]
+	ttt = x1[get_close_y(y1_cdf, t_)]
+	if final_x_[i] < ttt:
+		final_x.append(int(round(ttt)))
 	else:
-		t_ += final_y_[i]
 		final_x.append(final_x_[i])
-		final_y.append(t_)
-		t_ = 0.0
+	final_y.append(final_y_[i])
 
 print max(final_x)
 p=0.0
