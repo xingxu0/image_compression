@@ -36,7 +36,7 @@ for f in fname:
 #ax.plot(OB_x, OB_y)
 #legend.append("Origin to Backend")
 ax.legend(legend, 4)
-#ax.set_xlim([0, 1500])
+ax.set_xlim([0, 4500])
 #ax.set_xscale("log")
 #ax.set_yscale("log")
 ax.plot([0,20000],[0.5,0.5])

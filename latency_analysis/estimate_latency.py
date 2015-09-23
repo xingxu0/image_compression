@@ -119,6 +119,23 @@ for i in range(len(final_x_)):
 		final_x.append(final_x_[i])
 	final_y.append(final_y_[i])
 
+final_x2_ = []
+final_y2_ = []
+last = -1
+y_ = 0.0
+for i in range(len(final_x)):
+	if final_x[i] != last:
+		if i > 0:
+			final_x2_.append(last)
+			final_y2_.append(y_)
+		y_ = final_y[i]
+		last = final_x[i]
+	else:
+		y_ += final_y[i]
+
+final_x = final_x2_
+final_y = final_y2_
+
 print max(final_x)
 p=0.0
 for x in final_y:

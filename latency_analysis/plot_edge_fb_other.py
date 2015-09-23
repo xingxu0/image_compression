@@ -62,7 +62,9 @@ def get_cache(i):
 	print t_
 	return x, y
 
-
+g_i = -1
+line_ = ["-k", "--b", ":g", "-.r", "-g"]
+line_label = {}
 
 scheme_number = len(sys.argv) - 2
 schemes = []
@@ -208,11 +210,14 @@ for i in range(len(hr)):
 
 	if i > 0:
 		if t_schemes[i][0] == "L-ROMP-Same-Size":
-			ax.plot(x[:t__], cdf_y[:t__], "--b")
+			ax.plot(x[:t__], cdf_y[:t__], "-g", linewidth=2)
 		else:
-			ax.plot(x[:t__], cdf_y[:t__],  linewidth=line_width)
+			g_i += 1
+			ax.plot(x[:t__], cdf_y[:t__], line_[g_i], linewidth=line_width)
+
 	else:
-		ax.plot(x[:t__], cdf_y[:t__], "-k",  linewidth=line_width)
+		g_i += 1
+		ax.plot(x[:t__], cdf_y[:t__], line_[g_i],  linewidth=line_width)
 	x_all[i] = x
 	y_all[i] = cdf_y
 	'''
@@ -260,6 +265,7 @@ print xxx
 print yyy
 '''
 
+g_i = 0
 legend2 = []
 ax2_minx = 10000
 ax2_maxx = -1
@@ -306,9 +312,10 @@ for ii in range(1, len(x_all)):
 	#	yyyy.append(1-y)
 	#ax2.plot(xxx,yyyy, "-")
 	if t_schemes[ii][0] == "L-ROMP-Same-Size":
-		ax2.plot(xxx,yyy,"--b",  linewidth=line_width)
+		ax2.plot(xxx,yyy,"-g",  linewidth=2)
 	else:
-		ax2.plot(xxx,yyy,"-",  linewidth=line_width)
+		g_i += 1
+		ax2.plot(xxx,yyy, line_[g_i],  linewidth=line_width)
 	legend2.append(schemes[ii-1][0]+"-Facebook")
 	ax2_minx = min(ax2_minx, min(xxx))
 	ax2_maxx = max(ax2_maxx, max(xxx))
@@ -319,11 +326,12 @@ ax2.grid()
 #ax2.set_yscale("log")
 #ax2.set_ylim(ax2.get_ylim()[::-1])
 ax2.set_xlim([1.12*ax2_minx,1.12*ax2_maxx])
+ax2.set_xlim([-800, 600])
 
-ax.set_xlim([0,5500])
+ax.set_xlim([0,4500])
 
-ax.set_xticks([0,1000,2000,3000])
-ax2.set_xticks([-600,-300,0,300])
+ax.set_xticks([0,1000,2000,3000,4000])
+ax2.set_xticks([-500,0,500])
 ax2.set_yticklabels([])
 #ax2.set_yticklabels(["0","0.9","0.99"])
 
@@ -331,7 +339,10 @@ ax2.set_yticklabels([])
 
 #ax.plot(OB_x, OB_y)
 #legend.append("Origin to Backend")
-ax.legend(legend, 4)
+
+legend[legend.index("L-ROMP-Same-Size")] = "L-ROMP'"
+
+ax.legend(legend, 4, fontsize=legend_font_size)
 #ax.legend(["W/o Re-Compression", "W/ Re-Compression"], 4)
 
 #ax.set_xscale("log")

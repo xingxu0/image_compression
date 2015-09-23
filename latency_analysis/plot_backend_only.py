@@ -184,8 +184,29 @@ for i in range(len(hr)):
 			if f == fname[1]:
 				for ii in range(len(x)):
 					x[ii] += bad_origin
+
+			t__ = 0.0
+			for ai in range(len(x)):
+				if x[ai] < 200:
+					t__+=y[ai]
+				else:
+					break
+			x__=[]
+			y__=[]
+			for ai in range(1,200):
+				x__.append(ai)
+				y__.append(t__/200.0)
+
+			for ai in range(len(x)):
+				if x[ai]>=200:
+					x__.append(x[ai])
+					y__.append(y[ai])
+			x = x__
+			y = y__
+			print "!!!"
+
 			print f, min(x), max(x)
-			print x[:10],y[:10]
+			print x[:200],y[:200]
 			x_min = min(x_min, min(x))
 			x_max = max(x_max, max(x))
 			for j in range(len(x)):
@@ -319,19 +340,19 @@ for ii in range(1, len(x_all)):
 #ax2.set_xlim([1.12*ax2_minx,1.12*ax2_maxx])
 
 #ax.set_xlim([0,x_lim])
-ax.set_xlim([0,20000])
+ax.set_xlim([0,4500])
 ax.set_ylim([0,1])
 
 
 #ax2.set_yticklabels([])
 #ax2.set_yticklabels(["0","0.9","0.99"])
-
+ax.set_xticks([0,1000,2000,3000,4000])
 
 
 #ax.plot(OB_x, OB_y)
 #legend.append("Origin to Backend")
 ax.legend(legend, 4, fontsize = legend_font_size)
-ax.legend(["W/o Re-Compression", "W/ Re-Compression"], 4, fontsize = legend_font_size)
+ax.legend(["W/o Recompression", "W/ Recompression"], 4, fontsize = legend_font_size)
 
 #ax.set_xscale("log")
 #ax.set_yscale("log")

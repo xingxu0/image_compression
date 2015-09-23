@@ -182,7 +182,11 @@ for i in range(len(hr)):
 				for ii in range(len(x)):
 					x[ii] += bad_origin
 			print f, min(x), max(x)
-			print x[:10],y[:10]
+			ttt = 0.0
+			for xx_ in y:
+				ttt+=xx_
+			print "**", ttt, f
+			print x[:100],y[:100]
 			x_min = min(x_min, min(x))
 			x_max = max(x_max, max(x))
 			for j in range(len(x)):
@@ -321,12 +325,14 @@ ax2.grid()
 #ax2.set_ylim(ax2.get_ylim()[::-1])
 ax2.set_xlim([0,1.12*ax2_maxx])
 
-ax.set_xlim([0,5500])
+ax.set_xlim([0,4500])
 ax.set_ylim([0,1])
 
 ax2.set_yticklabels([])
 #ax2.set_yticklabels(["0","0.9","0.99"])
 ax2.set_xticks([0,200,400,600])
+ax.set_xticks([0,1000,2000,3000,4000])
+
 
 
 
