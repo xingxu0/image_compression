@@ -437,10 +437,10 @@ Copyright (C) 2012 Free Software Foundation, Inc.
 This config.status script is free software; the Free Software Foundation
 gives unlimited permission to copy, distribute and modify it."
 
-ac_pwd='/home/xing/research/image_compression_github/image_compression/libjpeg-turbo-2_3_dc-threshold'
+ac_pwd='/home/zahaib/ROMP/image_compression/libjpeg-turbo-2_3_dc-threshold'
 srcdir='.'
 INSTALL='/usr/bin/install -c'
-AWK='gawk'
+AWK='mawk'
 test -n "$AWK" || AWK=awk
 # The default lists apply if the user does not specify any file.
 ac_need_defaults=:
@@ -629,7 +629,7 @@ echo 'BEGIN {' >"$ac_tmp/subs1.awk" &&
 cat >>"$ac_tmp/subs1.awk" <<\_ACAWK &&
 S["LTLIBOBJS"]=""
 S["LIBOBJS"]=""
-S["BUILD"]="20150914"
+S["BUILD"]="20150923"
 S["DEBARCH"]="amd64"
 S["RPM_CONFIG_ARGS"]=""
 S["RPMARCH"]="x86_64"
@@ -728,19 +728,19 @@ S["CFLAGS"]="-O3"
 S["CC"]="gcc"
 S["am__untar"]="${AMTAR} xf -"
 S["am__tar"]="${AMTAR} chof - \"$$tardir\""
-S["AMTAR"]="${SHELL} /home/xing/research/image_compression_github/image_compression/libjpeg-turbo-2_3_dc-threshold/missing --run tar"
+S["AMTAR"]="${SHELL} /home/zahaib/ROMP/image_compression/libjpeg-turbo-2_3_dc-threshold/missing --run tar"
 S["am__leading_dot"]="."
 S["SET_MAKE"]=""
-S["AWK"]="gawk"
+S["AWK"]="mawk"
 S["mkdir_p"]="mkdir -p --"
 S["INSTALL_STRIP_PROGRAM"]="${SHELL} $(install_sh) -c -s"
 S["STRIP"]="strip"
-S["install_sh"]="/home/xing/research/image_compression_github/image_compression/libjpeg-turbo-2_3_dc-threshold/install-sh"
-S["MAKEINFO"]="${SHELL} /home/xing/research/image_compression_github/image_compression/libjpeg-turbo-2_3_dc-threshold/missing --run makeinfo"
-S["AUTOHEADER"]="${SHELL} /home/xing/research/image_compression_github/image_compression/libjpeg-turbo-2_3_dc-threshold/missing --run autoheader"
-S["AUTOMAKE"]="${SHELL} /home/xing/research/image_compression_github/image_compression/libjpeg-turbo-2_3_dc-threshold/missing --run automake-1.9"
-S["AUTOCONF"]="${SHELL} /home/xing/research/image_compression_github/image_compression/libjpeg-turbo-2_3_dc-threshold/missing --run autoconf"
-S["ACLOCAL"]="${SHELL} /home/xing/research/image_compression_github/image_compression/libjpeg-turbo-2_3_dc-threshold/missing --run aclocal-1.9"
+S["install_sh"]="/home/zahaib/ROMP/image_compression/libjpeg-turbo-2_3_dc-threshold/install-sh"
+S["MAKEINFO"]="${SHELL} /home/zahaib/ROMP/image_compression/libjpeg-turbo-2_3_dc-threshold/missing --run makeinfo"
+S["AUTOHEADER"]="${SHELL} /home/zahaib/ROMP/image_compression/libjpeg-turbo-2_3_dc-threshold/missing --run autoheader"
+S["AUTOMAKE"]="${SHELL} /home/zahaib/ROMP/image_compression/libjpeg-turbo-2_3_dc-threshold/missing --run automake-1.9"
+S["AUTOCONF"]="${SHELL} /home/zahaib/ROMP/image_compression/libjpeg-turbo-2_3_dc-threshold/missing --run autoconf"
+S["ACLOCAL"]="${SHELL} /home/zahaib/ROMP/image_compression/libjpeg-turbo-2_3_dc-threshold/missing --run aclocal-1.9"
 S["VERSION"]="1.3.90"
 S["PACKAGE"]="libjpeg-turbo"
 S["CYGPATH_W"]="echo"
@@ -862,7 +862,7 @@ D["INLINE"]=" inline __attribute__((always_inline))"
 D["C_ARITH_CODING_SUPPORTED"]=" 1"
 D["D_ARITH_CODING_SUPPORTED"]=" 1"
 D["WITH_SIMD"]=" 1"
-D["BUILD"]=" \"20150914\""
+D["BUILD"]=" \"20150923\""
   for (key in D) D_is_set[key] = 1
   FS = ""
 }
