@@ -1101,7 +1101,8 @@ def generate_blocks(folder):
 		cmd = "/opt/libjpeg-turbo/bin/jpegtran -outputcoef temp.block " + f + " temp.out"
 		os.system(cmd)
 		commands.getstatusoutput("python lossy_zerooff2_thres_quantized_output_ssim.py temp.block " + folder + "/" + name + ".block " + str(zerooff_thre1) + " 75 " + str(zerooff_thre2))
-		c = commands.getstatusoutput("/opt/libjpeg-turbo-coef/bin/jpegtran -inputcoef " + folder + "/" + name + ".block " + " temp.out " + folder+"/lromp/"+f[:f.find(".jpg")] + "_lromp.jpg")
+		c = commands.getstatusoutput("/opt/libjpeg-turbo-coef/bin/jpegtran -inputcoef " + folder + "/" + name + ".block " + " temp.out " + folder+"/lromp/"+f[f.rfind("/")+1:f.find(".jpg")]+"_lromp.jpg")
+		print c
 		#os.system("python lossy_zerooff2_thres_quantized_output_ssim.py %s ttttmp_out.block_ %s %s %f"%(block_file, str(threshold), str(71),              _threshold))
 	os.system("rm temp.out")
 	os.system("rm temp.block")
