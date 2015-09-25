@@ -92,7 +92,7 @@ usage (void)
 #ifdef C_MULTISCAN_FILES_SUPPORTED
   fprintf(stderr, "  -scans file    Create multi-scan JPEG per script file\n");
 #endif
-  fprintf(stderr, "  -encode entropy_table_folder threshold1 threshold2\n");
+  fprintf(stderr, "  -encode dumb threshold1 threshold2\n");
   fprintf(stderr, "  -decode entropy_table_folder\n");
   fprintf(stderr, "  -outputcoef coef_file_name\n");
   exit(EXIT_FAILURE);

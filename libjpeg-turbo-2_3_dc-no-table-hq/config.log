@@ -1096,11 +1096,8 @@ config.status:1057: WARNING:  'java/Makefile.in' seems to ignore the --datarootd
 config.status:954: creating md5/Makefile
 config.status:1057: WARNING:  'md5/Makefile.in' seems to ignore the --datarootdir setting
 config.status:954: creating config.h
-config.status:1129: config.h is unchanged
 config.status:954: creating jconfig.h
-config.status:1129: jconfig.h is unchanged
 config.status:954: creating jconfigint.h
-config.status:1129: jconfigint.h is unchanged
 config.status:1176: executing depfiles commands
 
 ## ---------------- ##
@@ -1247,7 +1244,7 @@ AUTOCONF='${SHELL} /home/xing/research/image_compression_github/image_compressio
 AUTOHEADER='${SHELL} /home/xing/research/image_compression_github/image_compression/libjpeg-turbo-2_3_dc-no-table-hq/missing --run autoheader'
 AUTOMAKE='${SHELL} /home/xing/research/image_compression_github/image_compression/libjpeg-turbo-2_3_dc-no-table-hq/missing --run automake-1.9'
 AWK='gawk'
-BUILD='20150311'
+BUILD='20150923'
 CC='gcc'
 CCAS='gcc'
 CCASFLAGS='-g -O2'
@@ -1438,6 +1435,6 @@ target_alias=''
 #define C_ARITH_CODING_SUPPORTED 1
 #define D_ARITH_CODING_SUPPORTED 1
 #define WITH_SIMD 1
-#define BUILD "20150311"
+#define BUILD "20150923"
 
 configure: exit 0
